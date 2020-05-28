@@ -1,0 +1,2 @@
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache

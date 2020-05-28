@@ -1,0 +1,1731 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestVariousInfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.ActivityInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ActivityInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PCName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MethodName" Type="nvarchar" MaxLength="255" />
+    <Property Name="ModifyDt" Type="datetime" />
+    <Property Name="frmName" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="AgingFileInfo">
+    <Key>
+      <PropertyRef Name="AgingFileId" />
+    </Key>
+    <Property Name="AgingFileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="FileDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AgingInvoice">
+    <Key>
+      <PropertyRef Name="InvoiceAgingID" />
+    </Key>
+    <Property Name="InvoiceAgingID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="DueInvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="AppSetting">
+    <Key>
+      <PropertyRef Name="AppID" />
+    </Key>
+    <Property Name="AppID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompareDate" Type="datetime" />
+    <Property Name="CompareSchedule" Type="char" MaxLength="1" />
+    <Property Name="CompareActiveTimer" Type="bit" />
+    <Property Name="ActiveWebUpload" Type="bit" />
+    <Property Name="NewVersion" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApprovedVersion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bcad_Capacity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CraneConfigID" Type="int" />
+    <Property Name="RadiusID" Type="int" />
+    <Property Name="Radius" Type="float" />
+    <Property Name="Capacity" Type="float" />
+  </EntityType>
+  <EntityType Name="Bcad_Crane">
+    <Key>
+      <PropertyRef Name="CraneID" />
+    </Key>
+    <Property Name="CraneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CraneName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneConfig">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CraneConfigName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneCoordinate">
+    <Key>
+      <PropertyRef Name="CraneCoordi_ID" />
+    </Key>
+    <Property Name="CraneCoordi_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectNameID" Type="int" />
+    <Property Name="CraneInfo" Type="nvarchar(max)" />
+    <Property Name="CraneConfigID" Type="int" />
+    <Property Name="Coordi_X" Type="float" />
+    <Property Name="Coordi_Y" Type="float" />
+    <Property Name="Coordi_Z" Type="float" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneData">
+    <Key>
+      <PropertyRef Name="CraneDataID" />
+    </Key>
+    <Property Name="CraneDataID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CraneID" Type="bigint" />
+    <Property Name="OR_sp" Type="nvarchar" MaxLength="50" />
+    <Property Name="FP_radius" Type="nvarchar" MaxLength="50" />
+    <Property Name="FP_Height" Type="nvarchar" MaxLength="50" />
+    <Property Name="Boom_length" Type="nvarchar" MaxLength="50" />
+    <Property Name="Boom_depth" Type="nvarchar" MaxLength="50" />
+    <Property Name="Boom_width" Type="nvarchar" MaxLength="50" />
+    <Property Name="Boom_Ext" Type="nvarchar" MaxLength="50" />
+    <Property Name="Jib_length" Type="nvarchar" MaxLength="50" />
+    <Property Name="Offset" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bcad_ElevationInfo">
+    <Key>
+      <PropertyRef Name="elevID" />
+    </Key>
+    <Property Name="elevID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="siteTitleID" Type="int" />
+    <Property Name="elevName" Type="varchar" MaxLength="50" />
+    <Property Name="elevD" Type="varchar" MaxLength="50" />
+    <Property Name="elevHeight" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bcad_PickChartCoordinate">
+    <Key>
+      <PropertyRef Name="PickChartCoordi_ID" />
+    </Key>
+    <Property Name="PickChartCoordi_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectNameID" Type="int" />
+    <Property Name="CraneCoordi_ID" Type="int" />
+    <Property Name="Coordi_X" Type="float" />
+    <Property Name="Coordi_Y" Type="float" />
+    <Property Name="Coordi_Z" Type="float" />
+    <Property Name="Pick" Type="nvarchar" MaxLength="50" />
+    <Property Name="PickWaight" Type="float" />
+    <Property Name="Capacity" Type="float" />
+    <Property Name="Radius" Type="float" />
+  </EntityType>
+  <EntityType Name="Bcad_ProjectName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Bcad_Radius">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="radius" Type="float" />
+  </EntityType>
+  <EntityType Name="Bcad_Site">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="siteName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bcad_SiteInfo">
+    <Key>
+      <PropertyRef Name="siteID" />
+    </Key>
+    <Property Name="siteID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="siteTitleID" Type="int" />
+    <Property Name="thetaValue" Type="varchar" MaxLength="10" />
+    <Property Name="ElevCraneDistance" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ColorEmailDescription">
+    <Key>
+      <PropertyRef Name="EmaildesID" />
+    </Key>
+    <Property Name="EmaildesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColorID" Type="int" />
+    <Property Name="EmailSubject" Type="nvarchar(max)" />
+    <Property Name="EmailDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ColorHistory">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="AgingUpdateDate" />
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="AgingUpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="Userid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ColorSetting">
+    <Key>
+      <PropertyRef Name="ColorID" />
+    </Key>
+    <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColorCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CommunicationLog">
+    <Key>
+      <PropertyRef Name="CommLogID" />
+    </Key>
+    <Property Name="CommLogID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="bigint" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="20" />
+    <Property Name="Method" Type="varchar" MaxLength="50" />
+    <Property Name="Notes" Type="varchar(max)" />
+    <Property Name="CallBackDate" Type="date" />
+  </EntityType>
+  <EntityType Name="CommunityBoard">
+    <Key>
+      <PropertyRef Name="CommunityBoardID" />
+    </Key>
+    <Property Name="CommunityBoardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommunityBoardNum" Type="int" />
+    <Property Name="ChairPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="CompanyNo" Type="varchar" MaxLength="31" StoreGeneratedPattern="Computed" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="FedExNUM" Type="nvarchar(max)" />
+    <Property Name="IBMNUM" Type="nvarchar(max)" />
+    <Property Name="AirborneExpNUM" Type="nvarchar(max)" />
+    <Property Name="DotInsuranceExp" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Age0Action" Type="int" />
+    <Property Name="Age15Action" Type="int" />
+    <Property Name="Age30Action" Type="int" />
+    <Property Name="Age45Action" Type="int" />
+    <Property Name="Age60Action" Type="int" />
+    <Property Name="Age75Action" Type="int" />
+    <Property Name="Age90Action" Type="int" />
+    <Property Name="Age105Action" Type="int" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DueInvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="IsDisable" Type="bit" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="DBadClient" Type="bit" />
+    <Property Name="IsCreditPass" Type="bit" />
+    <Property Name="CreditPassDate" Type="date" />
+    <Property Name="TableVersionId" Type="int" />
+    <Property Name="OfficePhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="OfficeFax" Type="nvarchar" MaxLength="20" />
+    <Property Name="TypicalInvoiceType" Type="varchar" MaxLength="20" />
+    <Property Name="ServRate" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="ContactsID" />
+    </Key>
+    <Property Name="ContactsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="30" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobilePhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="SpecialRiggerNUM" Type="nvarchar" MaxLength="50" />
+    <Property Name="MasterRiggerNUM" Type="nvarchar(max)" />
+    <Property Name="SpecialSignNUM" Type="nvarchar" MaxLength="50" />
+    <Property Name="MasterSignNUM" Type="nvarchar(max)" />
+    <Property Name="Prefix" Type="nvarchar" MaxLength="20" />
+    <Property Name="Suffix" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="30" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="30" />
+    <Property Name="HomePhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="WorkPhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="AlternativePhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="FieldPhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="Pager" Type="nvarchar" MaxLength="20" />
+    <Property Name="Accounting" Type="bit" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CRVExpensesInvoice">
+    <Key>
+      <PropertyRef Name="CRVExpensesInvoiceID" />
+    </Key>
+    <Property Name="CRVExpensesInvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobTrackDetailID" Type="bigint" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Expenses" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeSheetExpencesID" Type="int" />
+  </EntityType>
+  <EntityType Name="CRVTimeInvoice">
+    <Key>
+      <PropertyRef Name="CRVTimeInvoiceID" />
+    </Key>
+    <Property Name="CRVTimeInvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobTrackDetailID" Type="bigint" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Time" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="TimeSheetID" Type="int" />
+  </EntityType>
+  <EntityType Name="DocTypicalCategoryList">
+    <Key>
+      <PropertyRef Name="TypeCategoryID" />
+    </Key>
+    <Property Name="TypeCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="DocTypicalListItem">
+    <Key>
+      <PropertyRef Name="DocTypical_ID" />
+    </Key>
+    <Property Name="DocTypical_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocTypical_Category" Type="int" />
+    <Property Name="DocTypical_Text" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DrawingLog">
+    <Key>
+      <PropertyRef Name="DrawingLogID" />
+    </Key>
+    <Property Name="DrawingLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="int" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="StorageLocation" Type="nvarchar" MaxLength="255" />
+    <Property Name="LastUsed" Type="datetime" />
+    <Property Name="AKA" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="EmailRecord">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="50" />
+    <Property Name="NewRecord" Type="varchar" MaxLength="10" />
+    <Property Name="UpdateRecord" Type="varchar" MaxLength="10" />
+    <Property Name="DeleteRecord" Type="varchar" MaxLength="10" />
+    <Property Name="UploadDate" Type="datetime" />
+    <Property Name="IsEmailed" Type="bit" />
+  </EntityType>
+  <EntityType Name="EmployeeDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserType" Type="varchar" MaxLength="50" />
+    <Property Name="BillableRate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActiveUser" Type="bit" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MasterItemId" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="TempId" Type="bigint" />
+    <Property Name="ReservedOldId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="EmployeeDetails_Depre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserType" Type="varchar" MaxLength="50" />
+    <Property Name="BillableRate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActiveUser" Type="bit" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MasterItemId" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="ImportTimeSheetData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar(max)" />
+    <Property Name="PM" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Duration" Type="datetime" />
+    <Property Name="ImportDate" Type="datetime" />
+    <Property Name="ChangeHours" Type="float" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="int" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="InvoiceNumber" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceFileName" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceFile" Type="varbinary(max)" />
+    <Property Name="InvoiceFileType" Type="varchar" MaxLength="10" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="250" />
+    <Property Name="UploadFile" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="InvoiceAction">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Name="ActionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="bigint" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+    <Property Name="ActionName" Type="varchar" MaxLength="20" />
+    <Property Name="ActionDate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="Notes" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="JobList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="ContactsID" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="HouseNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Borough" Type="nvarchar" MaxLength="255" />
+    <Property Name="Handler" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="ContactsEmails" Type="nvarchar" MaxLength="255" />
+    <Property Name="OwnerName" Type="nvarchar(max)" />
+    <Property Name="OwnerAddress" Type="nvarchar(max)" />
+    <Property Name="OwnerPhone" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerFax" Type="varchar" MaxLength="50" />
+    <Property Name="ACContacts" Type="varchar(max)" />
+    <Property Name="ACEmail" Type="varchar(max)" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+    <Property Name="PMrv" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDisable" Type="bit" />
+    <Property Name="InvoiceClient" Type="int" />
+    <Property Name="InvoiceContact" Type="varchar(max)" />
+    <Property Name="InvoiceEmailAddress" Type="nvarchar(max)" />
+    <Property Name="InvoiceACContacts" Type="varchar(max)" />
+    <Property Name="InvoiceACEmail" Type="nvarchar(max)" />
+    <Property Name="RateVersionId" Type="int" />
+    <Property Name="TypicalInvoiceType" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsInvoiceHold" Type="bit" Nullable="false" />
+    <Property Name="ServRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AdminInvoice" Type="bit" />
+  </EntityType>
+  <EntityType Name="JobTracking">
+    <Key>
+      <PropertyRef Name="JobTrackingID" />
+    </Key>
+    <Property Name="JobTrackingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="int" />
+    <Property Name="Track" Type="nvarchar" MaxLength="255" />
+    <Property Name="AddDate" Type="datetime" />
+    <Property Name="NeedDate" Type="datetime" />
+    <Property Name="Obtained" Type="datetime" />
+    <Property Name="Expires" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="255" />
+    <Property Name="Submitted" Type="datetime" />
+    <Property Name="BillState" Type="nvarchar" MaxLength="255" />
+    <Property Name="TaskHandler" Type="nvarchar" MaxLength="255" />
+    <Property Name="TrackSub" Type="nvarchar" MaxLength="255" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+    <Property Name="TrackSubID" Type="int" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="FinalAction" Type="nvarchar" MaxLength="255" />
+    <Property Name="InvOvr" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeleteItemTimeService" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobTrackInvoiceDetail">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="nvarchar(max)" />
+    <Property Name="FaxNo" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBal" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="JobTrackInvoiceRateDetail">
+    <Key>
+      <PropertyRef Name="InvoiceRptID" />
+    </Key>
+    <Property Name="InvoiceRptID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackSubID" Type="int" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Hrs" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+    <Property Name="JobTrackingID" Type="int" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="nid" />
+    </Key>
+    <Property Name="nid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cUserid" Type="varchar" MaxLength="50" />
+    <Property Name="cPassword" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MasterItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cGroup" Type="varchar" MaxLength="50" />
+    <Property Name="cTrack" Type="nvarchar(max)" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="IsDisable" Type="bit" />
+    <Property Name="EmpId" Type="int" />
+  </EntityType>
+  <EntityType Name="MasterTrackSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackSet" Type="varchar" MaxLength="50" />
+    <Property Name="TrackName" Type="varchar" MaxLength="50" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="MasterTrackSubItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackId" Type="int" />
+    <Property Name="TrackName" Type="varchar" MaxLength="50" />
+    <Property Name="TrackSubName" Type="varchar" MaxLength="50" />
+    <Property Name="nRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Account" Type="varchar" MaxLength="50" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CalColor" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.PMInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PMInfo">
+    <Key>
+      <PropertyRef Name="pmID" />
+    </Key>
+    <Property Name="pmID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar(max)" />
+    <Property Name="LastName" Type="varchar(max)" />
+    <Property Name="EmailAddress" Type="varchar(max)" />
+    <Property Name="PMinitials" Type="varchar" MaxLength="10" />
+    <Property Name="TSUserName" Type="varchar(max)" />
+    <Property Name="TSPassword" Type="varchar(max)" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zip" Type="varchar" MaxLength="15" />
+    <Property Name="Mobile" Type="varchar" MaxLength="15" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="15" />
+    <Property Name="PersonalEmail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SendEmailRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SendEmailJoblistId" Type="int" />
+    <Property Name="IsSend" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaskList">
+    <Key>
+      <PropertyRef Name="TaskLisiId" />
+    </Key>
+    <Property Name="TaskLisiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="PM" Type="nvarchar" MaxLength="50" />
+    <Property Name="TM" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="CompletedByDate" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TrackSubItemAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TS_Expences">
+    <Key>
+      <PropertyRef Name="TimeSheetExpencesID" />
+    </Key>
+    <Property Name="TimeSheetExpencesID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="bigint" />
+    <Property Name="EmployeeDetailsId" Type="bigint" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="TrackSubID" Type="int" />
+    <Property Name="TrackSubName" Type="nvarchar(max)" />
+    <Property Name="Expences" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="status" Type="nvarchar(max)" />
+    <Property Name="BillState" Type="nvarchar(max)" />
+    <Property Name="MassStatusChangeBox" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="AdminStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TS_MasterItem">
+    <Key>
+      <PropertyRef Name="TS_MasterItemId" />
+    </Key>
+    <Property Name="TS_MasterItemId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TS_Time">
+    <Key>
+      <PropertyRef Name="TimeSheetID" />
+    </Key>
+    <Property Name="TimeSheetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="bigint" />
+    <Property Name="EmployeeDetailsId" Type="bigint" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="TrackSubID" Type="int" />
+    <Property Name="TrackSubName" Type="nvarchar(max)" />
+    <Property Name="Time" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="status" Type="nvarchar(max)" />
+    <Property Name="BillState" Type="nvarchar(max)" />
+    <Property Name="MassStatusChangeBox" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="AdminStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTrackingId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="VBCDDatabase">
+    <Key>
+      <PropertyRef Name="CDID" />
+    </Key>
+    <Property Name="CDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CDNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Make" Type="nvarchar" MaxLength="255" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelYear" Type="nvarchar" MaxLength="255" />
+    <Property Name="Capacity" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="255" />
+    <Property Name="Expiration" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelSpaceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="CraneName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CraneID" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerFax" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypMast" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypBoom" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypJIB" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypTotal" Type="nvarchar" MaxLength="50" />
+    <Property Name="EquipmentType" Type="nvarchar" MaxLength="255" />
+    <Property Name="ErectionStyle" Type="nvarchar" MaxLength="255" />
+    <Property Name="TravelCTWT" Type="nvarchar" MaxLength="255" />
+    <Property Name="Dunnage1" Type="nvarchar" MaxLength="255" />
+    <Property Name="Dunnage2" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaxOrLoad" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="ApprovedChartType" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="VBFormInfo">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobListID" Type="int" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="Applicant" Type="int" />
+    <Property Name="JobSiteBlock" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteLot" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteCNNum" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteHouseNum" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteStreet" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteBorough" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobSiteState" Type="nvarchar" MaxLength="255" />
+    <Property Name="Crane1CD" Type="int" />
+    <Property Name="Crane2CD" Type="int" />
+    <Property Name="Crane3CD" Type="int" />
+    <Property Name="Crane4CD" Type="int" />
+    <Property Name="Crane5CD" Type="int" />
+    <Property Name="Crane6CD" Type="int" />
+    <Property Name="CraneUser" Type="int" />
+    <Property Name="CraneUserInfo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CraneUserTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformManufacturer" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformModel" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperName" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperPhone" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperFax" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperAddr" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperCity" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperState" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkPlatformSuperZip" Type="nvarchar" MaxLength="255" />
+    <Property Name="FirstVariance" Type="bit" Nullable="false" />
+    <Property Name="BIN" Type="nvarchar" MaxLength="255" />
+    <Property Name="CBNum" Type="nvarchar" MaxLength="255" />
+    <Property Name="AptorCondoNum" Type="nvarchar" MaxLength="255" />
+    <Property Name="SpecialPlaceName" Type="nvarchar" MaxLength="255" />
+    <Property Name="SubName" Type="int" />
+    <Property Name="SubInfo" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ResidenceWithin200ft" Type="bit" Nullable="false" />
+    <Property Name="DatesofVariance" Type="nvarchar" MaxLength="255" />
+    <Property Name="DaysofVariance" Type="nvarchar" MaxLength="255" />
+    <Property Name="TimeofVarianceFrom" Type="nvarchar" MaxLength="255" />
+    <Property Name="TimeofVarianceTo" Type="nvarchar" MaxLength="255" />
+    <Property Name="VarianceWorkDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="ReasonforVariance" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteArchitect" Type="int" />
+    <Property Name="CommunityBoardID" Type="int" />
+    <Property Name="SiteNumofStories" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOccupancy" Type="bit" Nullable="false" />
+    <Property Name="OccupancyType" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteNumofApts" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteNumofAptsCurrent" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteNumofAptsProposed" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwner" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwnerAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwnerStreet" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwnerCity" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwnerState" Type="nvarchar" MaxLength="255" />
+    <Property Name="SiteOwnerZip" Type="nvarchar" MaxLength="255" />
+    <Property Name="WorkProposed" Type="nvarchar" MaxLength="255" />
+    <Property Name="Architect2" Type="nvarchar" MaxLength="255" />
+    <Property Name="Architect2fullAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+    <Property Name="PDFType" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="VBNetApplicantInfo">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicantFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantMidName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantBusinessName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantBusinessAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="ApplicantBusinessCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantBusinessState" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantBusinessZip" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantLicense" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApplicantPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Applicantfax" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsChange" Type="bit" />
+    <Property Name="IsNewRecord" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ChangeDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VersionDescription">
+    <Key>
+      <PropertyRef Name="VersionDescId" />
+    </Key>
+    <Property Name="VersionDescId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableVersionId" Type="int" />
+    <Property Name="MasterTrackSubItemId" Type="int" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Id" Type="int" />
+    <Property Name="TrackSet" Type="nvarchar" MaxLength="200" />
+    <Property Name="TrackName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="CalColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackSubName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="VersionTable">
+    <Key>
+      <PropertyRef Name="TableVersionId" />
+    </Key>
+    <Property Name="TableVersionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableVersionName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="VETask">
+    <Key>
+      <PropertyRef Name="VETaskID" />
+    </Key>
+    <Property Name="VETaskID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="PM" Type="nvarchar" MaxLength="50" />
+    <Property Name="TM" Type="nvarchar" MaxLength="50" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssueDate" Type="date" />
+    <Property Name="CompletedDate" Type="date" />
+    <Property Name="JobID" Type="bigint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.EmailJobPendingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmailJobPendingList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Contacts" Type="nvarchar" MaxLength="132" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Track" Type="nvarchar" MaxLength="255" />
+    <Property Name="TrackSub" Type="nvarchar" MaxLength="255" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+    <Property Name="JobListID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.InvoiceJobList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="InvoiceJobList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="int" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="ContactsName" Type="nvarchar" MaxLength="132" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.InvoicePreview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="InvoicePreview">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="nvarchar(max)" />
+    <Property Name="FaxNo" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="Hrs" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Account" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.InvoicePreview_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="InvoicePreview_1">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="Hrs" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Account" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.MasterTrackSubDisplay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MasterTrackSubDisplay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TrackSet" Type="varchar" MaxLength="50" />
+    <Property Name="TrackName" Type="varchar" MaxLength="50" />
+    <Property Name="TrackSubName" Type="varchar" MaxLength="50" />
+    <Property Name="nRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Account" Type="varchar" MaxLength="50" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CalColor" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.rptInvoiceExpenses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="rptInvoiceExpenses">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Expenses" Type="float" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.rptInvoiceTime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="rptInvoiceTime">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Time" Type="float" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="int" />
+    <Property Name="OpeningBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.view_Temp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Temp">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+      <PropertyRef Name="ReportType" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="varchar" MaxLength="12" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="varchar" MaxLength="20" />
+    <Property Name="Hrs" Type="float" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="30" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+    <Property Name="Expenses" Type="float" />
+    <Property Name="ReportType" Type="varchar" MaxLength="8" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.vw_Item_Time_Expense' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_Item_Time_Expense">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+      <PropertyRef Name="Expenses" />
+      <PropertyRef Name="ReportType" />
+    </Key>
+    <Property Name="InvoiceNo" Type="nvarchar(max)" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="Jobdescription" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PONo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Hrs" Type="float" />
+    <Property Name="Time" Type="float" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTrackSubName" Type="nvarchar(max)" />
+    <Property Name="byname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="30" />
+    <Property Name="Clienttext" Type="nvarchar(max)" />
+    <Property Name="Expenses" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ReportType" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.VW_PandingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_PandingList">
+    <Key>
+      <PropertyRef Name="JobTrackingID" />
+    </Key>
+    <Property Name="JobTrackingID" Type="int" Nullable="false" />
+    <Property Name="JobListID" Type="int" />
+    <Property Name="AddDate" Type="datetime" />
+    <Property Name="NeedDate" Type="datetime" />
+    <Property Name="Obtained" Type="datetime" />
+    <Property Name="Expires" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="255" />
+    <Property Name="Submitted" Type="datetime" />
+    <Property Name="BillState" Type="nvarchar" MaxLength="255" />
+    <Property Name="TaskHandler" Type="nvarchar" MaxLength="255" />
+    <Property Name="Comments" Type="nvarchar(max)" />
+    <Property Name="FinalAction" Type="nvarchar" MaxLength="255" />
+    <Property Name="TrackSubID" Type="int" />
+    <Property Name="TrackName" Type="varchar" MaxLength="50" />
+    <Property Name="TrackSubName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.vwJobListDefaultValue' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwJobListDefaultValue">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="int" Nullable="false" />
+    <Property Name="TableVersionId" Type="int" />
+    <Property Name="ServRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceType" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vWordTrans">
+    <Key>
+      <PropertyRef Name="ContactsID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="State" />
+    </Key>
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactsID" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="ChangeTraficLightColor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="ColorCode" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ClientName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="MiddeleName" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ContactEmailAddres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="companyID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ExtractFileExtenion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="FileName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_Factor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="Rate" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Factor" Type="decimal" Mode="In" />
+    <Parameter Name="IsCalculate" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="fn_GetAmtFromComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="comment" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="fn_GetContactDetailsByContactID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="ContactID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_GetContactDetailsByContactIDNew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="ContactID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_GetContactDetailsByJobContactID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="ContactID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_GetContactDetailsByJobListContactID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="ContactID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_GetDefaultValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="jobListId" Type="int" Mode="In" />
+    <Parameter Name="columnName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_GetTimeItemDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="timesheetId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="fn_IsEmptyContactsAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="ContactID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_Reduction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="Rate" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Reduction" Type="decimal" Mode="In" />
+    <Parameter Name="IsCalculate" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="fun_PMInfoEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="PM" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Func_ChangeTraficLightColorProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="DueInvoiceCount" Type="int" Mode="In" />
+    <Parameter Name="CreditPassDate" Type="date" Mode="In" />
+    <Parameter Name="aging" Type="int" Mode="In" />
+    <Parameter Name="Age0Action" Type="int" Mode="In" />
+    <Parameter Name="Age15Action" Type="int" Mode="In" />
+    <Parameter Name="Age30Action" Type="int" Mode="In" />
+    <Parameter Name="Age45Action" Type="int" Mode="In" />
+    <Parameter Name="Age60Action" Type="int" Mode="In" />
+    <Parameter Name="Age75Action" Type="int" Mode="In" />
+    <Parameter Name="Age90Action" Type="int" Mode="In" />
+    <Parameter Name="Age105Action" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Func_DaysCountBasedonAingColor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="NOCreditColor" Type="int" Mode="In" />
+    <Parameter Name="GreenColor" Type="int" Mode="In" />
+    <Parameter Name="yellowColor" Type="int" Mode="In" />
+    <Parameter Name="OrangeColor" Type="int" Mode="In" />
+    <Parameter Name="RedColor" Type="int" Mode="In" />
+    <Parameter Name="BlackColor" Type="int" Mode="In" />
+    <Parameter Name="DueInvoiceCount" Type="int" Mode="In" />
+    <Parameter Name="CreditPassDate" Type="date" Mode="In" />
+    <Parameter Name="aging" Type="int" Mode="In" />
+    <Parameter Name="Age0Action" Type="int" Mode="In" />
+    <Parameter Name="Age15Action" Type="int" Mode="In" />
+    <Parameter Name="Age30Action" Type="int" Mode="In" />
+    <Parameter Name="Age45Action" Type="int" Mode="In" />
+    <Parameter Name="Age60Action" Type="int" Mode="In" />
+    <Parameter Name="Age75Action" Type="int" Mode="In" />
+    <Parameter Name="Age90Action" Type="int" Mode="In" />
+    <Parameter Name="Age105Action" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetBillableInvoiceTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JobListId" Type="int" Mode="In" />
+    <Parameter Name="TypicalInvoiceType" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GetExpensesTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JoblistID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetItemRateJobCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JobListID" Type="int" Mode="In" />
+    <Parameter Name="TrackSubId" Type="int" Mode="In" />
+    <Parameter Name="JobTrackingId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetItemTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JoblistID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetItemTotalTimeService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JoblistID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="TrackSubId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetRateJobCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JobListID" Type="int" Mode="In" />
+    <Parameter Name="TrackSubId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTimeInvoiveRateHrsTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JoblistID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTimeServiceFeeSplitText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SplitKey" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTimeTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="JoblistID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTypicalInvoiceType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="JobListTypicalInvoiceType" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyTypicalInvoiceType" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="JobListACEmailAddres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="GetValue" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBillableJobDisableSearchData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOCreditColor" Type="int" Mode="In" />
+    <Parameter Name="GreenColor" Type="int" Mode="In" />
+    <Parameter Name="yellowColor" Type="int" Mode="In" />
+    <Parameter Name="OrangeColor" Type="int" Mode="In" />
+    <Parameter Name="RedColor" Type="int" Mode="In" />
+    <Parameter Name="BlackColor" Type="int" Mode="In" />
+    <Parameter Name="DefaultAmount" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBillableJobSearchData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOCreditColor" Type="int" Mode="In" />
+    <Parameter Name="GreenColor" Type="int" Mode="In" />
+    <Parameter Name="yellowColor" Type="int" Mode="In" />
+    <Parameter Name="OrangeColor" Type="int" Mode="In" />
+    <Parameter Name="RedColor" Type="int" Mode="In" />
+    <Parameter Name="BlackColor" Type="int" Mode="In" />
+    <Parameter Name="DefaultAmount" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBillableJobSearchDataTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOCreditColor" Type="int" Mode="In" />
+    <Parameter Name="GreenColor" Type="int" Mode="In" />
+    <Parameter Name="yellowColor" Type="int" Mode="In" />
+    <Parameter Name="OrangeColor" Type="int" Mode="In" />
+    <Parameter Name="RedColor" Type="int" Mode="In" />
+    <Parameter Name="BlackColor" Type="int" Mode="In" />
+    <Parameter Name="DefaultAmount" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetInvoiceDetailByJobNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JobNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GetInvoiceDetailByJobNumber_All" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetInvoiceDetailByJobNumber_All_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JobNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="dateFrom" Type="date" Mode="In" />
+    <Parameter Name="dateTo" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InvoiceDetailReduction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JobTrackDetailId" Type="int" Mode="In" />
+    <Parameter Name="Reduction" Type="decimal" Mode="In" />
+    <Parameter Name="ItemReduc" Type="bit" Mode="In" />
+    <Parameter Name="TimeReduc" Type="bit" Mode="In" />
+    <Parameter Name="ExpenseReduc" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_InvoiceReportItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JobTrackDetailId" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Reduction" Type="decimal" Mode="In" />
+    <Parameter Name="ItemReduc" Type="bit" Mode="In" />
+    <Parameter Name="TimeReduc" Type="bit" Mode="In" />
+    <Parameter Name="ExpReduc" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ShowJobList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TodayDate" Type="date" Mode="In" />
+    <Parameter Name="SelectQuery" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ShowJobTrackingList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TodayDate" Type="date" Mode="In" />
+    <Parameter Name="SelectQuery" Type="int" Mode="In" />
+    <Parameter Name="JobListID_Collection" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_TaskGetJobNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="QueryDate" Type="date" Mode="In" />
+    <Parameter Name="SelectQuery" Type="char" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateConvertInvoiceExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xmlString" Type="xml" Mode="In" />
+    <Parameter Name="billState" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateConvertInvoiceItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xmlString" Type="xml" Mode="In" />
+    <Parameter Name="billState" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jobListID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateConvertInvoiceTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xmlString" Type="xml" Mode="In" />
+    <Parameter Name="billState" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Character" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="spUndoInvoiceDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JobTrackDetailId" Type="int" Mode="In" />
+    <Parameter Name="IsUndo" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="TestVariousInfoModelStoreContainer">
+    <EntitySet Name="AgingFileInfo" EntityType="Self.AgingFileInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgingInvoice" EntityType="Self.AgingInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppSetting" EntityType="Self.AppSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_Capacity" EntityType="Self.Bcad_Capacity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_Crane" EntityType="Self.Bcad_Crane" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_CraneConfig" EntityType="Self.Bcad_CraneConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_CraneCoordinate" EntityType="Self.Bcad_CraneCoordinate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_CraneData" EntityType="Self.Bcad_CraneData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_ElevationInfo" EntityType="Self.Bcad_ElevationInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_PickChartCoordinate" EntityType="Self.Bcad_PickChartCoordinate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_ProjectName" EntityType="Self.Bcad_ProjectName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_Radius" EntityType="Self.Bcad_Radius" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_Site" EntityType="Self.Bcad_Site" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bcad_SiteInfo" EntityType="Self.Bcad_SiteInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColorEmailDescription" EntityType="Self.ColorEmailDescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColorSetting" EntityType="Self.ColorSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommunicationLog" EntityType="Self.CommunicationLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommunityBoard" EntityType="Self.CommunityBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CRVExpensesInvoice" EntityType="Self.CRVExpensesInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CRVTimeInvoice" EntityType="Self.CRVTimeInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocTypicalCategoryList" EntityType="Self.DocTypicalCategoryList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocTypicalListItem" EntityType="Self.DocTypicalListItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DrawingLog" EntityType="Self.DrawingLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailRecord" EntityType="Self.EmailRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeDetails_Depre" EntityType="Self.EmployeeDetails_Depre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportTimeSheetData" EntityType="Self.ImportTimeSheetData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceAction" EntityType="Self.InvoiceAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobList" EntityType="Self.JobList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobTracking" EntityType="Self.JobTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobTrackInvoiceDetail" EntityType="Self.JobTrackInvoiceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobTrackInvoiceRateDetail" EntityType="Self.JobTrackInvoiceRateDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MasterItem" EntityType="Self.MasterItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MasterTrackSet" EntityType="Self.MasterTrackSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MasterTrackSubItem" EntityType="Self.MasterTrackSubItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SendEmailRecord" EntityType="Self.SendEmailRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskList" EntityType="Self.TaskList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackSubItemAccount" EntityType="Self.TrackSubItemAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TS_Expences" EntityType="Self.TS_Expences" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TS_MasterItem" EntityType="Self.TS_MasterItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TS_Time" EntityType="Self.TS_Time" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VBCDDatabase" EntityType="Self.VBCDDatabase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VBFormInfo" EntityType="Self.VBFormInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VBNetApplicantInfo" EntityType="Self.VBNetApplicantInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VersionDescription" EntityType="Self.VersionDescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VersionTable" EntityType="Self.VersionTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VETask" EntityType="Self.VETask" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActivityInfo" EntityType="Self.ActivityInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ActivityInfo].[Id] AS [Id], 
+    [ActivityInfo].[PCName] AS [PCName], 
+    [ActivityInfo].[MethodName] AS [MethodName], 
+    [ActivityInfo].[ModifyDt] AS [ModifyDt], 
+    [ActivityInfo].[frmName] AS [frmName]
+    FROM [dbo].[ActivityInfo] AS [ActivityInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ColorHistory" EntityType="Self.ColorHistory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ColorHistory].[CompanyID] AS [CompanyID], 
+    [ColorHistory].[CompanyName] AS [CompanyName], 
+    [ColorHistory].[Aging] AS [Aging], 
+    [ColorHistory].[AgingUpdateDate] AS [AgingUpdateDate], 
+    [ColorHistory].[Userid] AS [Userid]
+    FROM [dbo].[ColorHistory] AS [ColorHistory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PMInfo" EntityType="Self.PMInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PMInfo].[pmID] AS [pmID], 
+    [PMInfo].[FirstName] AS [FirstName], 
+    [PMInfo].[LastName] AS [LastName], 
+    [PMInfo].[EmailAddress] AS [EmailAddress], 
+    [PMInfo].[PMinitials] AS [PMinitials], 
+    [PMInfo].[TSUserName] AS [TSUserName], 
+    [PMInfo].[TSPassword] AS [TSPassword], 
+    [PMInfo].[Address] AS [Address], 
+    [PMInfo].[City] AS [City], 
+    [PMInfo].[State] AS [State], 
+    [PMInfo].[Zip] AS [Zip], 
+    [PMInfo].[Mobile] AS [Mobile], 
+    [PMInfo].[HomePhone] AS [HomePhone], 
+    [PMInfo].[PersonalEmail] AS [PersonalEmail]
+    FROM [dbo].[PMInfo] AS [PMInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EmailJobPendingList" EntityType="Self.EmailJobPendingList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmailJobPendingList].[JobNumber] AS [JobNumber], 
+    [EmailJobPendingList].[Address] AS [Address], 
+    [EmailJobPendingList].[Contacts] AS [Contacts], 
+    [EmailJobPendingList].[EmailAddress] AS [EmailAddress], 
+    [EmailJobPendingList].[Track] AS [Track], 
+    [EmailJobPendingList].[TrackSub] AS [TrackSub], 
+    [EmailJobPendingList].[Comments] AS [Comments], 
+    [EmailJobPendingList].[JobListID] AS [JobListID]
+    FROM [dbo].[EmailJobPendingList] AS [EmailJobPendingList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InvoiceJobList" EntityType="Self.InvoiceJobList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [InvoiceJobList].[JobListID] AS [JobListID], 
+    [InvoiceJobList].[JobNumber] AS [JobNumber], 
+    [InvoiceJobList].[DateAdded] AS [DateAdded], 
+    [InvoiceJobList].[Description] AS [Description], 
+    [InvoiceJobList].[Address] AS [Address], 
+    [InvoiceJobList].[ContactsName] AS [ContactsName], 
+    [InvoiceJobList].[EmailAddress] AS [EmailAddress], 
+    [InvoiceJobList].[CompanyID] AS [CompanyID], 
+    [InvoiceJobList].[CompanyName] AS [CompanyName]
+    FROM [dbo].[InvoiceJobList] AS [InvoiceJobList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InvoicePreview" EntityType="Self.InvoicePreview" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [InvoicePreview].[InvoiceNo] AS [InvoiceNo], 
+    [InvoicePreview].[InvoiceDate] AS [InvoiceDate], 
+    [InvoicePreview].[Jobdescription] AS [Jobdescription], 
+    [InvoicePreview].[DueDate] AS [DueDate], 
+    [InvoicePreview].[Address] AS [Address], 
+    [InvoicePreview].[PhoneNo] AS [PhoneNo], 
+    [InvoicePreview].[FaxNo] AS [FaxNo], 
+    [InvoicePreview].[Email] AS [Email], 
+    [InvoicePreview].[JobTrackSubName] AS [JobTrackSubName], 
+    [InvoicePreview].[Hrs] AS [Hrs], 
+    [InvoicePreview].[Rate] AS [Rate], 
+    [InvoicePreview].[Description] AS [Description], 
+    [InvoicePreview].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [InvoicePreview].[JobNumber] AS [JobNumber], 
+    [InvoicePreview].[PONo] AS [PONo], 
+    [InvoicePreview].[PaymentCr] AS [PaymentCr], 
+    [InvoicePreview].[BalanceDue] AS [BalanceDue], 
+    [InvoicePreview].[Aging] AS [Aging], 
+    [InvoicePreview].[OpeningBal] AS [OpeningBal], 
+    [InvoicePreview].[Account] AS [Account], 
+    [InvoicePreview].[Date] AS [Date], 
+    [InvoicePreview].[byname] AS [byname], 
+    [InvoicePreview].[Amount] AS [Amount], 
+    [InvoicePreview].[Clienttext] AS [Clienttext]
+    FROM [dbo].[InvoicePreview] AS [InvoicePreview]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InvoicePreview_1" EntityType="Self.InvoicePreview_1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [InvoicePreview_1].[InvoiceNo] AS [InvoiceNo], 
+    [InvoicePreview_1].[InvoiceDate] AS [InvoiceDate], 
+    [InvoicePreview_1].[Jobdescription] AS [Jobdescription], 
+    [InvoicePreview_1].[DueDate] AS [DueDate], 
+    [InvoicePreview_1].[Address] AS [Address], 
+    [InvoicePreview_1].[PhoneNo] AS [PhoneNo], 
+    [InvoicePreview_1].[FaxNo] AS [FaxNo], 
+    [InvoicePreview_1].[Email] AS [Email], 
+    [InvoicePreview_1].[JobTrackSubName] AS [JobTrackSubName], 
+    [InvoicePreview_1].[Hrs] AS [Hrs], 
+    [InvoicePreview_1].[Rate] AS [Rate], 
+    [InvoicePreview_1].[Description] AS [Description], 
+    [InvoicePreview_1].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [InvoicePreview_1].[JobNumber] AS [JobNumber], 
+    [InvoicePreview_1].[PONo] AS [PONo], 
+    [InvoicePreview_1].[PaymentCr] AS [PaymentCr], 
+    [InvoicePreview_1].[BalanceDue] AS [BalanceDue], 
+    [InvoicePreview_1].[Aging] AS [Aging], 
+    [InvoicePreview_1].[OpeningBal] AS [OpeningBal], 
+    [InvoicePreview_1].[Account] AS [Account], 
+    [InvoicePreview_1].[Date] AS [Date], 
+    [InvoicePreview_1].[byname] AS [byname], 
+    [InvoicePreview_1].[Amount] AS [Amount], 
+    [InvoicePreview_1].[Clienttext] AS [Clienttext]
+    FROM [dbo].[InvoicePreview_1] AS [InvoicePreview_1]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MasterTrackSubDisplay" EntityType="Self.MasterTrackSubDisplay" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MasterTrackSubDisplay].[TrackSet] AS [TrackSet], 
+    [MasterTrackSubDisplay].[TrackName] AS [TrackName], 
+    [MasterTrackSubDisplay].[TrackSubName] AS [TrackSubName], 
+    [MasterTrackSubDisplay].[nRate] AS [nRate], 
+    [MasterTrackSubDisplay].[Description] AS [Description], 
+    [MasterTrackSubDisplay].[Account] AS [Account], 
+    [MasterTrackSubDisplay].[Id] AS [Id], 
+    [MasterTrackSubDisplay].[IsDelete] AS [IsDelete], 
+    [MasterTrackSubDisplay].[CalColor] AS [CalColor]
+    FROM [dbo].[MasterTrackSubDisplay] AS [MasterTrackSubDisplay]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="rptInvoiceExpenses" EntityType="Self.rptInvoiceExpenses" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [rptInvoiceExpenses].[InvoiceNo] AS [InvoiceNo], 
+    [rptInvoiceExpenses].[InvoiceDate] AS [InvoiceDate], 
+    [rptInvoiceExpenses].[Jobdescription] AS [Jobdescription], 
+    [rptInvoiceExpenses].[DueDate] AS [DueDate], 
+    [rptInvoiceExpenses].[Address] AS [Address], 
+    [rptInvoiceExpenses].[PhoneNo] AS [PhoneNo], 
+    [rptInvoiceExpenses].[FaxNo] AS [FaxNo], 
+    [rptInvoiceExpenses].[Email] AS [Email], 
+    [rptInvoiceExpenses].[Date] AS [Date], 
+    [rptInvoiceExpenses].[Description] AS [Description], 
+    [rptInvoiceExpenses].[Expenses] AS [Expenses], 
+    [rptInvoiceExpenses].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [rptInvoiceExpenses].[JobNumber] AS [JobNumber], 
+    [rptInvoiceExpenses].[PONo] AS [PONo], 
+    [rptInvoiceExpenses].[PaymentCr] AS [PaymentCr], 
+    [rptInvoiceExpenses].[BalanceDue] AS [BalanceDue], 
+    [rptInvoiceExpenses].[Aging] AS [Aging], 
+    [rptInvoiceExpenses].[OpeningBal] AS [OpeningBal], 
+    [rptInvoiceExpenses].[byname] AS [byname]
+    FROM [dbo].[rptInvoiceExpenses] AS [rptInvoiceExpenses]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="rptInvoiceTime" EntityType="Self.rptInvoiceTime" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [rptInvoiceTime].[InvoiceNo] AS [InvoiceNo], 
+    [rptInvoiceTime].[InvoiceDate] AS [InvoiceDate], 
+    [rptInvoiceTime].[Jobdescription] AS [Jobdescription], 
+    [rptInvoiceTime].[DueDate] AS [DueDate], 
+    [rptInvoiceTime].[Address] AS [Address], 
+    [rptInvoiceTime].[PhoneNo] AS [PhoneNo], 
+    [rptInvoiceTime].[FaxNo] AS [FaxNo], 
+    [rptInvoiceTime].[Email] AS [Email], 
+    [rptInvoiceTime].[Date] AS [Date], 
+    [rptInvoiceTime].[Description] AS [Description], 
+    [rptInvoiceTime].[Time] AS [Time], 
+    [rptInvoiceTime].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [rptInvoiceTime].[JobNumber] AS [JobNumber], 
+    [rptInvoiceTime].[PONo] AS [PONo], 
+    [rptInvoiceTime].[PaymentCr] AS [PaymentCr], 
+    [rptInvoiceTime].[BalanceDue] AS [BalanceDue], 
+    [rptInvoiceTime].[Aging] AS [Aging], 
+    [rptInvoiceTime].[OpeningBal] AS [OpeningBal], 
+    [rptInvoiceTime].[Rate] AS [Rate], 
+    [rptInvoiceTime].[Clienttext] AS [Clienttext], 
+    [rptInvoiceTime].[Name] AS [Name], 
+    [rptInvoiceTime].[JobTrackSubName] AS [JobTrackSubName]
+    FROM [dbo].[rptInvoiceTime] AS [rptInvoiceTime]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Temp" EntityType="Self.view_Temp" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Temp].[InvoiceNo] AS [InvoiceNo], 
+    [view_Temp].[InvoiceDate] AS [InvoiceDate], 
+    [view_Temp].[Jobdescription] AS [Jobdescription], 
+    [view_Temp].[DueDate] AS [DueDate], 
+    [view_Temp].[Address] AS [Address], 
+    [view_Temp].[PhoneNo] AS [PhoneNo], 
+    [view_Temp].[FaxNo] AS [FaxNo], 
+    [view_Temp].[Email] AS [Email], 
+    [view_Temp].[Description] AS [Description], 
+    [view_Temp].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [view_Temp].[JobNumber] AS [JobNumber], 
+    [view_Temp].[PONo] AS [PONo], 
+    [view_Temp].[PaymentCr] AS [PaymentCr], 
+    [view_Temp].[Date] AS [Date], 
+    [view_Temp].[Hrs] AS [Hrs], 
+    [view_Temp].[Rate] AS [Rate], 
+    [view_Temp].[JobTrackSubName] AS [JobTrackSubName], 
+    [view_Temp].[byname] AS [byname], 
+    [view_Temp].[Amount] AS [Amount], 
+    [view_Temp].[Clienttext] AS [Clienttext], 
+    [view_Temp].[Expenses] AS [Expenses], 
+    [view_Temp].[ReportType] AS [ReportType]
+    FROM [dbo].[view_Temp] AS [view_Temp]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_Item_Time_Expense" EntityType="Self.vw_Item_Time_Expense" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_Item_Time_Expense].[InvoiceNo] AS [InvoiceNo], 
+    [vw_Item_Time_Expense].[InvoiceDate] AS [InvoiceDate], 
+    [vw_Item_Time_Expense].[Jobdescription] AS [Jobdescription], 
+    [vw_Item_Time_Expense].[DueDate] AS [DueDate], 
+    [vw_Item_Time_Expense].[Address] AS [Address], 
+    [vw_Item_Time_Expense].[PhoneNo] AS [PhoneNo], 
+    [vw_Item_Time_Expense].[FaxNo] AS [FaxNo], 
+    [vw_Item_Time_Expense].[Email] AS [Email], 
+    [vw_Item_Time_Expense].[Description] AS [Description], 
+    [vw_Item_Time_Expense].[JobTrackDetailID] AS [JobTrackDetailID], 
+    [vw_Item_Time_Expense].[JobNumber] AS [JobNumber], 
+    [vw_Item_Time_Expense].[PONo] AS [PONo], 
+    [vw_Item_Time_Expense].[PaymentCr] AS [PaymentCr], 
+    [vw_Item_Time_Expense].[Date] AS [Date], 
+    [vw_Item_Time_Expense].[Hrs] AS [Hrs], 
+    [vw_Item_Time_Expense].[Time] AS [Time], 
+    [vw_Item_Time_Expense].[Rate] AS [Rate], 
+    [vw_Item_Time_Expense].[JobTrackSubName] AS [JobTrackSubName], 
+    [vw_Item_Time_Expense].[byname] AS [byname], 
+    [vw_Item_Time_Expense].[Amount] AS [Amount], 
+    [vw_Item_Time_Expense].[Clienttext] AS [Clienttext], 
+    [vw_Item_Time_Expense].[Expenses] AS [Expenses], 
+    [vw_Item_Time_Expense].[ReportType] AS [ReportType]
+    FROM [dbo].[vw_Item_Time_Expense] AS [vw_Item_Time_Expense]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_PandingList" EntityType="Self.VW_PandingList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_PandingList].[JobTrackingID] AS [JobTrackingID], 
+    [VW_PandingList].[JobListID] AS [JobListID], 
+    [VW_PandingList].[AddDate] AS [AddDate], 
+    [VW_PandingList].[NeedDate] AS [NeedDate], 
+    [VW_PandingList].[Obtained] AS [Obtained], 
+    [VW_PandingList].[Expires] AS [Expires], 
+    [VW_PandingList].[Status] AS [Status], 
+    [VW_PandingList].[Submitted] AS [Submitted], 
+    [VW_PandingList].[BillState] AS [BillState], 
+    [VW_PandingList].[TaskHandler] AS [TaskHandler], 
+    [VW_PandingList].[Comments] AS [Comments], 
+    [VW_PandingList].[FinalAction] AS [FinalAction], 
+    [VW_PandingList].[TrackSubID] AS [TrackSubID], 
+    [VW_PandingList].[TrackName] AS [TrackName], 
+    [VW_PandingList].[TrackSubName] AS [TrackSubName]
+    FROM [dbo].[VW_PandingList] AS [VW_PandingList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwJobListDefaultValue" EntityType="Self.vwJobListDefaultValue" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwJobListDefaultValue].[JobListID] AS [JobListID], 
+    [vwJobListDefaultValue].[TableVersionId] AS [TableVersionId], 
+    [vwJobListDefaultValue].[ServRate] AS [ServRate], 
+    [vwJobListDefaultValue].[InvoiceType] AS [InvoiceType]
+    FROM [dbo].[vwJobListDefaultValue] AS [vwJobListDefaultValue]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vWordTrans" EntityType="Self.vWordTrans" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vWordTrans].[FirstName] AS [FirstName], 
+    [vWordTrans].[LastName] AS [LastName], 
+    [vWordTrans].[ContactsID] AS [ContactsID], 
+    [vWordTrans].[CompanyName] AS [CompanyName], 
+    [vWordTrans].[Address] AS [Address], 
+    [vWordTrans].[City] AS [City], 
+    [vWordTrans].[State] AS [State], 
+    [vWordTrans].[PostalCode] AS [PostalCode], 
+    [vWordTrans].[Country] AS [Country]
+    FROM [dbo].[vWordTrans] AS [vWordTrans]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

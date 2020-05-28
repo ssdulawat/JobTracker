@@ -1,0 +1,8 @@
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\bin\Debug\JobTracker.exe.config
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\bin\Debug\JobTracker.exe
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\bin\Debug\JobTracker.pdb
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\obj\Debug\JobTracker.Properties.Resources.resources
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\obj\Debug\JobTracker.csproj.GenerateResource.cache
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\obj\Debug\JobTracker.csproj.CoreCompileInputs.cache
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\obj\Debug\JobTracker.exe
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\obj\Debug\JobTracker.pdb

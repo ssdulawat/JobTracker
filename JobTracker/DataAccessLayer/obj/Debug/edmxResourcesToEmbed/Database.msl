@@ -1,0 +1,1385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestVariousInfoModelStoreContainer" CdmEntityContainer="TestVariousInfoEntities">
+    <EntitySetMapping Name="AgingFileInfoes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.AgingFileInfo">
+        <MappingFragment StoreEntitySet="AgingFileInfo">
+          <ScalarProperty Name="AgingFileId" ColumnName="AgingFileId" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileDateTime" ColumnName="FileDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgingInvoices">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.AgingInvoice">
+        <MappingFragment StoreEntitySet="AgingInvoice">
+          <ScalarProperty Name="InvoiceAgingID" ColumnName="InvoiceAgingID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DueInvoiceNo" ColumnName="DueInvoiceNo" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppSettings">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.AppSetting">
+        <MappingFragment StoreEntitySet="AppSetting">
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="CompareDate" ColumnName="CompareDate" />
+          <ScalarProperty Name="CompareSchedule" ColumnName="CompareSchedule" />
+          <ScalarProperty Name="CompareActiveTimer" ColumnName="CompareActiveTimer" />
+          <ScalarProperty Name="ActiveWebUpload" ColumnName="ActiveWebUpload" />
+          <ScalarProperty Name="NewVersion" ColumnName="NewVersion" />
+          <ScalarProperty Name="ApprovedVersion" ColumnName="ApprovedVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_Capacity">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_Capacity">
+        <MappingFragment StoreEntitySet="Bcad_Capacity">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CraneConfigID" ColumnName="CraneConfigID" />
+          <ScalarProperty Name="RadiusID" ColumnName="RadiusID" />
+          <ScalarProperty Name="Radius" ColumnName="Radius" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_Crane">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_Crane">
+        <MappingFragment StoreEntitySet="Bcad_Crane">
+          <ScalarProperty Name="CraneID" ColumnName="CraneID" />
+          <ScalarProperty Name="CraneName" ColumnName="CraneName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_CraneConfig">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_CraneConfig">
+        <MappingFragment StoreEntitySet="Bcad_CraneConfig">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CraneConfigName" ColumnName="CraneConfigName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_CraneCoordinate">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_CraneCoordinate">
+        <MappingFragment StoreEntitySet="Bcad_CraneCoordinate">
+          <ScalarProperty Name="CraneCoordi_ID" ColumnName="CraneCoordi_ID" />
+          <ScalarProperty Name="ProjectNameID" ColumnName="ProjectNameID" />
+          <ScalarProperty Name="CraneInfo" ColumnName="CraneInfo" />
+          <ScalarProperty Name="CraneConfigID" ColumnName="CraneConfigID" />
+          <ScalarProperty Name="Coordi_X" ColumnName="Coordi_X" />
+          <ScalarProperty Name="Coordi_Y" ColumnName="Coordi_Y" />
+          <ScalarProperty Name="Coordi_Z" ColumnName="Coordi_Z" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_CraneData">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_CraneData">
+        <MappingFragment StoreEntitySet="Bcad_CraneData">
+          <ScalarProperty Name="CraneDataID" ColumnName="CraneDataID" />
+          <ScalarProperty Name="CraneID" ColumnName="CraneID" />
+          <ScalarProperty Name="OR_sp" ColumnName="OR_sp" />
+          <ScalarProperty Name="FP_radius" ColumnName="FP_radius" />
+          <ScalarProperty Name="FP_Height" ColumnName="FP_Height" />
+          <ScalarProperty Name="Boom_length" ColumnName="Boom_length" />
+          <ScalarProperty Name="Boom_depth" ColumnName="Boom_depth" />
+          <ScalarProperty Name="Boom_width" ColumnName="Boom_width" />
+          <ScalarProperty Name="Boom_Ext" ColumnName="Boom_Ext" />
+          <ScalarProperty Name="Jib_length" ColumnName="Jib_length" />
+          <ScalarProperty Name="Offset" ColumnName="Offset" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_ElevationInfo">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_ElevationInfo">
+        <MappingFragment StoreEntitySet="Bcad_ElevationInfo">
+          <ScalarProperty Name="elevID" ColumnName="elevID" />
+          <ScalarProperty Name="siteTitleID" ColumnName="siteTitleID" />
+          <ScalarProperty Name="elevName" ColumnName="elevName" />
+          <ScalarProperty Name="elevD" ColumnName="elevD" />
+          <ScalarProperty Name="elevHeight" ColumnName="elevHeight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_PickChartCoordinate">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_PickChartCoordinate">
+        <MappingFragment StoreEntitySet="Bcad_PickChartCoordinate">
+          <ScalarProperty Name="PickChartCoordi_ID" ColumnName="PickChartCoordi_ID" />
+          <ScalarProperty Name="ProjectNameID" ColumnName="ProjectNameID" />
+          <ScalarProperty Name="CraneCoordi_ID" ColumnName="CraneCoordi_ID" />
+          <ScalarProperty Name="Coordi_X" ColumnName="Coordi_X" />
+          <ScalarProperty Name="Coordi_Y" ColumnName="Coordi_Y" />
+          <ScalarProperty Name="Coordi_Z" ColumnName="Coordi_Z" />
+          <ScalarProperty Name="Pick" ColumnName="Pick" />
+          <ScalarProperty Name="PickWaight" ColumnName="PickWaight" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Radius" ColumnName="Radius" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_ProjectName">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_ProjectName">
+        <MappingFragment StoreEntitySet="Bcad_ProjectName">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_Radius">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_Radius">
+        <MappingFragment StoreEntitySet="Bcad_Radius">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="radius" ColumnName="radius" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_Site">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_Site">
+        <MappingFragment StoreEntitySet="Bcad_Site">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="siteName" ColumnName="siteName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bcad_SiteInfo">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Bcad_SiteInfo">
+        <MappingFragment StoreEntitySet="Bcad_SiteInfo">
+          <ScalarProperty Name="siteID" ColumnName="siteID" />
+          <ScalarProperty Name="siteTitleID" ColumnName="siteTitleID" />
+          <ScalarProperty Name="thetaValue" ColumnName="thetaValue" />
+          <ScalarProperty Name="ElevCraneDistance" ColumnName="ElevCraneDistance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColorEmailDescriptions">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.ColorEmailDescription">
+        <MappingFragment StoreEntitySet="ColorEmailDescription">
+          <ScalarProperty Name="EmaildesID" ColumnName="EmaildesID" />
+          <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+          <ScalarProperty Name="EmailDescription" ColumnName="EmailDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColorSettings">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.ColorSetting">
+        <MappingFragment StoreEntitySet="ColorSetting">
+          <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+          <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommunicationLogs">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.CommunicationLog">
+        <MappingFragment StoreEntitySet="CommunicationLog">
+          <ScalarProperty Name="CommLogID" ColumnName="CommLogID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Method" ColumnName="Method" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CallBackDate" ColumnName="CallBackDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommunityBoards">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.CommunityBoard">
+        <MappingFragment StoreEntitySet="CommunityBoard">
+          <ScalarProperty Name="CommunityBoardID" ColumnName="CommunityBoardID" />
+          <ScalarProperty Name="CommunityBoardNum" ColumnName="CommunityBoardNum" />
+          <ScalarProperty Name="ChairPerson" ColumnName="ChairPerson" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="CompanyNo" ColumnName="CompanyNo" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="FedExNUM" ColumnName="FedExNUM" />
+          <ScalarProperty Name="IBMNUM" ColumnName="IBMNUM" />
+          <ScalarProperty Name="AirborneExpNUM" ColumnName="AirborneExpNUM" />
+          <ScalarProperty Name="DotInsuranceExp" ColumnName="DotInsuranceExp" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Age0Action" ColumnName="Age0Action" />
+          <ScalarProperty Name="Age15Action" ColumnName="Age15Action" />
+          <ScalarProperty Name="Age30Action" ColumnName="Age30Action" />
+          <ScalarProperty Name="Age45Action" ColumnName="Age45Action" />
+          <ScalarProperty Name="Age60Action" ColumnName="Age60Action" />
+          <ScalarProperty Name="Age75Action" ColumnName="Age75Action" />
+          <ScalarProperty Name="Age90Action" ColumnName="Age90Action" />
+          <ScalarProperty Name="Age105Action" ColumnName="Age105Action" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+          <ScalarProperty Name="DueInvoiceNo" ColumnName="DueInvoiceNo" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="DBadClient" ColumnName="DBadClient" />
+          <ScalarProperty Name="IsCreditPass" ColumnName="IsCreditPass" />
+          <ScalarProperty Name="CreditPassDate" ColumnName="CreditPassDate" />
+          <ScalarProperty Name="TableVersionId" ColumnName="TableVersionId" />
+          <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
+          <ScalarProperty Name="OfficeFax" ColumnName="OfficeFax" />
+          <ScalarProperty Name="TypicalInvoiceType" ColumnName="TypicalInvoiceType" />
+          <ScalarProperty Name="ServRate" ColumnName="ServRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Contact">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="ContactsID" ColumnName="ContactsID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="SpecialRiggerNUM" ColumnName="SpecialRiggerNUM" />
+          <ScalarProperty Name="MasterRiggerNUM" ColumnName="MasterRiggerNUM" />
+          <ScalarProperty Name="SpecialSignNUM" ColumnName="SpecialSignNUM" />
+          <ScalarProperty Name="MasterSignNUM" ColumnName="MasterSignNUM" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+          <ScalarProperty Name="AlternativePhone" ColumnName="AlternativePhone" />
+          <ScalarProperty Name="FieldPhone" ColumnName="FieldPhone" />
+          <ScalarProperty Name="Pager" ColumnName="Pager" />
+          <ScalarProperty Name="Accounting" ColumnName="Accounting" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRVExpensesInvoices">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.CRVExpensesInvoice">
+        <MappingFragment StoreEntitySet="CRVExpensesInvoice">
+          <ScalarProperty Name="CRVExpensesInvoiceID" ColumnName="CRVExpensesInvoiceID" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="TimeSheetExpencesID" ColumnName="TimeSheetExpencesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CRVTimeInvoices">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.CRVTimeInvoice">
+        <MappingFragment StoreEntitySet="CRVTimeInvoice">
+          <ScalarProperty Name="CRVTimeInvoiceID" ColumnName="CRVTimeInvoiceID" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="TimeSheetID" ColumnName="TimeSheetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocTypicalCategoryLists">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.DocTypicalCategoryList">
+        <MappingFragment StoreEntitySet="DocTypicalCategoryList">
+          <ScalarProperty Name="TypeCategoryID" ColumnName="TypeCategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocTypicalListItems">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.DocTypicalListItem">
+        <MappingFragment StoreEntitySet="DocTypicalListItem">
+          <ScalarProperty Name="DocTypical_ID" ColumnName="DocTypical_ID" />
+          <ScalarProperty Name="DocTypical_Category" ColumnName="DocTypical_Category" />
+          <ScalarProperty Name="DocTypical_Text" ColumnName="DocTypical_Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrawingLogs">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.DrawingLog">
+        <MappingFragment StoreEntitySet="DrawingLog">
+          <ScalarProperty Name="DrawingLogID" ColumnName="DrawingLogID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="StorageLocation" ColumnName="StorageLocation" />
+          <ScalarProperty Name="LastUsed" ColumnName="LastUsed" />
+          <ScalarProperty Name="AKA" ColumnName="AKA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailRecords">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.EmailRecord">
+        <MappingFragment StoreEntitySet="EmailRecord">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="NewRecord" ColumnName="NewRecord" />
+          <ScalarProperty Name="UpdateRecord" ColumnName="UpdateRecord" />
+          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
+          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+          <ScalarProperty Name="IsEmailed" ColumnName="IsEmailed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDetails">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.EmployeeDetail">
+        <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="BillableRate" ColumnName="BillableRate" />
+          <ScalarProperty Name="ActiveUser" ColumnName="ActiveUser" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MasterItemId" ColumnName="MasterItemId" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="TempId" ColumnName="TempId" />
+          <ScalarProperty Name="ReservedOldId" ColumnName="ReservedOldId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDetails_Depre">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.EmployeeDetails_Depre">
+        <MappingFragment StoreEntitySet="EmployeeDetails_Depre">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="BillableRate" ColumnName="BillableRate" />
+          <ScalarProperty Name="ActiveUser" ColumnName="ActiveUser" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MasterItemId" ColumnName="MasterItemId" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImportTimeSheetDatas">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.ImportTimeSheetData">
+        <MappingFragment StoreEntitySet="ImportTimeSheetData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+          <ScalarProperty Name="ChangeHours" ColumnName="ChangeHours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceFileName" ColumnName="InvoiceFileName" />
+          <ScalarProperty Name="InvoiceFile" ColumnName="InvoiceFile" />
+          <ScalarProperty Name="InvoiceFileType" ColumnName="InvoiceFileType" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="UploadFile" ColumnName="UploadFile" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceActions">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.InvoiceAction">
+        <MappingFragment StoreEntitySet="InvoiceAction">
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobLists">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.JobList">
+        <MappingFragment StoreEntitySet="JobList">
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="ContactsID" ColumnName="ContactsID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HouseNum" ColumnName="HouseNum" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Borough" ColumnName="Borough" />
+          <ScalarProperty Name="Handler" ColumnName="Handler" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="ContactsEmails" ColumnName="ContactsEmails" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+          <ScalarProperty Name="OwnerPhone" ColumnName="OwnerPhone" />
+          <ScalarProperty Name="OwnerFax" ColumnName="OwnerFax" />
+          <ScalarProperty Name="ACContacts" ColumnName="ACContacts" />
+          <ScalarProperty Name="ACEmail" ColumnName="ACEmail" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="PMrv" ColumnName="PMrv" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="InvoiceClient" ColumnName="InvoiceClient" />
+          <ScalarProperty Name="InvoiceContact" ColumnName="InvoiceContact" />
+          <ScalarProperty Name="InvoiceEmailAddress" ColumnName="InvoiceEmailAddress" />
+          <ScalarProperty Name="InvoiceACContacts" ColumnName="InvoiceACContacts" />
+          <ScalarProperty Name="InvoiceACEmail" ColumnName="InvoiceACEmail" />
+          <ScalarProperty Name="RateVersionId" ColumnName="RateVersionId" />
+          <ScalarProperty Name="TypicalInvoiceType" ColumnName="TypicalInvoiceType" />
+          <ScalarProperty Name="IsInvoiceHold" ColumnName="IsInvoiceHold" />
+          <ScalarProperty Name="ServRate" ColumnName="ServRate" />
+          <ScalarProperty Name="AdminInvoice" ColumnName="AdminInvoice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobTrackings">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.JobTracking">
+        <MappingFragment StoreEntitySet="JobTracking">
+          <ScalarProperty Name="JobTrackingID" ColumnName="JobTrackingID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="Track" ColumnName="Track" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="NeedDate" ColumnName="NeedDate" />
+          <ScalarProperty Name="Obtained" ColumnName="Obtained" />
+          <ScalarProperty Name="Expires" ColumnName="Expires" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+          <ScalarProperty Name="BillState" ColumnName="BillState" />
+          <ScalarProperty Name="TaskHandler" ColumnName="TaskHandler" />
+          <ScalarProperty Name="TrackSub" ColumnName="TrackSub" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="TrackSubID" ColumnName="TrackSubID" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="FinalAction" ColumnName="FinalAction" />
+          <ScalarProperty Name="InvOvr" ColumnName="InvOvr" />
+          <ScalarProperty Name="DeleteItemTimeService" ColumnName="DeleteItemTimeService" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobTrackInvoiceDetails">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.JobTrackInvoiceDetail">
+        <MappingFragment StoreEntitySet="JobTrackInvoiceDetail">
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBal" ColumnName="OpeningBal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobTrackInvoiceRateDetails">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.JobTrackInvoiceRateDetail">
+        <MappingFragment StoreEntitySet="JobTrackInvoiceRateDetail">
+          <ScalarProperty Name="InvoiceRptID" ColumnName="InvoiceRptID" />
+          <ScalarProperty Name="TrackSubID" ColumnName="TrackSubID" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="JobTrackingID" ColumnName="JobTrackingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="nid" ColumnName="nid" />
+          <ScalarProperty Name="cUserid" ColumnName="cUserid" />
+          <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterItems">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.MasterItem">
+        <MappingFragment StoreEntitySet="MasterItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cGroup" ColumnName="cGroup" />
+          <ScalarProperty Name="cTrack" ColumnName="cTrack" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterTrackSets">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.MasterTrackSet">
+        <MappingFragment StoreEntitySet="MasterTrackSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrackSet" ColumnName="TrackSet" />
+          <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterTrackSubItems">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.MasterTrackSubItem">
+        <MappingFragment StoreEntitySet="MasterTrackSubItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+          <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+          <ScalarProperty Name="nRate" ColumnName="nRate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CalColor" ColumnName="CalColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendEmailRecords">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.SendEmailRecord">
+        <MappingFragment StoreEntitySet="SendEmailRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SendEmailJoblistId" ColumnName="SendEmailJoblistId" />
+          <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskLists">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.TaskList">
+        <MappingFragment StoreEntitySet="TaskList">
+          <ScalarProperty Name="TaskLisiId" ColumnName="TaskLisiId" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CompletedByDate" ColumnName="CompletedByDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackSubItemAccounts">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.TrackSubItemAccount">
+        <MappingFragment StoreEntitySet="TrackSubItemAccount">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TS_Expences">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.TS_Expences">
+        <MappingFragment StoreEntitySet="TS_Expences">
+          <ScalarProperty Name="TimeSheetExpencesID" ColumnName="TimeSheetExpencesID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="EmployeeDetailsId" ColumnName="EmployeeDetailsId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrackSubID" ColumnName="TrackSubID" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+          <ScalarProperty Name="Expences" ColumnName="Expences" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="BillState" ColumnName="BillState" />
+          <ScalarProperty Name="MassStatusChangeBox" ColumnName="MassStatusChangeBox" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AdminStatus" ColumnName="AdminStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TS_MasterItem">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.TS_MasterItem">
+        <MappingFragment StoreEntitySet="TS_MasterItem">
+          <ScalarProperty Name="TS_MasterItemId" ColumnName="TS_MasterItemId" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TS_Time">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.TS_Time">
+        <MappingFragment StoreEntitySet="TS_Time">
+          <ScalarProperty Name="TimeSheetID" ColumnName="TimeSheetID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="EmployeeDetailsId" ColumnName="EmployeeDetailsId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrackSubID" ColumnName="TrackSubID" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="BillState" ColumnName="BillState" />
+          <ScalarProperty Name="MassStatusChangeBox" ColumnName="MassStatusChangeBox" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AdminStatus" ColumnName="AdminStatus" />
+          <ScalarProperty Name="JobTrackingId" ColumnName="JobTrackingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VBCDDatabases">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VBCDDatabase">
+        <MappingFragment StoreEntitySet="VBCDDatabase">
+          <ScalarProperty Name="CDID" ColumnName="CDID" />
+          <ScalarProperty Name="CDNumber" ColumnName="CDNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+          <ScalarProperty Name="ModelSpaceName" ColumnName="ModelSpaceName" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CraneName" ColumnName="CraneName" />
+          <ScalarProperty Name="CraneID" ColumnName="CraneID" />
+          <ScalarProperty Name="OwnerPhone" ColumnName="OwnerPhone" />
+          <ScalarProperty Name="OwnerFax" ColumnName="OwnerFax" />
+          <ScalarProperty Name="TypMast" ColumnName="TypMast" />
+          <ScalarProperty Name="TypBoom" ColumnName="TypBoom" />
+          <ScalarProperty Name="TypJIB" ColumnName="TypJIB" />
+          <ScalarProperty Name="TypTotal" ColumnName="TypTotal" />
+          <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
+          <ScalarProperty Name="ErectionStyle" ColumnName="ErectionStyle" />
+          <ScalarProperty Name="TravelCTWT" ColumnName="TravelCTWT" />
+          <ScalarProperty Name="Dunnage1" ColumnName="Dunnage1" />
+          <ScalarProperty Name="Dunnage2" ColumnName="Dunnage2" />
+          <ScalarProperty Name="MaxOrLoad" ColumnName="MaxOrLoad" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="ApprovedChartType" ColumnName="ApprovedChartType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VBFormInfoes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VBFormInfo">
+        <MappingFragment StoreEntitySet="VBFormInfo">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="Applicant" ColumnName="Applicant" />
+          <ScalarProperty Name="JobSiteBlock" ColumnName="JobSiteBlock" />
+          <ScalarProperty Name="JobSiteLot" ColumnName="JobSiteLot" />
+          <ScalarProperty Name="JobSiteCNNum" ColumnName="JobSiteCNNum" />
+          <ScalarProperty Name="JobSiteHouseNum" ColumnName="JobSiteHouseNum" />
+          <ScalarProperty Name="JobSiteStreet" ColumnName="JobSiteStreet" />
+          <ScalarProperty Name="JobSiteBorough" ColumnName="JobSiteBorough" />
+          <ScalarProperty Name="JobSiteState" ColumnName="JobSiteState" />
+          <ScalarProperty Name="Crane1CD" ColumnName="Crane1CD" />
+          <ScalarProperty Name="Crane2CD" ColumnName="Crane2CD" />
+          <ScalarProperty Name="Crane3CD" ColumnName="Crane3CD" />
+          <ScalarProperty Name="Crane4CD" ColumnName="Crane4CD" />
+          <ScalarProperty Name="Crane5CD" ColumnName="Crane5CD" />
+          <ScalarProperty Name="Crane6CD" ColumnName="Crane6CD" />
+          <ScalarProperty Name="CraneUser" ColumnName="CraneUser" />
+          <ScalarProperty Name="CraneUserInfo" ColumnName="CraneUserInfo" />
+          <ScalarProperty Name="CraneUserTitle" ColumnName="CraneUserTitle" />
+          <ScalarProperty Name="WorkPlatformManufacturer" ColumnName="WorkPlatformManufacturer" />
+          <ScalarProperty Name="WorkPlatformModel" ColumnName="WorkPlatformModel" />
+          <ScalarProperty Name="WorkPlatformSuperName" ColumnName="WorkPlatformSuperName" />
+          <ScalarProperty Name="WorkPlatformSuperPhone" ColumnName="WorkPlatformSuperPhone" />
+          <ScalarProperty Name="WorkPlatformSuperFax" ColumnName="WorkPlatformSuperFax" />
+          <ScalarProperty Name="WorkPlatformSuperAddr" ColumnName="WorkPlatformSuperAddr" />
+          <ScalarProperty Name="WorkPlatformSuperCity" ColumnName="WorkPlatformSuperCity" />
+          <ScalarProperty Name="WorkPlatformSuperState" ColumnName="WorkPlatformSuperState" />
+          <ScalarProperty Name="WorkPlatformSuperZip" ColumnName="WorkPlatformSuperZip" />
+          <ScalarProperty Name="FirstVariance" ColumnName="FirstVariance" />
+          <ScalarProperty Name="BIN" ColumnName="BIN" />
+          <ScalarProperty Name="CBNum" ColumnName="CBNum" />
+          <ScalarProperty Name="AptorCondoNum" ColumnName="AptorCondoNum" />
+          <ScalarProperty Name="SpecialPlaceName" ColumnName="SpecialPlaceName" />
+          <ScalarProperty Name="SubName" ColumnName="SubName" />
+          <ScalarProperty Name="SubInfo" ColumnName="SubInfo" />
+          <ScalarProperty Name="ResidenceWithin200ft" ColumnName="ResidenceWithin200ft" />
+          <ScalarProperty Name="DatesofVariance" ColumnName="DatesofVariance" />
+          <ScalarProperty Name="DaysofVariance" ColumnName="DaysofVariance" />
+          <ScalarProperty Name="TimeofVarianceFrom" ColumnName="TimeofVarianceFrom" />
+          <ScalarProperty Name="TimeofVarianceTo" ColumnName="TimeofVarianceTo" />
+          <ScalarProperty Name="VarianceWorkDescription" ColumnName="VarianceWorkDescription" />
+          <ScalarProperty Name="ReasonforVariance" ColumnName="ReasonforVariance" />
+          <ScalarProperty Name="SiteArchitect" ColumnName="SiteArchitect" />
+          <ScalarProperty Name="CommunityBoardID" ColumnName="CommunityBoardID" />
+          <ScalarProperty Name="SiteNumofStories" ColumnName="SiteNumofStories" />
+          <ScalarProperty Name="SiteOccupancy" ColumnName="SiteOccupancy" />
+          <ScalarProperty Name="OccupancyType" ColumnName="OccupancyType" />
+          <ScalarProperty Name="SiteNumofApts" ColumnName="SiteNumofApts" />
+          <ScalarProperty Name="SiteNumofAptsCurrent" ColumnName="SiteNumofAptsCurrent" />
+          <ScalarProperty Name="SiteNumofAptsProposed" ColumnName="SiteNumofAptsProposed" />
+          <ScalarProperty Name="SiteOwner" ColumnName="SiteOwner" />
+          <ScalarProperty Name="SiteOwnerAddress" ColumnName="SiteOwnerAddress" />
+          <ScalarProperty Name="SiteOwnerStreet" ColumnName="SiteOwnerStreet" />
+          <ScalarProperty Name="SiteOwnerCity" ColumnName="SiteOwnerCity" />
+          <ScalarProperty Name="SiteOwnerState" ColumnName="SiteOwnerState" />
+          <ScalarProperty Name="SiteOwnerZip" ColumnName="SiteOwnerZip" />
+          <ScalarProperty Name="WorkProposed" ColumnName="WorkProposed" />
+          <ScalarProperty Name="Architect2" ColumnName="Architect2" />
+          <ScalarProperty Name="Architect2fullAddress" ColumnName="Architect2fullAddress" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+          <ScalarProperty Name="PDFType" ColumnName="PDFType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VBNetApplicantInfoes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VBNetApplicantInfo">
+        <MappingFragment StoreEntitySet="VBNetApplicantInfo">
+          <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+          <ScalarProperty Name="ApplicantFirstName" ColumnName="ApplicantFirstName" />
+          <ScalarProperty Name="ApplicantLastName" ColumnName="ApplicantLastName" />
+          <ScalarProperty Name="ApplicantMidName" ColumnName="ApplicantMidName" />
+          <ScalarProperty Name="ApplicantBusinessName" ColumnName="ApplicantBusinessName" />
+          <ScalarProperty Name="ApplicantBusinessAddress" ColumnName="ApplicantBusinessAddress" />
+          <ScalarProperty Name="ApplicantBusinessCity" ColumnName="ApplicantBusinessCity" />
+          <ScalarProperty Name="ApplicantBusinessState" ColumnName="ApplicantBusinessState" />
+          <ScalarProperty Name="ApplicantBusinessZip" ColumnName="ApplicantBusinessZip" />
+          <ScalarProperty Name="ApplicantTitle" ColumnName="ApplicantTitle" />
+          <ScalarProperty Name="ApplicantLicense" ColumnName="ApplicantLicense" />
+          <ScalarProperty Name="ApplicantPhone" ColumnName="ApplicantPhone" />
+          <ScalarProperty Name="Applicantfax" ColumnName="Applicantfax" />
+          <ScalarProperty Name="IsChange" ColumnName="IsChange" />
+          <ScalarProperty Name="IsNewRecord" ColumnName="IsNewRecord" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VersionDescriptions">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VersionDescription">
+        <MappingFragment StoreEntitySet="VersionDescription">
+          <ScalarProperty Name="VersionDescId" ColumnName="VersionDescId" />
+          <ScalarProperty Name="TableVersionId" ColumnName="TableVersionId" />
+          <ScalarProperty Name="MasterTrackSubItemId" ColumnName="MasterTrackSubItemId" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrackSet" ColumnName="TrackSet" />
+          <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CalColor" ColumnName="CalColor" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VersionTables">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VersionTable">
+        <MappingFragment StoreEntitySet="VersionTable">
+          <ScalarProperty Name="TableVersionId" ColumnName="TableVersionId" />
+          <ScalarProperty Name="TableVersionName" ColumnName="TableVersionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VETasks">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VETask">
+        <MappingFragment StoreEntitySet="VETask">
+          <ScalarProperty Name="VETaskID" ColumnName="VETaskID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActivityInfoes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.ActivityInfo">
+        <MappingFragment StoreEntitySet="ActivityInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PCName" ColumnName="PCName" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="ModifyDt" ColumnName="ModifyDt" />
+          <ScalarProperty Name="frmName" ColumnName="frmName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColorHistories">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.ColorHistory">
+        <MappingFragment StoreEntitySet="ColorHistory">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="AgingUpdateDate" ColumnName="AgingUpdateDate" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PMInfoes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.PMInfo">
+        <MappingFragment StoreEntitySet="PMInfo">
+          <ScalarProperty Name="pmID" ColumnName="pmID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PMinitials" ColumnName="PMinitials" />
+          <ScalarProperty Name="TSUserName" ColumnName="TSUserName" />
+          <ScalarProperty Name="TSPassword" ColumnName="TSPassword" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="PersonalEmail" ColumnName="PersonalEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailJobPendingLists">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.EmailJobPendingList">
+        <MappingFragment StoreEntitySet="EmailJobPendingList">
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Track" ColumnName="Track" />
+          <ScalarProperty Name="TrackSub" ColumnName="TrackSub" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceJobLists">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.InvoiceJobList">
+        <MappingFragment StoreEntitySet="InvoiceJobList">
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactsName" ColumnName="ContactsName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicePreviews">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.InvoicePreview">
+        <MappingFragment StoreEntitySet="InvoicePreview">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBal" ColumnName="OpeningBal" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicePreview_1">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.InvoicePreview_1">
+        <MappingFragment StoreEntitySet="InvoicePreview_1">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBal" ColumnName="OpeningBal" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterTrackSubDisplays">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.MasterTrackSubDisplay">
+        <MappingFragment StoreEntitySet="MasterTrackSubDisplay">
+          <ScalarProperty Name="TrackSet" ColumnName="TrackSet" />
+          <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+          <ScalarProperty Name="nRate" ColumnName="nRate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CalColor" ColumnName="CalColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rptInvoiceExpenses">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.rptInvoiceExpens">
+        <MappingFragment StoreEntitySet="rptInvoiceExpenses">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBal" ColumnName="OpeningBal" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rptInvoiceTimes">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.rptInvoiceTime">
+        <MappingFragment StoreEntitySet="rptInvoiceTime">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="OpeningBal" ColumnName="OpeningBal" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Temp">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.view_Temp">
+        <MappingFragment StoreEntitySet="view_Temp">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_Item_Time_Expense">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.vw_Item_Time_Expense">
+        <MappingFragment StoreEntitySet="vw_Item_Time_Expense">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_PandingList">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.VW_PandingList">
+        <MappingFragment StoreEntitySet="VW_PandingList">
+          <ScalarProperty Name="JobTrackingID" ColumnName="JobTrackingID" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="NeedDate" ColumnName="NeedDate" />
+          <ScalarProperty Name="Obtained" ColumnName="Obtained" />
+          <ScalarProperty Name="Expires" ColumnName="Expires" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+          <ScalarProperty Name="BillState" ColumnName="BillState" />
+          <ScalarProperty Name="TaskHandler" ColumnName="TaskHandler" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="FinalAction" ColumnName="FinalAction" />
+          <ScalarProperty Name="TrackSubID" ColumnName="TrackSubID" />
+          <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+          <ScalarProperty Name="TrackSubName" ColumnName="TrackSubName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwJobListDefaultValues">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.vwJobListDefaultValue">
+        <MappingFragment StoreEntitySet="vwJobListDefaultValue">
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+          <ScalarProperty Name="TableVersionId" ColumnName="TableVersionId" />
+          <ScalarProperty Name="ServRate" ColumnName="ServRate" />
+          <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vWordTrans">
+      <EntityTypeMapping TypeName="TestVariousInfoModel.vWordTran">
+        <MappingFragment StoreEntitySet="vWordTrans">
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="ContactsID" ColumnName="ContactsID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="TestVariousInfoModel.Store.SplitString" FunctionImportName="SplitString">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SplitString_Result">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBillableJobDisableSearchData" FunctionName="TestVariousInfoModel.Store.proc_GetBillableJobDisableSearchData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.proc_GetBillableJobDisableSearchData_Result">
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="LastInvoiceDate" ColumnName="LastInvoiceDate" />
+          <ScalarProperty Name="TypicalInvoiceType" ColumnName="TypicalInvoiceType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBillableJobSearchData" FunctionName="TestVariousInfoModel.Store.proc_GetBillableJobSearchData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.proc_GetBillableJobSearchData_Result">
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="TypicalInvoiceType" ColumnName="TypicalInvoiceType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBillableJobSearchDataTest" FunctionName="TestVariousInfoModel.Store.proc_GetBillableJobSearchDataTest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.proc_GetBillableJobSearchDataTest_Result">
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="TypicalInvoiceType" ColumnName="TypicalInvoiceType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TestVariousInfoModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TestVariousInfoModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TestVariousInfoModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="SP_GetInvoiceDetailByJobNumber" FunctionName="TestVariousInfoModel.Store.SP_GetInvoiceDetailByJobNumber">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_Result">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetInvoiceDetailByJobNumber_All" FunctionName="TestVariousInfoModel.Store.SP_GetInvoiceDetailByJobNumber_All">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_All_Result">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetInvoiceDetailByJobNumber_All_New" FunctionName="TestVariousInfoModel.Store.SP_GetInvoiceDetailByJobNumber_All_New">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_All_New_Result">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TestVariousInfoModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TestVariousInfoModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InvoiceDetailReduction" FunctionName="TestVariousInfoModel.Store.sp_InvoiceDetailReduction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.sp_InvoiceDetailReduction_Result">
+          <ScalarProperty Name="Reimbursement" ColumnName="Reimbursement" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="TimeTotal" ColumnName="TimeTotal" />
+          <ScalarProperty Name="Expense" ColumnName="Expense" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Revenue" ColumnName="Revenue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InvoiceReportItems" FunctionName="TestVariousInfoModel.Store.sp_InvoiceReportItems">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.sp_InvoiceReportItems_Result">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Jobdescription" ColumnName="Jobdescription" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="JobTrackDetailID" ColumnName="JobTrackDetailID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PaymentCr" ColumnName="PaymentCr" />
+          <ScalarProperty Name="JobTrackDetailID1" ColumnName="JobTrackDetailID1" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Hrs" ColumnName="Hrs" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="JobTrackSubName" ColumnName="JobTrackSubName" />
+          <ScalarProperty Name="byname" ColumnName="byname" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Clienttext" ColumnName="Clienttext" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TestVariousInfoModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="SP_ShowJobList" FunctionName="TestVariousInfoModel.Store.SP_ShowJobList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SP_ShowJobList_Result">
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="JobListID" ColumnName="JobListID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ShowJobTrackingList" FunctionName="TestVariousInfoModel.Store.SP_ShowJobTrackingList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestVariousInfoModel.SP_ShowJobTrackingList_Result">
+          <ScalarProperty Name="JobTrackingID" ColumnName="JobTrackingID" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="Track" ColumnName="Track" />
+          <ScalarProperty Name="TrackSub" ColumnName="TrackSub" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Obtained" ColumnName="Obtained" />
+          <ScalarProperty Name="Expires" ColumnName="Expires" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_TaskGetJobNumber" FunctionName="TestVariousInfoModel.Store.SP_TaskGetJobNumber" />
+    <FunctionImportMapping FunctionImportName="SP_UpdateConvertInvoiceExpenses" FunctionName="TestVariousInfoModel.Store.SP_UpdateConvertInvoiceExpenses" />
+    <FunctionImportMapping FunctionImportName="SP_UpdateConvertInvoiceItem" FunctionName="TestVariousInfoModel.Store.SP_UpdateConvertInvoiceItem" />
+    <FunctionImportMapping FunctionImportName="SP_UpdateConvertInvoiceTime" FunctionName="TestVariousInfoModel.Store.SP_UpdateConvertInvoiceTime" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TestVariousInfoModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="spUndoInvoiceDetails" FunctionName="TestVariousInfoModel.Store.spUndoInvoiceDetails" />
+  </EntityContainerMapping>
+</Mapping>

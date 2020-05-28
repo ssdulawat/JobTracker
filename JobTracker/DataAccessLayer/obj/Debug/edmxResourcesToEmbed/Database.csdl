@@ -1,0 +1,1450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestVariousInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="SplitString_Result">
+    <Property Name="Item" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="AgingFileInfo">
+    <Key>
+      <PropertyRef Name="AgingFileId" />
+    </Key>
+    <Property Name="AgingFileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FileDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AgingInvoice">
+    <Key>
+      <PropertyRef Name="InvoiceAgingID" />
+    </Key>
+    <Property Name="InvoiceAgingID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="DueInvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="AppSetting">
+    <Key>
+      <PropertyRef Name="AppID" />
+    </Key>
+    <Property Name="AppID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompareDate" Type="DateTime" Precision="3" />
+    <Property Name="CompareSchedule" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CompareActiveTimer" Type="Boolean" />
+    <Property Name="ActiveWebUpload" Type="Boolean" />
+    <Property Name="NewVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Bcad_Capacity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CraneConfigID" Type="Int32" />
+    <Property Name="RadiusID" Type="Int32" />
+    <Property Name="Radius" Type="Double" />
+    <Property Name="Capacity" Type="Double" />
+  </EntityType>
+  <EntityType Name="Bcad_Crane">
+    <Key>
+      <PropertyRef Name="CraneID" />
+    </Key>
+    <Property Name="CraneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CraneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneConfig">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CraneConfigName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneCoordinate">
+    <Key>
+      <PropertyRef Name="CraneCoordi_ID" />
+    </Key>
+    <Property Name="CraneCoordi_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectNameID" Type="Int32" />
+    <Property Name="CraneInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CraneConfigID" Type="Int32" />
+    <Property Name="Coordi_X" Type="Double" />
+    <Property Name="Coordi_Y" Type="Double" />
+    <Property Name="Coordi_Z" Type="Double" />
+  </EntityType>
+  <EntityType Name="Bcad_CraneData">
+    <Key>
+      <PropertyRef Name="CraneDataID" />
+    </Key>
+    <Property Name="CraneDataID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CraneID" Type="Int64" />
+    <Property Name="OR_sp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FP_radius" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FP_Height" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Boom_length" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Boom_depth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Boom_width" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Boom_Ext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Jib_length" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Offset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Bcad_ElevationInfo">
+    <Key>
+      <PropertyRef Name="elevID" />
+    </Key>
+    <Property Name="elevID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="siteTitleID" Type="Int32" />
+    <Property Name="elevName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="elevD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="elevHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Bcad_PickChartCoordinate">
+    <Key>
+      <PropertyRef Name="PickChartCoordi_ID" />
+    </Key>
+    <Property Name="PickChartCoordi_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectNameID" Type="Int32" />
+    <Property Name="CraneCoordi_ID" Type="Int32" />
+    <Property Name="Coordi_X" Type="Double" />
+    <Property Name="Coordi_Y" Type="Double" />
+    <Property Name="Coordi_Z" Type="Double" />
+    <Property Name="Pick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickWaight" Type="Double" />
+    <Property Name="Capacity" Type="Double" />
+    <Property Name="Radius" Type="Double" />
+  </EntityType>
+  <EntityType Name="Bcad_ProjectName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Bcad_Radius">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="radius" Type="Double" />
+  </EntityType>
+  <EntityType Name="Bcad_Site">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="siteName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Bcad_SiteInfo">
+    <Key>
+      <PropertyRef Name="siteID" />
+    </Key>
+    <Property Name="siteID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="siteTitleID" Type="Int32" />
+    <Property Name="thetaValue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ElevCraneDistance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ColorEmailDescription">
+    <Key>
+      <PropertyRef Name="EmaildesID" />
+    </Key>
+    <Property Name="EmaildesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorID" Type="Int32" />
+    <Property Name="EmailSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ColorSetting">
+    <Key>
+      <PropertyRef Name="ColorID" />
+    </Key>
+    <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CommunicationLog">
+    <Key>
+      <PropertyRef Name="CommLogID" />
+    </Key>
+    <Property Name="CommLogID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int64" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CallBackDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="CommunityBoard">
+    <Key>
+      <PropertyRef Name="CommunityBoardID" />
+    </Key>
+    <Property Name="CommunityBoardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CommunityBoardNum" Type="Int32" />
+    <Property Name="ChairPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyNo" Type="String" MaxLength="31" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FedExNUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IBMNUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AirborneExpNUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DotInsuranceExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age0Action" Type="Int32" />
+    <Property Name="Age15Action" Type="Int32" />
+    <Property Name="Age30Action" Type="Int32" />
+    <Property Name="Age45Action" Type="Int32" />
+    <Property Name="Age60Action" Type="Int32" />
+    <Property Name="Age75Action" Type="Int32" />
+    <Property Name="Age90Action" Type="Int32" />
+    <Property Name="Age105Action" Type="Int32" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DueInvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDisable" Type="Boolean" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="DBadClient" Type="Boolean" />
+    <Property Name="IsCreditPass" Type="Boolean" />
+    <Property Name="CreditPassDate" Type="DateTime" Precision="0" />
+    <Property Name="TableVersionId" Type="Int32" />
+    <Property Name="OfficePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="OfficeFax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TypicalInvoiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ServRate" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactsID" />
+    </Key>
+    <Property Name="ContactsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialRiggerNUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MasterRiggerNUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialSignNUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MasterSignNUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Suffix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="HomePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FaxNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AlternativePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FieldPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Pager" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Accounting" Type="Boolean" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CRVExpensesInvoice">
+    <Key>
+      <PropertyRef Name="CRVExpensesInvoiceID" />
+    </Key>
+    <Property Name="CRVExpensesInvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTrackDetailID" Type="Int64" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Expenses" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TimeSheetExpencesID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CRVTimeInvoice">
+    <Key>
+      <PropertyRef Name="CRVTimeInvoiceID" />
+    </Key>
+    <Property Name="CRVTimeInvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTrackDetailID" Type="Int64" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeSheetID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DocTypicalCategoryList">
+    <Key>
+      <PropertyRef Name="TypeCategoryID" />
+    </Key>
+    <Property Name="TypeCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DocTypicalListItem">
+    <Key>
+      <PropertyRef Name="DocTypical_ID" />
+    </Key>
+    <Property Name="DocTypical_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocTypical_Category" Type="Int32" />
+    <Property Name="DocTypical_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DrawingLog">
+    <Key>
+      <PropertyRef Name="DrawingLogID" />
+    </Key>
+    <Property Name="DrawingLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int32" />
+    <Property Name="JobNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="StorageLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LastUsed" Type="DateTime" Precision="3" />
+    <Property Name="AKA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EmailRecord">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NewRecord" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateRecord" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DeleteRecord" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UploadDate" Type="DateTime" Precision="3" />
+    <Property Name="IsEmailed" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EmployeeDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillableRate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActiveUser" Type="Boolean" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MasterItemId" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="TempId" Type="Int64" />
+    <Property Name="ReservedOldId" Type="Int64" />
+  </EntityType>
+  <EntityType Name="EmployeeDetails_Depre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BillableRate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActiveUser" Type="Boolean" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MasterItemId" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ImportTimeSheetData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="DateTime" Precision="3" />
+    <Property Name="ImportDate" Type="DateTime" Precision="3" />
+    <Property Name="ChangeHours" Type="Double" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int32" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="InvoiceFileType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UploadFile" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="InvoiceAction">
+    <Key>
+      <PropertyRef Name="ActionID" />
+    </Key>
+    <Property Name="ActionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int64" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ActionName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ActionDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="JobList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="ContactsID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HouseNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Borough" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Handler" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="ContactsEmails" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerFax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ACContacts" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ACEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PMrv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisable" Type="Boolean" />
+    <Property Name="InvoiceClient" Type="Int32" />
+    <Property Name="InvoiceContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceEmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceACContacts" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceACEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RateVersionId" Type="Int32" />
+    <Property Name="TypicalInvoiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsInvoiceHold" Type="Boolean" Nullable="false" />
+    <Property Name="ServRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AdminInvoice" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="JobTracking">
+    <Key>
+      <PropertyRef Name="JobTrackingID" />
+    </Key>
+    <Property Name="JobTrackingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int32" />
+    <Property Name="Track" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="NeedDate" Type="DateTime" Precision="3" />
+    <Property Name="Obtained" Type="DateTime" Precision="3" />
+    <Property Name="Expires" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Submitted" Type="DateTime" Precision="3" />
+    <Property Name="BillState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TaskHandler" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSub" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSubID" Type="Int32" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="FinalAction" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="InvOvr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeleteItemTimeService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="JobTrackInvoiceDetail">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="JobTrackInvoiceRateDetail">
+    <Key>
+      <PropertyRef Name="InvoiceRptID" />
+    </Key>
+    <Property Name="InvoiceRptID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrackSubID" Type="Int32" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Hrs" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackingID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="nid" />
+    </Key>
+    <Property Name="nid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cUserid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MasterItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cTrack" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDisable" Type="Boolean" />
+    <Property Name="EmpId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MasterTrackSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrackSet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrackName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="MasterTrackSubItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrackId" Type="Int32" />
+    <Property Name="TrackName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrackSubName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CalColor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SendEmailRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendEmailJoblistId" Type="Int32" />
+    <Property Name="IsSend" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaskList">
+    <Key>
+      <PropertyRef Name="TaskLisiId" />
+    </Key>
+    <Property Name="TaskLisiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="CompletedByDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TrackSubItemAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TS_Expences">
+    <Key>
+      <PropertyRef Name="TimeSheetExpencesID" />
+    </Key>
+    <Property Name="TimeSheetExpencesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int64" />
+    <Property Name="EmployeeDetailsId" Type="Int64" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSubID" Type="Int32" />
+    <Property Name="TrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expences" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BillState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MassStatusChangeBox" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AdminStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TS_MasterItem">
+    <Key>
+      <PropertyRef Name="TS_MasterItemId" />
+    </Key>
+    <Property Name="TS_MasterItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TS_Time">
+    <Key>
+      <PropertyRef Name="TimeSheetID" />
+    </Key>
+    <Property Name="TimeSheetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int64" />
+    <Property Name="EmployeeDetailsId" Type="Int64" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSubID" Type="Int32" />
+    <Property Name="TrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BillState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MassStatusChangeBox" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AdminStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackingId" Type="Int64" />
+  </EntityType>
+  <EntityType Name="VBCDDatabase">
+    <Key>
+      <PropertyRef Name="CDID" />
+    </Key>
+    <Property Name="CDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModelYear" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Owner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Expiration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModelSpaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CraneName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CraneID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerFax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypMast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypBoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypJIB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EquipmentType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ErectionStyle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TravelCTWT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Dunnage1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Dunnage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaxOrLoad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedChartType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VBFormInfo">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobListID" Type="Int32" />
+    <Property Name="JobNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Applicant" Type="Int32" />
+    <Property Name="JobSiteBlock" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteLot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteCNNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteHouseNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteStreet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteBorough" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobSiteState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Crane1CD" Type="Int32" />
+    <Property Name="Crane2CD" Type="Int32" />
+    <Property Name="Crane3CD" Type="Int32" />
+    <Property Name="Crane4CD" Type="Int32" />
+    <Property Name="Crane5CD" Type="Int32" />
+    <Property Name="Crane6CD" Type="Int32" />
+    <Property Name="CraneUser" Type="Int32" />
+    <Property Name="CraneUserInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CraneUserTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformManufacturer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformModel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperFax" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperAddr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlatformSuperZip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FirstVariance" Type="Boolean" Nullable="false" />
+    <Property Name="BIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CBNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AptorCondoNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialPlaceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SubName" Type="Int32" />
+    <Property Name="SubInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResidenceWithin200ft" Type="Boolean" Nullable="false" />
+    <Property Name="DatesofVariance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DaysofVariance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TimeofVarianceFrom" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TimeofVarianceTo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="VarianceWorkDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ReasonforVariance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteArchitect" Type="Int32" />
+    <Property Name="CommunityBoardID" Type="Int32" />
+    <Property Name="SiteNumofStories" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOccupancy" Type="Boolean" Nullable="false" />
+    <Property Name="OccupancyType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteNumofApts" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteNumofAptsCurrent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteNumofAptsProposed" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwnerAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwnerStreet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwnerCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwnerState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SiteOwnerZip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WorkProposed" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Architect2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Architect2fullAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="PDFType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VBNetApplicantInfo">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantMidName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantBusinessName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantBusinessAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantBusinessCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantBusinessState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantBusinessZip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Applicantfax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsChange" Type="Boolean" />
+    <Property Name="IsNewRecord" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="VersionDescription">
+    <Key>
+      <PropertyRef Name="VersionDescId" />
+    </Key>
+    <Property Name="VersionDescId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableVersionId" Type="Int32" />
+    <Property Name="MasterTrackSubItemId" Type="Int32" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Id" Type="Int32" />
+    <Property Name="TrackSet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TrackName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CalColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSubName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VersionTable">
+    <Key>
+      <PropertyRef Name="TableVersionId" />
+    </Key>
+    <Property Name="TableVersionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableVersionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VETask">
+    <Key>
+      <PropertyRef Name="VETaskID" />
+    </Key>
+    <Property Name="VETaskID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IssueDate" Type="DateTime" Precision="0" />
+    <Property Name="CompletedDate" Type="DateTime" Precision="0" />
+    <Property Name="JobID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="ActivityInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PCName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MethodName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDt" Type="DateTime" Precision="3" />
+    <Property Name="frmName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ColorHistory">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="AgingUpdateDate" />
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="AgingUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Userid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PMInfo">
+    <Key>
+      <PropertyRef Name="pmID" />
+    </Key>
+    <Property Name="pmID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PMinitials" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TSUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TSPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmailJobPendingList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Contacts" Type="String" MaxLength="132" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Track" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSub" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="JobListID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceJobList">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="Int32" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ContactsName" Type="String" MaxLength="132" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="InvoicePreview">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hrs" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="InvoicePreview_1">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hrs" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MasterTrackSubDisplay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="TrackSet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrackName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrackSubName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CalColor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="rptInvoiceExpens">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expenses" Type="Double" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="rptInvoiceTime">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Double" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Aging" Type="Int32" />
+    <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="view_Temp">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+      <PropertyRef Name="ReportType" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Hrs" Type="Double" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expenses" Type="Double" />
+    <Property Name="ReportType" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_Item_Time_Expense">
+    <Key>
+      <PropertyRef Name="JobTrackDetailID" />
+      <PropertyRef Name="Expenses" />
+      <PropertyRef Name="ReportType" />
+    </Key>
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PONo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Hrs" Type="Double" />
+    <Property Name="Time" Type="Double" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Expenses" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReportType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_PandingList">
+    <Key>
+      <PropertyRef Name="JobTrackingID" />
+    </Key>
+    <Property Name="JobTrackingID" Type="Int32" Nullable="false" />
+    <Property Name="JobListID" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="NeedDate" Type="DateTime" Precision="3" />
+    <Property Name="Obtained" Type="DateTime" Precision="3" />
+    <Property Name="Expires" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Submitted" Type="DateTime" Precision="3" />
+    <Property Name="BillState" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TaskHandler" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FinalAction" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TrackSubID" Type="Int32" />
+    <Property Name="TrackName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrackSubName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vwJobListDefaultValue">
+    <Key>
+      <PropertyRef Name="JobListID" />
+    </Key>
+    <Property Name="JobListID" Type="Int32" Nullable="false" />
+    <Property Name="TableVersionId" Type="Int32" />
+    <Property Name="ServRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vWordTran">
+    <Key>
+      <PropertyRef Name="ContactsID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="State" />
+    </Key>
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactsID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="TestVariousInfoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AgingFileInfoes" EntityType="Self.AgingFileInfo" />
+    <EntitySet Name="AgingInvoices" EntityType="Self.AgingInvoice" />
+    <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
+    <EntitySet Name="Bcad_Capacity" EntityType="Self.Bcad_Capacity" />
+    <EntitySet Name="Bcad_Crane" EntityType="Self.Bcad_Crane" />
+    <EntitySet Name="Bcad_CraneConfig" EntityType="Self.Bcad_CraneConfig" />
+    <EntitySet Name="Bcad_CraneCoordinate" EntityType="Self.Bcad_CraneCoordinate" />
+    <EntitySet Name="Bcad_CraneData" EntityType="Self.Bcad_CraneData" />
+    <EntitySet Name="Bcad_ElevationInfo" EntityType="Self.Bcad_ElevationInfo" />
+    <EntitySet Name="Bcad_PickChartCoordinate" EntityType="Self.Bcad_PickChartCoordinate" />
+    <EntitySet Name="Bcad_ProjectName" EntityType="Self.Bcad_ProjectName" />
+    <EntitySet Name="Bcad_Radius" EntityType="Self.Bcad_Radius" />
+    <EntitySet Name="Bcad_Site" EntityType="Self.Bcad_Site" />
+    <EntitySet Name="Bcad_SiteInfo" EntityType="Self.Bcad_SiteInfo" />
+    <EntitySet Name="ColorEmailDescriptions" EntityType="Self.ColorEmailDescription" />
+    <EntitySet Name="ColorSettings" EntityType="Self.ColorSetting" />
+    <EntitySet Name="CommunicationLogs" EntityType="Self.CommunicationLog" />
+    <EntitySet Name="CommunityBoards" EntityType="Self.CommunityBoard" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="CRVExpensesInvoices" EntityType="Self.CRVExpensesInvoice" />
+    <EntitySet Name="CRVTimeInvoices" EntityType="Self.CRVTimeInvoice" />
+    <EntitySet Name="DocTypicalCategoryLists" EntityType="Self.DocTypicalCategoryList" />
+    <EntitySet Name="DocTypicalListItems" EntityType="Self.DocTypicalListItem" />
+    <EntitySet Name="DrawingLogs" EntityType="Self.DrawingLog" />
+    <EntitySet Name="EmailRecords" EntityType="Self.EmailRecord" />
+    <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetail" />
+    <EntitySet Name="EmployeeDetails_Depre" EntityType="Self.EmployeeDetails_Depre" />
+    <EntitySet Name="ImportTimeSheetDatas" EntityType="Self.ImportTimeSheetData" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceActions" EntityType="Self.InvoiceAction" />
+    <EntitySet Name="JobLists" EntityType="Self.JobList" />
+    <EntitySet Name="JobTrackings" EntityType="Self.JobTracking" />
+    <EntitySet Name="JobTrackInvoiceDetails" EntityType="Self.JobTrackInvoiceDetail" />
+    <EntitySet Name="JobTrackInvoiceRateDetails" EntityType="Self.JobTrackInvoiceRateDetail" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="MasterItems" EntityType="Self.MasterItem" />
+    <EntitySet Name="MasterTrackSets" EntityType="Self.MasterTrackSet" />
+    <EntitySet Name="MasterTrackSubItems" EntityType="Self.MasterTrackSubItem" />
+    <EntitySet Name="SendEmailRecords" EntityType="Self.SendEmailRecord" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaskLists" EntityType="Self.TaskList" />
+    <EntitySet Name="TrackSubItemAccounts" EntityType="Self.TrackSubItemAccount" />
+    <EntitySet Name="TS_Expences" EntityType="Self.TS_Expences" />
+    <EntitySet Name="TS_MasterItem" EntityType="Self.TS_MasterItem" />
+    <EntitySet Name="TS_Time" EntityType="Self.TS_Time" />
+    <EntitySet Name="VBCDDatabases" EntityType="Self.VBCDDatabase" />
+    <EntitySet Name="VBFormInfoes" EntityType="Self.VBFormInfo" />
+    <EntitySet Name="VBNetApplicantInfoes" EntityType="Self.VBNetApplicantInfo" />
+    <EntitySet Name="VersionDescriptions" EntityType="Self.VersionDescription" />
+    <EntitySet Name="VersionTables" EntityType="Self.VersionTable" />
+    <EntitySet Name="VETasks" EntityType="Self.VETask" />
+    <EntitySet Name="ActivityInfoes" EntityType="Self.ActivityInfo" />
+    <EntitySet Name="ColorHistories" EntityType="Self.ColorHistory" />
+    <EntitySet Name="PMInfoes" EntityType="Self.PMInfo" />
+    <EntitySet Name="EmailJobPendingLists" EntityType="Self.EmailJobPendingList" />
+    <EntitySet Name="InvoiceJobLists" EntityType="Self.InvoiceJobList" />
+    <EntitySet Name="InvoicePreviews" EntityType="Self.InvoicePreview" />
+    <EntitySet Name="InvoicePreview_1" EntityType="Self.InvoicePreview_1" />
+    <EntitySet Name="MasterTrackSubDisplays" EntityType="Self.MasterTrackSubDisplay" />
+    <EntitySet Name="rptInvoiceExpenses" EntityType="Self.rptInvoiceExpens" />
+    <EntitySet Name="rptInvoiceTimes" EntityType="Self.rptInvoiceTime" />
+    <EntitySet Name="view_Temp" EntityType="Self.view_Temp" />
+    <EntitySet Name="vw_Item_Time_Expense" EntityType="Self.vw_Item_Time_Expense" />
+    <EntitySet Name="VW_PandingList" EntityType="Self.VW_PandingList" />
+    <EntitySet Name="vwJobListDefaultValues" EntityType="Self.vwJobListDefaultValue" />
+    <EntitySet Name="vWordTrans" EntityType="Self.vWordTran" />
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(TestVariousInfoModel.SplitString_Result)">
+      <Parameter Name="Input" Mode="In" Type="String" />
+      <Parameter Name="Character" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBillableJobDisableSearchData" ReturnType="Collection(TestVariousInfoModel.proc_GetBillableJobDisableSearchData_Result)">
+      <Parameter Name="NOCreditColor" Mode="In" Type="Int32" />
+      <Parameter Name="GreenColor" Mode="In" Type="Int32" />
+      <Parameter Name="yellowColor" Mode="In" Type="Int32" />
+      <Parameter Name="OrangeColor" Mode="In" Type="Int32" />
+      <Parameter Name="RedColor" Mode="In" Type="Int32" />
+      <Parameter Name="BlackColor" Mode="In" Type="Int32" />
+      <Parameter Name="DefaultAmount" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBillableJobSearchData" ReturnType="Collection(TestVariousInfoModel.proc_GetBillableJobSearchData_Result)">
+      <Parameter Name="NOCreditColor" Mode="In" Type="Int32" />
+      <Parameter Name="GreenColor" Mode="In" Type="Int32" />
+      <Parameter Name="yellowColor" Mode="In" Type="Int32" />
+      <Parameter Name="OrangeColor" Mode="In" Type="Int32" />
+      <Parameter Name="RedColor" Mode="In" Type="Int32" />
+      <Parameter Name="BlackColor" Mode="In" Type="Int32" />
+      <Parameter Name="DefaultAmount" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBillableJobSearchDataTest" ReturnType="Collection(TestVariousInfoModel.proc_GetBillableJobSearchDataTest_Result)">
+      <Parameter Name="NOCreditColor" Mode="In" Type="Int32" />
+      <Parameter Name="GreenColor" Mode="In" Type="Int32" />
+      <Parameter Name="yellowColor" Mode="In" Type="Int32" />
+      <Parameter Name="OrangeColor" Mode="In" Type="Int32" />
+      <Parameter Name="RedColor" Mode="In" Type="Int32" />
+      <Parameter Name="BlackColor" Mode="In" Type="Int32" />
+      <Parameter Name="DefaultAmount" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetInvoiceDetailByJobNumber" ReturnType="Collection(TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_Result)">
+      <Parameter Name="JobNumber" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetInvoiceDetailByJobNumber_All" ReturnType="Collection(TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_All_Result)" />
+    <FunctionImport Name="SP_GetInvoiceDetailByJobNumber_All_New" ReturnType="Collection(TestVariousInfoModel.SP_GetInvoiceDetailByJobNumber_All_New_Result)">
+      <Parameter Name="JobNumber" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TestVariousInfoModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TestVariousInfoModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InvoiceDetailReduction" ReturnType="Collection(TestVariousInfoModel.sp_InvoiceDetailReduction_Result)">
+      <Parameter Name="JobTrackDetailId" Mode="In" Type="Int32" />
+      <Parameter Name="Reduction" Mode="In" Type="Decimal" />
+      <Parameter Name="ItemReduc" Mode="In" Type="Boolean" />
+      <Parameter Name="TimeReduc" Mode="In" Type="Boolean" />
+      <Parameter Name="ExpenseReduc" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InvoiceReportItems" ReturnType="Collection(TestVariousInfoModel.sp_InvoiceReportItems_Result)">
+      <Parameter Name="JobTrackDetailId" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="Reduction" Mode="In" Type="Decimal" />
+      <Parameter Name="ItemReduc" Mode="In" Type="Boolean" />
+      <Parameter Name="TimeReduc" Mode="In" Type="Boolean" />
+      <Parameter Name="ExpReduc" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ShowJobList" ReturnType="Collection(TestVariousInfoModel.SP_ShowJobList_Result)">
+      <Parameter Name="TodayDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SelectQuery" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ShowJobTrackingList" ReturnType="Collection(TestVariousInfoModel.SP_ShowJobTrackingList_Result)">
+      <Parameter Name="TodayDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SelectQuery" Mode="In" Type="Int32" />
+      <Parameter Name="JobListID_Collection" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_TaskGetJobNumber" ReturnType="Collection(String)">
+      <Parameter Name="QueryDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SelectQuery" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UpdateConvertInvoiceExpenses">
+      <Parameter Name="xmlString" Mode="In" Type="String" />
+      <Parameter Name="billState" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UpdateConvertInvoiceItem">
+      <Parameter Name="xmlString" Mode="In" Type="String" />
+      <Parameter Name="billState" Mode="In" Type="String" />
+      <Parameter Name="jobListID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UpdateConvertInvoiceTime">
+      <Parameter Name="xmlString" Mode="In" Type="String" />
+      <Parameter Name="billState" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="spUndoInvoiceDetails">
+      <Parameter Name="JobTrackDetailId" Mode="In" Type="Int32" />
+      <Parameter Name="IsUndo" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="proc_GetBillableJobDisableSearchData_Result">
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PM" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="LastInvoiceDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TypicalInvoiceType" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBillableJobSearchData_Result">
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TypicalInvoiceType" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBillableJobSearchDataTest_Result">
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TypicalInvoiceType" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetInvoiceDetailByJobNumber_Result">
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceDate" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="Jobdescription" Nullable="true" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNo" Nullable="true" />
+    <Property Type="String" Name="FaxNo" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+    <Property Type="Double" Name="Hrs" Nullable="true" />
+    <Property Type="String" Name="Rate" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="JobTrackSubName" Nullable="true" />
+    <Property Type="String" Name="byname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Amount" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Clienttext" Nullable="true" />
+    <Property Type="Double" Name="Expenses" Nullable="true" />
+    <Property Type="String" Name="ReportType" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="SP_GetInvoiceDetailByJobNumber_All_Result">
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceDate" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="Jobdescription" Nullable="true" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNo" Nullable="true" />
+    <Property Type="String" Name="FaxNo" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+    <Property Type="Double" Name="Hrs" Nullable="true" />
+    <Property Type="String" Name="Rate" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="JobTrackSubName" Nullable="true" />
+    <Property Type="String" Name="byname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Amount" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Clienttext" Nullable="true" />
+    <Property Type="Double" Name="Expenses" Nullable="true" />
+    <Property Type="String" Name="ReportType" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="SP_GetInvoiceDetailByJobNumber_All_New_Result">
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceDate" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="Jobdescription" Nullable="true" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNo" Nullable="true" />
+    <Property Type="String" Name="FaxNo" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+    <Property Type="Double" Name="Hrs" Nullable="true" />
+    <Property Type="String" Name="Rate" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="JobTrackSubName" Nullable="true" />
+    <Property Type="String" Name="byname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Amount" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Clienttext" Nullable="true" />
+    <Property Type="Double" Name="Expenses" Nullable="true" />
+    <Property Type="String" Name="ReportType" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_InvoiceDetailReduction_Result">
+    <Property Type="String" Name="Reimbursement" Nullable="true" />
+    <Property Type="String" Name="Item" Nullable="true" />
+    <Property Type="String" Name="TimeTotal" Nullable="true" />
+    <Property Type="String" Name="Expense" Nullable="true" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="11" Scale="2" />
+    <Property Type="Decimal" Name="Revenue" Nullable="true" Precision="12" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_InvoiceReportItems_Result">
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceDate" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="Jobdescription" Nullable="true" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNo" Nullable="true" />
+    <Property Type="String" Name="FaxNo" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+    <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="JobTrackDetailID1" Nullable="true" Precision="19" Scale="0" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+    <Property Type="Double" Name="Hrs" Nullable="true" />
+    <Property Type="String" Name="Rate" Nullable="true" />
+    <Property Type="String" Name="JobTrackSubName" Nullable="true" />
+    <Property Type="String" Name="byname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Clienttext" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Expenses" Nullable="true" />
+    <Property Type="String" Name="ReportType" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="SP_ShowJobList_Result">
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="JobListID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_ShowJobTrackingList_Result">
+    <Property Type="Int32" Name="JobTrackingID" Nullable="false" />
+    <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Track" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TrackSub" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="Obtained" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Expires" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>
