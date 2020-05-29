@@ -1036,7 +1036,7 @@
             this.btnDeletePermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnDeletePermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeletePermit.Location = new System.Drawing.Point(360, 9);
+            this.btnDeletePermit.Location = new System.Drawing.Point(398, 9);
             this.btnDeletePermit.Name = "btnDeletePermit";
             this.btnDeletePermit.Size = new System.Drawing.Size(67, 30);
             this.btnDeletePermit.TabIndex = 9;
@@ -1049,7 +1049,7 @@
             this.btnCancelPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnCancelPermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelPermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelPermit.Location = new System.Drawing.Point(447, 9);
+            this.btnCancelPermit.Location = new System.Drawing.Point(485, 9);
             this.btnCancelPermit.Name = "btnCancelPermit";
             this.btnCancelPermit.Size = new System.Drawing.Size(67, 30);
             this.btnCancelPermit.TabIndex = 8;
@@ -1062,7 +1062,7 @@
             this.btnInsertPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnInsertPermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInsertPermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertPermit.Location = new System.Drawing.Point(273, 9);
+            this.btnInsertPermit.Location = new System.Drawing.Point(311, 9);
             this.btnInsertPermit.Name = "btnInsertPermit";
             this.btnInsertPermit.Size = new System.Drawing.Size(67, 30);
             this.btnInsertPermit.TabIndex = 7;
