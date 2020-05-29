@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace JobTracker.Login
 {
-    public partial class Login : Form
+    public partial class frmJTLogin : Form
     {
-        public Login()
+        public frmJTLogin()
         {
             InitializeComponent();
         }
