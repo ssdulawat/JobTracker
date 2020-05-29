@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="JobTrackingForm\JobStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobTrackingForm\JobStatus.Designer.cs">
+      <DependentUpon>JobStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="JobTrackingForm\JobStatus.resx">
+      <DependentUpon>JobStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -71,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,7 +103,50 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icon\112_ArrowCurveBlue_Right.ico" />
+    <Content Include="Icon\112_RefreshArrow_Blue.ico" />
+    <Content Include="Icon\112_RefreshArrow_Blue1.ico" />
+    <Content Include="Icon\arrow_left.ico" />
+    <Content Include="Icon\base_cog_32.ico" />
+    <Content Include="Icon\cancel.ico" />
+    <Content Include="Icon\CloseBtn.ico" />
+    <Content Include="Icon\Computer1.ico" />
+    <Content Include="Icon\delete_16.png" />
+    <Content Include="Icon\delete_16x.ico" />
+    <Content Include="Icon\delete_ico.ico" />
+    <Content Include="Icon\desktop.ico" />
+    <Content Include="Icon\edit_16.png" />
+    <Content Include="Icon\edit_ico.ico" />
+    <Content Include="Icon\ExportIff.ico" />
+    <Content Include="Icon\Folder.ico" />
+    <Content Include="Icon\folder_new.ico" />
+    <Content Include="Icon\FormBack.png" />
+    <Content Include="Icon\FrmBack.png" />
+    <Content Include="Icon\FrmBkLight.png" />
+    <Content Include="Icon\Generic Folder   Open.ico" />
+    <Content Include="Icon\Generic Folder   Open1.ico" />
+    <Content Include="Icon\Header.jpg" />
+    <Content Include="Icon\icon_update-16x16.gif" />
+    <Content Include="Icon\Image1.bmp" />
+    <Content Include="Icon\images.ico" />
+    <Content Include="Icon\importExcel.ico" />
+    <Content Include="Icon\Max.ico" />
+    <Content Include="Icon\MaximizeBtn.ico" />
+    <Content Include="Icon\MaximizeBtnpng.png" />
+    <Content Include="Icon\Min.ico" />
+    <Content Include="Icon\MinimizeBtn.ico" />
+    <Content Include="Icon\NOTEL.ICO" />
+    <Content Include="Icon\Pngfolder_new.png" />
+    <Content Include="Icon\POSTL.ICO" />
+    <Content Include="Icon\PrintDOC.bmp" />
+    <Content Include="Icon\printer.ico" />
+    <Content Include="Icon\RECL.ICO" />
+    <Content Include="Icon\refresh.ico" />
+    <Content Include="Icon\SaveHL.bmp" />
+    <Content Include="Icon\search_icon.png" />
     <Content Include="Icon\TrackingICO.ico" />
+    <Content Include="Icon\Upload Prcess.gif" />
+    <Content Include="Icon\UploadProcess.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
