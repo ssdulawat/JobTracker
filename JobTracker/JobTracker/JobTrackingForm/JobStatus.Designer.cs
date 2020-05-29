@@ -339,7 +339,7 @@
             this.chkShowDisabled.ForeColor = System.Drawing.Color.Black;
             this.chkShowDisabled.Location = new System.Drawing.Point(906, 54);
             this.chkShowDisabled.Name = "chkShowDisabled";
-            this.chkShowDisabled.Size = new System.Drawing.Size(109, 21);
+            this.chkShowDisabled.Size = new System.Drawing.Size(123, 21);
             this.chkShowDisabled.TabIndex = 22;
             this.chkShowDisabled.Text = "Show Disabled";
             this.chkShowDisabled.UseVisualStyleBackColor = true;
@@ -347,9 +347,9 @@
             // cmbYear
             // 
             this.cmbYear.FormattingEnabled = true;
-            this.cmbYear.Location = new System.Drawing.Point(828, 52);
+            this.cmbYear.Location = new System.Drawing.Point(840, 52);
             this.cmbYear.Name = "cmbYear";
-            this.cmbYear.Size = new System.Drawing.Size(66, 24);
+            this.cmbYear.Size = new System.Drawing.Size(54, 24);
             this.cmbYear.TabIndex = 21;
             // 
             // chkYear
@@ -359,7 +359,7 @@
             this.chkYear.ForeColor = System.Drawing.Color.Black;
             this.chkYear.Location = new System.Drawing.Point(695, 54);
             this.chkYear.Name = "chkYear";
-            this.chkYear.Size = new System.Drawing.Size(115, 21);
+            this.chkYear.Size = new System.Drawing.Size(129, 21);
             this.chkYear.TabIndex = 20;
             this.chkYear.Text = "Search By Year";
             this.chkYear.UseVisualStyleBackColor = true;
@@ -429,7 +429,7 @@
             // 
             // txtJobListAddress
             // 
-            this.txtJobListAddress.Location = new System.Drawing.Point(909, 22);
+            this.txtJobListAddress.Location = new System.Drawing.Point(922, 22);
             this.txtJobListAddress.Name = "txtJobListAddress";
             this.txtJobListAddress.Size = new System.Drawing.Size(101, 22);
             this.txtJobListAddress.TabIndex = 12;
@@ -439,7 +439,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(844, 24);
+            this.label7.Location = new System.Drawing.Point(860, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
             this.label7.TabIndex = 11;
@@ -450,9 +450,9 @@
             this.chkInvoiceHold.AutoSize = true;
             this.chkInvoiceHold.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInvoiceHold.ForeColor = System.Drawing.Color.Maroon;
-            this.chkInvoiceHold.Location = new System.Drawing.Point(768, 23);
+            this.chkInvoiceHold.Location = new System.Drawing.Point(770, 23);
             this.chkInvoiceHold.Name = "chkInvoiceHold";
-            this.chkInvoiceHold.Size = new System.Drawing.Size(76, 21);
+            this.chkInvoiceHold.Size = new System.Drawing.Size(85, 21);
             this.chkInvoiceHold.TabIndex = 10;
             this.chkInvoiceHold.Text = "Inv. Hold";
             this.chkInvoiceHold.UseVisualStyleBackColor = true;
@@ -462,9 +462,9 @@
             this.chkNotInvoiceJob.AutoSize = true;
             this.chkNotInvoiceJob.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkNotInvoiceJob.ForeColor = System.Drawing.Color.Maroon;
-            this.chkNotInvoiceJob.Location = new System.Drawing.Point(659, 22);
+            this.chkNotInvoiceJob.Location = new System.Drawing.Point(650, 22);
             this.chkNotInvoiceJob.Name = "chkNotInvoiceJob";
-            this.chkNotInvoiceJob.Size = new System.Drawing.Size(108, 21);
+            this.chkNotInvoiceJob.Size = new System.Drawing.Size(121, 21);
             this.chkNotInvoiceJob.TabIndex = 9;
             this.chkNotInvoiceJob.Text = "Billing Require";
             this.chkNotInvoiceJob.UseVisualStyleBackColor = true;
@@ -474,9 +474,9 @@
             this.chkShowOnlyPending.AutoSize = true;
             this.chkShowOnlyPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkShowOnlyPending.ForeColor = System.Drawing.Color.Maroon;
-            this.chkShowOnlyPending.Location = new System.Drawing.Point(582, 22);
+            this.chkShowOnlyPending.Location = new System.Drawing.Point(566, 22);
             this.chkShowOnlyPending.Name = "chkShowOnlyPending";
-            this.chkShowOnlyPending.Size = new System.Drawing.Size(73, 21);
+            this.chkShowOnlyPending.Size = new System.Drawing.Size(82, 21);
             this.chkShowOnlyPending.TabIndex = 8;
             this.chkShowOnlyPending.Text = "Pending";
             this.chkShowOnlyPending.UseVisualStyleBackColor = true;
@@ -484,7 +484,7 @@
             // cbxJobListPMrv
             // 
             this.cbxJobListPMrv.FormattingEnabled = true;
-            this.cbxJobListPMrv.Location = new System.Drawing.Point(484, 20);
+            this.cbxJobListPMrv.Location = new System.Drawing.Point(478, 20);
             this.cbxJobListPMrv.Name = "cbxJobListPMrv";
             this.cbxJobListPMrv.Size = new System.Drawing.Size(82, 24);
             this.cbxJobListPMrv.TabIndex = 7;
@@ -494,7 +494,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(439, 24);
+            this.label6.Location = new System.Drawing.Point(435, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 17);
             this.label6.TabIndex = 6;
