@@ -59,6 +59,12 @@
     <Compile Include="JobTrackingForm\JobStatus.Designer.cs">
       <DependentUpon>JobStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="JobTrackingMDIForm\JobAndTrackingMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobTrackingMDIForm\JobAndTrackingMDI.Designer.cs">
+      <DependentUpon>JobAndTrackingMDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="JobTrackingForm\JobStatus.resx">
       <DependentUpon>JobStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobTrackingMDIForm\JobAndTrackingMDI.resx">
+      <DependentUpon>JobAndTrackingMDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -95,12 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{1542d7a3-0f1f-4ed5-897a-1286ac3b7f23}</Project>
-      <Name>DataAccessLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon\112_ArrowCurveBlue_Right.ico" />
@@ -148,5 +151,6 @@
     <Content Include="Icon\Upload Prcess.gif" />
     <Content Include="Icon\UploadProcess.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
