@@ -1,6 +1,6 @@
 ﻿namespace JobTracker.Login
 {
-    partial class frmJTLogin
+    partial class FrmJTLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmJTLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJTLogin));
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtJTUserName = new System.Windows.Forms.TextBox();
@@ -43,7 +43,8 @@
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblUserName.Location = new System.Drawing.Point(68, 67);
+            this.lblUserName.Location = new System.Drawing.Point(41, 67);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(3);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(98, 20);
             this.lblUserName.TabIndex = 0;
@@ -54,7 +55,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblPassword.Location = new System.Drawing.Point(71, 123);
+            this.lblPassword.Location = new System.Drawing.Point(41, 123);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(86, 20);
             this.lblPassword.TabIndex = 1;
@@ -89,6 +90,8 @@
             // 
             // btnLoginJT
             // 
+            this.btnLoginJT.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnLoginJT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoginJT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoginJT.Location = new System.Drawing.Point(178, 218);
             this.btnLoginJT.Name = "btnLoginJT";
@@ -96,9 +99,12 @@
             this.btnLoginJT.TabIndex = 5;
             this.btnLoginJT.Text = "Login";
             this.btnLoginJT.UseVisualStyleBackColor = true;
+            this.btnLoginJT.Click += new System.EventHandler(this.BtnLoginJT_Click);
             // 
             // btnLoginCancelJT
             // 
+            this.btnLoginCancelJT.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnLoginCancelJT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoginCancelJT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoginCancelJT.Location = new System.Drawing.Point(307, 218);
             this.btnLoginCancelJT.Name = "btnLoginCancelJT";
@@ -106,8 +112,9 @@
             this.btnLoginCancelJT.TabIndex = 6;
             this.btnLoginCancelJT.Text = "Cancel";
             this.btnLoginCancelJT.UseVisualStyleBackColor = true;
+            this.btnLoginCancelJT.Click += new System.EventHandler(this.BtnLoginCancelJT_Click);
             // 
-            // frmJTLogin
+            // FrmJTLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,8 +128,10 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUserName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmJTLogin";
+            this.Name = "FrmJTLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Tracker Login";
+            this.Load += new System.EventHandler(this.FrmJTLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

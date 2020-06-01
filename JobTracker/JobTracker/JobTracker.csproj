@@ -83,11 +83,11 @@
     <Compile Include="JobTrackingMDIForm\JobAndTrackingMDI.Designer.cs">
       <DependentUpon>JobAndTrackingMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.cs">
+    <Compile Include="Login\JTLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Login\JTLogin.Designer.cs">
+      <DependentUpon>JTLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="JobTrackingMDIForm\JobAndTrackingMDI.resx">
       <DependentUpon>JobAndTrackingMDI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Login\JTLogin.resx">
+      <DependentUpon>JTLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -170,6 +170,5 @@
     <Content Include="Icon\Upload Prcess.gif" />
     <Content Include="Icon\UploadProcess.gif" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

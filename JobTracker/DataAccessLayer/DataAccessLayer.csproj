@@ -34,12 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Database.edmx">
+    <EntityDeploy Include="EFDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+      <LastGenOutput>EFDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Database.edmx.diagram">
-      <DependentUpon>Database.edmx</DependentUpon>
+    <None Include="EFDatabase.edmx.diagram">
+      <DependentUpon>EFDatabase.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -126,10 +126,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database.Designer.cs">
+    <Compile Include="EFDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Database.edmx</DependentUpon>
+      <DependentUpon>EFDatabase.edmx</DependentUpon>
     </Compile>
     <Compile Include="DocTypicalCategoryList.cs">
       <DependentUpon>Database.tt</DependentUpon>
@@ -318,16 +318,17 @@
     <Content Include="Database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Database.Context.cs</LastGenOutput>
-      <DependentUpon>Database.edmx</DependentUpon>
+      <DependentUpon>EFDatabase.edmx</DependentUpon>
     </Content>
     <Content Include="Database.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Database.edmx</DependentUpon>
+      <DependentUpon>EFDatabase.edmx</DependentUpon>
       <LastGenOutput>Database.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
