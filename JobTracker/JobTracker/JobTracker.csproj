@@ -170,5 +170,11 @@
     <Content Include="Icon\Upload Prcess.gif" />
     <Content Include="Icon\UploadProcess.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{1542d7a3-0f1f-4ed5-897a-1286ac3b7f23}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
