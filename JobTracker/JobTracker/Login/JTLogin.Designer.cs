@@ -76,6 +76,7 @@
             this.txtJTPassword.Name = "txtJTPassword";
             this.txtJTPassword.Size = new System.Drawing.Size(233, 29);
             this.txtJTPassword.TabIndex = 3;
+            this.txtJTPassword.UseSystemPasswordChar = true;
             // 
             // cbIsTestDb
             // 
