@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JobAndTrackingMDI));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.calendarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +48,13 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
+            this.NtyicnJT = new System.Windows.Forms.NotifyIcon(this.components);
+            this.CMSNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.TimerDateTime = new System.Windows.Forms.Timer(this.components);
+            this.timerGet = new System.Windows.Forms.Timer(this.components);
+            this.BackWorkerEmail = new System.ComponentModel.BackgroundWorker();
+            this.tabctrlFrm = new DevComponents.DotNetBar.TabStrip();
+            this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
@@ -55,7 +63,6 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -68,62 +75,64 @@
             this.toolsToolStripMenuItem,
             this.invoiceToolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(880, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1010, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // calendarToolStripMenuItem
             // 
             this.calendarToolStripMenuItem.Name = "calendarToolStripMenuItem";
-            this.calendarToolStripMenuItem.Size = new System.Drawing.Size(82, 26);
+            this.calendarToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.calendarToolStripMenuItem.Text = "Calendar";
             this.calendarToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // managerToolStripMenuItem
             // 
             this.managerToolStripMenuItem.Name = "managerToolStripMenuItem";
-            this.managerToolStripMenuItem.Size = new System.Drawing.Size(82, 26);
+            this.managerToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.managerToolStripMenuItem.Text = "Manager";
             // 
             // addTImeExpenseToolStripMenuItem
             // 
             this.addTImeExpenseToolStripMenuItem.Name = "addTImeExpenseToolStripMenuItem";
-            this.addTImeExpenseToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.addTImeExpenseToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
             this.addTImeExpenseToolStripMenuItem.Text = "Add Time/Expense";
             // 
             // contactToolStripMenuItem
             // 
             this.contactToolStripMenuItem.Name = "contactToolStripMenuItem";
-            this.contactToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
+            this.contactToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.contactToolStripMenuItem.Text = "Contacts";
             // 
             // dbaseToolStripMenuItem
             // 
             this.dbaseToolStripMenuItem.Name = "dbaseToolStripMenuItem";
-            this.dbaseToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
+            this.dbaseToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.dbaseToolStripMenuItem.Text = "Dbase";
             // 
             // jTListItemToolStripMenuItem
             // 
             this.jTListItemToolStripMenuItem.Name = "jTListItemToolStripMenuItem";
-            this.jTListItemToolStripMenuItem.Size = new System.Drawing.Size(96, 26);
+            this.jTListItemToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.jTListItemToolStripMenuItem.Text = "JT List Item";
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // invoiceToolsToolStripMenuItem
             // 
             this.invoiceToolsToolStripMenuItem.Name = "invoiceToolsToolStripMenuItem";
-            this.invoiceToolsToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
+            this.invoiceToolsToolStripMenuItem.Size = new System.Drawing.Size(109, 24);
             this.invoiceToolsToolStripMenuItem.Text = "Invoice Tools";
             // 
             // lbkApprovedVersion
             // 
+            this.lbkApprovedVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbkApprovedVersion.AutoSize = true;
             this.lbkApprovedVersion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.lbkApprovedVersion.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -138,26 +147,28 @@
             // 
             // btnCloasAll
             // 
+            this.btnCloasAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCloasAll.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnCloasAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloasAll.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloasAll.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnCloasAll.Location = new System.Drawing.Point(854, 4);
             this.btnCloasAll.Name = "btnCloasAll";
-            this.btnCloasAll.Size = new System.Drawing.Size(75, 23);
+            this.btnCloasAll.Size = new System.Drawing.Size(75, 29);
             this.btnCloasAll.TabIndex = 4;
             this.btnCloasAll.Text = "Close All";
             this.btnCloasAll.UseVisualStyleBackColor = false;
             // 
             // lblLogin
             // 
+            this.lblLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLogin.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.lblLogin.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.lblLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLogin.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.Location = new System.Drawing.Point(929, 4);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(76, 23);
+            this.lblLogin.Size = new System.Drawing.Size(76, 29);
             this.lblLogin.TabIndex = 9;
             this.lblLogin.Text = "Admin Login";
             this.lblLogin.UseMnemonic = false;
@@ -165,12 +176,14 @@
             // 
             // kryptonPanel1
             // 
+            this.kryptonPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanel1.Controls.Add(this.linklbl);
             this.kryptonPanel1.Controls.Add(this.lnlLblNewVersion);
             this.kryptonPanel1.Controls.Add(this.lblVersion);
             this.kryptonPanel1.Controls.Add(this.lblTime);
             this.kryptonPanel1.Controls.Add(this.lblDate);
-            this.kryptonPanel1.Location = new System.Drawing.Point(0, 481);
+            this.kryptonPanel1.Location = new System.Drawing.Point(0, 484);
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
             this.kryptonPanel1.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.HeaderCustom2;
@@ -179,6 +192,7 @@
             // 
             // linklbl
             // 
+            this.linklbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linklbl.AutoSize = true;
             this.linklbl.BackColor = System.Drawing.Color.Transparent;
             this.linklbl.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -242,6 +256,67 @@
             this.lblDate.TabIndex = 0;
             this.lblDate.Text = "Date";
             // 
+            // NtyicnJT
+            // 
+            this.NtyicnJT.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.NtyicnJT.BalloonTipTitle = "Job Tracking";
+            this.NtyicnJT.ContextMenuStrip = this.CMSNotify;
+            this.NtyicnJT.Icon = ((System.Drawing.Icon)(resources.GetObject("NtyicnJT.Icon")));
+            this.NtyicnJT.Text = "Job Tracking";
+            this.NtyicnJT.Visible = true;
+            this.NtyicnJT.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NtyicnJT_MouseClick);
+            // 
+            // CMSNotify
+            // 
+            this.CMSNotify.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CMSNotify.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CMSNotify.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.CMSNotify.Name = "CMSNotify";
+            this.CMSNotify.Size = new System.Drawing.Size(61, 4);
+            // 
+            // TimerDateTime
+            // 
+            this.TimerDateTime.Enabled = true;
+            this.TimerDateTime.Interval = 1000;
+            this.TimerDateTime.Tick += new System.EventHandler(this.TimerDateTime_Tick);
+            // 
+            // timerGet
+            // 
+            this.timerGet.Enabled = true;
+            this.timerGet.Interval = 120000;
+            this.timerGet.Tick += new System.EventHandler(this.TimerGet_Tick);
+            // 
+            // BackWorkerEmail
+            // 
+            this.BackWorkerEmail.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackWorkerEmail_DoWork);
+            // 
+            // tabctrlFrm
+            // 
+            this.tabctrlFrm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabctrlFrm.AutoHideSystemBox = true;
+            this.tabctrlFrm.AutoSelectAttachedControl = true;
+            this.tabctrlFrm.CanReorderTabs = true;
+            this.tabctrlFrm.CloseButtonPosition = DevComponents.DotNetBar.eTabCloseButtonPosition.Right;
+            this.tabctrlFrm.CloseButtonVisible = true;
+            this.tabctrlFrm.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabctrlFrm.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabctrlFrm.Location = new System.Drawing.Point(0, 24);
+            this.tabctrlFrm.Name = "tabctrlFrm";
+            this.tabctrlFrm.SelectedTab = this.tabItem1;
+            this.tabctrlFrm.SelectedTabFont = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabctrlFrm.Size = new System.Drawing.Size(1012, 32);
+            this.tabctrlFrm.Style = DevComponents.DotNetBar.eTabStripStyle.OneNote;
+            this.tabctrlFrm.TabIndex = 14;
+            this.tabctrlFrm.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
+            this.tabctrlFrm.Tabs.Add(this.tabItem1);
+            this.tabctrlFrm.Text = "Tab Open Form";
+            // 
+            // tabItem1
+            // 
+            this.tabItem1.Name = "tabItem1";
+            this.tabItem1.Text = "tabItem1";
+            // 
             // JobAndTrackingMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -249,6 +324,7 @@
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1010, 512);
+            this.Controls.Add(this.tabctrlFrm);
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.btnCloasAll);
@@ -260,6 +336,8 @@
             this.Name = "JobAndTrackingMDI";
             this.Text = "Job Tracking";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JobAndTrackingMDI_FormClosing);
+            this.Load += new System.EventHandler(this.JobAndTrackingMDI_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
@@ -290,5 +368,12 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.NotifyIcon NtyicnJT;
+        private System.Windows.Forms.ContextMenuStrip CMSNotify;
+        private System.Windows.Forms.Timer TimerDateTime;
+        private System.Windows.Forms.Timer timerGet;
+        private System.ComponentModel.BackgroundWorker BackWorkerEmail;
+        private DevComponents.DotNetBar.TabStrip tabctrlFrm;
+        private DevComponents.DotNetBar.TabItem tabItem1;
     }
 }

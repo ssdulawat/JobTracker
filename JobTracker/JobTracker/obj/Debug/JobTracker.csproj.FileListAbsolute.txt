@@ -16,6 +16,7 @@ D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\C
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\ComponentFactory.Krypton.Workspace.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\DataAccessLayer.dll
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\DevComponents.DotNetBar2.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\EntityFramework.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\EntityFramework.SqlServer.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\JobTracker\bin\Debug\DataAccessLayer.pdb

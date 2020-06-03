@@ -49,6 +49,19 @@ namespace JobTracker.Login
                             MessageBox.Show("Must have admin privileges!", "Message");
                         else
                         {
+                            //My.Settings.timeSheetLoginName = item.UserName;
+                            //My.Settings.timeSheetLoginUserID = item.UserType;
+                            //My.Settings.timeSheetLoginUserType = "User";
+                            //My.Settings.IsTestDatabase = cbIsTestDb.Checked;
+                            //My.Settings.PretimeSheetLoginName = "Null";
+                            //My.Settings.PretimeSheetLoginUserID = "Null";
+                            //My.Settings.PretimeSheetLoginUserType = "Null";
+
+                            this.ShowInTaskbar = false;
+                            this.Hide();
+
+                            txtJTPassword.Text = "";/* TODO ERROR: Skipped SkippedTokensTrivia */
+                            txtJTUserName.Text = "";
 
                         }
 
@@ -63,7 +76,7 @@ namespace JobTracker.Login
                             this.ShowInTaskbar = false;
                             this.Hide();
 
-                            //mdi.LoginformObject = this;
+                            mdi.LoginformObject = this;
                             mdi.lblLogin.Text = "Admin LogOut";
                             //mdi.InvoiceToolStripMenuItem.Enabled = true;
                             //mdi.AdminToolStripMenuItem.Enabled = true;
