@@ -53,11 +53,11 @@
             this.TimerDateTime = new System.Windows.Forms.Timer(this.components);
             this.timerGet = new System.Windows.Forms.Timer(this.components);
             this.BackWorkerEmail = new System.ComponentModel.BackgroundWorker();
-            this.tabctrlFrm = new DevComponents.DotNetBar.TabStrip();
-            this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabctrlFrm = new DevComponents.DotNetBar.TabControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabctrlFrm)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -77,7 +77,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1010, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1010, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -292,30 +292,26 @@
             // 
             // tabctrlFrm
             // 
-            this.tabctrlFrm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabctrlFrm.AutoHideSystemBox = true;
-            this.tabctrlFrm.AutoSelectAttachedControl = true;
+            this.tabctrlFrm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
             this.tabctrlFrm.CanReorderTabs = true;
+            this.tabctrlFrm.CloseButtonOnTabsVisible = true;
             this.tabctrlFrm.CloseButtonPosition = DevComponents.DotNetBar.eTabCloseButtonPosition.Right;
             this.tabctrlFrm.CloseButtonVisible = true;
-            this.tabctrlFrm.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabctrlFrm.ColorScheme.TabItemHotBackground2 = System.Drawing.Color.Gold;
+            this.tabctrlFrm.ColorScheme.TabItemSelectedBackground2 = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(214)))), ((int)(((byte)(246)))));
+            this.tabctrlFrm.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabctrlFrm.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabctrlFrm.Location = new System.Drawing.Point(0, 24);
+            this.tabctrlFrm.Location = new System.Drawing.Point(0, 28);
+            this.tabctrlFrm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabctrlFrm.Name = "tabctrlFrm";
-            this.tabctrlFrm.SelectedTab = this.tabItem1;
-            this.tabctrlFrm.SelectedTabFont = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabctrlFrm.Size = new System.Drawing.Size(1012, 32);
-            this.tabctrlFrm.Style = DevComponents.DotNetBar.eTabStripStyle.OneNote;
-            this.tabctrlFrm.TabIndex = 14;
+            this.tabctrlFrm.SelectedTabFont = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabctrlFrm.SelectedTabIndex = -1;
+            this.tabctrlFrm.Size = new System.Drawing.Size(1010, 25);
+            this.tabctrlFrm.TabIndex = 16;
             this.tabctrlFrm.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
-            this.tabctrlFrm.Tabs.Add(this.tabItem1);
             this.tabctrlFrm.Text = "Tab Open Form";
-            // 
-            // tabItem1
-            // 
-            this.tabItem1.Name = "tabItem1";
-            this.tabItem1.Text = "tabItem1";
+            this.tabctrlFrm.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.TabctrlFrm_SelectedTabChanged);
+            this.tabctrlFrm.TabItemClose += new DevComponents.DotNetBar.TabStrip.UserActionEventHandler(this.TabctrlFrm_TabItemClose);
             // 
             // JobAndTrackingMDI
             // 
@@ -343,6 +339,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
             this.kryptonPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabctrlFrm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,7 +370,6 @@
         private System.Windows.Forms.Timer TimerDateTime;
         private System.Windows.Forms.Timer timerGet;
         private System.ComponentModel.BackgroundWorker BackWorkerEmail;
-        private DevComponents.DotNetBar.TabStrip tabctrlFrm;
-        private DevComponents.DotNetBar.TabItem tabItem1;
+        internal DevComponents.DotNetBar.TabControl tabctrlFrm;
     }
 }

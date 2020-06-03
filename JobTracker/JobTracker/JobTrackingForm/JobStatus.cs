@@ -12,9 +12,24 @@ namespace JobTracker.JobTrackingForm
 {
     public partial class JobStatus : Form
     {
+        public static JobStatus Instance
+        {
+            get
+            {
+                if (Instance == null || Instance.IsDisposed)
+                {
+                    //Instance = new JobStatus();
+                }
+                return Instance;
+            }
+
+        }
         public JobStatus()
         {
             InitializeComponent();
         }
+
+
+
     }
 }

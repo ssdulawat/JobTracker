@@ -71,7 +71,7 @@ namespace JobTracker.Login
                             mdi = MdiParentCall;
                         if (item.UserType == "A")
                         {
-                            // My.Settings.timeSheetLoginUserID = dt.Rows(0)(1).ToString()
+                            //My.Settings.timeSheetLoginUserID = dt.Rows(0)(1).ToString()
                             //My.Settings.timeSheetLoginUserType = "Admin";
                             this.ShowInTaskbar = false;
                             this.Hide();
@@ -140,5 +140,51 @@ namespace JobTracker.Login
                 Application.Exit();
             }
         }
+
+
+        public void Showform()
+        {
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm.IsMdiContainer == true)
+                    frm.Close();
+            }
+        }
+
+
+        private void cbIsTestDb_CheckedChanged(System.Object sender, System.EventArgs e)
+        {
+            if (cbIsTestDb.Checked == true) { }
+            //My.Settings.IsTestDatabase = true;
+            else { }
+            //My.Settings.IsTestDatabase = false;
+        }
+        public void New()
+        {            // This call is required by the designer.
+            InitializeComponent();
+            this.LoadDefaultSettings();
+            //Add any initialization after the InitializeComponent() call.
+        }
+        public void LoadDefaultSettings()
+        {
+            try
+            {
+                if (!System.IO.File.Exists(Application.StartupPath + @"\VESoftwareSetting.xml"))
+                {
+                    if (System.IO.File.Exists(Application.StartupPath + @"\VESoftwareSetting_Default.xml"))
+                    {
+                        System.IO.File.Copy(Application.StartupPath + @"\VESoftwareSetting_Default.xml", Application.StartupPath + @"\VESoftwareSetting.xml");
+                        System.IO.File.Delete(Application.StartupPath + @"\VESoftwareSetting_Default.xml");
+                    }
+                    else
+                        MessageBox.Show("Unable to load default settings. Please contact support.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

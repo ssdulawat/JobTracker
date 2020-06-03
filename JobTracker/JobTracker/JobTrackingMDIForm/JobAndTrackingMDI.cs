@@ -1,4 +1,5 @@
-﻿using JobTracker.JobTrackingForm;
+﻿using DevComponents.DotNetBar;
+using JobTracker.JobTrackingForm;
 using JobTracker.Login;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace JobTracker.JobTrackingMDIForm
         }
         private void Manager_Click(System.Object sender, System.EventArgs e)
         {
-            // CreateFromandtab(JobStatus.Instance);
+             CreateFromandtab(JobStatus.Instance);
         }
 
         private void JobAndTrackingMDI_Load(object sender, EventArgs e)
@@ -111,5 +112,70 @@ namespace JobTracker.JobTrackingMDIForm
         {
 
         }
+
+        private void TabctrlFrm_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
+        {
+            try
+            {
+                foreach (Form frm in this.MdiChildren)
+                {
+                    if (frm.IsMdiContainer != true)
+                    {
+                        if (tabctrlFrm.SelectedTab.Text == frm.Text)
+                        {
+                            frm.BringToFront();
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+
+        private void TabctrlFrm_TabItemClose(object sender, DevComponents.DotNetBar.TabStripActionEventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.IsMdiContainer != true)
+                {
+                    if (tabctrlFrm.SelectedTab.Text == frm.Text)
+                    {
+                        //tabctrlFrm.Tabs.RemoveAt(tabctrlFrm.Tabs.IndexOf(tabctrlFrm.Tabs.Item(frm.Text)));
+                        frm.Close();
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        public void CreateFromandtab(Form Newfrm)
+        {
+            TabItem newtab = new TabItem();
+            newtab.Name = Newfrm.Text;
+            newtab.Text = Newfrm.Text;
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.IsMdiContainer != true)
+                {
+                    if (frm.Text == Newfrm.Text)
+                    {
+                        Newfrm.BringToFront();
+                       // tabctrlFrm.SelectedTab = tabctrlFrm.Tabs.Item(Newfrm.Text);
+                        return;
+                    }
+                }
+            }
+            tabctrlFrm.Tabs.Add(newtab);
+            tabctrlFrm.SelectedTab = newtab;
+            tabctrlFrm.Visible = true;
+            Newfrm.MdiParent = this;
+            Newfrm.WindowState = FormWindowState.Maximized;
+            Newfrm.Show();
+        }
+
     }
 }
