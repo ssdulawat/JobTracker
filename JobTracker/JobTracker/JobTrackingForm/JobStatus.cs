@@ -64,12 +64,64 @@ namespace JobTracker.JobTrackingForm
             }
 
         }
+
+        public string GetCopyFolderName
+        {
+            get { return CopyPath; }
+            set { CopyPath = value; }
+        }
+        public string GetFolderName
+        {
+            get
+            {
+                return FolderName;
+            }
+            set
+            {
+                FolderName = value;
+            }
+        }
+        private Color mBodyColor;
+        public Color BodyColor
+        {
+            get
+            {
+                // Do some work
+                return mBodyColor;
+            }
+            set
+            {
+                mBodyColor = value;
+            }
+        }
+
+        public bool isDisabled
+        {
+            get
+            {
+                return isDisable;
+            }
+            set
+            {
+                isDisable = value;
+            }
+        }
+
+        private Int16 processcount { get; set; }
+
         #endregion
 
         public JobStatus()
         {
             InitializeComponent();
         }
+        public void New()
+        {
+            // This call is required by the Windows Form Designer.
+            InitializeComponent();
+            //Add any initialization after the InitializeComponent() call
+        }
+
 
         private void JobStatus_Load(System.Object sender, System.EventArgs e)
         {
@@ -83,5 +135,64 @@ namespace JobTracker.JobTrackingForm
             //DefaultValueSetup();
         }
 
+        private void TimerLoad_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ManagerLoad)
+                {
+                    try
+                    {
+                        selectRecord_Joblist = true;
+                        chkPreRequirment.Checked = false;
+
+                       // SetColumns();
+                       // fillGridJobList();
+                        selectRecord_Joblist = false;
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+                if (selectRecord_Joblist == false)
+                {
+                    if (processcount == 1)
+                    {
+                     //   SetColumnPreRequirment();
+                      //  FillGridPreRequirment();
+                    }
+                    if (processcount == 2)
+                    {
+                     //   SetColumnPermit();
+                      //  FillGridPermitRequiredInspection();
+                    }
+                    if (processcount == 3)
+                    {
+                     //   SetColumnNotes();
+                     //   FillGridNotesCommunication();
+                    }
+                    if (processcount == 4)
+                     //   SetBadClient();
+                    if (processcount == 5)
+                    {
+                       // Fillcombo();
+                       // ApplyPageLoadSetting();
+                        if ((grvJobList.Rows.Count != 0))
+                        {
+                          //  ChangeDirJobNumber(grvJobList.Rows.Count - 1);
+                         //   ChangeTraficLight(grvJobList.Rows.Count - 1);
+                        }
+                        timerLoad.Stop();
+                        timerLoad.Enabled = false;
+                    }
+                    //processcount = processcount + 1;
+                }
+
+                ManagerLoad = false;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

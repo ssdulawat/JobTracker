@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelSearch = new System.Windows.Forms.Panel();
             this.PanelJobGrid = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grvJobList = new System.Windows.Forms.DataGridView();
             this.GrpSrchTrack = new System.Windows.Forms.GroupBox();
             this.btnTrackSeachRefresh = new System.Windows.Forms.Button();
             this.cmbBillStatePermit = new System.Windows.Forms.ComboBox();
@@ -102,6 +111,9 @@
             this.btnInsertPreReq = new System.Windows.Forms.Button();
             this.chkPreRequirment = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnCreateInvoice = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSendEmail = new System.Windows.Forms.Button();
             this.btnImportTimeSheetData = new System.Windows.Forms.Button();
@@ -113,18 +125,27 @@
             this.btnInsertPermit = new System.Windows.Forms.Button();
             this.chkPermits = new System.Windows.Forms.CheckBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.grvNotesCommunication = new System.Windows.Forms.DataGridView();
             this.btnDeleteNotes = new System.Windows.Forms.Button();
             this.btnCancelNotes = new System.Windows.Forms.Button();
             this.btnInsertNotes = new System.Windows.Forms.Button();
             this.chkNotes = new System.Windows.Forms.CheckBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnCreateInvoice = new System.Windows.Forms.Button();
+            this.timerLoad = new System.Windows.Forms.Timer(this.components);
+            this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ToolTipShowColorNotifi = new System.Windows.Forms.ToolTip(this.components);
+            this.colorMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.GreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YellowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTipBillReq = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelSearch.SuspendLayout();
             this.PanelJobGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).BeginInit();
             this.GrpSrchTrack.SuspendLayout();
             this.GrpSrchJob.SuspendLayout();
             this.GpJobAndTrack.SuspendLayout();
@@ -139,7 +160,8 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).BeginInit();
+            this.colorMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -174,21 +196,37 @@
             // 
             // PanelJobGrid
             // 
-            this.PanelJobGrid.Controls.Add(this.dataGridView1);
+            this.PanelJobGrid.Controls.Add(this.grvJobList);
             this.PanelJobGrid.Location = new System.Drawing.Point(5, 143);
             this.PanelJobGrid.Name = "PanelJobGrid";
             this.PanelJobGrid.Size = new System.Drawing.Size(1339, 178);
             this.PanelJobGrid.TabIndex = 10;
             // 
-            // dataGridView1
+            // grvJobList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1336, 171);
-            this.dataGridView1.TabIndex = 0;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvJobList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.grvJobList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvJobList.DefaultCellStyle = dataGridViewCellStyle10;
+            this.grvJobList.Location = new System.Drawing.Point(3, 4);
+            this.grvJobList.Name = "grvJobList";
+            this.grvJobList.RowHeadersWidth = 51;
+            this.grvJobList.RowTemplate.Height = 24;
+            this.grvJobList.Size = new System.Drawing.Size(1336, 171);
+            this.grvJobList.TabIndex = 0;
             // 
             // GrpSrchTrack
             // 
@@ -783,7 +821,23 @@
             // 
             // grvPreRequirments
             // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPreRequirments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.grvPreRequirments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPreRequirments.DefaultCellStyle = dataGridViewCellStyle12;
             this.grvPreRequirments.Location = new System.Drawing.Point(5, 49);
             this.grvPreRequirments.Name = "grvPreRequirments";
             this.grvPreRequirments.RowHeadersWidth = 51;
@@ -956,6 +1010,36 @@
             this.panel6.Size = new System.Drawing.Size(1559, 93);
             this.panel6.TabIndex = 1;
             // 
+            // btnCreateInvoice
+            // 
+            this.btnCreateInvoice.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnCreateInvoice.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCreateInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateInvoice.Location = new System.Drawing.Point(1313, 49);
+            this.btnCreateInvoice.Name = "btnCreateInvoice";
+            this.btnCreateInvoice.Size = new System.Drawing.Size(200, 31);
+            this.btnCreateInvoice.TabIndex = 6;
+            this.btnCreateInvoice.Text = "Create New Invoice >>";
+            this.btnCreateInvoice.UseVisualStyleBackColor = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(1089, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 17);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "label11";
+            this.label11.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(804, 49);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(265, 31);
+            this.progressBar1.TabIndex = 4;
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -1022,7 +1106,23 @@
             // 
             // grvPermitsRequiredInspection
             // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPermitsRequiredInspection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grvPermitsRequiredInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPermitsRequiredInspection.DefaultCellStyle = dataGridViewCellStyle14;
             this.grvPermitsRequiredInspection.Location = new System.Drawing.Point(5, 43);
             this.grvPermitsRequiredInspection.Name = "grvPermitsRequiredInspection";
             this.grvPermitsRequiredInspection.RowHeadersWidth = 51;
@@ -1084,7 +1184,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dataGridView2);
+            this.panel5.Controls.Add(this.grvNotesCommunication);
             this.panel5.Controls.Add(this.btnDeleteNotes);
             this.panel5.Controls.Add(this.btnCancelNotes);
             this.panel5.Controls.Add(this.btnInsertNotes);
@@ -1094,15 +1194,31 @@
             this.panel5.Size = new System.Drawing.Size(1563, 218);
             this.panel5.TabIndex = 4;
             // 
-            // dataGridView2
+            // grvNotesCommunication
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(7, 40);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1553, 164);
-            this.dataGridView2.TabIndex = 14;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvNotesCommunication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.grvNotesCommunication.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvNotesCommunication.DefaultCellStyle = dataGridViewCellStyle16;
+            this.grvNotesCommunication.Location = new System.Drawing.Point(7, 40);
+            this.grvNotesCommunication.Name = "grvNotesCommunication";
+            this.grvNotesCommunication.RowHeadersWidth = 51;
+            this.grvNotesCommunication.RowTemplate.Height = 24;
+            this.grvNotesCommunication.Size = new System.Drawing.Size(1553, 164);
+            this.grvNotesCommunication.TabIndex = 14;
             // 
             // btnDeleteNotes
             // 
@@ -1156,35 +1272,85 @@
             this.chkNotes.Text = "NOTES / COMMINICATION";
             this.chkNotes.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // timerLoad
             // 
-            this.progressBar1.Location = new System.Drawing.Point(804, 49);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(265, 31);
-            this.progressBar1.TabIndex = 4;
+            this.timerLoad.Enabled = true;
+            this.timerLoad.Tick += new System.EventHandler(this.TimerLoad_Tick);
             // 
-            // label11
+            // OpenFileDialog1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1089, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 17);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "label11";
-            this.label11.Visible = false;
+            this.OpenFileDialog1.FileName = "OpenFileDialog1";
             // 
-            // btnCreateInvoice
+            // ToolTipShowColorNotifi
             // 
-            this.btnCreateInvoice.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCreateInvoice.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCreateInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateInvoice.Location = new System.Drawing.Point(1313, 49);
-            this.btnCreateInvoice.Name = "btnCreateInvoice";
-            this.btnCreateInvoice.Size = new System.Drawing.Size(200, 31);
-            this.btnCreateInvoice.TabIndex = 6;
-            this.btnCreateInvoice.Text = "Create New Invoice >>";
-            this.btnCreateInvoice.UseVisualStyleBackColor = false;
+            this.ToolTipShowColorNotifi.OwnerDraw = true;
+            // 
+            // colorMenu
+            // 
+            this.colorMenu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.colorMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.colorMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GreenToolStripMenuItem,
+            this.YellowToolStripMenuItem,
+            this.OrangeToolStripMenuItem,
+            this.RedToolStripMenuItem,
+            this.BlackToolStripMenuItem,
+            this.BlueToolStripMenuItem});
+            this.colorMenu.Name = "colorMenu";
+            this.colorMenu.ShowImageMargin = false;
+            this.colorMenu.Size = new System.Drawing.Size(103, 148);
+            // 
+            // GreenToolStripMenuItem
+            // 
+            this.GreenToolStripMenuItem.BackColor = System.Drawing.Color.Green;
+            this.GreenToolStripMenuItem.Name = "GreenToolStripMenuItem";
+            this.GreenToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.GreenToolStripMenuItem.Text = "Green";
+            // 
+            // YellowToolStripMenuItem
+            // 
+            this.YellowToolStripMenuItem.BackColor = System.Drawing.Color.Yellow;
+            this.YellowToolStripMenuItem.Name = "YellowToolStripMenuItem";
+            this.YellowToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.YellowToolStripMenuItem.Text = "Yellow";
+            // 
+            // OrangeToolStripMenuItem
+            // 
+            this.OrangeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.OrangeToolStripMenuItem.Name = "OrangeToolStripMenuItem";
+            this.OrangeToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.OrangeToolStripMenuItem.Text = "Orange";
+            // 
+            // RedToolStripMenuItem
+            // 
+            this.RedToolStripMenuItem.BackColor = System.Drawing.Color.Red;
+            this.RedToolStripMenuItem.Name = "RedToolStripMenuItem";
+            this.RedToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.RedToolStripMenuItem.Text = "Red";
+            // 
+            // BlackToolStripMenuItem
+            // 
+            this.BlackToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.BlackToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.BlackToolStripMenuItem.Name = "BlackToolStripMenuItem";
+            this.BlackToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.BlackToolStripMenuItem.Text = "Black";
+            // 
+            // BlueToolStripMenuItem
+            // 
+            this.BlueToolStripMenuItem.Name = "BlueToolStripMenuItem";
+            this.BlueToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.BlueToolStripMenuItem.Text = "Blue";
+            // 
+            // toolTipBillReq
+            // 
+            this.toolTipBillReq.AutomaticDelay = 200;
+            this.toolTipBillReq.AutoPopDelay = 8000;
+            this.toolTipBillReq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.toolTipBillReq.InitialDelay = 200;
+            this.toolTipBillReq.IsBalloon = true;
+            this.toolTipBillReq.ReshowDelay = 40;
+            this.toolTipBillReq.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // JobStatus
             // 
@@ -1203,7 +1369,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.PanelSearch.ResumeLayout(false);
             this.PanelJobGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).EndInit();
             this.GrpSrchTrack.ResumeLayout(false);
             this.GrpSrchTrack.PerformLayout();
             this.GrpSrchJob.ResumeLayout(false);
@@ -1227,7 +1393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).EndInit();
+            this.colorMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1284,7 +1451,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label Track;
         private System.Windows.Forms.Panel PanelJobGrid;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grvJobList;
         private System.Windows.Forms.Panel panelFileBrowser;
         private System.Windows.Forms.Button btnPermitsFileDownload;
         private System.Windows.Forms.ComboBox DriveListBox1;
@@ -1314,7 +1481,7 @@
         private System.Windows.Forms.CheckBox chkPermits;
         private System.Windows.Forms.DataGridView grvPermitsRequiredInspection;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView grvNotesCommunication;
         private System.Windows.Forms.Button btnDeleteNotes;
         private System.Windows.Forms.Button btnCancelNotes;
         private System.Windows.Forms.Button btnInsertNotes;
@@ -1327,5 +1494,17 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnCreateInvoice;
+        private System.Windows.Forms.Timer timerLoad;
+        internal System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
+        internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
+        internal System.Windows.Forms.ToolTip ToolTipShowColorNotifi;
+        internal System.Windows.Forms.ContextMenuStrip colorMenu;
+        internal System.Windows.Forms.ToolStripMenuItem GreenToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem YellowToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem OrangeToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem RedToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem BlackToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem BlueToolStripMenuItem;
+        internal System.Windows.Forms.ToolTip toolTipBillReq;
     }
 }
