@@ -45,6 +45,7 @@ namespace JobTracker.JobTrackingMDIForm
         {
              CreateFromandtab(JobStatus.Instance);
         }
+        
 
         private void JobAndTrackingMDI_Load(object sender, EventArgs e)
         {
@@ -52,15 +53,14 @@ namespace JobTracker.JobTrackingMDIForm
             ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
 
             //GetSenderEmailaddress();
-            //if (DataVarifReminderShedule() == "H")
-            //    //TimerGet.Interval = 3600000;
+            //if (DataVarifReminderShedule() == "H")               
             //    lblVersion.Text = "Version:-" + My.Application.Info.Version.ToString;
             //this.Text = "Job Tracker (" + lblVersion.Text + ")";
             //NtyicnJT.Text = "Job Traking (JT " + lblVersion.Text.Trim + ")";
             //NtyicnJT.BalloonTipText = "JT Activated";
             //NtyicnJT.ShowBalloonTip(3000);
             //EnableTimer();
-            //Manager_Click(sender, e);
+            Manager_Click(sender, e);
 
             //UpdateCheckNewVersion();
             //if (ConnectionStringSetting.IsLocalDatabase == true)
