@@ -49,6 +49,7 @@ namespace JobTracker.Login
                             MessageBox.Show("Must have admin privileges!", "Message");
                         else
                         {
+
                             //My.Settings.timeSheetLoginName = item.UserName;
                             //My.Settings.timeSheetLoginUserID = item.UserType;
                             //My.Settings.timeSheetLoginUserType = "User";
