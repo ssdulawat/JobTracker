@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelSearch = new System.Windows.Forms.Panel();
             this.PanelJobGrid = new System.Windows.Forms.Panel();
@@ -93,43 +96,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.DriveListBox1 = new System.Windows.Forms.ComboBox();
             this.btnPermitsFileDownload = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlPreRequire = new System.Windows.Forms.Panel();
-            this.grvPreRequirments = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pnlShowTimeDataColor = new System.Windows.Forms.Button();
-            this.lblVECostAlert = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.BtnHistoryClick = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAgingColor = new System.Windows.Forms.Button();
-            this.lblCreditAlert = new System.Windows.Forms.Label();
-            this.lblShowCreditAlert = new System.Windows.Forms.Label();
-            this.btnShowTimeData = new System.Windows.Forms.Button();
-            this.btnDeletePreReq = new System.Windows.Forms.Button();
-            this.btnCancelPreReq = new System.Windows.Forms.Button();
-            this.btnInsertPreReq = new System.Windows.Forms.Button();
-            this.chkPreRequirment = new System.Windows.Forms.CheckBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btnCreateInvoice = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnSendEmail = new System.Windows.Forms.Button();
-            this.btnImportTimeSheetData = new System.Windows.Forms.Button();
-            this.btnUpdateInvoiceDue = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.grvPermitsRequiredInspection = new System.Windows.Forms.DataGridView();
-            this.btnDeletePermit = new System.Windows.Forms.Button();
-            this.btnCancelPermit = new System.Windows.Forms.Button();
-            this.btnInsertPermit = new System.Windows.Forms.Button();
-            this.chkPermits = new System.Windows.Forms.CheckBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.grvNotesCommunication = new System.Windows.Forms.DataGridView();
-            this.btnDeleteNotes = new System.Windows.Forms.Button();
-            this.btnCancelNotes = new System.Windows.Forms.Button();
-            this.btnInsertNotes = new System.Windows.Forms.Button();
-            this.chkNotes = new System.Windows.Forms.CheckBox();
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -142,6 +108,49 @@
             this.BlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipBillReq = new System.Windows.Forms.ToolTip(this.components);
+            this.Panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ProgressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnImportTimeSheetData = new System.Windows.Forms.Button();
+            this.btnSendMailPending = new System.Windows.Forms.Button();
+            this.btnSendEmail = new System.Windows.Forms.Button();
+            this.btnUpdateInvoiceDue = new System.Windows.Forms.Button();
+            this.btnCreateInvoice = new System.Windows.Forms.Button();
+            this.grvPermitsRequiredInspection = new System.Windows.Forms.DataGridView();
+            this.GrdbtnPrequisition = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tblpnlJobtrackingGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlPreRequire = new System.Windows.Forms.Panel();
+            this.Panel2 = new System.Windows.Forms.Panel();
+            this.BtnHistoryClick = new System.Windows.Forms.Button();
+            this.lblShowCreditAlert = new System.Windows.Forms.Label();
+            this.pnlChangeColurCost = new System.Windows.Forms.Panel();
+            this.pnlShowTimeDataColor = new System.Windows.Forms.Button();
+            this.lblVECostAlert = new System.Windows.Forms.Label();
+            this.btnShowTimeData = new System.Windows.Forms.Button();
+            this.pnlTraficLight = new System.Windows.Forms.Panel();
+            this.lblCreditAlert = new System.Windows.Forms.Label();
+            this.btnAgingColor = new System.Windows.Forms.Button();
+            this.chkPreRequirment = new System.Windows.Forms.CheckBox();
+            this.btnCancelPreReq = new System.Windows.Forms.Button();
+            this.btnDeletePreReq = new System.Windows.Forms.Button();
+            this.btnInsertPreReq = new System.Windows.Forms.Button();
+            this.lblPreRequirment = new System.Windows.Forms.Label();
+            this.grvPreRequirments = new System.Windows.Forms.DataGridView();
+            this.GrdPreRequireUpdate = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.pnlPermits = new System.Windows.Forms.Panel();
+            this.chkPermits = new System.Windows.Forms.CheckBox();
+            this.btnCancelPermit = new System.Windows.Forms.Button();
+            this.btnDeletePermit = new System.Windows.Forms.Button();
+            this.btnInsertPermit = new System.Windows.Forms.Button();
+            this.lblPermit = new System.Windows.Forms.Label();
+            this.pnlNotes = new System.Windows.Forms.Panel();
+            this.chkNotes = new System.Windows.Forms.CheckBox();
+            this.btnCancelNotes = new System.Windows.Forms.Button();
+            this.grvNotesCommunication = new System.Windows.Forms.DataGridView();
+            this.GrdBtnNotesUpdate = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblNotes = new System.Windows.Forms.Label();
+            this.btnInsertNotes = new System.Windows.Forms.Button();
+            this.btndeleteNotes = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelSearch.SuspendLayout();
             this.PanelJobGrid.SuspendLayout();
@@ -150,18 +159,18 @@
             this.GrpSrchJob.SuspendLayout();
             this.GpJobAndTrack.SuspendLayout();
             this.panelFileBrowser.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.pnlPreRequire.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPreRequirments)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).BeginInit();
             this.colorMenu.SuspendLayout();
+            this.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).BeginInit();
+            this.tblpnlJobtrackingGrid.SuspendLayout();
+            this.pnlPreRequire.SuspendLayout();
+            this.Panel2.SuspendLayout();
+            this.pnlChangeColurCost.SuspendLayout();
+            this.pnlTraficLight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPreRequirments)).BeginInit();
+            this.pnlPermits.SuspendLayout();
+            this.pnlNotes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -173,11 +182,12 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1352, 330);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1352, 306);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // PanelSearch
             // 
+            this.PanelSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PanelSearch.Controls.Add(this.PanelJobGrid);
             this.PanelSearch.Controls.Add(this.GrpSrchTrack);
             this.PanelSearch.Controls.Add(this.GrpSrchJob);
@@ -191,7 +201,7 @@
             this.PanelSearch.Controls.Add(this.btnAdd);
             this.PanelSearch.Location = new System.Drawing.Point(3, 3);
             this.PanelSearch.Name = "PanelSearch";
-            this.PanelSearch.Size = new System.Drawing.Size(1346, 324);
+            this.PanelSearch.Size = new System.Drawing.Size(1346, 300);
             this.PanelSearch.TabIndex = 0;
             // 
             // PanelJobGrid
@@ -204,32 +214,33 @@
             // 
             // grvJobList
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvJobList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvJobList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grvJobList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvJobList.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvJobList.DefaultCellStyle = dataGridViewCellStyle13;
             this.grvJobList.Location = new System.Drawing.Point(3, 4);
             this.grvJobList.Name = "grvJobList";
             this.grvJobList.RowHeadersWidth = 51;
             this.grvJobList.RowTemplate.Height = 24;
-            this.grvJobList.Size = new System.Drawing.Size(1336, 171);
+            this.grvJobList.Size = new System.Drawing.Size(1336, 152);
             this.grvJobList.TabIndex = 0;
             // 
             // GrpSrchTrack
             // 
+            this.GrpSrchTrack.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GrpSrchTrack.Controls.Add(this.btnTrackSeachRefresh);
             this.GrpSrchTrack.Controls.Add(this.cmbBillStatePermit);
             this.GrpSrchTrack.Controls.Add(this.cmbTrackSubPreRequire);
@@ -243,7 +254,7 @@
             this.GrpSrchTrack.ForeColor = System.Drawing.Color.Maroon;
             this.GrpSrchTrack.Location = new System.Drawing.Point(1045, 56);
             this.GrpSrchTrack.Name = "GrpSrchTrack";
-            this.GrpSrchTrack.Size = new System.Drawing.Size(299, 94);
+            this.GrpSrchTrack.Size = new System.Drawing.Size(296, 85);
             this.GrpSrchTrack.TabIndex = 9;
             this.GrpSrchTrack.TabStop = false;
             this.GrpSrchTrack.Text = "Search Track Only";
@@ -652,7 +663,7 @@
             this.GpJobAndTrack.Controls.Add(this.cmbTMWithPending);
             this.GpJobAndTrack.Controls.Add(this.label1);
             this.GpJobAndTrack.Controls.Add(this.cbxSearchTm);
-            this.GpJobAndTrack.Location = new System.Drawing.Point(328, -3);
+            this.GpJobAndTrack.Location = new System.Drawing.Point(328, -1);
             this.GpJobAndTrack.Name = "GpJobAndTrack";
             this.GpJobAndTrack.Size = new System.Drawing.Size(598, 60);
             this.GpJobAndTrack.TabIndex = 3;
@@ -743,35 +754,42 @@
             // 
             // panelFileBrowser
             // 
+            this.panelFileBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelFileBrowser.Controls.Add(this.listBox2);
             this.panelFileBrowser.Controls.Add(this.listBox1);
             this.panelFileBrowser.Controls.Add(this.DriveListBox1);
             this.panelFileBrowser.Controls.Add(this.btnPermitsFileDownload);
             this.panelFileBrowser.Location = new System.Drawing.Point(1356, 2);
             this.panelFileBrowser.Name = "panelFileBrowser";
-            this.panelFileBrowser.Size = new System.Drawing.Size(211, 329);
+            this.panelFileBrowser.Size = new System.Drawing.Size(211, 305);
             this.panelFileBrowser.TabIndex = 1;
             // 
             // listBox2
             // 
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(12, 221);
+            this.listBox2.Location = new System.Drawing.Point(12, 205);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(191, 100);
+            this.listBox2.Size = new System.Drawing.Size(191, 84);
             this.listBox2.TabIndex = 3;
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(12, 90);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 132);
+            this.listBox1.Size = new System.Drawing.Size(191, 116);
             this.listBox1.TabIndex = 2;
             // 
             // DriveListBox1
             // 
+            this.DriveListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DriveListBox1.FormattingEnabled = true;
             this.DriveListBox1.Location = new System.Drawing.Point(12, 59);
             this.DriveListBox1.Name = "DriveListBox1";
@@ -788,489 +806,6 @@
             this.btnPermitsFileDownload.TabIndex = 0;
             this.btnPermitsFileDownload.Text = "Permits/File Download";
             this.btnPermitsFileDownload.UseVisualStyleBackColor = false;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.pnlPreRequire, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel6, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(1, 331);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1565, 687);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // pnlPreRequire
-            // 
-            this.pnlPreRequire.Controls.Add(this.grvPreRequirments);
-            this.pnlPreRequire.Controls.Add(this.panel3);
-            this.pnlPreRequire.Controls.Add(this.panel2);
-            this.pnlPreRequire.Controls.Add(this.panel1);
-            this.pnlPreRequire.Controls.Add(this.btnShowTimeData);
-            this.pnlPreRequire.Controls.Add(this.btnDeletePreReq);
-            this.pnlPreRequire.Controls.Add(this.btnCancelPreReq);
-            this.pnlPreRequire.Controls.Add(this.btnInsertPreReq);
-            this.pnlPreRequire.Controls.Add(this.chkPreRequirment);
-            this.pnlPreRequire.Location = new System.Drawing.Point(3, 3);
-            this.pnlPreRequire.Name = "pnlPreRequire";
-            this.pnlPreRequire.Size = new System.Drawing.Size(1559, 188);
-            this.pnlPreRequire.TabIndex = 0;
-            // 
-            // grvPreRequirments
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPreRequirments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.grvPreRequirments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvPreRequirments.DefaultCellStyle = dataGridViewCellStyle12;
-            this.grvPreRequirments.Location = new System.Drawing.Point(5, 49);
-            this.grvPreRequirments.Name = "grvPreRequirments";
-            this.grvPreRequirments.RowHeadersWidth = 51;
-            this.grvPreRequirments.RowTemplate.Height = 24;
-            this.grvPreRequirments.Size = new System.Drawing.Size(1548, 133);
-            this.grvPreRequirments.TabIndex = 11;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.pnlShowTimeDataColor);
-            this.panel3.Controls.Add(this.lblVECostAlert);
-            this.panel3.Location = new System.Drawing.Point(1308, 7);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(246, 36);
-            this.panel3.TabIndex = 10;
-            // 
-            // pnlShowTimeDataColor
-            // 
-            this.pnlShowTimeDataColor.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.pnlShowTimeDataColor.Location = new System.Drawing.Point(100, 6);
-            this.pnlShowTimeDataColor.Name = "pnlShowTimeDataColor";
-            this.pnlShowTimeDataColor.Size = new System.Drawing.Size(105, 27);
-            this.pnlShowTimeDataColor.TabIndex = 1;
-            this.pnlShowTimeDataColor.UseVisualStyleBackColor = false;
-            // 
-            // lblVECostAlert
-            // 
-            this.lblVECostAlert.AutoSize = true;
-            this.lblVECostAlert.Enabled = false;
-            this.lblVECostAlert.Location = new System.Drawing.Point(3, 10);
-            this.lblVECostAlert.Name = "lblVECostAlert";
-            this.lblVECostAlert.Size = new System.Drawing.Size(91, 17);
-            this.lblVECostAlert.TabIndex = 0;
-            this.lblVECostAlert.Text = "VE Cost Alert";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.BtnHistoryClick);
-            this.panel2.Location = new System.Drawing.Point(1099, 7);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(123, 36);
-            this.panel2.TabIndex = 9;
-            // 
-            // BtnHistoryClick
-            // 
-            this.BtnHistoryClick.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.BtnHistoryClick.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnHistoryClick.Location = new System.Drawing.Point(3, 5);
-            this.BtnHistoryClick.Name = "BtnHistoryClick";
-            this.BtnHistoryClick.Size = new System.Drawing.Size(117, 28);
-            this.BtnHistoryClick.TabIndex = 0;
-            this.BtnHistoryClick.Text = "History";
-            this.BtnHistoryClick.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAgingColor);
-            this.panel1.Controls.Add(this.lblCreditAlert);
-            this.panel1.Controls.Add(this.lblShowCreditAlert);
-            this.panel1.Location = new System.Drawing.Point(815, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(225, 36);
-            this.panel1.TabIndex = 7;
-            // 
-            // btnAgingColor
-            // 
-            this.btnAgingColor.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnAgingColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgingColor.Location = new System.Drawing.Point(100, 5);
-            this.btnAgingColor.Name = "btnAgingColor";
-            this.btnAgingColor.Size = new System.Drawing.Size(113, 28);
-            this.btnAgingColor.TabIndex = 1;
-            this.btnAgingColor.UseVisualStyleBackColor = false;
-            // 
-            // lblCreditAlert
-            // 
-            this.lblCreditAlert.AutoSize = true;
-            this.lblCreditAlert.Location = new System.Drawing.Point(5, 9);
-            this.lblCreditAlert.Name = "lblCreditAlert";
-            this.lblCreditAlert.Size = new System.Drawing.Size(78, 17);
-            this.lblCreditAlert.TabIndex = 0;
-            this.lblCreditAlert.Text = "Credit Alert";
-            // 
-            // lblShowCreditAlert
-            // 
-            this.lblShowCreditAlert.AutoSize = true;
-            this.lblShowCreditAlert.Location = new System.Drawing.Point(-3, 10);
-            this.lblShowCreditAlert.Name = "lblShowCreditAlert";
-            this.lblShowCreditAlert.Size = new System.Drawing.Size(272, 17);
-            this.lblShowCreditAlert.TabIndex = 8;
-            this.lblShowCreditAlert.Text = "Please set CreditPassDate for credit alert.";
-            this.lblShowCreditAlert.Visible = false;
-            // 
-            // btnShowTimeData
-            // 
-            this.btnShowTimeData.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnShowTimeData.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnShowTimeData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowTimeData.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowTimeData.Location = new System.Drawing.Point(597, 7);
-            this.btnShowTimeData.Name = "btnShowTimeData";
-            this.btnShowTimeData.Size = new System.Drawing.Size(155, 29);
-            this.btnShowTimeData.TabIndex = 6;
-            this.btnShowTimeData.Text = "Time/Revenue Data";
-            this.btnShowTimeData.UseVisualStyleBackColor = false;
-            // 
-            // btnDeletePreReq
-            // 
-            this.btnDeletePreReq.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnDeletePreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnDeletePreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeletePreReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeletePreReq.Location = new System.Drawing.Point(360, 7);
-            this.btnDeletePreReq.Name = "btnDeletePreReq";
-            this.btnDeletePreReq.Size = new System.Drawing.Size(67, 30);
-            this.btnDeletePreReq.TabIndex = 5;
-            this.btnDeletePreReq.Text = "Delete";
-            this.btnDeletePreReq.UseVisualStyleBackColor = false;
-            // 
-            // btnCancelPreReq
-            // 
-            this.btnCancelPreReq.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCancelPreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCancelPreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelPreReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelPreReq.Location = new System.Drawing.Point(447, 7);
-            this.btnCancelPreReq.Name = "btnCancelPreReq";
-            this.btnCancelPreReq.Size = new System.Drawing.Size(67, 30);
-            this.btnCancelPreReq.TabIndex = 4;
-            this.btnCancelPreReq.Text = "&Cancel";
-            this.btnCancelPreReq.UseVisualStyleBackColor = false;
-            // 
-            // btnInsertPreReq
-            // 
-            this.btnInsertPreReq.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnInsertPreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnInsertPreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsertPreReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertPreReq.Location = new System.Drawing.Point(273, 7);
-            this.btnInsertPreReq.Name = "btnInsertPreReq";
-            this.btnInsertPreReq.Size = new System.Drawing.Size(67, 30);
-            this.btnInsertPreReq.TabIndex = 3;
-            this.btnInsertPreReq.Text = "Insert";
-            this.btnInsertPreReq.UseVisualStyleBackColor = false;
-            // 
-            // chkPreRequirment
-            // 
-            this.chkPreRequirment.AutoSize = true;
-            this.chkPreRequirment.Checked = true;
-            this.chkPreRequirment.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPreRequirment.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPreRequirment.Location = new System.Drawing.Point(16, 13);
-            this.chkPreRequirment.Name = "chkPreRequirment";
-            this.chkPreRequirment.Size = new System.Drawing.Size(178, 21);
-            this.chkPreRequirment.TabIndex = 0;
-            this.chkPreRequirment.Text = "PRE REQUIRMENTS";
-            this.chkPreRequirment.UseVisualStyleBackColor = true;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.btnCreateInvoice);
-            this.panel6.Controls.Add(this.label11);
-            this.panel6.Controls.Add(this.progressBar1);
-            this.panel6.Controls.Add(this.button1);
-            this.panel6.Controls.Add(this.btnSendEmail);
-            this.panel6.Controls.Add(this.btnImportTimeSheetData);
-            this.panel6.Controls.Add(this.btnUpdateInvoiceDue);
-            this.panel6.Location = new System.Drawing.Point(3, 573);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1559, 93);
-            this.panel6.TabIndex = 1;
-            // 
-            // btnCreateInvoice
-            // 
-            this.btnCreateInvoice.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCreateInvoice.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCreateInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateInvoice.Location = new System.Drawing.Point(1313, 49);
-            this.btnCreateInvoice.Name = "btnCreateInvoice";
-            this.btnCreateInvoice.Size = new System.Drawing.Size(200, 31);
-            this.btnCreateInvoice.TabIndex = 6;
-            this.btnCreateInvoice.Text = "Create New Invoice >>";
-            this.btnCreateInvoice.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1089, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 17);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "label11";
-            this.label11.Visible = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(804, 49);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(265, 31);
-            this.progressBar1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(518, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 31);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Email Pending Item";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // btnSendEmail
-            // 
-            this.btnSendEmail.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnSendEmail.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnSendEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendEmail.Location = new System.Drawing.Point(328, 49);
-            this.btnSendEmail.Name = "btnSendEmail";
-            this.btnSendEmail.Size = new System.Drawing.Size(160, 31);
-            this.btnSendEmail.TabIndex = 2;
-            this.btnSendEmail.Text = "Email Due Invoice";
-            this.btnSendEmail.UseVisualStyleBackColor = false;
-            // 
-            // btnImportTimeSheetData
-            // 
-            this.btnImportTimeSheetData.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnImportTimeSheetData.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnImportTimeSheetData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImportTimeSheetData.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportTimeSheetData.Location = new System.Drawing.Point(195, 49);
-            this.btnImportTimeSheetData.Name = "btnImportTimeSheetData";
-            this.btnImportTimeSheetData.Size = new System.Drawing.Size(87, 31);
-            this.btnImportTimeSheetData.TabIndex = 1;
-            this.btnImportTimeSheetData.Text = "Import";
-            this.btnImportTimeSheetData.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdateInvoiceDue
-            // 
-            this.btnUpdateInvoiceDue.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUpdateInvoiceDue.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnUpdateInvoiceDue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateInvoiceDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateInvoiceDue.Location = new System.Drawing.Point(16, 49);
-            this.btnUpdateInvoiceDue.Name = "btnUpdateInvoiceDue";
-            this.btnUpdateInvoiceDue.Size = new System.Drawing.Size(158, 31);
-            this.btnUpdateInvoiceDue.TabIndex = 0;
-            this.btnUpdateInvoiceDue.Text = "Update Aging >>";
-            this.btnUpdateInvoiceDue.UseVisualStyleBackColor = false;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.grvPermitsRequiredInspection);
-            this.panel4.Controls.Add(this.btnDeletePermit);
-            this.panel4.Controls.Add(this.btnCancelPermit);
-            this.panel4.Controls.Add(this.btnInsertPermit);
-            this.panel4.Controls.Add(this.chkPermits);
-            this.panel4.Location = new System.Drawing.Point(4, 533);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1563, 169);
-            this.panel4.TabIndex = 3;
-            // 
-            // grvPermitsRequiredInspection
-            // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPermitsRequiredInspection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.grvPermitsRequiredInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvPermitsRequiredInspection.DefaultCellStyle = dataGridViewCellStyle14;
-            this.grvPermitsRequiredInspection.Location = new System.Drawing.Point(5, 43);
-            this.grvPermitsRequiredInspection.Name = "grvPermitsRequiredInspection";
-            this.grvPermitsRequiredInspection.RowHeadersWidth = 51;
-            this.grvPermitsRequiredInspection.RowTemplate.Height = 24;
-            this.grvPermitsRequiredInspection.Size = new System.Drawing.Size(1555, 123);
-            this.grvPermitsRequiredInspection.TabIndex = 10;
-            // 
-            // btnDeletePermit
-            // 
-            this.btnDeletePermit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnDeletePermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnDeletePermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeletePermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeletePermit.Location = new System.Drawing.Point(398, 9);
-            this.btnDeletePermit.Name = "btnDeletePermit";
-            this.btnDeletePermit.Size = new System.Drawing.Size(67, 30);
-            this.btnDeletePermit.TabIndex = 9;
-            this.btnDeletePermit.Text = "Delete";
-            this.btnDeletePermit.UseVisualStyleBackColor = false;
-            // 
-            // btnCancelPermit
-            // 
-            this.btnCancelPermit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCancelPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCancelPermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelPermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelPermit.Location = new System.Drawing.Point(485, 9);
-            this.btnCancelPermit.Name = "btnCancelPermit";
-            this.btnCancelPermit.Size = new System.Drawing.Size(67, 30);
-            this.btnCancelPermit.TabIndex = 8;
-            this.btnCancelPermit.Text = "&Cancel";
-            this.btnCancelPermit.UseVisualStyleBackColor = false;
-            // 
-            // btnInsertPermit
-            // 
-            this.btnInsertPermit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnInsertPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnInsertPermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsertPermit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertPermit.Location = new System.Drawing.Point(311, 9);
-            this.btnInsertPermit.Name = "btnInsertPermit";
-            this.btnInsertPermit.Size = new System.Drawing.Size(67, 30);
-            this.btnInsertPermit.TabIndex = 7;
-            this.btnInsertPermit.Text = "Insert";
-            this.btnInsertPermit.UseVisualStyleBackColor = false;
-            // 
-            // chkPermits
-            // 
-            this.chkPermits.AutoSize = true;
-            this.chkPermits.Checked = true;
-            this.chkPermits.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPermits.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPermits.Location = new System.Drawing.Point(16, 15);
-            this.chkPermits.Name = "chkPermits";
-            this.chkPermits.Size = new System.Drawing.Size(279, 21);
-            this.chkPermits.TabIndex = 6;
-            this.chkPermits.Text = "PERMITS/REQUIRED/INSPECTION";
-            this.chkPermits.UseVisualStyleBackColor = true;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.grvNotesCommunication);
-            this.panel5.Controls.Add(this.btnDeleteNotes);
-            this.panel5.Controls.Add(this.btnCancelNotes);
-            this.panel5.Controls.Add(this.btnInsertNotes);
-            this.panel5.Controls.Add(this.chkNotes);
-            this.panel5.Location = new System.Drawing.Point(4, 710);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1563, 218);
-            this.panel5.TabIndex = 4;
-            // 
-            // grvNotesCommunication
-            // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvNotesCommunication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.grvNotesCommunication.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvNotesCommunication.DefaultCellStyle = dataGridViewCellStyle16;
-            this.grvNotesCommunication.Location = new System.Drawing.Point(7, 40);
-            this.grvNotesCommunication.Name = "grvNotesCommunication";
-            this.grvNotesCommunication.RowHeadersWidth = 51;
-            this.grvNotesCommunication.RowTemplate.Height = 24;
-            this.grvNotesCommunication.Size = new System.Drawing.Size(1553, 164);
-            this.grvNotesCommunication.TabIndex = 14;
-            // 
-            // btnDeleteNotes
-            // 
-            this.btnDeleteNotes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnDeleteNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnDeleteNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteNotes.Location = new System.Drawing.Point(358, 7);
-            this.btnDeleteNotes.Name = "btnDeleteNotes";
-            this.btnDeleteNotes.Size = new System.Drawing.Size(67, 30);
-            this.btnDeleteNotes.TabIndex = 13;
-            this.btnDeleteNotes.Text = "Delete";
-            this.btnDeleteNotes.UseVisualStyleBackColor = false;
-            // 
-            // btnCancelNotes
-            // 
-            this.btnCancelNotes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCancelNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCancelNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelNotes.Location = new System.Drawing.Point(445, 7);
-            this.btnCancelNotes.Name = "btnCancelNotes";
-            this.btnCancelNotes.Size = new System.Drawing.Size(67, 30);
-            this.btnCancelNotes.TabIndex = 12;
-            this.btnCancelNotes.Text = "&Cancel";
-            this.btnCancelNotes.UseVisualStyleBackColor = false;
-            // 
-            // btnInsertNotes
-            // 
-            this.btnInsertNotes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnInsertNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnInsertNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsertNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertNotes.Location = new System.Drawing.Point(271, 7);
-            this.btnInsertNotes.Name = "btnInsertNotes";
-            this.btnInsertNotes.Size = new System.Drawing.Size(67, 30);
-            this.btnInsertNotes.TabIndex = 11;
-            this.btnInsertNotes.Text = "Insert";
-            this.btnInsertNotes.UseVisualStyleBackColor = false;
-            // 
-            // chkNotes
-            // 
-            this.chkNotes.AutoSize = true;
-            this.chkNotes.Checked = true;
-            this.chkNotes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkNotes.Location = new System.Drawing.Point(14, 13);
-            this.chkNotes.Name = "chkNotes";
-            this.chkNotes.Size = new System.Drawing.Size(220, 21);
-            this.chkNotes.TabIndex = 10;
-            this.chkNotes.Text = "NOTES / COMMINICATION";
-            this.chkNotes.UseVisualStyleBackColor = true;
             // 
             // timerLoad
             // 
@@ -1352,15 +887,714 @@
             this.toolTipBillReq.ReshowDelay = 40;
             this.toolTipBillReq.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // Panel1
+            // 
+            this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel1.Controls.Add(this.label11);
+            this.Panel1.Controls.Add(this.ProgressBar1);
+            this.Panel1.Controls.Add(this.btnImportTimeSheetData);
+            this.Panel1.Controls.Add(this.btnSendMailPending);
+            this.Panel1.Controls.Add(this.btnSendEmail);
+            this.Panel1.Controls.Add(this.btnUpdateInvoiceDue);
+            this.Panel1.Controls.Add(this.btnCreateInvoice);
+            this.Panel1.Location = new System.Drawing.Point(3, 453);
+            this.Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Panel1.Name = "Panel1";
+            this.Panel1.Size = new System.Drawing.Size(1554, 26);
+            this.Panel1.TabIndex = 275;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.DarkRed;
+            this.label11.Location = new System.Drawing.Point(1169, 7);
+            this.label11.Margin = new System.Windows.Forms.Padding(4);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 17);
+            this.label11.TabIndex = 287;
+            this.label11.Text = "label11";
+            // 
+            // ProgressBar1
+            // 
+            this.ProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ProgressBar1.Location = new System.Drawing.Point(812, -1);
+            this.ProgressBar1.Margin = new System.Windows.Forms.Padding(4);
+            this.ProgressBar1.Name = "ProgressBar1";
+            this.ProgressBar1.Size = new System.Drawing.Size(339, 28);
+            this.ProgressBar1.TabIndex = 286;
+            this.ProgressBar1.Visible = false;
+            // 
+            // btnImportTimeSheetData
+            // 
+            this.btnImportTimeSheetData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImportTimeSheetData.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportTimeSheetData.Location = new System.Drawing.Point(229, 1);
+            this.btnImportTimeSheetData.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImportTimeSheetData.Name = "btnImportTimeSheetData";
+            this.btnImportTimeSheetData.Size = new System.Drawing.Size(69, 25);
+            this.btnImportTimeSheetData.TabIndex = 284;
+            this.btnImportTimeSheetData.Text = "Import Time Sheet";
+            this.btnImportTimeSheetData.UseVisualStyleBackColor = true;
+            // 
+            // btnSendMailPending
+            // 
+            this.btnSendMailPending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSendMailPending.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSendMailPending.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnSendMailPending.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnSendMailPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendMailPending.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendMailPending.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSendMailPending.Location = new System.Drawing.Point(524, 1);
+            this.btnSendMailPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSendMailPending.Name = "btnSendMailPending";
+            this.btnSendMailPending.Size = new System.Drawing.Size(188, 23);
+            this.btnSendMailPending.TabIndex = 283;
+            this.btnSendMailPending.Text = "Email Pending Item";
+            this.btnSendMailPending.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSendMailPending.UseVisualStyleBackColor = false;
+            // 
+            // btnSendEmail
+            // 
+            this.btnSendEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSendEmail.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSendEmail.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnSendEmail.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnSendEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendEmail.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendEmail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSendEmail.Location = new System.Drawing.Point(327, 1);
+            this.btnSendEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSendEmail.Name = "btnSendEmail";
+            this.btnSendEmail.Size = new System.Drawing.Size(179, 23);
+            this.btnSendEmail.TabIndex = 282;
+            this.btnSendEmail.Text = "Email Due Invoice";
+            this.btnSendEmail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSendEmail.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdateInvoiceDue
+            // 
+            this.btnUpdateInvoiceDue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdateInvoiceDue.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUpdateInvoiceDue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
+            this.btnUpdateInvoiceDue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateInvoiceDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.btnUpdateInvoiceDue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateInvoiceDue.Location = new System.Drawing.Point(43, 1);
+            this.btnUpdateInvoiceDue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdateInvoiceDue.Name = "btnUpdateInvoiceDue";
+            this.btnUpdateInvoiceDue.Size = new System.Drawing.Size(156, 25);
+            this.btnUpdateInvoiceDue.TabIndex = 281;
+            this.btnUpdateInvoiceDue.Text = "Update Aging >>";
+            this.btnUpdateInvoiceDue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUpdateInvoiceDue.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateInvoice
+            // 
+            this.btnCreateInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateInvoice.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCreateInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
+            this.btnCreateInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.btnCreateInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateInvoice.Location = new System.Drawing.Point(1298, 1);
+            this.btnCreateInvoice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateInvoice.Name = "btnCreateInvoice";
+            this.btnCreateInvoice.Size = new System.Drawing.Size(199, 23);
+            this.btnCreateInvoice.TabIndex = 280;
+            this.btnCreateInvoice.Text = "Create New Invoice >>";
+            this.btnCreateInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCreateInvoice.UseVisualStyleBackColor = true;
+            // 
+            // grvPermitsRequiredInspection
+            // 
+            this.grvPermitsRequiredInspection.AllowUserToAddRows = false;
+            this.grvPermitsRequiredInspection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPermitsRequiredInspection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.grvPermitsRequiredInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvPermitsRequiredInspection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GrdbtnPrequisition});
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPermitsRequiredInspection.DefaultCellStyle = dataGridViewCellStyle15;
+            this.grvPermitsRequiredInspection.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grvPermitsRequiredInspection.Location = new System.Drawing.Point(4, 31);
+            this.grvPermitsRequiredInspection.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grvPermitsRequiredInspection.MultiSelect = false;
+            this.grvPermitsRequiredInspection.Name = "grvPermitsRequiredInspection";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPermitsRequiredInspection.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.grvPermitsRequiredInspection.RowHeadersWidth = 51;
+            this.grvPermitsRequiredInspection.RowTemplate.Height = 24;
+            this.grvPermitsRequiredInspection.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grvPermitsRequiredInspection.Size = new System.Drawing.Size(1544, 147);
+            this.grvPermitsRequiredInspection.TabIndex = 210;
+            // 
+            // GrdbtnPrequisition
+            // 
+            this.GrdbtnPrequisition.Frozen = true;
+            this.GrdbtnPrequisition.HeaderText = "^";
+            this.GrdbtnPrequisition.Name = "GrdbtnPrequisition";
+            this.GrdbtnPrequisition.Text = "^";
+            this.GrdbtnPrequisition.UseColumnTextForButtonValue = true;
+            this.GrdbtnPrequisition.Width = 30;
+            // 
+            // tblpnlJobtrackingGrid
+            // 
+            this.tblpnlJobtrackingGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblpnlJobtrackingGrid.BackColor = System.Drawing.Color.Transparent;
+            this.tblpnlJobtrackingGrid.ColumnCount = 1;
+            this.tblpnlJobtrackingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblpnlJobtrackingGrid.Controls.Add(this.pnlPreRequire, 0, 0);
+            this.tblpnlJobtrackingGrid.Controls.Add(this.pnlPermits, 0, 1);
+            this.tblpnlJobtrackingGrid.Controls.Add(this.pnlNotes, 0, 2);
+            this.tblpnlJobtrackingGrid.Controls.Add(this.Panel1, 0, 3);
+            this.tblpnlJobtrackingGrid.Location = new System.Drawing.Point(4, 306);
+            this.tblpnlJobtrackingGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.tblpnlJobtrackingGrid.Name = "tblpnlJobtrackingGrid";
+            this.tblpnlJobtrackingGrid.RowCount = 4;
+            this.tblpnlJobtrackingGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblpnlJobtrackingGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tblpnlJobtrackingGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tblpnlJobtrackingGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblpnlJobtrackingGrid.Size = new System.Drawing.Size(1560, 481);
+            this.tblpnlJobtrackingGrid.TabIndex = 281;
+            // 
+            // pnlPreRequire
+            // 
+            this.pnlPreRequire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPreRequire.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPreRequire.Controls.Add(this.Panel2);
+            this.pnlPreRequire.Controls.Add(this.lblShowCreditAlert);
+            this.pnlPreRequire.Controls.Add(this.pnlChangeColurCost);
+            this.pnlPreRequire.Controls.Add(this.btnShowTimeData);
+            this.pnlPreRequire.Controls.Add(this.pnlTraficLight);
+            this.pnlPreRequire.Controls.Add(this.chkPreRequirment);
+            this.pnlPreRequire.Controls.Add(this.btnCancelPreReq);
+            this.pnlPreRequire.Controls.Add(this.btnDeletePreReq);
+            this.pnlPreRequire.Controls.Add(this.btnInsertPreReq);
+            this.pnlPreRequire.Controls.Add(this.lblPreRequirment);
+            this.pnlPreRequire.Controls.Add(this.grvPreRequirments);
+            this.pnlPreRequire.Location = new System.Drawing.Point(4, 4);
+            this.pnlPreRequire.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlPreRequire.Name = "pnlPreRequire";
+            this.pnlPreRequire.Size = new System.Drawing.Size(1552, 142);
+            this.pnlPreRequire.TabIndex = 279;
+            // 
+            // Panel2
+            // 
+            this.Panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel2.BackColor = System.Drawing.Color.Transparent;
+            this.Panel2.Controls.Add(this.BtnHistoryClick);
+            this.Panel2.Location = new System.Drawing.Point(1236, 2);
+            this.Panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.Panel2.Name = "Panel2";
+            this.Panel2.Size = new System.Drawing.Size(111, 37);
+            this.Panel2.TabIndex = 283;
+            // 
+            // BtnHistoryClick
+            // 
+            this.BtnHistoryClick.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BtnHistoryClick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnHistoryClick.Location = new System.Drawing.Point(3, 0);
+            this.BtnHistoryClick.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnHistoryClick.Name = "BtnHistoryClick";
+            this.BtnHistoryClick.Size = new System.Drawing.Size(100, 28);
+            this.BtnHistoryClick.TabIndex = 284;
+            this.BtnHistoryClick.Text = "History";
+            this.BtnHistoryClick.UseVisualStyleBackColor = false;
+            // 
+            // lblShowCreditAlert
+            // 
+            this.lblShowCreditAlert.AutoSize = true;
+            this.lblShowCreditAlert.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowCreditAlert.Location = new System.Drawing.Point(1007, 43);
+            this.lblShowCreditAlert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblShowCreditAlert.Name = "lblShowCreditAlert";
+            this.lblShowCreditAlert.Size = new System.Drawing.Size(305, 21);
+            this.lblShowCreditAlert.TabIndex = 283;
+            this.lblShowCreditAlert.Text = "Please set CreditPassDate for credit alert.";
+            this.lblShowCreditAlert.Visible = false;
+            // 
+            // pnlChangeColurCost
+            // 
+            this.pnlChangeColurCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlChangeColurCost.Controls.Add(this.pnlShowTimeDataColor);
+            this.pnlChangeColurCost.Controls.Add(this.lblVECostAlert);
+            this.pnlChangeColurCost.Location = new System.Drawing.Point(1351, 0);
+            this.pnlChangeColurCost.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlChangeColurCost.Name = "pnlChangeColurCost";
+            this.pnlChangeColurCost.Size = new System.Drawing.Size(195, 31);
+            this.pnlChangeColurCost.TabIndex = 282;
+            // 
+            // pnlShowTimeDataColor
+            // 
+            this.pnlShowTimeDataColor.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pnlShowTimeDataColor.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.pnlShowTimeDataColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pnlShowTimeDataColor.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.pnlShowTimeDataColor.Location = new System.Drawing.Point(97, 5);
+            this.pnlShowTimeDataColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlShowTimeDataColor.Name = "pnlShowTimeDataColor";
+            this.pnlShowTimeDataColor.Size = new System.Drawing.Size(95, 26);
+            this.pnlShowTimeDataColor.TabIndex = 272;
+            this.pnlShowTimeDataColor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.pnlShowTimeDataColor.UseVisualStyleBackColor = false;
+            // 
+            // lblVECostAlert
+            // 
+            this.lblVECostAlert.AutoSize = true;
+            this.lblVECostAlert.BackColor = System.Drawing.Color.Transparent;
+            this.lblVECostAlert.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVECostAlert.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblVECostAlert.Location = new System.Drawing.Point(7, 9);
+            this.lblVECostAlert.Name = "lblVECostAlert";
+            this.lblVECostAlert.Size = new System.Drawing.Size(81, 17);
+            this.lblVECostAlert.TabIndex = 283;
+            this.lblVECostAlert.Text = "VE Cost Alert";
+            // 
+            // btnShowTimeData
+            // 
+            this.btnShowTimeData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowTimeData.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowTimeData.Location = new System.Drawing.Point(724, 5);
+            this.btnShowTimeData.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowTimeData.Name = "btnShowTimeData";
+            this.btnShowTimeData.Size = new System.Drawing.Size(168, 26);
+            this.btnShowTimeData.TabIndex = 280;
+            this.btnShowTimeData.Text = "Time/Revenue Data";
+            this.btnShowTimeData.UseVisualStyleBackColor = true;
+            // 
+            // pnlTraficLight
+            // 
+            this.pnlTraficLight.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnlTraficLight.Controls.Add(this.lblCreditAlert);
+            this.pnlTraficLight.Controls.Add(this.btnAgingColor);
+            this.pnlTraficLight.Location = new System.Drawing.Point(1003, 1);
+            this.pnlTraficLight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlTraficLight.Name = "pnlTraficLight";
+            this.pnlTraficLight.Size = new System.Drawing.Size(192, 28);
+            this.pnlTraficLight.TabIndex = 278;
+            this.pnlTraficLight.Visible = false;
+            // 
+            // lblCreditAlert
+            // 
+            this.lblCreditAlert.AutoSize = true;
+            this.lblCreditAlert.BackColor = System.Drawing.Color.Transparent;
+            this.lblCreditAlert.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreditAlert.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblCreditAlert.Location = new System.Drawing.Point(3, 10);
+            this.lblCreditAlert.Name = "lblCreditAlert";
+            this.lblCreditAlert.Size = new System.Drawing.Size(73, 17);
+            this.lblCreditAlert.TabIndex = 282;
+            this.lblCreditAlert.Text = "Credit Alert";
+            // 
+            // btnAgingColor
+            // 
+            this.btnAgingColor.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAgingColor.ContextMenuStrip = this.colorMenu;
+            this.btnAgingColor.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnAgingColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgingColor.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnAgingColor.Location = new System.Drawing.Point(92, 4);
+            this.btnAgingColor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgingColor.Name = "btnAgingColor";
+            this.btnAgingColor.Size = new System.Drawing.Size(95, 23);
+            this.btnAgingColor.TabIndex = 271;
+            this.btnAgingColor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAgingColor.UseVisualStyleBackColor = false;
+            // 
+            // chkPreRequirment
+            // 
+            this.chkPreRequirment.AutoSize = true;
+            this.chkPreRequirment.Checked = true;
+            this.chkPreRequirment.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPreRequirment.Location = new System.Drawing.Point(12, 15);
+            this.chkPreRequirment.Margin = new System.Windows.Forms.Padding(4);
+            this.chkPreRequirment.Name = "chkPreRequirment";
+            this.chkPreRequirment.Size = new System.Drawing.Size(18, 17);
+            this.chkPreRequirment.TabIndex = 279;
+            this.chkPreRequirment.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelPreReq
+            // 
+            this.btnCancelPreReq.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCancelPreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancelPreReq.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnCancelPreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelPreReq.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnCancelPreReq.Location = new System.Drawing.Point(540, 6);
+            this.btnCancelPreReq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelPreReq.Name = "btnCancelPreReq";
+            this.btnCancelPreReq.Size = new System.Drawing.Size(75, 30);
+            this.btnCancelPreReq.TabIndex = 223;
+            this.btnCancelPreReq.Text = "Cancel";
+            this.btnCancelPreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelPreReq.UseVisualStyleBackColor = false;
+            // 
+            // btnDeletePreReq
+            // 
+            this.btnDeletePreReq.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeletePreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnDeletePreReq.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnDeletePreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePreReq.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnDeletePreReq.Location = new System.Drawing.Point(448, 6);
+            this.btnDeletePreReq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeletePreReq.Name = "btnDeletePreReq";
+            this.btnDeletePreReq.Size = new System.Drawing.Size(75, 30);
+            this.btnDeletePreReq.TabIndex = 220;
+            this.btnDeletePreReq.Tag = "Delete selected record";
+            this.btnDeletePreReq.Text = "Delete ";
+            this.btnDeletePreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeletePreReq.UseVisualStyleBackColor = false;
+            // 
+            // btnInsertPreReq
+            // 
+            this.btnInsertPreReq.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnInsertPreReq.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnInsertPreReq.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnInsertPreReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsertPreReq.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnInsertPreReq.Location = new System.Drawing.Point(357, 6);
+            this.btnInsertPreReq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInsertPreReq.Name = "btnInsertPreReq";
+            this.btnInsertPreReq.Size = new System.Drawing.Size(75, 30);
+            this.btnInsertPreReq.TabIndex = 217;
+            this.btnInsertPreReq.Text = "Insert";
+            this.btnInsertPreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInsertPreReq.UseVisualStyleBackColor = false;
+            // 
+            // lblPreRequirment
+            // 
+            this.lblPreRequirment.AutoSize = true;
+            this.lblPreRequirment.BackColor = System.Drawing.Color.Transparent;
+            this.lblPreRequirment.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblPreRequirment.Location = new System.Drawing.Point(33, 15);
+            this.lblPreRequirment.Name = "lblPreRequirment";
+            this.lblPreRequirment.Size = new System.Drawing.Size(139, 19);
+            this.lblPreRequirment.TabIndex = 207;
+            this.lblPreRequirment.Text = "PRE REQUIRMENTS";
+            // 
+            // grvPreRequirments
+            // 
+            this.grvPreRequirments.AllowUserToAddRows = false;
+            this.grvPreRequirments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grvPreRequirments.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPreRequirments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.grvPreRequirments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvPreRequirments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GrdPreRequireUpdate});
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPreRequirments.DefaultCellStyle = dataGridViewCellStyle18;
+            this.grvPreRequirments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grvPreRequirments.Location = new System.Drawing.Point(4, 46);
+            this.grvPreRequirments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grvPreRequirments.MultiSelect = false;
+            this.grvPreRequirments.Name = "grvPreRequirments";
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPreRequirments.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.grvPreRequirments.RowHeadersWidth = 51;
+            this.grvPreRequirments.RowTemplate.Height = 24;
+            this.grvPreRequirments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grvPreRequirments.Size = new System.Drawing.Size(1544, 133);
+            this.grvPreRequirments.TabIndex = 206;
+            // 
+            // GrdPreRequireUpdate
+            // 
+            this.GrdPreRequireUpdate.Frozen = true;
+            this.GrdPreRequireUpdate.HeaderText = "^";
+            this.GrdPreRequireUpdate.Name = "GrdPreRequireUpdate";
+            this.GrdPreRequireUpdate.Text = "^";
+            this.GrdPreRequireUpdate.UseColumnTextForButtonValue = true;
+            this.GrdPreRequireUpdate.Width = 30;
+            // 
+            // pnlPermits
+            // 
+            this.pnlPermits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlPermits.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPermits.Controls.Add(this.chkPermits);
+            this.pnlPermits.Controls.Add(this.btnCancelPermit);
+            this.pnlPermits.Controls.Add(this.btnDeletePermit);
+            this.pnlPermits.Controls.Add(this.btnInsertPermit);
+            this.pnlPermits.Controls.Add(this.lblPermit);
+            this.pnlPermits.Controls.Add(this.grvPermitsRequiredInspection);
+            this.pnlPermits.Location = new System.Drawing.Point(4, 154);
+            this.pnlPermits.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlPermits.Name = "pnlPermits";
+            this.pnlPermits.Size = new System.Drawing.Size(1552, 142);
+            this.pnlPermits.TabIndex = 278;
+            // 
+            // chkPermits
+            // 
+            this.chkPermits.AutoSize = true;
+            this.chkPermits.Checked = true;
+            this.chkPermits.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPermits.Location = new System.Drawing.Point(12, 6);
+            this.chkPermits.Margin = new System.Windows.Forms.Padding(4);
+            this.chkPermits.Name = "chkPermits";
+            this.chkPermits.Size = new System.Drawing.Size(18, 17);
+            this.chkPermits.TabIndex = 280;
+            this.chkPermits.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelPermit
+            // 
+            this.btnCancelPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancelPermit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnCancelPermit.Location = new System.Drawing.Point(540, 1);
+            this.btnCancelPermit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelPermit.Name = "btnCancelPermit";
+            this.btnCancelPermit.Size = new System.Drawing.Size(75, 27);
+            this.btnCancelPermit.TabIndex = 224;
+            this.btnCancelPermit.Text = "Cancel";
+            this.btnCancelPermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelPermit.UseVisualStyleBackColor = false;
+            // 
+            // btnDeletePermit
+            // 
+            this.btnDeletePermit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeletePermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnDeletePermit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnDeletePermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePermit.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnDeletePermit.Location = new System.Drawing.Point(449, 1);
+            this.btnDeletePermit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeletePermit.Name = "btnDeletePermit";
+            this.btnDeletePermit.Size = new System.Drawing.Size(75, 27);
+            this.btnDeletePermit.TabIndex = 221;
+            this.btnDeletePermit.Tag = "Delete selected record";
+            this.btnDeletePermit.Text = "Delete ";
+            this.btnDeletePermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeletePermit.UseVisualStyleBackColor = false;
+            // 
+            // btnInsertPermit
+            // 
+            this.btnInsertPermit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnInsertPermit.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnInsertPermit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnInsertPermit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsertPermit.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnInsertPermit.Location = new System.Drawing.Point(357, 1);
+            this.btnInsertPermit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInsertPermit.Name = "btnInsertPermit";
+            this.btnInsertPermit.Size = new System.Drawing.Size(75, 27);
+            this.btnInsertPermit.TabIndex = 218;
+            this.btnInsertPermit.Text = "Insert";
+            this.btnInsertPermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInsertPermit.UseVisualStyleBackColor = false;
+            // 
+            // lblPermit
+            // 
+            this.lblPermit.AutoSize = true;
+            this.lblPermit.BackColor = System.Drawing.Color.Transparent;
+            this.lblPermit.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblPermit.Location = new System.Drawing.Point(33, 5);
+            this.lblPermit.Name = "lblPermit";
+            this.lblPermit.Size = new System.Drawing.Size(234, 19);
+            this.lblPermit.TabIndex = 211;
+            this.lblPermit.Text = "PERMITS/REQUIRED/INSPECTION";
+            // 
+            // pnlNotes
+            // 
+            this.pnlNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlNotes.BackColor = System.Drawing.Color.Transparent;
+            this.pnlNotes.Controls.Add(this.chkNotes);
+            this.pnlNotes.Controls.Add(this.btnCancelNotes);
+            this.pnlNotes.Controls.Add(this.grvNotesCommunication);
+            this.pnlNotes.Controls.Add(this.lblNotes);
+            this.pnlNotes.Controls.Add(this.btnInsertNotes);
+            this.pnlNotes.Controls.Add(this.btndeleteNotes);
+            this.pnlNotes.Location = new System.Drawing.Point(4, 304);
+            this.pnlNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlNotes.Name = "pnlNotes";
+            this.pnlNotes.Size = new System.Drawing.Size(1552, 142);
+            this.pnlNotes.TabIndex = 277;
+            // 
+            // chkNotes
+            // 
+            this.chkNotes.AutoSize = true;
+            this.chkNotes.Checked = true;
+            this.chkNotes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNotes.Location = new System.Drawing.Point(12, 5);
+            this.chkNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.chkNotes.Name = "chkNotes";
+            this.chkNotes.Size = new System.Drawing.Size(18, 17);
+            this.chkNotes.TabIndex = 281;
+            this.chkNotes.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelNotes
+            // 
+            this.btnCancelNotes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCancelNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancelNotes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnCancelNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelNotes.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnCancelNotes.Location = new System.Drawing.Point(540, 2);
+            this.btnCancelNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelNotes.Name = "btnCancelNotes";
+            this.btnCancelNotes.Size = new System.Drawing.Size(75, 27);
+            this.btnCancelNotes.TabIndex = 225;
+            this.btnCancelNotes.Text = "Cancel";
+            this.btnCancelNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelNotes.UseVisualStyleBackColor = false;
+            // 
+            // grvNotesCommunication
+            // 
+            this.grvNotesCommunication.AllowUserToAddRows = false;
+            this.grvNotesCommunication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvNotesCommunication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.grvNotesCommunication.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvNotesCommunication.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GrdBtnNotesUpdate});
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvNotesCommunication.DefaultCellStyle = dataGridViewCellStyle21;
+            this.grvNotesCommunication.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grvNotesCommunication.Location = new System.Drawing.Point(1, 32);
+            this.grvNotesCommunication.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grvNotesCommunication.MultiSelect = false;
+            this.grvNotesCommunication.Name = "grvNotesCommunication";
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvNotesCommunication.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.grvNotesCommunication.RowHeadersWidth = 51;
+            this.grvNotesCommunication.RowTemplate.Height = 24;
+            this.grvNotesCommunication.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grvNotesCommunication.Size = new System.Drawing.Size(1548, 150);
+            this.grvNotesCommunication.TabIndex = 212;
+            // 
+            // GrdBtnNotesUpdate
+            // 
+            this.GrdBtnNotesUpdate.Frozen = true;
+            this.GrdBtnNotesUpdate.HeaderText = "^";
+            this.GrdBtnNotesUpdate.Name = "GrdBtnNotesUpdate";
+            this.GrdBtnNotesUpdate.Text = "^";
+            this.GrdBtnNotesUpdate.UseColumnTextForButtonValue = true;
+            this.GrdBtnNotesUpdate.Width = 30;
+            // 
+            // lblNotes
+            // 
+            this.lblNotes.AutoSize = true;
+            this.lblNotes.BackColor = System.Drawing.Color.Transparent;
+            this.lblNotes.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblNotes.Location = new System.Drawing.Point(33, 5);
+            this.lblNotes.Name = "lblNotes";
+            this.lblNotes.Size = new System.Drawing.Size(187, 19);
+            this.lblNotes.TabIndex = 213;
+            this.lblNotes.Text = "NOTES / COMMINICATION";
+            // 
+            // btnInsertNotes
+            // 
+            this.btnInsertNotes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnInsertNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnInsertNotes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnInsertNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsertNotes.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btnInsertNotes.Location = new System.Drawing.Point(357, 2);
+            this.btnInsertNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInsertNotes.Name = "btnInsertNotes";
+            this.btnInsertNotes.Size = new System.Drawing.Size(75, 27);
+            this.btnInsertNotes.TabIndex = 219;
+            this.btnInsertNotes.Text = "Insert";
+            this.btnInsertNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInsertNotes.UseVisualStyleBackColor = false;
+            // 
+            // btndeleteNotes
+            // 
+            this.btndeleteNotes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btndeleteNotes.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btndeleteNotes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btndeleteNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btndeleteNotes.Font = new System.Drawing.Font("Calibri", 9.5F);
+            this.btndeleteNotes.Location = new System.Drawing.Point(448, 2);
+            this.btndeleteNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btndeleteNotes.Name = "btndeleteNotes";
+            this.btndeleteNotes.Size = new System.Drawing.Size(75, 27);
+            this.btndeleteNotes.TabIndex = 222;
+            this.btndeleteNotes.Tag = "Delete selected record";
+            this.btndeleteNotes.Text = "Delete ";
+            this.btndeleteNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btndeleteNotes.UseVisualStyleBackColor = false;
+            // 
             // JobStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(1568, 1008);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.tableLayoutPanel2);
+            this.ClientSize = new System.Drawing.Size(1568, 822);
+            this.Controls.Add(this.tblpnlJobtrackingGrid);
             this.Controls.Add(this.panelFileBrowser);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1377,24 +1611,24 @@
             this.GpJobAndTrack.ResumeLayout(false);
             this.GpJobAndTrack.PerformLayout();
             this.panelFileBrowser.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.colorMenu.ResumeLayout(false);
+            this.Panel1.ResumeLayout(false);
+            this.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).EndInit();
+            this.tblpnlJobtrackingGrid.ResumeLayout(false);
             this.pnlPreRequire.ResumeLayout(false);
             this.pnlPreRequire.PerformLayout();
+            this.Panel2.ResumeLayout(false);
+            this.pnlChangeColurCost.ResumeLayout(false);
+            this.pnlChangeColurCost.PerformLayout();
+            this.pnlTraficLight.ResumeLayout(false);
+            this.pnlTraficLight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvPreRequirments)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.pnlPermits.ResumeLayout(false);
+            this.pnlPermits.PerformLayout();
+            this.pnlNotes.ResumeLayout(false);
+            this.pnlNotes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).EndInit();
-            this.colorMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1457,43 +1691,6 @@
         private System.Windows.Forms.ComboBox DriveListBox1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel pnlPreRequire;
-        private System.Windows.Forms.CheckBox chkPreRequirment;
-        private System.Windows.Forms.Button btnDeletePreReq;
-        private System.Windows.Forms.Button btnCancelPreReq;
-        private System.Windows.Forms.Button btnInsertPreReq;
-        private System.Windows.Forms.Button btnShowTimeData;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblCreditAlert;
-        private System.Windows.Forms.Button btnAgingColor;
-        private System.Windows.Forms.Label lblShowCreditAlert;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button BtnHistoryClick;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button pnlShowTimeDataColor;
-        private System.Windows.Forms.Label lblVECostAlert;
-        private System.Windows.Forms.DataGridView grvPreRequirments;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnDeletePermit;
-        private System.Windows.Forms.Button btnCancelPermit;
-        private System.Windows.Forms.Button btnInsertPermit;
-        private System.Windows.Forms.CheckBox chkPermits;
-        private System.Windows.Forms.DataGridView grvPermitsRequiredInspection;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView grvNotesCommunication;
-        private System.Windows.Forms.Button btnDeleteNotes;
-        private System.Windows.Forms.Button btnCancelNotes;
-        private System.Windows.Forms.Button btnInsertNotes;
-        private System.Windows.Forms.CheckBox chkNotes;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnUpdateInvoiceDue;
-        private System.Windows.Forms.Button btnSendEmail;
-        private System.Windows.Forms.Button btnImportTimeSheetData;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnCreateInvoice;
         private System.Windows.Forms.Timer timerLoad;
         internal System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
         internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
@@ -1506,5 +1703,48 @@
         internal System.Windows.Forms.ToolStripMenuItem BlackToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem BlueToolStripMenuItem;
         internal System.Windows.Forms.ToolTip toolTipBillReq;
+        internal System.Windows.Forms.Panel Panel1;
+        internal System.Windows.Forms.Label label11;
+        internal System.Windows.Forms.ProgressBar ProgressBar1;
+        internal System.Windows.Forms.Button btnImportTimeSheetData;
+        internal System.Windows.Forms.Button btnSendMailPending;
+        internal System.Windows.Forms.Button btnSendEmail;
+        internal System.Windows.Forms.Button btnUpdateInvoiceDue;
+        internal System.Windows.Forms.Button btnCreateInvoice;
+        internal System.Windows.Forms.DataGridView grvPermitsRequiredInspection;
+        internal System.Windows.Forms.DataGridViewButtonColumn GrdbtnPrequisition;
+        internal System.Windows.Forms.TableLayoutPanel tblpnlJobtrackingGrid;
+        internal System.Windows.Forms.Panel pnlPreRequire;
+        internal System.Windows.Forms.Panel Panel2;
+        internal System.Windows.Forms.Button BtnHistoryClick;
+        internal System.Windows.Forms.Label lblShowCreditAlert;
+        internal System.Windows.Forms.Panel pnlChangeColurCost;
+        internal System.Windows.Forms.Button pnlShowTimeDataColor;
+        internal System.Windows.Forms.Label lblVECostAlert;
+        internal System.Windows.Forms.Button btnShowTimeData;
+        internal System.Windows.Forms.Panel pnlTraficLight;
+        internal System.Windows.Forms.Label lblCreditAlert;
+        internal System.Windows.Forms.Button btnAgingColor;
+        internal System.Windows.Forms.CheckBox chkPreRequirment;
+        internal System.Windows.Forms.Button btnCancelPreReq;
+        internal System.Windows.Forms.Button btnDeletePreReq;
+        internal System.Windows.Forms.Button btnInsertPreReq;
+        internal System.Windows.Forms.Label lblPreRequirment;
+        internal System.Windows.Forms.DataGridView grvPreRequirments;
+        internal System.Windows.Forms.DataGridViewButtonColumn GrdPreRequireUpdate;
+        internal System.Windows.Forms.Panel pnlPermits;
+        internal System.Windows.Forms.CheckBox chkPermits;
+        internal System.Windows.Forms.Button btnCancelPermit;
+        internal System.Windows.Forms.Button btnDeletePermit;
+        internal System.Windows.Forms.Button btnInsertPermit;
+        internal System.Windows.Forms.Label lblPermit;
+        internal System.Windows.Forms.Panel pnlNotes;
+        internal System.Windows.Forms.CheckBox chkNotes;
+        internal System.Windows.Forms.Button btnCancelNotes;
+        internal System.Windows.Forms.DataGridView grvNotesCommunication;
+        internal System.Windows.Forms.DataGridViewButtonColumn GrdBtnNotesUpdate;
+        internal System.Windows.Forms.Label lblNotes;
+        internal System.Windows.Forms.Button btnInsertNotes;
+        internal System.Windows.Forms.Button btndeleteNotes;
     }
 }

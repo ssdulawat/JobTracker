@@ -14,7 +14,8 @@ namespace DataAccessLayer
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Data;
+
     public partial class TestVariousInfoEntities : DbContext
     {
         public TestVariousInfoEntities()
@@ -505,6 +506,16 @@ namespace DataAccessLayer
                 new ObjectParameter("IsUndo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUndoInvoiceDetails", jobTrackDetailIdParameter, isUndoParameter);
+        }
+
+        public DataTable Filldatatable(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object FillDAtatableCombo(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

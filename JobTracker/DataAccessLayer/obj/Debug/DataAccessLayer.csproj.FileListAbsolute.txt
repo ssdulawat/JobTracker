@@ -11,3 +11,4 @@ D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\DataAccessLayer\obj\De
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\OdeToCloud_Devlopment\JobTracker\JobTracker\JobTracker\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
