@@ -15,7 +15,7 @@ namespace DataAccessLayer
 
         public List<ManagerData> GetManagerData()
         {
-            string queryString = "SELECT  DISTINCT JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded AS Added, JobList.Description, JobList.Handler AS PM, JobList.Borough AS Town, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,   Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold, jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail,CONVERT(INT,jd.TableVersionId) AS RateVersionId,jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN            Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN      Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN        JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID     WHERE (JobList.IsDelete=0 or JobList.IsDelete is null)  AND (JobList.IsDisable = 0  OR JobList.IsDisable IS NULL) AND (JobList.IsInvoiceHold = 0 )  order by JobList.JobListID";
+            string queryString = "SELECT  DISTINCT JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded AS Added, JobList.Description, JobList.Handler AS PM, JobList.Borough AS Town, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold, jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail,CONVERT(INT,jd.TableVersionId) AS RateVersionId,jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN            Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN      Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN        JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID     WHERE (JobList.IsDelete=0 or JobList.IsDelete is null)  AND (JobList.IsDisable = 0  OR JobList.IsDisable IS NULL) AND (JobList.IsInvoiceHold = 0 )  order by JobList.JobListID";
             var result = db.Database.SqlQuery<ManagerData>(queryString).ToList();
 
             return result;
@@ -44,6 +44,30 @@ namespace DataAccessLayer
             string queryString = "SELECT JobTracking.TaskHandler AS TM,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.BillState , JobTracking.AddDate AS Added,JobTracking.InvOvr  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (select Trackname from MasterTrackSet where TrackSet='Notes/Communication')  and  JobTracking.JobListID= 2773 and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null)  order by JobTrackingID";
 
             var result = db.Database.SqlQuery<NotesComunication>(queryString).ToList();
+
+            return result;
+        }
+
+        public List<ManagerSetColumn> GetManagerGridSetColumn()
+        {
+            string queryString = "SELECT top 5 JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,   Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,  IsNull(JobList.IsDisable, 0) as IsDisable,IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold,JobList.TypicalInvoiceType,JobList.InvoiceClient,JobList.ServRate,IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN  Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN      Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN  JobTracking ON JobList.JobListID = JobTracking.JobListID WHERE (JobList.IsDelete=0 or JobList.IsDelete is null)";
+
+            var result = db.Database.SqlQuery<ManagerSetColumn>(queryString).ToList();
+
+            return result;
+        }
+        public List<cbxClientM> GetcbxClient()
+        {
+            string queryString = "SELECT CompanyName,CompanyID,TableVersionId  FROM dbo.Company where CompanyName<> '' AND (IsDelete=0 or IsDelete is null)  union select'' as CompanyName,0 as CompanyID,0 AS TableVersionId ORDER BY CompanyName";
+
+            var result = db.Database.SqlQuery<cbxClientM>(queryString).ToList();
+
+            return result;
+        }
+        public List<colPMM> GetcolPMM()
+        {
+            string queryString = "SELECT cTrack ,Id FROM MasterItem WHERE cGroup='PM' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack";
+            var result = db.Database.SqlQuery<colPMM>(queryString).ToList();
 
             return result;
         }

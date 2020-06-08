@@ -33,7 +33,6 @@ namespace JobTracker.JobTrackingForm
         public string ContactsName = string.Empty;
         public int ContactsRowIndex = -1;
         public int selectedJobListID;
-        //public Notification ToasterNoty;
         public string CheckString;
         public ComboBox cb = new ComboBox();
         public string GridSymbole;
@@ -45,13 +44,12 @@ namespace JobTracker.JobTrackingForm
         public bool ManagerLoad = true;
         public Int64 JobID;
         public bool selectRecord_Joblist = false;
-        // private DataAccessLayer DAL;
         public Int32 Colorid;
         public string UserName;
         public string UserType;
         public bool CheckUser;
         public string ColorColumn;
-        const string TIMESERVICEFEE = "TimeServiceFee;";
+        private const string TIMESERVICEFEE = "TimeServiceFee;";
         #endregion
 
         #region "Properties"
@@ -149,7 +147,7 @@ namespace JobTracker.JobTrackingForm
                         selectRecord_Joblist = true;
                         chkPreRequirment.Checked = false;
 
-                        // SetColumns();
+                        SetColumns();
                         fillGridJobList();
                         var MainGrid = new List<ManagerData>();
                         MainGrid = dAL.GetManagerData();
@@ -485,7 +483,154 @@ namespace JobTracker.JobTrackingForm
             //put a breakpoint here and check datatable
             return dataTable;
         }
-       
+
+        private void SetColumns()
+        {
+            try
+            {
+
+                var TempColumn = dAL.GetManagerGridSetColumn();
+                DataTable dtJL = new DataTable();
+                dtJL = ToDataTable(TempColumn);
+                grvJobList.DataSource = dtJL;
+
+                cbxClient.Name = "Client#";
+                cbxClient.Width = 200;
+
+                grvJobList.Columns.Insert(1, cbxClient);
+
+                DataTable dt = new DataTable();
+
+                var TempCBlient = dAL.GetcbxClient();
+                dt = ToDataTable(TempCBlient);
+                DataRow datarow = dt.NewRow();
+                datarow["CompanyName"] = "";
+                datarow["CompanyID"] = 0;
+                dt.Rows.InsertAt(datarow, 0);
+                cbxClient.DataSource = dt;
+                cbxClient.DisplayMember = "CompanyName";
+                cbxClient.ValueMember = "CompanyID";
+                cbxClient.DataPropertyName = "CompanyID";
+                DataTable _cmbIClientDT = dt.Copy();
+                _cmbIClientDT.Rows[0]["CompanyName"] = "--Client--";
+                _cmbIClientDT.Rows[0]["CompanyID"] = -99;
+                cmbInvoiceClient = new DataGridViewComboBoxColumn() { DataSource = _cmbIClientDT, DisplayMember = "CompanyName", ValueMember = "CompanyID", DataPropertyName = "InvoiceClient", Name = "cmbInvoiceClient", HeaderText = "InvoiceClient" };
+                grvJobList.Columns.Insert(grvJobList.Columns.Count - 1, cmbInvoiceClient);
+                //TestVariousInfoEntities cmbobj = new TestVariousInfoEntities();
+                {
+                    var withBlock = grvJobList;
+
+                    // Set Column Property
+                    // With grvJobList
+
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Width = 80;
+                    withBlock.Columns["JobNumber"].DisplayIndex = 1;
+                    withBlock.Columns["DateAdded"].Width = 80;
+                    withBlock.Columns["DateAdded"].HeaderText = "Added";
+                    withBlock.Columns["DateAdded"].DisplayIndex = 3;
+                    withBlock.Columns["Description"].HeaderText = "Description";
+                    withBlock.Columns["Description"].Width = 200;
+                    withBlock.Columns["Description"].DisplayIndex = 4;
+                    withBlock.Columns["Handler"].HeaderText = "PM";
+                    withBlock.Columns["Handler"].Width = 40;
+                    withBlock.Columns["Address"].Width = 150;
+                    withBlock.Columns["Address"].DisplayIndex = 5;
+                    withBlock.Columns["CompanyID"].Width = 130;
+                    withBlock.Columns["Borough"].Width = 90;
+                    withBlock.Columns["Borough"].HeaderText = "Town";
+                    withBlock.Columns["Contacts"].Width = 130;
+                    withBlock.Columns["Contacts"].DisplayIndex = 6;
+                    withBlock.Columns["EmailAddress"].Width = 250;
+                    withBlock.Columns["EmailAddress"].DisplayIndex = 10;
+                    withBlock.Columns["Handler"].Visible = false;
+                    withBlock.Columns["CompanyID"].Visible = false;
+                    withBlock.Columns["Contacts"].Visible = true;
+                    withBlock.Columns["ContactsID"].Visible = false;
+                    withBlock.Columns["CompanyName"].Visible = false;
+                    withBlock.Columns["OwnerName"].HeaderText = "Owner Name";
+                    withBlock.Columns["OwnerAddress"].HeaderText = "Owner Address";
+                    withBlock.Columns["OwnerPhone"].HeaderText = "Owner Phone";
+                    withBlock.Columns["OwnerFax"].HeaderText = "Owner Fax";
+                    withBlock.Columns["ACContacts"].HeaderText = "AC Contacts";
+                    withBlock.Columns["ACEmail"].HeaderText = "AC Email";
+                    withBlock.Columns["CompanyNo"].Visible = false;
+                    withBlock.Columns["PMrv"].HeaderText = "PMrv";
+                    withBlock.Columns["PMrv"].Width = 40;
+                    withBlock.Columns["PMrv"].Visible = false;
+                    withBlock.Columns["TypicalInvoiceType"].Width = 100;
+                    withBlock.Columns["TypicalInvoiceType"].HeaderText = "Invoice Type";
+                    withBlock.Columns["TypicalInvoiceType"].Visible = false;
+                    withBlock.Columns["IsDisable"].DisplayIndex = grvJobList.Columns.Count - 3;
+                    withBlock.Columns["IsDisable"].HeaderText = "Disabled";
+                    withBlock.Columns["TypicalInvoiceType"].DisplayIndex = grvJobList.Columns.Count - 1;
+
+                    withBlock.Columns["IsInvoiceHold"].DisplayIndex = grvJobList.Columns.Count - 1;
+                    withBlock.Columns["IsInvoiceHold"].HeaderText = "Invoice Hold";
+                    withBlock.Columns["InvoiceClient"].Visible = false;
+
+                    DataGridViewComboBoxColumn colPM = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colPM;
+                        DataTable dtPM = new DataTable();
+
+                        var TempColPM = dAL.GetcolPMM();
+                        dtPM = ToDataTable(TempColPM);
+
+                        withBlock1.DataSource = dtPM;
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 5;
+                        withBlock1.HeaderText = "PM";
+                        withBlock1.DataPropertyName = "Handler";
+                        withBlock1.Width = 58;
+                        withBlock1.Name = "cmbHandler";
+                    }
+                    withBlock.Columns.Add(colPM);
+
+
+                    DataGridViewComboBoxColumn colPMrv = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colPMrv;
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='PM' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        DataTable dtPM = new DataTable();
+                        var TempColPM = dAL.GetcolPMM();
+                        dtPM = ToDataTable(TempColPM);
+                        withBlock1.DataSource = dtPM;
+                        withBlock1.DisplayMember = "cTrack";
+
+                        withBlock1.HeaderText = "PMrv";
+                        withBlock1.DataPropertyName = "PMrv";
+                        withBlock1.Width = 58;
+                        withBlock1.Name = "cmbPMrv";
+                    }
+                    withBlock.Columns.Add(colPMrv);
+
+                    DataGridViewComboBoxColumn colTypicalInvoiceType = new DataGridViewComboBoxColumn();
+                    colTypicalInvoiceType.Items.Add("Time");
+                    colTypicalInvoiceType.Items.Add("Item");
+                    {
+                        var withBlock1 = colTypicalInvoiceType;
+                        withBlock1.DataPropertyName = "TypicalInvoiceType";
+                        withBlock1.HeaderText = "Invoice Type";
+                        withBlock1.Width = 100;
+                        withBlock1.Name = "cmbTypicalInvoiceType";
+                    }
+                    withBlock.Columns.Add(colTypicalInvoiceType);
+                }
+
+                if (grvJobList.Rows.Count > 0)
+                {
+                    selectedJobListID = Convert.ToInt32(grvJobList.Rows[0].Cells["JobListID"].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList.Rows[0].Cells["IsDisable"].Value);
+                    grvJobList.Rows[0].Selected = true;
+                }
+            }
+
+            catch (Exception ex)
+            {
+            }
+        }
 
     }
 }

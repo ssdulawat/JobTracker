@@ -15,12 +15,14 @@ namespace DataAccessLayer.Model
         public int? CompanyID { get; set; }
         public DateTime? DateAdded { get; set; }
         public string Description { get; set; }
+        public string PM { get; set; }
         public string Handler { get; set; }
         public string Borough { get; set; }
         public string Address { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public string Contacts { get; set; }
         public string EmailAddress { get; set; }
         public int? ContactsID { get; set; }
         public string CompanyName { get; set; }
@@ -34,6 +36,7 @@ namespace DataAccessLayer.Model
         public string PMrv { get; set; }
         public bool IsDisable { get; set; }
         public bool IsInvoiceHold { get; set; }
+        public string TypicalInvoiceType { get; set; }
         public string InvoiceType { get; set; }
         public int? InvoiceClient { get; set; }
         public string InvoiceContact { get; set; }
@@ -82,7 +85,7 @@ namespace DataAccessLayer.Model
         public string BillState { get; set; }
         public DateTime? AddDate { get; set; }
         public string InvOvr { get; set; }
-   
+
     }
     public class NotesComunication
     {
@@ -96,5 +99,62 @@ namespace DataAccessLayer.Model
         public string InvOvr { get; set; }
 
     }
+
+    public class ManagerSetColumn
+    {
+
+        public int? JobListID { get; set; }
+        public string JobNumber { get; set; }
+        public string Clienttext { get; set; }
+        public int? CompanyID { get; set; }
+        public DateTime? DateAdded { get; set; }
+        public string Description { get; set; }
+        public string PM { get; set; }
+        public string Handler { get; set; }
+        public string Borough { get; set; }
+        public string Address { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Contacts { get; set; }
+        public string EmailAddress { get; set; }
+        public int? ContactsID { get; set; }
+        public string CompanyName { get; set; }
+        public string ACContacts { get; set; }
+        public string ACEmail { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerAddress { get; set; }
+        public string OwnerPhone { get; set; }
+        public string OwnerFax { get; set; }
+        public string CompanyNo { get; set; }
+        public string PMrv { get; set; }
+        public bool IsDisable { get; set; }
+        public bool IsInvoiceHold { get; set; }
+        public string TypicalInvoiceType { get; set; }
+        public string InvoiceType { get; set; }
+        public int? InvoiceClient { get; set; }
+        public string InvoiceContact { get; set; }
+        public string InvoiceContactT { get; set; }
+        public string InvoiceEmailAddress { get; set; }
+        public string InvoiceACContacts { get; set; }
+        public string InvoiceACContactsT { get; set; }
+        public string InvoiceACEmail { get; set; }
+        public int? RateVersionId { get; set; }
+        public decimal? ServRate { get; set; }
+        public bool? AdminInvoice { get; set; }
+    }
+
+    public class cbxClientM
+    {
+        public string CompanyName { get; set; }
+        public int? CompanyID { get; set; }
+        public int? TableVersionId { get; set; }
+    }
+    public class colPMM
+    {
+        public string cTrack { get; set; }
+        public int? Id { get; set; }
+    }
+
 }
 
