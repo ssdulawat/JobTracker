@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using ComponentFactory.Krypton.Toolkit;
+using DataAccessLayer;
 using DataAccessLayer.Model;
 using JobTracker.JobTrackingMDIForm;
 using System;
@@ -126,8 +127,8 @@ namespace JobTracker.JobTrackingForm
 
         private void JobStatus_Load(System.Object sender, System.EventArgs e)
         {
-            // ProgressBar1.Visible = false;
-            //Label12.Visible = false;
+            ProgressBar1.Visible = false;
+            label11.Visible = false;
             // mdio = MdiParent;
             ManagerLoad = true;
             btnImportTimeSheetData.Visible = false;
@@ -163,7 +164,7 @@ namespace JobTracker.JobTrackingForm
                 {
                     if (processcount == 1)
                     {
-                        //   SetColumnPreRequirment();
+                        SetColumnPreRequirment();
                         //  FillGridPreRequirment();
 
                         var PreRequirement = new List<PreRequirement>();
@@ -173,7 +174,7 @@ namespace JobTracker.JobTrackingForm
                     }
                     if (processcount == 2)
                     {
-                        //   SetColumnPermit();
+                        SetColumnPermit();
                         //  FillGridPermitRequiredInspection();
                         var PermitRequiredInspection = new List<PermitsRequirement>();
                         PermitRequiredInspection = dAL.GetPermitsRequirement();
@@ -181,7 +182,7 @@ namespace JobTracker.JobTrackingForm
                     }
                     if (processcount == 3)
                     {
-                        //   SetColumnNotes();
+                        SetColumnNotes();
                         //   FillGridNotesCommunication();
                         var NotesCommunication = new List<NotesComunication>();
                         NotesCommunication = dAL.GetNotesComunication();
@@ -489,7 +490,7 @@ namespace JobTracker.JobTrackingForm
             try
             {
 
-                var TempColumn = dAL.GetManagerGridSetColumn();
+                var TempColumn = dAL.ManagerGridSetColumn();
                 DataTable dtJL = new DataTable();
                 dtJL = ToDataTable(TempColumn);
                 grvJobList.DataSource = dtJL;
@@ -631,6 +632,376 @@ namespace JobTracker.JobTrackingForm
             {
             }
         }
+        private void SetColumnPreRequirment()
+        {
+            try
+            {
+
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempPreColumn = dAL.PreRequirementSetColumn();
+                    dtPreReq = ToDataTable(TempPreColumn);
+                    grvPreRequirments.DataSource = dtPreReq;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+
+                {
+                    var withBlock = grvPreRequirments;
+
+                    // ComboTM'
+                    DataGridViewComboBoxColumn colTM = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTM;
+                        DataTable colTmDT = new DataTable();
+                        var TempPreColTM = dAL.GetPreRequirementcolTM();
+                        colTmDT = ToDataTable(TempPreColTM);
+
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
+                        withBlock1.DataSource = colTmDT;
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 2;
+                        withBlock1.HeaderText = "TM";
+                        withBlock1.DataPropertyName = "TaskHandler";
+                        withBlock1.Width = 65;
+                        withBlock1.Name = "cmbTaskHandler";
+                    }
+
+                    withBlock.Columns.Add(colTM);
+
+
+                    DataGridViewComboBoxColumn colTrack = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTrack;
+                        DataTable colTrackDT = new DataTable();
+                        var TempPrecolTrack = dAL.GetPreRequirementcolTrack();
+                        colTrackDT = ToDataTable(TempPrecolTrack);
+                        //withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='PreRequirements'");
+                        withBlock1.DataSource = colTrackDT;
+                        withBlock1.DisplayMember = "Trackname";
+                        withBlock1.DisplayIndex = 4;
+                        withBlock1.HeaderText = "Track";
+                        withBlock1.DataPropertyName = "Track";
+                        withBlock1.Name = "cmbTrack";
+                    }
+
+                    withBlock.Columns.Add(colTrack);
+
+                    DataGridViewComboBoxColumn colStatus = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colStatus;
+                        DataTable colStatusDT = new DataTable();
+                        var TempPrecolStatusDT = dAL.GetPreRequirementcolStatus();
+                        colStatusDT = ToDataTable(TempPrecolStatusDT);
+
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Status' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        withBlock1.DataSource = colStatusDT;
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 9;
+                        withBlock1.HeaderText = "Status";
+                        withBlock1.DataPropertyName = "Status";
+                        withBlock1.Name = "cmbStatus";
+                    }
+                    withBlock.Columns.Add(colStatus);
+                }
+                {
+                    var withBlock = grvPreRequirments;
+
+                    // Set Column Property
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = true;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = false;
+                    withBlock.Columns["Expires"].Width = 90;
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = false;
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 550;
+                    withBlock.Columns["TrackSubID"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void SetColumnPermit()
+        {
+            try
+            {
+
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempColumnPermit = dAL.PermitsRequirementSetColumn();
+                    dtPermit = ToDataTable(TempColumnPermit);
+                    grvPermitsRequiredInspection.DataSource = dtPermit;
+                }
+                catch (Exception eLoad)
+                {
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+                // Grid Formatting
+                {
+                    var withBlock = grvPermitsRequiredInspection;
+                    DataGridViewComboBoxColumn colTM = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTM;
+
+                        DataTable colTmDT = new DataTable();
+                        var TempPreColTM = dAL.GetPreRequirementcolTM();
+                        colTmDT = ToDataTable(TempPreColTM);
+
+                        // withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
+                        withBlock1.DataSource = colTmDT;
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 2;
+                        withBlock1.HeaderText = "TM";
+                        withBlock1.DataPropertyName = "TaskHandler";
+                        withBlock1.Width = 58;
+                        withBlock1.Name = "cmbTaskHandler";
+                    }
+
+                    withBlock.Columns.Add(colTM);
+
+
+
+                    DataGridViewComboBoxColumn colTrack = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTrack;
+                        DataTable colTrackDT = new DataTable();
+                        var TempPremitcolTrack = dAL.GetPermitsRequirementcolTrack();
+                        colTrackDT = ToDataTable(TempPremitcolTrack);
+                        // withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='Permits/Required/Inspection'");
+                        withBlock1.DataSource = colTrackDT;
+                        withBlock1.DisplayMember = "Trackname";
+                        withBlock1.DisplayIndex = 4;
+                        withBlock1.HeaderText = "Track";
+                        withBlock1.DataPropertyName = "Track";
+                        withBlock1.Name = "cmbTrack";
+                    }
+                    withBlock.Columns.Add(colTrack);
+
+                    DataGridViewComboBoxColumn colStatus = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colStatus;
+                        DataTable colStatusDT = new DataTable();
+                        var TempPremitcolStatusDT = dAL.GetPreRequirementcolStatus();
+                        colStatusDT = ToDataTable(TempPremitcolStatusDT);
+                        withBlock1.DataSource = colStatusDT;
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Status' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 9;
+                        withBlock1.HeaderText = "Status";
+                        withBlock1.DataPropertyName = "Status";
+                        withBlock1.Name = "cmbStatus";
+                    }
+                    withBlock.Columns.Add(colStatus);
+
+
+                    DataGridViewComboBoxColumn colFinalAction = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colFinalAction;
+                        withBlock1.Items.Add("No Action");
+                        withBlock1.Items.Add("Renewed");
+                        withBlock1.Items.Add("Not Req'd");
+                        withBlock1.HeaderText = "FinalAction";
+                        withBlock1.Width = 80;
+                        withBlock1.DisplayIndex = 11;
+                        withBlock1.DataPropertyName = "FinalAction";
+                        withBlock1.Name = "cmbFinalAction";
+                    }
+                    withBlock.Columns.Add(colFinalAction);
+
+
+                    DataGridViewComboBoxColumn colBillStatus = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colBillStatus;
+                        DataTable colBillStatusDT = new DataTable();
+                        var TempPremitcolBillStatusDT = dAL.GetPermitsRequirementcolBillStatus();
+                        colBillStatusDT = ToDataTable(TempPremitcolBillStatusDT);
+                        withBlock1.DataSource = colBillStatusDT;
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Bill State' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 13;
+                        withBlock1.HeaderText = "Bill State";
+                        withBlock1.DataPropertyName = "BillState";
+                        withBlock1.Name = "cmbBillState";
+                    }
+
+                    withBlock.Columns.Add(colBillStatus);
+                }
+                {
+                    var withBlock = grvPermitsRequiredInspection;
+
+                    // Set Column Property
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Visible = true;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = true;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = true;
+                    withBlock.Columns["Expires"].Width = 90;
+                    withBlock.Columns["FinalAction"].Visible = false;
+                    withBlock.Columns["FinalAction"].Width = 80;
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = true;
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 360;
+                    withBlock.Columns["TrackSub"].Width = 200;
+                    withBlock.Columns["TrackSubID"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void SetColumnNotes()
+        {
+            //DataAccessLayer cmbobj = new DataAccessLayer();
+            try
+            {
+
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempColumnNotes = dAL.NotesSetColumn();
+                    dtNotes = ToDataTable(TempColumnNotes);
+
+                    grvNotesCommunication.DataSource = dtNotes;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+                // Grid Formatting
+                {
+                    var withBlock = grvNotesCommunication;
+                    DataGridViewComboBoxColumn colTM = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTM;
+                        DataTable colTMDT = new DataTable();
+                        var TempNotescolTM = dAL.GetPreRequirementcolTM();
+                        colTMDT = ToDataTable(TempNotescolTM);
+                        withBlock1.DataSource = colTMDT;
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 2;
+                        withBlock1.HeaderText = "TM";
+                        withBlock1.DataPropertyName = "TaskHandler";
+                        withBlock1.Width = 58;
+                        withBlock1.Name = "cmbTaskHandler";
+                    }
+
+                    withBlock.Columns.Add(colTM);
+
+                    DataGridViewComboBoxColumn colTrack = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colTrack;
+                        DataTable colTrackDT = new DataTable();
+                        var TempNotescolTrack = dAL.GetNotescolTrack();
+                        colTrackDT = ToDataTable(TempNotescolTrack);
+                        withBlock1.DataSource = colTrackDT;
+                        //withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='Notes/Communication'");
+                        withBlock1.DisplayMember = "Trackname";
+                        withBlock1.DisplayIndex = 4;
+                        withBlock1.HeaderText = "Track";
+                        withBlock1.DataPropertyName = "Track";
+                        withBlock1.Name = "cmbTrack";
+                    }
+
+                    withBlock.Columns.Add(colTrack);
+
+                    DataGridViewComboBoxColumn colStatus = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colStatus;
+                        DataTable colStatusDT = new DataTable();
+                        var TempNotescolStatusDT = dAL.GetPreRequirementcolStatus();
+                        colStatusDT = ToDataTable(TempNotescolStatusDT);
+                        withBlock1.DataSource = colStatusDT;
+
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Status' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 9;
+                        withBlock1.HeaderText = "Status";
+                        withBlock1.DataPropertyName = "Status";
+                        withBlock1.Name = "cmbStatus";
+                    }
+                    withBlock.Columns.Add(colStatus);
+
+                    DataGridViewComboBoxColumn colBillStatus = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = colBillStatus;
+                        DataTable colBillStatusDT = new DataTable();
+                        var NotescolBillStatusDT = dAL.GetPermitsRequirementcolBillStatus();
+                        colBillStatusDT = ToDataTable(NotescolBillStatusDT);
+                        //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Bill State' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
+                        withBlock1.DisplayMember = "cTrack";
+                        withBlock1.DisplayIndex = 13;
+                        withBlock1.HeaderText = "Bill State";
+                        withBlock1.DataPropertyName = "BillState";
+                        withBlock1.Name = "cmbBillState";
+                    }
+                    withBlock.Columns.Add(colBillStatus);
+
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Visible = true;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = false;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = false;
+                    withBlock.Columns["Expires"].Width = 90;
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = false;
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 550;
+                    withBlock.Columns["TrackSub"].Width = 200;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
 
     }
 }

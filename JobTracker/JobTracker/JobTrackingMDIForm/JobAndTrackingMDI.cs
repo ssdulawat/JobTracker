@@ -43,9 +43,9 @@ namespace JobTracker.JobTrackingMDIForm
         }
         private void Manager_Click(System.Object sender, System.EventArgs e)
         {
-             CreateFromandtab(JobStatus.Instance);
+            CreateFromandtab(JobStatus.Instance);
         }
-        
+
 
         private void JobAndTrackingMDI_Load(object sender, EventArgs e)
         {
@@ -100,7 +100,16 @@ namespace JobTracker.JobTrackingMDIForm
 
         private void TimerDateTime_Tick(object sender, EventArgs e)
         {
-
+            try
+            {
+                lblDate.Text = "DATE:-" + string.Format(DateTime.Now.ToString("MM-dd-yyyy"));
+                lblTime.Text = "TIME:-" + string.Format(DateTime.Now.ToString("hh:mm:ss tt"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //MsgBox(ex.Message);
+            }
         }
 
         private void TimerGet_Tick(object sender, EventArgs e)
@@ -164,7 +173,7 @@ namespace JobTracker.JobTrackingMDIForm
                     if (frm.Text == Newfrm.Text)
                     {
                         Newfrm.BringToFront();
-                       // tabctrlFrm.SelectedTab = tabctrlFrm.Tabs.Item(Newfrm.Text);
+                        // tabctrlFrm.SelectedTab = tabctrlFrm.Tabs.Item(Newfrm.Text);
                         return;
                     }
                 }
