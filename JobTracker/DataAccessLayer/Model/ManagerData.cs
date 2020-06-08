@@ -236,5 +236,11 @@ namespace DataAccessLayer.Model
         public string InvOvr { get; set; }
 
     }
+
+    public class TableVersion
+    {
+        public int? TableVersionId { get; set; }
+        public string TableVersionName { get; set; }
+    }
 }
 

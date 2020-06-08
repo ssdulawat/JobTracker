@@ -133,5 +133,20 @@ namespace DataAccessLayer
             return result;
         }
 
+        public List<TableVersion> GetTableVersion()
+        {
+            string queryString = "select * from VersionTable  union SELECT 0 as TableVersionId, '--Use Default--' as TableVersionName order by TableVersionId";
+            var result = db.Database.SqlQuery<TableVersion>(queryString).ToList();
+
+            return result;
+        }
+
+        public List<ManagerData> GetManagerDataAfterFilter(string queryString)
+        {
+            var result = db.Database.SqlQuery<ManagerData>(queryString).ToList();
+
+            return result;
+        }
+
     }
 }

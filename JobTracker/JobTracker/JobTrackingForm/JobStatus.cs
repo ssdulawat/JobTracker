@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -150,10 +151,10 @@ namespace JobTracker.JobTrackingForm
 
                         SetColumns();
                         fillGridJobList();
-                        var MainGrid = new List<ManagerData>();
-                        MainGrid = dAL.GetManagerData();
+                        //var MainGrid = new List<ManagerData>();
+                        //MainGrid = dAL.GetManagerData();
 
-                        grvJobList.DataSource = MainGrid;
+                        //grvJobList.DataSource = MainGrid;
                         selectRecord_Joblist = false;
                     }
                     catch (Exception ex)
@@ -214,237 +215,321 @@ namespace JobTracker.JobTrackingForm
 
         private void fillGridJobList()
         {
-            //try
-            //{
-            //    DataAccessLayer DAL = new DataAccessLayer();
-            //    string queryString = "SELECT  DISTINCT    JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,   Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold," + " jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail," + "CONVERT(INT,jd.TableVersionId) AS RateVersionId," + "jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN            Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN      Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN        JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID {0}    WHERE (JobList.IsDelete=0 or JobList.IsDelete is null) ";
-            //    // Dim queryString As String = "SELECT  DISTINCT    JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough , JobList.Address,      Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts,( case when JobList.ContactsEmails='' or JobList.ContactsEmails is null then  Contacts.EmailAddress else JobList.ContactsEmails end) as EmailAddress, Contacts.ContactsID,   Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo FROM  JobList LEFT OUTER JOIN            Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN      Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN        JobTracking ON JobList.JobListID = JobTracking.JobListID     WHERE (JobList.IsDelete=0 or JobList.IsDelete is null)"
+            try
+            {
+                //DataAccessLayer DAL = new DataAccessLayer();
+                string queryString = "SELECT  DISTINCT    JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold," + " jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail," + "CONVERT(INT,jd.TableVersionId) AS RateVersionId," + "jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID {0}  WHERE (JobList.IsDelete=0 or JobList.IsDelete is null) ";
 
-            //    if (this.txtJobListJobID.Text != "")
-            //        queryString = queryString + " and JobList.JobNumber Like'%" + txtJobListJobID.Text + "%'";
-            //    // If Me.txtJobListclient.Text <> "" Then queryString = queryString & " and CompanyName Like'%" & txtJobListclient.Text & "%'"
-            //    if (this.txtJobListclient.Text != "")
-            //        queryString = queryString + " and CHARINDEX( ISNULL(NULLIF('" + txtJobListclient.Text + "',''),CompanyName),CompanyName)>0 ";
 
-            //    if (this.txtJobListAddress.Text != "")
-            //        queryString = queryString + " and JobList.Address Like'%" + txtJobListAddress.Text + "%'";
+                if (this.txtJobListJobID.Text != "")
+                    queryString = queryString + " and JobList.JobNumber Like'%" + txtJobListJobID.Text + "%'";
 
-            //    if (txtTown.Text != "")
-            //        queryString = queryString + " and JobList.Borough like'" + txtTown.Text + "%'";
+                if (this.txtJobListclient.Text != "")
+                    queryString = queryString + " and CHARINDEX( ISNULL(NULLIF('" + txtJobListclient.Text + "',''),CompanyName),CompanyName)>0 ";
 
-            //    if (txtJoblistClienttext.Text != "")
-            //        queryString = queryString + " and JobList.Clienttext like'" + txtJoblistClienttext.Text + "%'";
+                if (this.txtJobListAddress.Text != "")
+                    queryString = queryString + " and JobList.Address Like'%" + txtJobListAddress.Text + "%'";
 
-            //    if (this.txtJobListSearchDescription.Text != "")
-            //        queryString = queryString + " and JobList.Description like'%" + txtJobListSearchDescription.Text + "%'";
+                if (txtTown.Text != "")
+                    queryString = queryString + " and JobList.Borough like'" + txtTown.Text + "%'";
 
-            //    if (this.cbxJobListPM.SelectedItem != "")
-            //        queryString = queryString + " and Handler='" + cbxJobListPM.SelectedItem + "'";
+                if (txtJoblistClienttext.Text != "")
+                    queryString = queryString + " and JobList.Clienttext like'" + txtJoblistClienttext.Text + "%'";
 
-            //    if (this.cbxJobListPMrv.SelectedItem != "")
-            //        queryString = queryString + " and PMrv='" + cbxJobListPMrv.SelectedItem + "'";
+                if (this.txtJobListSearchDescription.Text != "")
+                    queryString = queryString + " and JobList.Description like'%" + txtJobListSearchDescription.Text + "%'";
 
-            //    if (this.cbxSearchTm.SelectedItem != "")
-            //        queryString = queryString + " and JobTracking.TaskHandler ='" + cbxSearchTm.SelectedItem + "'";
+                //if (this.cbxJobListPM.SelectedItem.ToString() != "")
+                //    queryString = queryString + " and Handler='" + cbxJobListPM.SelectedItem + "'";
 
-            //    if (chkShowOnlyPending.Checked == true)
-            //        queryString = queryString + "AND JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE Status='Pending' AND (IsDelete=0 or IsDelete is null ) )"; // (Old Query updated on Date-July 16,2012) and JobTracking.Status='Pending'"
-            //    if (chkNotInvoiceJob.Checked == true)
-            //    {
-            //        queryString = string.Format(queryString, " INNER JOIN JobTracking JT ON JobList.JobListId = JT.JobListId AND  (JT.IsDelete=0 or JT.IsDelete is null )");
-            //        // Unchecked Invoice Hold & Not Invoiced (TrackSub) & Not Pending (TrackSub) & Unchecked Disabled & Invoice Type = Item 
-            //        // queryString = queryString & " AND JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE BillState ='Not Invoiced' AND Status <> 'Pending' AND (IsDelete=0 or IsDelete is null ) ) AND JobList.TypicalInvoiceType='Item' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0) "
-            //        queryString = queryString + " AND ((JT.BillState ='Not Invoiced' AND JT.Status <> 'Pending' AND JobList.TypicalInvoiceType='Item' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0)) ";
-            //        // Unchecked Invoice Hold & Not Invoiced (Time) & Unchecked Disabled & Invoice Type = Time
-            //        // queryString = queryString & " OR (JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE Track='Time;' AND BillState ='Not Invoiced' AND (IsDelete=0 or IsDelete is null ) ) AND JobList.TypicalInvoiceType='Time' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0) )"
-            //        queryString = queryString + " OR ((SELECT COUNT(*) FROM TS_Time WHERE JobListId=JobList.JobListId AND BillState='Not Invoice')> 0 AND JobList.TypicalInvoiceType='Time' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0))";
-            //        // Unchecked Invoice Hold & Not Invoiced (Expense) & Unchecked Disabled
-            //        // queryString = queryString & " OR (JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE Track='Reinburs;' AND BillState ='Not Invoiced' AND (IsDelete=0 or IsDelete is null ) )  AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0) )"
-            //        queryString = queryString + " OR ((SELECT COUNT(*) FROM TS_Expences WHERE JobListId=JobList.JobListId AND BillState='Not Invoice')> 0 AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0)))";
-            //    }
-            //    else
-            //        queryString = string.Format(queryString, "");
-            //    if (chkShowDisabled.Checked == false)
-            //        queryString = queryString + " AND (JobList.IsDisable = 0  OR JobList.IsDisable IS NULL)";
+                //if (cbxJobListPMrv.SelectedItem.ToString() != "")
+                //    queryString = queryString + " and PMrv='" + cbxJobListPMrv.SelectedItem + "'";
 
-            //    if (chkInvoiceHold.Checked == true)
-            //        queryString = queryString + " AND (JobList.IsInvoiceHold = 1 )";
-            //    else
-            //        queryString = queryString + " AND (JobList.IsInvoiceHold = 0 )";
+                //if (cbxSearchTm.SelectedItem.ToString() != "")
+                //    queryString = queryString + " and JobTracking.TaskHandler ='" + cbxSearchTm.SelectedItem + "'";
 
-            //    if (txtCommentsPreRequire.Text.Trim != string.Empty)
-            //        queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Comments like '%" + txtCommentsPreRequire.Text.Trim + "%' AND (IsDelete=0 or IsDelete is null ) )";
-            //    if (cmbTMWithPending.Text.Trim != "")
-            //        queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Status='Pending' AND TaskHandler =  '" + cmbTMWithPending.Text.Trim + "' AND (IsDelete=0 or IsDelete is null ))";
-            //    // If cmbBillStatePermit.Text.Trim <> String.Empty Then
-            //    // queryString = queryString & " AND JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE BillState ='" + cmbBillStatePermit.Text.Trim + "' ) "
-            //    // End If
-            //    if (selectRecord_Joblist == true)
-            //        queryString = queryString + "AND JobList.JobListID IN (SELECT TOP 100 JobListID FROM JobList WHERE IsDelete=0 or IsDelete is null order by JobListID DESC )";
-            //    string startDate;
-            //    string endDate;
-            //    Int16 index;
-            //    if (chkYear.Checked == true)
-            //    {
-            //        // index = cmbYear.SelectedIndex * -1
-            //        startDate = (System.DateTime.Now.AddYears(index)).Year.ToString() + "-01-01 00:00:00.000";
-            //        endDate = (System.DateTime.Now.AddYears(index + 1)).Year.ToString() + "-01-01 00:00:00.000";
-            //        // queryString = queryString & " AND  JobList.DateAdded > '" + startDate + "' AND  JobList.DateAdded < '" + endDate + "' "
-            //        queryString = queryString + " AND  YEAR(JobList.DateAdded) = " + cmbYear.Text;
-            //    }
-            //    queryString = queryString + "  order by JobList.JobListID  ";
-            //    try
-            //    {
-            //        // Attempt to load the dataset.
-            //        dtJL = DAL.Filldatatable(queryString);
-            //        grvJobList.DataSource = dtJL;
-            //    }
-            //    catch (Exception eLoad)
-            //    {
-            //        // Add your error handling code here.
-            //        // Display error message, if any.
-            //        KryptonMessageBox.Show(eLoad.Message, "Manager");
-            //    }
-            //    // Grid Formatting
-            //    {
-            //        var withBlock = grvJobList;
-            //        withBlock.Columns("JobListID").Visible = false;
-            //        withBlock.Columns("JobNumber").HeaderText = "Job#";
-            //        withBlock.Columns("JobNumber").Width = 80;
-            //        withBlock.Columns("DateAdded").Width = 1;
-            //        withBlock.Columns("DateAdded").HeaderText = "Added";
-            //        withBlock.Columns("DateAdded").Width = 80;
-            //        withBlock.Columns("Description").HeaderText = "Description";
-            //        withBlock.Columns("Clienttext").HeaderText = "Client Text";
-            //        withBlock.Columns("Clienttext").Width = 180;
-            //        withBlock.Columns("Description").Width = 200;
-            //        withBlock.Columns("Handler").HeaderText = "PM";
-            //        withBlock.Columns("Handler").Width = 40;
-            //        withBlock.Columns("Address").Width = 150;
-            //        withBlock.Columns("CompanyID").Width = 130;
-            //        withBlock.Columns("Borough").Width = 90;
-            //        withBlock.Columns("Borough").HeaderText = "Town";
-            //        withBlock.Columns("Contacts").Width = 130;
-            //        // .Columns("Contacts").ReadOnly = True
-            //        withBlock.Columns("EmailAddress").Width = 250;
-            //        withBlock.Columns("Handler").Visible = false;
-            //        // .Columns("Borough").Visible = False
-            //        withBlock.Columns("CompanyID").Visible = false;
-            //        withBlock.Columns("Contacts").Visible = true;
-            //        withBlock.Columns("ContactsID").Visible = false;
-            //        withBlock.Columns("CompanyName").Visible = false;
-            //        withBlock.Columns("OwnerName").HeaderText = "Owner Name";
-            //        withBlock.Columns("OwnerAddress").HeaderText = "Owner Address";
-            //        withBlock.Columns("OwnerPhone").HeaderText = "Owner Phone";
-            //        withBlock.Columns("OwnerFax").HeaderText = "Owner Fax";
-            //        withBlock.Columns("ACContacts").HeaderText = "AC Contacts";
-            //        withBlock.Columns("ACEmail").HeaderText = "AC Email";
-            //        withBlock.Columns("CompanyNo").Visible = false;
-            //        // .Columns("PMrv").DisplayIndex = (grvJobList.Columns.Count - 2)
-            //        withBlock.Columns("PMrv").HeaderText = "PMrv";
-            //        withBlock.Columns("PMrv").Width = 40;
-            //        // .Columns("DBadClient").Visible = False
-            //        withBlock.Columns("PMrv").Visible = false;
+                if (chkShowOnlyPending.Checked == true)
+                    queryString = queryString + "AND JobList.JobListID IN ( SELECT JobListID FROM JobTracking WHERE Status='Pending' AND (IsDelete=0 or IsDelete is null ) )";
+                if (chkNotInvoiceJob.Checked == true)
+                {
+                    queryString = string.Format(queryString, " INNER JOIN JobTracking JT ON JobList.JobListId = JT.JobListId AND  (JT.IsDelete=0 or JT.IsDelete is null )");
 
-            //        withBlock.Columns("IsDisable").DisplayIndex = grvJobList.Columns.Count - 11;
-            //        withBlock.Columns("IsDisable").HeaderText = "Disabled";
-            //        withBlock.Columns("IsDisable").Width = 60;
+                    queryString = queryString + " AND ((JT.BillState ='Not Invoiced' AND JT.Status <> 'Pending' AND JobList.TypicalInvoiceType='Item' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0)) ";
 
-            //        withBlock.Columns("IsInvoiceHold").DisplayIndex = grvJobList.Columns.Count - 10;
-            //        withBlock.Columns("IsInvoiceHold").HeaderText = "Invoice Hold";
-            //        withBlock.Columns("IsInvoiceHold").Width = 100;
+                    queryString = queryString + " OR ((SELECT COUNT(*) FROM TS_Time WHERE JobListId=JobList.JobListId AND BillState='Not Invoice')> 0 AND JobList.TypicalInvoiceType='Time' AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0))";
+
+                    queryString = queryString + " OR ((SELECT COUNT(*) FROM TS_Expences WHERE JobListId=JobList.JobListId AND BillState='Not Invoice')> 0 AND (JobList.IsDisable IS NULL OR JobList.ISDisable=0) AND (JobList.IsInvoiceHold IS NULL OR JobList.IsInvoiceHold=0)))";
+                }
+                else
+                    queryString = string.Format(queryString, "");
+                if (chkShowDisabled.Checked == false)
+                    queryString = queryString + " AND (JobList.IsDisable = 0  OR JobList.IsDisable IS NULL)";
+
+                if (chkInvoiceHold.Checked == true)
+                    queryString = queryString + " AND (JobList.IsInvoiceHold = 1 )";
+                else
+                    queryString = queryString + " AND (JobList.IsInvoiceHold = 0 )";
+
+                if (txtCommentsPreRequire.Text.Trim() != string.Empty)
+                    queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%' AND (IsDelete=0 or IsDelete is null ) )";
+                if (cmbTMWithPending.Text.Trim() != "")
+                    queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Status='Pending' AND TaskHandler =  '" + cmbTMWithPending.Text.Trim() + "' AND (IsDelete=0 or IsDelete is null ))";
+                
+                if (selectRecord_Joblist == true)
+                    queryString = queryString + "AND JobList.JobListID IN (SELECT TOP 100 JobListID FROM JobList WHERE IsDelete=0 or IsDelete is null order by JobListID DESC )";
+                string startDate;
+                string endDate;
+                int index = 0;
+                if (chkYear.Checked == true)
+                {
+                    // index = cmbYear.SelectedIndex * -1
+                    startDate = System.DateTime.Now.AddYears(index).Year.ToString() + "-01-01 00:00:00.000";
+                    endDate = (System.DateTime.Now.AddYears(index + 1)).Year.ToString() + "-01-01 00:00:00.000";
+                    // queryString = queryString & " AND  JobList.DateAdded > '" + startDate + "' AND  JobList.DateAdded < '" + endDate + "' "
+                    queryString = queryString + " AND  YEAR(JobList.DateAdded) = " + cmbYear.Text;
+                }
+                queryString = queryString + "  order by JobList.JobListID  ";
+                try
+                {
+                    // Attempt to load the dataset.
+                    //dtJL = DAL.Filldatatable(queryString);
+                    var TempDataAfterFilter = dAL.GetManagerDataAfterFilter(queryString);
+                    dtJL = ToDataTable(TempDataAfterFilter);
+                    grvJobList.DataSource = dtJL;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+                // Grid Formatting
+                {
+                    var withBlock = grvJobList;
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Width = 80;
+                    withBlock.Columns["DateAdded"].Width = 1;
+                    withBlock.Columns["DateAdded"].HeaderText = "Added";
+                    withBlock.Columns["DateAdded"].Width = 80;
+                    withBlock.Columns["Description"].HeaderText = "Description";
+                    withBlock.Columns["Clienttext"].HeaderText = "Client Text";
+                    withBlock.Columns["Clienttext"].Width = 180;
+                    withBlock.Columns["Description"].Width = 200;
+                    withBlock.Columns["Handler"].HeaderText = "PM";
+                    withBlock.Columns["Handler"].Width = 40;
+                    withBlock.Columns["Address"].Width = 150;
+                    withBlock.Columns["CompanyID"].Width = 130;
+                    withBlock.Columns["Borough"].Width = 90;
+                    withBlock.Columns["Borough"].HeaderText = "Town";
+                    withBlock.Columns["Contacts"].Width = 130;
+                    // .Columns("Contacts").ReadOnly = True
+                    withBlock.Columns["EmailAddress"].Width = 250;
+                    withBlock.Columns["Handler"].Visible = false;
+                    // .Columns("Borough").Visible = False
+                    withBlock.Columns["CompanyID"].Visible = false;
+                    withBlock.Columns["Contacts"].Visible = true;
+                    withBlock.Columns["ContactsID"].Visible = false;
+                    withBlock.Columns["CompanyName"].Visible = false;
+                    withBlock.Columns["OwnerName"].HeaderText = "Owner Name";
+                    withBlock.Columns["OwnerAddress"].HeaderText = "Owner Address";
+                    withBlock.Columns["OwnerPhone"].HeaderText = "Owner Phone";
+                    withBlock.Columns["OwnerFax"].HeaderText = "Owner Fax";
+                    withBlock.Columns["ACContacts"].HeaderText = "AC Contacts";
+                    withBlock.Columns["ACEmail"].HeaderText = "AC Email";
+                    withBlock.Columns["CompanyNo"].Visible = false;
+                    withBlock.Columns["PMrv"].HeaderText = "PMrv";
+                    withBlock.Columns["PMrv"].Width = 40;
+                    withBlock.Columns["PMrv"].Visible = false;
+
+                    withBlock.Columns["IsDisable"].DisplayIndex = grvJobList.Columns.Count - 11;
+                    withBlock.Columns["IsDisable"].HeaderText = "Disabled";
+                    withBlock.Columns["IsDisable"].Width = 60;
+
+                    withBlock.Columns["IsInvoiceHold"].DisplayIndex = grvJobList.Columns.Count - 10;
+                    withBlock.Columns["IsInvoiceHold"].HeaderText = "Invoice Hold";
+                    withBlock.Columns["IsInvoiceHold"].Width = 100;
 
 
 
-            //        withBlock.Columns("cmbInvoiceClient").HeaderText = "InvoiceClient";
-            //        withBlock.Columns("cmbInvoiceClient").DisplayIndex = grvJobList.Columns.Count - 9;
-            //        withBlock.Columns("InvoiceContact").Width = 90;
+                    withBlock.Columns["cmbInvoiceClient"].HeaderText = "InvoiceClient";
+                    withBlock.Columns["cmbInvoiceClient"].DisplayIndex = grvJobList.Columns.Count - 9;
+                    withBlock.Columns["InvoiceContact"].Width = 90;
 
-            //        withBlock.Columns("InvoiceContact").Visible = false;
-            //        withBlock.Columns("InvoiceContactT").HeaderText = "InvoiceContact";
-            //        withBlock.Columns("InvoiceContactT").DisplayIndex = grvJobList.Columns.Count - 8;
-            //        withBlock.Columns("InvoiceEmailAddress").Width = 90;
-            //        withBlock.Columns("InvoiceEmailAddress").HeaderText = "InvoiceEmailAddress";
-            //        withBlock.Columns("InvoiceEmailAddress").DisplayIndex = grvJobList.Columns.Count - 7;
+                    withBlock.Columns["InvoiceContact"].Visible = false;
+                    withBlock.Columns["InvoiceContactT"].HeaderText = "InvoiceContact";
+                    withBlock.Columns["InvoiceContactT"].DisplayIndex = grvJobList.Columns.Count - 8;
+                    withBlock.Columns["InvoiceEmailAddress"].Width = 90;
+                    withBlock.Columns["InvoiceEmailAddress"].HeaderText = "InvoiceEmailAddress";
+                    withBlock.Columns["InvoiceEmailAddress"].DisplayIndex = grvJobList.Columns.Count - 7;
 
-            //        withBlock.Columns("InvoiceACContacts").Visible = false;
-            //        withBlock.Columns("InvoiceACContactsT").Width = 90;
-            //        withBlock.Columns("InvoiceACContactsT").HeaderText = "InvoiceACContacts";
-            //        withBlock.Columns("InvoiceACContactsT").DisplayIndex = grvJobList.Columns.Count - 6;
+                    withBlock.Columns["InvoiceACContacts"].Visible = false;
+                    withBlock.Columns["InvoiceACContactsT"].Width = 90;
+                    withBlock.Columns["InvoiceACContactsT"].HeaderText = "InvoiceACContacts";
+                    withBlock.Columns["InvoiceACContactsT"].DisplayIndex = grvJobList.Columns.Count - 6;
 
-            //        withBlock.Columns("InvoiceACEmail").Width = 90;
-            //        withBlock.Columns("InvoiceACEmail").HeaderText = "InvoiceACEmail";
-            //        withBlock.Columns("InvoiceACEmail").DisplayIndex = grvJobList.Columns.Count - 5;
+                    withBlock.Columns["InvoiceACEmail"].Width = 90;
+                    withBlock.Columns["InvoiceACEmail"].HeaderText = "InvoiceACEmail";
+                    withBlock.Columns["InvoiceACEmail"].DisplayIndex = grvJobList.Columns.Count - 5;
 
-            //        withBlock.Columns("cmbTypicalInvoiceType").DisplayIndex = grvJobList.Columns.Count - 4;
-            //        withBlock.Columns("TypicalInvoiceType").HeaderText = "Invoice Type";
-            //        withBlock.Columns("TypicalInvoiceType").Width = 100;
-            //        // Item rate column display index setup code will found it partial calss
+                    withBlock.Columns["cmbTypicalInvoiceType"].DisplayIndex = grvJobList.Columns.Count - 4;
+                    withBlock.Columns["TypicalInvoiceType"].HeaderText = "Invoice Type";
+                    withBlock.Columns["TypicalInvoiceType"].Width = 100;
+                    // Item rate column display index setup code will found it partial calss
 
-            //        withBlock.Columns("ServRate").Width = 90;
-            //        withBlock.Columns("ServRate").HeaderText = "Serv Rate";
-            //        withBlock.Columns("ServRate").DisplayIndex = grvJobList.Columns.Count - 2;
+                    withBlock.Columns["ServRate"].Width = 90;
+                    withBlock.Columns["ServRate"].HeaderText = "Serv Rate";
+                    withBlock.Columns["ServRate"].DisplayIndex = grvJobList.Columns.Count - 2;
 
-            //        withBlock.Columns("AdminInvoice").Width = 100;
-            //        withBlock.Columns("AdminInvoice").HeaderText = "Admin Inv.";
-            //        withBlock.Columns("AdminInvoice").DisplayIndex = grvJobList.Columns.Count - 1;
-            //    }
-            //    JobListGridRateVersionColumn(grvJobList);
+                    withBlock.Columns["AdminInvoice"].Width = 100;
+                    withBlock.Columns["AdminInvoice"].HeaderText = "Admin Inv.";
+                    withBlock.Columns["AdminInvoice"].DisplayIndex = grvJobList.Columns.Count - 1;
+                }
 
-            //    if (My.Settings.PretimeSheetLoginUserType == "Admin" | My.Settings.timeSheetLoginUserType == "Admin")
-            //    {
-            //        UserType = "Admin";
-            //        grvJobList.Columns("IsDisable").Visible = true;
-            //        grvJobList.Columns("IsInvoiceHold").Visible = true;
-            //    }
-            //    else
-            //    {
-            //        grvJobList.Columns("IsDisable").Visible = false;
-            //        grvJobList.Columns("IsInvoiceHold").Visible = false;
-            //    }
+                JobListGridRateVersionColumn(ref grvJobList);
 
-            //    if (grvJobList.Rows.Count > 0)
-            //    {
-            //        grvJobList.CurrentCell = grvJobList.Rows(grvJobList.Rows.Count - 1).Cells("Address");
-            //        grvJobList.Rows(grvJobList.Rows.Count - 1).Selected = true;
+                //Need to do after My.Settings will apply Todo
+                //if (My.Settings.PretimeSheetLoginUserType == "Admin" | My.Settings.timeSheetLoginUserType == "Admin")
+                //{
+                //    UserType = "Admin";
+                //    grvJobList.Columns["IsDisable"].Visible = true;
+                //    grvJobList.Columns["IsInvoiceHold"].Visible = true;
+                //}
+                //else
+                //{
+                //    grvJobList.Columns["IsDisable"].Visible = false;
+                //    grvJobList.Columns["IsInvoiceHold"].Visible = false;
+                //}
 
-            //        selectedJobListID = Convert.ToInt32(grvJobList.Item("JobListID", grvJobList.Rows.Count - 1).Value);
-            //        isDisabled = Convert.ToBoolean(grvJobList.Item("IsDisable", grvJobList.Rows.Count - 1).Value);
-            //        lblCompanyNo.Text = "Client No:- " + grvJobList.Rows(grvJobList.CurrentRow.Index).Cells("CompanyNo").Value.ToString();
-            //    }
-            //    else
-            //    {
-            //        selectedJobListID = 0;
-            //        isDisabled = false;
-            //    }
-            //    if (grvJobList.Rows.Count > 0)
-            //        grvJobList.CurrentCell = grvJobList.Rows(grvJobList.Rows.Count - 1).Cells("Address");
-            //    if (grvJobList.Rows.Count > 0)
-            //    {
-            //        selectedJobListID = Convert.ToInt32(grvJobList.Item("JobListID", grvJobList.Rows.Count - 1).Value);
-            //        isDisabled = Convert.ToBoolean(grvJobList.Item("IsDisable", grvJobList.Rows.Count - 1).Value);
-            //    }
-            //    if (selectRecord_Joblist == false)
-            //    {
-            //        FillGridPreRequirment();
-            //        FillGridPermitRequiredInspection();
-            //        FillGridNotesCommunication();
-            //        if ((isDisabled))
-            //            disableJob(true);
-            //        else
-            //            disableJob(false);
-            //        SetBadClient();
-            //        if (grvJobList.Rows.Count > 0)
-            //            ChangeDirJobNumber(grvJobList.Rows.Count - 1);
-            //        ChangeTraficLight(grvJobList.Rows.Count - 1);
-            //    }
-            //    selectRecord_Joblist = false;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                if (grvJobList.Rows.Count > 0)
+                {
+                    grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["Address"];
+                    grvJobList.Rows[grvJobList.Rows.Count - 1].Selected = true;
+
+                    selectedJobListID = Convert.ToInt32(grvJobList["JobListID", grvJobList.Rows.Count - 1].Value==DBNull.Value?0:grvJobList["JobListID", grvJobList.Rows.Count - 1].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value== DBNull.Value ? 0 : grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value);
+                    lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["CompanyNo"].Value.ToString();
+                }
+                else
+                {
+                    selectedJobListID = 0;
+                    isDisabled = false;
+                }
+                if (grvJobList.Rows.Count > 0)
+                    grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["Address"];
+                if (grvJobList.Rows.Count > 0)
+                {
+                    selectedJobListID = Convert.ToInt32(grvJobList["JobListID", grvJobList.Rows.Count - 1].Value == DBNull.Value ? 0 : grvJobList["JobListID", grvJobList.Rows.Count - 1].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value == DBNull.Value ? 0 : grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value);
+                }
+                if (selectRecord_Joblist == false)
+                {
+                    FillGridPreRequirment();
+                    FillGridPermitRequiredInspection();
+                    FillGridNotesCommunication();
+                    if ((isDisabled))
+                        disableJob(true);
+                    else
+                        disableJob(false);
+                    //SetBadClient();
+                    //if (grvJobList.Rows.Count > 0)
+                        //ChangeDirJobNumber(grvJobList.Rows.Count - 1);
+                    //ChangeTraficLight(grvJobList.Rows.Count - 1);
+                }
+                selectRecord_Joblist = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        //private void SetBadClient()
+        //{
+        //    try
+        //    {
+        //        // Dim dbVariousInfo As New VariousInfoEntities()
+
+        //        foreach (DataGridViewRow grdrow in grvJobList.Rows)
+        //        {
+        //            int companyID = IIf(IsDBNull(grdrow.Cells["CompanyID"].Value), 0, grdrow.Cells["CompanyID"].Value);
+        //            if (companyID == 0)
+        //                continue;
+        //            DAL = new DataAccessLayer();
+        //            Int16 badClient = DAL.ExceuteScaler("SELECT COUNT(CompanyID)as Badcount FROM Company WHERE DBadClient=1 AND CompanyID=" + companyID);
+        //            if (badClient > 0)
+        //            {
+        //                Font F = new Font('Microsoft Sans Serif', 8.5, FontStyle.Strikeout);
+        //                grdrow.DefaultCellStyle.Font = new Font(F, FontStyle.Strikeout);
+        //                grdrow.DefaultCellStyle.BackColor = Color.Gray;
+        //                grdrow.DefaultCellStyle.SelectionBackColor = Color.Gray;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+        private void disableJob(bool flag)
+        {
+            grvPreRequirments.ReadOnly = flag;
+            btnInsertPreReq.Enabled = !flag;
+            btnDeletePreReq.Enabled = !flag;
+            btnCancelPreReq.Enabled = !flag;
+
+            grvNotesCommunication.ReadOnly = flag;
+            btnInsertNotes.Enabled = !flag;
+            btndeleteNotes.Enabled = !flag;
+            btnCancelNotes.Enabled = !flag;
+
+            grvPermitsRequiredInspection.ReadOnly = flag;
+            btnInsertPermit.Enabled = !flag;
+            btnDeletePermit.Enabled = !flag;
+            btnCancelPermit.Enabled = !flag;
+        }
+        private void JobListGridRateVersionColumn(ref DataGridView grd)
+        {
+            {
+                var withBlock = grd;
+                if ((withBlock.Columns["cmbRateVersion"] == null))
+                {
+                    //DataAccessLayer DAL = new DataAccessLayer();
+                    DataGridViewComboBoxColumn cmbVersionTable = new DataGridViewComboBoxColumn();
+                    {
+                        var withBlock1 = cmbVersionTable;
+                        // su
+                        var TempTableVersion = dAL.GetTableVersion();
+                        //dt1 = DAL.Filldatatable("select * from VersionTable  union SELECT 0 as TableVersionId, '--Use Default--' as TableVersionName order by TableVersionId");
+                        DataTable dt1 = ToDataTable(TempTableVersion);
+                        withBlock1.DataSource = dt1;
+                        withBlock1.DisplayMember = "TableVersionName";
+                        withBlock1.ValueMember = "TableVersionId";
+                        withBlock1.DataPropertyName = "RateVersionId";
+                        withBlock1.HeaderText = "Item Rate";
+                        withBlock1.Width = 120;
+                        withBlock1.Name = "cmbRateVersion";
+                    }
+                    withBlock.Columns.Add(cmbVersionTable);
+                    withBlock.Columns["cmbRateVersion"].DisplayIndex = grvJobList.Columns.Count - 2;
+                }
+                else
+                    withBlock.Columns["cmbRateVersion"].DisplayIndex = grvJobList.Columns.Count - 2;
+                withBlock.Columns["RateVersionId"].Visible = false;
+            }
+        }
+
+        private void FillGridNotesCommunication()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FillGridPermitRequiredInspection()
+        {
+            throw new NotImplementedException();
+        }
+
         private void pnlButtonVisible(Panel pnl, bool pnlreset)
         {
             foreach (Control ctrl in pnl.Controls)
@@ -1001,6 +1086,100 @@ namespace JobTracker.JobTrackingForm
             {
             }
         }
+
+        private void FillGridPreRequirment()
+        {
+            //try
+            //{
+            //    //DataAccessLayer DAL = new DataAccessLayer();
+            //    string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID,JobTracking.InvOvr  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (SELECT Trackname FROM MasterTrackSet WHERE TrackSet='PreRequirements') and  JobTracking.JobListID=" + selectedJobListID + " and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null)";
+
+            //    // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
+            //    if (cbxSearchTm.Text.Trim == "")
+            //        queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim + "'";
+            //    if (CmbPreRequireTrack.Text.ToString != "")
+            //        queryString = queryString + " AND JobTracking.Track='" + CmbPreRequireTrack.Text.ToString + "'";
+            //    if (cmbTrackSubPreRequire.Text.ToString != "")
+            //        queryString = queryString + " AND JobTracking.TrackSub='" + cmbTrackSubPreRequire.Text.ToString + "'";
+            //    if (cmbStatusPreRequire.Text.ToString != "")
+            //        queryString = queryString + " AND JobTracking.Status='" + cmbStatusPreRequire.Text.ToString + "'";
+            //    if (txtCommentsPreRequire.Text.Trim != "")
+            //        queryString = queryString + "AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim + "%'";
+            //    if (cmbBillStatePermit.Text.Trim != "")
+            //        queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.Trim + "'";
+            //    if (cmbTMWithPending.Text.Trim != "")
+            //        queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim + "' )";
+            //    queryString = queryString + " order by JobTrackingID";
+
+            //    try
+            //    {
+            //        // Attempt to load the dataset.
+            //        dtPreReq = DAL.Filldatatable(queryString);
+            //        grvPreRequirments.DataSource = dtPreReq;
+            //    }
+            //    catch (Exception eLoad)
+            //    {
+            //        // Add your error handling code here.
+            //        // Display error message, if any.
+            //        KryptonMessageBox.Show(eLoad.Message, "Manager");
+            //    }
+
+
+            //    // Grid Formatting
+            //    {
+            //        var withBlock = grvPreRequirments;
+
+            //        // Set Column Property
+            //        withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+            //        withBlock.Columns["JobListID"].Visible = false;
+            //        withBlock.Columns["JobNumber"].HeaderText = "Job#";
+            //        withBlock.Columns["JobNumber"].Visible = false;
+            //        withBlock.Columns["Track"].Visible = false;
+            //        withBlock.Columns["AddDate"].Width = 90;
+            //        withBlock.Columns["AddDate"].HeaderText = "Added";
+            //        withBlock.Columns["NeedDate"].Visible = false;
+            //        withBlock.Columns["Obtained"].Visible = true;
+            //        withBlock.Columns["Obtained"].Width = 90;
+            //        withBlock.Columns["Expires"].Visible = false;
+            //        withBlock.Columns["Expires"].Width = 90;
+            //        withBlock.Columns["Status"].Visible = false;
+            //        withBlock.Columns["JobTrackingID"].Visible = false;
+            //        withBlock.Columns["TaskHandler"].HeaderText = "TM";
+            //        withBlock.Columns["TaskHandler"].Visible = false;
+            //        withBlock.Columns["Submitted"].Visible = false;
+            //        withBlock.Columns["BillState"].Visible = false;
+            //        withBlock.Columns["Comments"].HeaderText = "Comments";
+            //        withBlock.Columns["Comments"].Width = 522;
+            //        withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
+            //        withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
+            //        withBlock.Columns["TrackSub"].Width = 200;
+            //        withBlock.Columns["TrackSubID"].Visible = false;
+            //    }
+
+            //    btnDeletePreReq.Enabled = true;
+            //    btnInsertPreReq.Text = "Insert";
+            //    if (grvPreRequirments.Rows.Count > 0)
+            //        grvPreRequirments.CurrentCell = grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells("comments");
+
+            //    // Dim rows As IEnumerable(Of DataRow) = dtPreReq.AsEnumerable()
+            //    // Dim catchData As List(Of DataRow) = rows.Where(Function(d) d.Item("Status") = "Pending").ToList()
+            //    Int16 countRow = 0;
+            //    foreach (DataRow dr in dtPreReq.Rows)
+            //    {
+            //        if (dr.Item("Status") == "Pending")
+            //            countRow = countRow + 1;
+            //    }
+            //    if (countRow > 0)
+            //        lblPreRequirment.ForeColor = Color.Tomato;
+            //    else
+            //        lblPreRequirment.ForeColor = Color.Black;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        }
+
 
 
     }
