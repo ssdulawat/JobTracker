@@ -54,6 +54,7 @@ namespace DataAccessLayer.Model
 
     public class PreRequirement
     {
+        public int? JobListID { get; set; }
         public string JobNumber { get; set; }
         public string TaskHandler { get; set; }
         public string Track { get; set; }
@@ -73,6 +74,8 @@ namespace DataAccessLayer.Model
     }
     public class PermitsRequirement
     {
+        public int? JobListID { get; set; }
+        public string JobNumber { get; set; }
         public string TaskHandler { get; set; }
         public string Track { get; set; }
         public string TrackSub { get; set; }
@@ -84,19 +87,32 @@ namespace DataAccessLayer.Model
         public string FinalAction { get; set; }
         public string BillState { get; set; }
         public DateTime? AddDate { get; set; }
+        public DateTime? NeedDate { get; set; }
+        public int? JobTrackingID { get; set; }
+        public int? TrackSubID { get; set; }
+
         public string InvOvr { get; set; }
 
     }
     public class NotesComunication
     {
+        public int? JobListID { get; set; }
+        public string JobNumber { get; set; }
         public string TaskHandler { get; set; }
         public string Track { get; set; }
         public string TrackSub { get; set; }
         public string Comments { get; set; }
+        public DateTime? Submitted { get; set; }
         public string Status { get; set; }
+        public DateTime? NeedDate { get; set; }
+        public int? JobTrackingID { get; set; }
+        public DateTime? Obtained { get; set; }
+        public DateTime? Expires { get; set; }
         public string BillState { get; set; }
         public DateTime? AddDate { get; set; }
+        public int? TrackSubID { get; set; }
         public string InvOvr { get; set; }
+        public string DeleteItemTimeService { get; set; }
 
     }
 

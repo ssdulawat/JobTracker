@@ -215,6 +215,7 @@
             // 
             // grvJobList
             // 
+            this.grvJobList.AllowUserToAddRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -224,6 +225,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grvJobList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grvJobList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvJobList.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,12 +234,15 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grvJobList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grvJobList.Location = new System.Drawing.Point(3, 3);
+            this.grvJobList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grvJobList.Location = new System.Drawing.Point(0, 0);
+            this.grvJobList.MultiSelect = false;
             this.grvJobList.Name = "grvJobList";
-            this.grvJobList.RowHeadersWidth = 51;
             this.grvJobList.RowTemplate.Height = 24;
-            this.grvJobList.Size = new System.Drawing.Size(1336, 153);
-            this.grvJobList.TabIndex = 0;
+            this.grvJobList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grvJobList.Size = new System.Drawing.Size(1339, 178);
+            this.grvJobList.TabIndex = 196;
+            this.grvJobList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvJobList_CellClick);
             // 
             // GrpSrchTrack
             // 

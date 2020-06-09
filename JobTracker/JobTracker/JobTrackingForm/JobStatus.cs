@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -166,28 +167,28 @@ namespace JobTracker.JobTrackingForm
                     if (processcount == 1)
                     {
                         SetColumnPreRequirment();
-                        //  FillGridPreRequirment();
+                        FillGridPreRequirment();
 
-                        var PreRequirement = new List<PreRequirement>();
-                        PreRequirement = dAL.GetPreRequirement();
-                        grvPreRequirments.DataSource = PreRequirement;
+                        //var PreRequirement = new List<PreRequirement>();
+                        //PreRequirement = dAL.GetPreRequirement();
+                        //grvPreRequirments.DataSource = PreRequirement;
 
                     }
                     if (processcount == 2)
                     {
                         SetColumnPermit();
-                        //  FillGridPermitRequiredInspection();
-                        var PermitRequiredInspection = new List<PermitsRequirement>();
-                        PermitRequiredInspection = dAL.GetPermitsRequirement();
-                        grvPreRequirments.DataSource = PermitRequiredInspection;
+                        FillGridPermitRequiredInspection();
+                        //var PermitRequiredInspection = new List<PermitsRequirement>();
+                        //PermitRequiredInspection = dAL.GetPermitsRequirement();
+                        //grvPreRequirments.DataSource = PermitRequiredInspection;
                     }
                     if (processcount == 3)
                     {
                         SetColumnNotes();
-                        //   FillGridNotesCommunication();
-                        var NotesCommunication = new List<NotesComunication>();
-                        NotesCommunication = dAL.GetNotesComunication();
-                        grvPreRequirments.DataSource = NotesCommunication;
+                        FillGridNotesCommunication();
+                        //var NotesCommunication = new List<NotesComunication>();
+                        //NotesCommunication = dAL.GetNotesComunication();
+                        //grvPreRequirments.DataSource = NotesCommunication;
                     }
                     if (processcount == 4)
                         //   SetBadClient();
@@ -217,9 +218,7 @@ namespace JobTracker.JobTrackingForm
         {
             try
             {
-                //DataAccessLayer DAL = new DataAccessLayer();
                 string queryString = "SELECT  DISTINCT    JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold," + " jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail," + "CONVERT(INT,jd.TableVersionId) AS RateVersionId," + "jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID {0}  WHERE (JobList.IsDelete=0 or JobList.IsDelete is null) ";
-
 
                 if (this.txtJobListJobID.Text != "")
                     queryString = queryString + " and JobList.JobNumber Like'%" + txtJobListJobID.Text + "%'";
@@ -274,7 +273,7 @@ namespace JobTracker.JobTrackingForm
                     queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%' AND (IsDelete=0 or IsDelete is null ) )";
                 if (cmbTMWithPending.Text.Trim() != "")
                     queryString = queryString + " AND JobList.JobListID IN (SELECT JobListID FROM JobTracking WHERE Status='Pending' AND TaskHandler =  '" + cmbTMWithPending.Text.Trim() + "' AND (IsDelete=0 or IsDelete is null ))";
-                
+
                 if (selectRecord_Joblist == true)
                     queryString = queryString + "AND JobList.JobListID IN (SELECT TOP 100 JobListID FROM JobList WHERE IsDelete=0 or IsDelete is null order by JobListID DESC )";
                 string startDate;
@@ -406,8 +405,8 @@ namespace JobTracker.JobTrackingForm
                     grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["Address"];
                     grvJobList.Rows[grvJobList.Rows.Count - 1].Selected = true;
 
-                    selectedJobListID = Convert.ToInt32(grvJobList["JobListID", grvJobList.Rows.Count - 1].Value==DBNull.Value?0:grvJobList["JobListID", grvJobList.Rows.Count - 1].Value);
-                    isDisabled = Convert.ToBoolean(grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value== DBNull.Value ? 0 : grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value);
+                    selectedJobListID = Convert.ToInt32(grvJobList["JobListID", grvJobList.Rows.Count - 1].Value == DBNull.Value ? 0 : grvJobList["JobListID", grvJobList.Rows.Count - 1].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value == DBNull.Value ? 0 : grvJobList["IsDisable", grvJobList.Rows.Count - 1].Value);
                     lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["CompanyNo"].Value.ToString();
                 }
                 else
@@ -433,7 +432,7 @@ namespace JobTracker.JobTrackingForm
                         disableJob(false);
                     //SetBadClient();
                     //if (grvJobList.Rows.Count > 0)
-                        //ChangeDirJobNumber(grvJobList.Rows.Count - 1);
+                    //ChangeDirJobNumber(grvJobList.Rows.Count - 1);
                     //ChangeTraficLight(grvJobList.Rows.Count - 1);
                 }
                 selectRecord_Joblist = false;
@@ -522,13 +521,198 @@ namespace JobTracker.JobTrackingForm
 
         private void FillGridNotesCommunication()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID," + "JobTracking.InvOvr," + "JobTracking.DeleteItemTimeService  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (select Trackname from MasterTrackSet where TrackSet='Notes/Communication')  and  JobTracking.JobListID=" + selectedJobListID + "and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null) ";
+
+                if (cbxSearchTm.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
+
+                if (CmbPreRequireTrack.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.Track= '" + CmbPreRequireTrack.Text.Trim() + "'";
+                if (cmbTrackSubPreRequire.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.TrackSub= '" + cmbTrackSubPreRequire.Text.Trim() + "'";
+                if (cmbStatusPreRequire.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.Status= '" + cmbStatusPreRequire.Text.Trim() + "'";
+                if (cmbBillStatePermit.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.Trim() + "'";
+                if (txtCommentsPreRequire.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%'";
+                if (cmbTMWithPending.Text.Trim() != "")
+                    queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim() + "' )";
+                queryString = queryString + " order by JobTrackingID";
+
+
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempNotesComunicationAfterFilter = dAL.GetNotesComunicationDataAfterFilter(queryString);
+                    dtNotes = ToDataTable(TempNotesComunicationAfterFilter);
+                    grvNotesCommunication.DataSource = dtNotes;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+                // Grid Formatting
+                {
+                    var withBlock = grvNotesCommunication;
+
+                    // Set Column Property
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Visible = true;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = false;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = false;
+                    withBlock.Columns["Expires"].Width = 90;
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = false;
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 520;
+                    withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
+                    withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
+                    // .Columns("TrackSub").Visible = False
+                    withBlock.Columns["TrackSub"].Width = 200;
+                    withBlock.Columns["TrackSubID"].Visible = false;
+                    withBlock.Columns["DeleteItemTimeService"].Visible = false;
+                }
+
+                btndeleteNotes.Enabled = true;
+                btnInsertNotes.Text = "Insert";
+                if (grvNotesCommunication.Rows.Count > 0)
+                    grvNotesCommunication.CurrentCell = grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["comments"];
+
+                // Dim rows As IEnumerable(Of DataRow) = dtNotes.AsEnumerable()
+                // Dim catchData As List(Of DataRow) = rows.Where(Function(d) d.Item("Status") = "Pending").ToList()
+                int countRow = 0;
+                foreach (DataRow dr in dtNotes.Rows)
+                {
+                    if (dr["Status"] == "Pending")
+                        countRow = countRow + 1;
+                }
+                if (countRow > 0)
+                    lblNotes.ForeColor = Color.Tomato;
+                else
+                    lblNotes.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void FillGridPermitRequiredInspection()
         {
-            throw new NotImplementedException();
+            try
+            {
+                // DataAccessLayer DAL = new DataAccessLayer();
+
+                string queryString = "SELECT     JobTracking.JobListID, JobList.JobNumber, JobTracking.TaskHandler, JobTracking.Track, JobTracking.TrackSub, JobTracking.Comments, JobTracking.Status, JobTracking.Submitted, JobTracking.Obtained, JobTracking.Expires, JobTracking.FinalAction, JobTracking.BillState, JobTracking.AddDate, JobTracking.NeedDate, JobTracking.JobTrackingID, JobTracking.TrackSubID,JobTracking.InvOvr FROM JobTracking INNER JOIN JobList ON JobTracking.JobListID = JobList.JobListID WHERE (JobTracking.Track IN(SELECT TrackName FROM MasterTrackSet WHERE (TrackSet = 'Permits/Required/Inspection'))) AND (JobTracking.JobListID = " + selectedJobListID + ") AND (JobTracking.IsDelete = 0 OR JobTracking.IsDelete IS NULL)";
+
+                // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
+                if (cbxSearchTm.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
+                if (CmbPreRequireTrack.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.Track='" + CmbPreRequireTrack.Text.ToString() + "'";
+                if (cmbTrackSubPreRequire.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.TrackSub='" + cmbTrackSubPreRequire.Text.ToString() + "'";
+                if (cmbStatusPreRequire.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.Status='" + cmbStatusPreRequire.Text.ToString() + "'";
+                if (txtCommentsPreRequire.Text.Trim() != "")
+                    queryString = queryString + "AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%'";
+                if (cmbBillStatePermit.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.BillState='" + cmbBillStatePermit.Text.ToString() + "'";
+                if (cmbTMWithPending.Text.Trim() != "")
+                    queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim() + "' )";
+                queryString = queryString + " order by JobTrackingID";
+
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempPermitsRequiredAfterFilter = dAL.GetPermitsRequirementDataAfterFilter(queryString);
+                    dtPermit = ToDataTable(TempPermitsRequiredAfterFilter);
+                    grvPermitsRequiredInspection.DataSource = dtPermit;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
+                // Grid Formatting
+                {
+                    var withBlock = grvPermitsRequiredInspection;
+
+                    // Set Column Property
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Visible = true;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = true;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = true;
+                    withBlock.Columns["Expires"].Width = 90;
+                    // .Columns("FinalAction").HeaderText = "Final Action"
+                    // .Columns("FinalAction").Visible = True
+                    // .Columns("FinalAction").Width = 80
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = true;
+
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 330;
+                    withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
+                    withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
+                    // .Columns("TrackSub").Visible = False
+                    withBlock.Columns["TrackSub"].Width = 200;
+                    withBlock.Columns["TrackSubID"].Visible = false;
+                }
+                btnDeletePermit.Enabled = true;
+                btnInsertPermit.Text = "Insert";
+                if (grvPermitsRequiredInspection.Rows.Count > 0)
+                    grvPermitsRequiredInspection.CurrentCell = grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Cells["comments"];
+                // Dim rows As IEnumerable(Of DataRow) = dtPermit.AsEnumerable()
+                // Dim catchData As List(Of DataRow) = rows.Where(Function(d) d.Item("Status") = "Pending").ToList()
+
+                int countRow = 0;
+                foreach (DataRow dr in dtPermit.Rows)
+                {
+                    if (dr["Status"] == "Pending")
+                        countRow = countRow + 1;
+                }
+                if (countRow > 0)
+                    lblPermit.ForeColor = Color.Tomato;
+                else
+                    lblPermit.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void pnlButtonVisible(Panel pnl, bool pnlreset)
         {
@@ -1089,98 +1273,420 @@ namespace JobTracker.JobTrackingForm
 
         private void FillGridPreRequirment()
         {
-            //try
-            //{
-            //    //DataAccessLayer DAL = new DataAccessLayer();
-            //    string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID,JobTracking.InvOvr  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (SELECT Trackname FROM MasterTrackSet WHERE TrackSet='PreRequirements') and  JobTracking.JobListID=" + selectedJobListID + " and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null)";
+            try
+            {
+                string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID,JobTracking.InvOvr  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (SELECT Trackname FROM MasterTrackSet WHERE TrackSet='PreRequirements') and  JobTracking.JobListID=" + selectedJobListID + " and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null)";
 
-            //    // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
-            //    if (cbxSearchTm.Text.Trim == "")
-            //        queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim + "'";
-            //    if (CmbPreRequireTrack.Text.ToString != "")
-            //        queryString = queryString + " AND JobTracking.Track='" + CmbPreRequireTrack.Text.ToString + "'";
-            //    if (cmbTrackSubPreRequire.Text.ToString != "")
-            //        queryString = queryString + " AND JobTracking.TrackSub='" + cmbTrackSubPreRequire.Text.ToString + "'";
-            //    if (cmbStatusPreRequire.Text.ToString != "")
-            //        queryString = queryString + " AND JobTracking.Status='" + cmbStatusPreRequire.Text.ToString + "'";
-            //    if (txtCommentsPreRequire.Text.Trim != "")
-            //        queryString = queryString + "AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim + "%'";
-            //    if (cmbBillStatePermit.Text.Trim != "")
-            //        queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.Trim + "'";
-            //    if (cmbTMWithPending.Text.Trim != "")
-            //        queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim + "' )";
-            //    queryString = queryString + " order by JobTrackingID";
+                // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
+                if (cbxSearchTm.Text.Trim() == "")
+                    queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
+                if (CmbPreRequireTrack.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.Track='" + CmbPreRequireTrack.Text.ToString() + "'";
+                if (cmbTrackSubPreRequire.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.TrackSub='" + cmbTrackSubPreRequire.Text.ToString() + "'";
+                if (cmbStatusPreRequire.Text.ToString() != "")
+                    queryString = queryString + " AND JobTracking.Status='" + cmbStatusPreRequire.Text.ToString() + "'";
+                if (txtCommentsPreRequire.Text.Trim() != "")
+                    queryString = queryString + "AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%'";
+                if (cmbBillStatePermit.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.Trim() + "'";
+                if (cmbTMWithPending.Text.Trim() != "")
+                    queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim() + "' )";
+                queryString = queryString + " order by JobTrackingID";
 
-            //    try
-            //    {
-            //        // Attempt to load the dataset.
-            //        dtPreReq = DAL.Filldatatable(queryString);
-            //        grvPreRequirments.DataSource = dtPreReq;
-            //    }
-            //    catch (Exception eLoad)
-            //    {
-            //        // Add your error handling code here.
-            //        // Display error message, if any.
-            //        KryptonMessageBox.Show(eLoad.Message, "Manager");
-            //    }
+                try
+                {
+                    // Attempt to load the dataset.
+                    var TempPreRequirementDataAfter = dAL.GetPreRequirementDataAfterFilter(queryString);
+                    dtPreReq = ToDataTable(TempPreRequirementDataAfter);
+                    grvPreRequirments.DataSource = dtPreReq;
+                }
+                catch (Exception eLoad)
+                {
+                    // Add your error handling code here.
+                    // Display error message, if any.
+                    KryptonMessageBox.Show(eLoad.Message, "Manager");
+                }
 
 
-            //    // Grid Formatting
-            //    {
-            //        var withBlock = grvPreRequirments;
+                // Grid Formatting
+                {
+                    var withBlock = grvPreRequirments;
 
-            //        // Set Column Property
-            //        withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
-            //        withBlock.Columns["JobListID"].Visible = false;
-            //        withBlock.Columns["JobNumber"].HeaderText = "Job#";
-            //        withBlock.Columns["JobNumber"].Visible = false;
-            //        withBlock.Columns["Track"].Visible = false;
-            //        withBlock.Columns["AddDate"].Width = 90;
-            //        withBlock.Columns["AddDate"].HeaderText = "Added";
-            //        withBlock.Columns["NeedDate"].Visible = false;
-            //        withBlock.Columns["Obtained"].Visible = true;
-            //        withBlock.Columns["Obtained"].Width = 90;
-            //        withBlock.Columns["Expires"].Visible = false;
-            //        withBlock.Columns["Expires"].Width = 90;
-            //        withBlock.Columns["Status"].Visible = false;
-            //        withBlock.Columns["JobTrackingID"].Visible = false;
-            //        withBlock.Columns["TaskHandler"].HeaderText = "TM";
-            //        withBlock.Columns["TaskHandler"].Visible = false;
-            //        withBlock.Columns["Submitted"].Visible = false;
-            //        withBlock.Columns["BillState"].Visible = false;
-            //        withBlock.Columns["Comments"].HeaderText = "Comments";
-            //        withBlock.Columns["Comments"].Width = 522;
-            //        withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
-            //        withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
-            //        withBlock.Columns["TrackSub"].Width = 200;
-            //        withBlock.Columns["TrackSubID"].Visible = false;
-            //    }
+                    // Set Column Property
+                    withBlock.Columns["JobListID"].DataPropertyName = "JobListID";
+                    withBlock.Columns["JobListID"].Visible = false;
+                    withBlock.Columns["JobNumber"].HeaderText = "Job#";
+                    withBlock.Columns["JobNumber"].Visible = false;
+                    withBlock.Columns["Track"].Visible = false;
+                    withBlock.Columns["AddDate"].Width = 90;
+                    withBlock.Columns["AddDate"].HeaderText = "Added";
+                    withBlock.Columns["NeedDate"].Visible = false;
+                    withBlock.Columns["Obtained"].Visible = true;
+                    withBlock.Columns["Obtained"].Width = 90;
+                    withBlock.Columns["Expires"].Visible = false;
+                    withBlock.Columns["Expires"].Width = 90;
+                    withBlock.Columns["Status"].Visible = false;
+                    withBlock.Columns["JobTrackingID"].Visible = false;
+                    withBlock.Columns["TaskHandler"].HeaderText = "TM";
+                    withBlock.Columns["TaskHandler"].Visible = false;
+                    withBlock.Columns["Submitted"].Visible = false;
+                    withBlock.Columns["BillState"].Visible = false;
+                    withBlock.Columns["Comments"].HeaderText = "Comments";
+                    withBlock.Columns["Comments"].Width = 522;
+                    withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
+                    withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
+                    withBlock.Columns["TrackSub"].Width = 200;
+                    withBlock.Columns["TrackSubID"].Visible = false;
+                }
 
-            //    btnDeletePreReq.Enabled = true;
-            //    btnInsertPreReq.Text = "Insert";
-            //    if (grvPreRequirments.Rows.Count > 0)
-            //        grvPreRequirments.CurrentCell = grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells("comments");
+                btnDeletePreReq.Enabled = true;
+                btnInsertPreReq.Text = "Insert";
+                if (grvPreRequirments.Rows.Count > 0)
+                    grvPreRequirments.CurrentCell = grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["comments"];
 
-            //    // Dim rows As IEnumerable(Of DataRow) = dtPreReq.AsEnumerable()
-            //    // Dim catchData As List(Of DataRow) = rows.Where(Function(d) d.Item("Status") = "Pending").ToList()
-            //    Int16 countRow = 0;
-            //    foreach (DataRow dr in dtPreReq.Rows)
-            //    {
-            //        if (dr.Item("Status") == "Pending")
-            //            countRow = countRow + 1;
-            //    }
-            //    if (countRow > 0)
-            //        lblPreRequirment.ForeColor = Color.Tomato;
-            //    else
-            //        lblPreRequirment.ForeColor = Color.Black;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                // Dim rows As IEnumerable(Of DataRow) = dtPreReq.AsEnumerable()
+                // Dim catchData As List(Of DataRow) = rows.Where(Function(d) d.Item("Status") = "Pending").ToList()
+                int countRow = 0;
+                foreach (DataRow dr in dtPreReq.Rows)
+                {
+                    if (dr["Status"] == "Pending")
+                        countRow = countRow + 1;
+                }
+                if (countRow > 0)
+                    lblPreRequirment.ForeColor = Color.Tomato;
+                else
+                    lblPreRequirment.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void grvJobList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // CHANGE THE SUB GIRD OF JOB LIST
+            try
+            {
 
+                selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
+                isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
+
+                if (e.ColumnIndex > -1 & e.RowIndex > -1)
+                {
+                    if (grvJobList.Columns[e.ColumnIndex].Name == "EmailAddress")
+                    {
+                    }
+                }
+                if (e.ColumnIndex > -1 & e.RowIndex > -1)
+                {
+                    if (grvJobList.Columns[e.ColumnIndex].Name == "Description")
+                    {
+                    }
+                }
+                FillGridPreRequirment();
+                FillGridPermitRequiredInspection();
+                FillGridNotesCommunication();
+                if ((isDisabled))
+                    disableJob(true);
+                else
+                    disableJob(false);
+                //Todo
+                //ChangeDirJobNumber(e.RowIndex);
+
+                // Manage Trafic Light
+                //todo
+                //ChangeTraficLight(e.RowIndex);
+                lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
+                //FillTimeSheeData(sender, e);
+                //FillVECostButtonColor();
+                //CalculateRevenu calcRevenu = new CalculateRevenu();
+            }
+
+            catch (Exception ex)
+            {
+            }
+
+            int cnt = e.RowIndex;
+            if (e.ColumnIndex > -1 & e.RowIndex > -1)
+            {
+                if (grvJobList.Columns[e.ColumnIndex].Name == "GrdJobBtnUpdate")
+                {
+                    if (Convert.ToInt32(grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()) == 0)
+                    {
+                        InsertJobList();
+                        return;
+                    }
+                    btnAdd.Text = "Insert";
+                    btnDelete.Enabled = true;
+                    try
+                    {
+                        // Attempt to update the datasource.
+                        // validate the required value
+                        if ((!ValidateRateServTypeValue(cnt)))
+                            return;
+                        try
+                        {
+                            TestVariousInfoEntities DAL = new TestVariousInfoEntities();
+                            SqlCommand cmd = new SqlCommand("update  JobList set JobNumber= @JobNumber,CompanyID=@CompanyID,DateAdded=@DateAdded,Description= @Description,Handler=@Handler, Address=@Address,Borough=@Borough ,InvoiceClient=@InvoiceClient ,InvoiceContact=@InvoiceContact, InvoiceEmailAddress=@InvoiceEmailAddress, InvoiceACContacts=@InvoiceACContacts, InvoiceACEmail=@InvoiceACEmail, PMrv=@PMrv, ContactsID=@ContactsID, IsChange=@IsChange , ChangeDate=@ChangeDate,OwnerName=@OwnerName,OwnerAddress=@OwnerAddress,OwnerPhone=@OwnerPhone,OwnerFax=@OwnerFax,ACContacts=@ACContacts,ACEmail=@ACEmail,Clienttext=@Clienttext,ContactsEmails=@ContactsEmails, IsDisable=@IsDisable,IsInvoiceHold=@IsInvoiceHold, RateVersionId=@RateVersionId,ServRate=@ServRate, AdminInvoice=@AdminInvoice, TypicalInvoiceType=@TypicalInvoiceType where   JobListID=@JobListID");
+                            List<SqlParameter> Param = new List<SqlParameter>();
+                            Param.Add(new SqlParameter("@IsChange", 1));
+                            Param.Add(new SqlParameter("@ChangeDate", string.Format("MM/dd/yyyy", DateTime.Now)));
+                            Param.Add(new SqlParameter("@JobListID", grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@JobNumber", grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()));
+                            Param.Add(new SqlParameter("@DateAdded", grvJobList.Rows[cnt].Cells["DateAdded"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Description", grvJobList.Rows[cnt].Cells["Description"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Address", grvJobList.Rows[cnt].Cells["Address"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Handler", grvJobList.Rows[cnt].Cells["cmbHandler"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Borough", grvJobList.Rows[cnt].Cells["Borough"].Value.ToString()));
+                            Param.Add(new SqlParameter("@PMrv", grvJobList.Rows[cnt].Cells["cmbPMrv"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerName", grvJobList.Rows[cnt].Cells["OwnerName"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerAddress", grvJobList.Rows[cnt].Cells["OwnerAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerPhone", grvJobList.Rows[cnt].Cells["OwnerPhone"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerFax", grvJobList.Rows[cnt].Cells["OwnerFax"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ACContacts", grvJobList.Rows[cnt].Cells["ACContacts"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ACEmail", grvJobList.Rows[cnt].Cells["ACEmail"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Clienttext", grvJobList.Rows[cnt].Cells["Clienttext"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ContactsEmails", grvJobList.Rows[cnt].Cells["EmailAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@IsDisable", grvJobList.Rows[cnt].Cells["IsDisable"].Value));
+                            Param.Add(new SqlParameter("@IsInvoiceHold", grvJobList.Rows[cnt].Cells["IsInvoiceHold"].Value));
+                            Param.Add(new SqlParameter("@InvoiceClient", grvJobList.Rows[cnt].Cells["InvoiceClient"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceContact", grvJobList.Rows[cnt].Cells["InvoiceContact"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceEmailAddress", grvJobList.Rows[cnt].Cells["InvoiceEmailAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceACContacts", grvJobList.Rows[cnt].Cells["InvoiceACContacts"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceACEmail", grvJobList.Rows[cnt].Cells["InvoiceACEmail"].Value.ToString()));
+                            Param.Add(new SqlParameter("@RateVersionId", grvJobList.Rows[cnt].Cells["RateVersionId"].Value));
+                            Param.Add(new SqlParameter("@ServRate", grvJobList.Rows[cnt].Cells["ServRate"].Value));
+                            Param.Add(new SqlParameter("@AdminInvoice", grvJobList.Rows[cnt].Cells["AdminInvoice"].Value));
+                            Param.Add(new SqlParameter("@TypicalInvoiceType", grvJobList.Rows[cnt].Cells["cmbTypicalInvoiceType"].Value));
+                            if (grvJobList.Rows[cnt].Cells["Client#"].Value.ToString() == "")
+                                Param.Add(new SqlParameter("@CompanyID", 0));
+                            else
+                                Param.Add(new SqlParameter("@CompanyID", (DataGridViewComboBoxCell)grvJobList.Rows[cnt].Cells["Client#"].Value));
+                            int ContactsID;
+                            if (grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString() == "")
+                            {
+                                Param.Add(new SqlParameter("@ContactsID", 0));
+                                ContactsID = 0;
+                            }
+                            else
+                            {
+                                ContactsID = Convert.ToInt32(grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
+                                new SqlParameter("@ContactsID", grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
+                            }
+
+                            if (DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param) > 0)
+                            {
+                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.FromArgb(159, 207, 255);
+                                KryptonMessageBox.Show("Update Successfully", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                        catch (Exception eLoad)
+                        {
+                            KryptonMessageBox.Show(eLoad.Message, "Manager");
+                        }
+                        grvJobList.CurrentCell = grvJobList.Rows[cnt].Cells["Address"];
+                        grvJobList.Rows[cnt].Selected = true;
+                    }
+                    catch (Exception eUpdate)
+                    {
+                        KryptonMessageBox.Show(eUpdate.Message, "Manager");
+                    }
+                }
+            }
+            grvJobList_CellEnter(sender, e);
+        }
+
+        protected void InsertJobList()
+        {
+            // grvJobList.Rows(0).Cells("JobNumber").Selected = True 'move this line to below until input validate
+            grvJobList.EndEdit();
+            TestVariousInfoEntities DAL = new TestVariousInfoEntities();
+            try
+            {
+                if (grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"].FormattedValue == "")
+                {
+                    KryptonMessageBox.Show("Please enter Job Number ", "Manager");
+                    grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"];
+                    return;
+                }
+                else
+                    foreach (DataGridViewRow row in grvJobList.Rows)
+                    {
+                        if (grvJobList.Rows.Count - 1 != row.Index)
+                        {
+                            if (grvJobList.Rows[row.Index].Cells["JobNumber"].EditedFormattedValue == grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"].EditedFormattedValue)
+                            {
+                                if (KryptonMessageBox.Show("Entered Job Number already exist for this Client:-" + grvJobList.Rows[row.Index].Cells["Client#"].EditedFormattedValue.ToString() + " ! you want to continue.", "Manager", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
+                                {
+                                    grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"];
+                                    return;
+                                }
+                            }
+                        }
+                    }
+            }
+            catch (Exception ex)
+            {
+            }
+            try
+            {
+                btnDelete.Enabled = true;
+                int cnt = grvJobList.Rows.Count - 1;
+                // cmd = New SqlCommand(" Insert into JobList(JobNumber,Client,DateAdded,Description,Handler,Address,Borough,Contacts,ContactsEmails) values (@JobNumber,@Client,@DateAdded,@Description,@Handler,@Address,@Borough,@Contacts,@ContactsEmails)", sqlcon)
+                if ((!ValidateRateServTypeValue(cnt)))
+                    return;
+                grvJobList.Rows[0].Cells["JobNumber"].Selected = true;
+                SqlCommand cmd = new SqlCommand();
+                if ((AutoJB.ToString() != grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()))
+                    cmd.CommandText = "Insert into JobList (JobNumber, CompanyID, ContactsID, DateAdded, Description, Handler, Address, Borough,InvoiceClient ,InvoiceContact, InvoiceEmailAddress, InvoiceACContacts, InvoiceACEmail,IsNewRecord,OwnerName,OwnerAddress,OwnerPhone,OwnerFax,ACContacts,ACEmail,Clienttext,ContactsEmails, PMrv,RateVersionId,ServRate,AdminInvoice, IsInvoiceHold) values (@JobNumber, @CompanyID, @ContactsID, @DateAdded, @Description, @Handler, @Address, @Borough,@InvoiceClient ,@InvoiceContact,@InvoiceEmailAddress,@InvoiceACContacts, @InvoiceACEmail, @IsNewRecord, @OwnerName, @OwnerAddress,@OwnerPhone,@OwnerFax,@ACContacts,@ACEmail,@Clienttext,@ContactsEmails, @PMrv,@RateVersionId,@ServRate,@AdminInvoice, @IsInvoiceHold)";
+                else
+
+                    cmd.CommandText = "Insert into JobList (JobNumber, CompanyID, ContactsID, DateAdded, Description, Handler, Address, Borough,InvoiceClient ,InvoiceContact, InvoiceEmailAddress, InvoiceACContacts, InvoiceACEmail,IsNewRecord,OwnerName,OwnerAddress,OwnerPhone,OwnerFax,ACContacts,ACEmail,Clienttext,ContactsEmails, PMrv, RateVersionId,ServRate,AdminInvoice, IsInvoiceHold) values (@JobNumber,@CompanyID,@ContactsID,@DateAdded,@Description,@Handler,@Address,@Borough,@InvoiceClient ,@InvoiceContact,@InvoiceEmailAddress,@InvoiceACContacts, @InvoiceACEmail,@IsNewRecord,@OwnerName,@OwnerAddress,@OwnerPhone,@OwnerFax,@ACContacts,@ACEmail,@Clienttext,@ContactsEmails, @PMrv, @RateVersionId,@ServRate,@AdminInvoice, @IsInvoiceHold)";
+
+
+                List<SqlParameter> Param = new List<SqlParameter>();
+                Param.Add(new SqlParameter("@IsNewRecord", 1));
+                Param.Add(new SqlParameter("@JobListID", grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()));
+
+                if ((AutoJB.ToString() != grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()))
+                    Param.Add(new SqlParameter("@JobNumber", grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()));
+                else
+
+                    Param.Add(new SqlParameter("@JobNumber", AutoJB.ToString()));
+                Param.Add(new SqlParameter("@DateAdded", grvJobList.Rows[cnt].Cells["DateAdded"].Value.ToString()));
+                Param.Add(new SqlParameter("@Description", grvJobList.Rows[cnt].Cells["Description"].Value.ToString()));
+                Param.Add(new SqlParameter("@Address", grvJobList.Rows[cnt].Cells["Address"].Value.ToString()));
+                Param.Add(new SqlParameter("@Handler", grvJobList.Rows[cnt].Cells["cmbHandler"].Value.ToString()));
+                Param.Add(new SqlParameter("@Borough", grvJobList.Rows[cnt].Cells["Borough"].Value.ToString()));
+                Param.Add(new SqlParameter("@OwnerName", grvJobList.Rows[cnt].Cells["OwnerName"].Value.ToString()));
+                Param.Add(new SqlParameter("@OwnerAddress", grvJobList.Rows[cnt].Cells["OwnerAddress"].Value.ToString()));
+                Param.Add(new SqlParameter("@OwnerPhone", grvJobList.Rows[cnt].Cells["OwnerPhone"].Value.ToString()));
+                Param.Add(new SqlParameter("@OwnerFax", grvJobList.Rows[cnt].Cells["OwnerFax"].Value.ToString()));
+                Param.Add(new SqlParameter("@ACContacts", grvJobList.Rows[cnt].Cells["ACContacts"].Value.ToString()));
+                Param.Add(new SqlParameter("@ACEmail", grvJobList.Rows[cnt].Cells["ACEmail"].Value.ToString()));
+                Param.Add(new SqlParameter("@Clienttext", grvJobList.Rows[cnt].Cells["Clienttext"].Value.ToString()));
+                Param.Add(new SqlParameter("@ContactsEmails", grvJobList.Rows[cnt].Cells["EmailAddress"].Value.ToString()));
+                Param.Add(new SqlParameter("@PMrv", grvJobList.Rows[cnt].Cells["cmbPMrv"].Value.ToString()));
+                Param.Add(new SqlParameter("@IsInvoiceHold", grvJobList.Rows[cnt].Cells["IsInvoiceHold"].Value));
+                Param.Add(new SqlParameter("@InvoiceClient", grvJobList.Rows[cnt].Cells["InvoiceClient"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvoiceContact", grvJobList.Rows[cnt].Cells["InvoiceContact"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvoiceEmailAddress", grvJobList.Rows[cnt].Cells["InvoiceEmailAddress"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvoiceACContacts", grvJobList.Rows[cnt].Cells["InvoiceACContacts"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvoiceACEmail", grvJobList.Rows[cnt].Cells["InvoiceACEmail"].Value.ToString()));
+                Param.Add(new SqlParameter("@RateVersionId", grvJobList.Rows[cnt].Cells["RateVersionId"].Value));
+                Param.Add(new SqlParameter("@ServRate", grvJobList.Rows[cnt].Cells["ServRate"].Value));
+                Param.Add(new SqlParameter("@AdminInvoice", grvJobList.Rows[cnt].Cells["AdminInvoice"].Value));
+                if (grvJobList.Rows[cnt].Cells["Client#"].Value.ToString() == "")
+                    Param.Add(new SqlParameter("@CompanyID", 0));
+                else
+                    Param.Add(new SqlParameter("@CompanyID", (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[cnt].Cells["Client#"].Value));
+                int ContactsID;
+                if (grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString() == "")
+                {
+                    Param.Add(new SqlParameter("@ContactsID", 0));
+                    ContactsID = 0;
+                }
+                else
+                {
+                    ContactsID = Convert.ToInt32(grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
+                    Param.Add(new SqlParameter("@ContactsID", grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString()));
+                }
+                //(DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param) > 0)
+                int num = DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param);
+
+                if (num > 0)
+                {
+                    // System.Windows.Forms.MessageBox.Show("Record Saved!", "Message")
+                    fillGridJobList();
+                    grvJobList.Rows[grvJobList.Rows.Count - 1].Selected = true;
+                    grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"];
+                    btnAdd.Text = "Insert";
+                    //DAL.LoginActivityInfo("Insert", this.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(ex.Message, "Manager");
+            }
+        }
+        private bool ValidateRateServTypeValue(int rowindex)
+        {
+            bool conditionValid = true;
+            if ((string.IsNullOrEmpty(grvJobList.Rows[rowindex].Cells["RateVersionId"].Value.ToString()) | grvJobList.Rows[rowindex].Cells["RateVersionId"].Value.ToString() == "0"))
+            {
+                conditionValid = false;
+                MessageBox.Show("Please Select Item Rate", "Manager", MessageBoxButtons.OK);
+            }
+            else if ((string.IsNullOrEmpty(grvJobList.Rows[rowindex].Cells["ServRate"].Value.ToString())))
+            {
+                conditionValid = false;
+                MessageBox.Show("Please Select Service Rate", "Manager", MessageBoxButtons.OK);
+            }
+            else if ((string.IsNullOrEmpty(grvJobList.Rows[rowindex].Cells["TypicalInvoiceType"].Value.ToString())))
+            {
+                conditionValid = false;
+                MessageBox.Show("Please Select Invoice Type", "Manager", MessageBoxButtons.OK);
+            }
+            return conditionValid;
+        }
+
+        private void grvJobList_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((e.ColumnIndex > -1 & e.RowIndex > -1))
+            {
+                DataGridViewComboBoxCell ContactCmb = new DataGridViewComboBoxCell();
+                DataTable DataTableContact = new DataTable();
+                if (grvJobList.Columns[e.ColumnIndex].Name == "Clienttext")
+                {
+                }
+                else if ((grvJobList.Columns[e.ColumnIndex].Name == "Contacts"))
+                {
+                    try
+                    {
+                        //int i = GetValueMemberID();
+                        //if (i == 0)
+                        //{
+                        //    break;
+                        //}
+
+                        //grvJobList.Rows[e.RowIndex].Cells["ContactsID"].Value = i;
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
+                }
+                // invoice contact and invoiceAcContact email address
+                if ((grvJobList.Columns[e.ColumnIndex].Name == "InvoiceContactT" | grvJobList.Columns[e.ColumnIndex].Name == "InvoiceACContactsT") & e.RowIndex > -1)
+                {
+                    try
+                    {
+                        DataGridView datagridview = (DataGridView)sender;
+                        datagridview.BeginEdit(true);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+        }
+
+        //public int GetValueMemberID()
+        //{
+        //    string Query = "SELECT ContactsID,dbo.ClientName(FirstName, MiddleName, LastName) as ClientName FROM  Contacts WHERE CompanyID=" + (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value + " ORDER BY FirstName";
+        //    //DataAccessLayer DA = new DataAccessLayer();
+        //    DataTable DataTableContact = new DataTable();
+        //    DataTableContact = DA.Filldatatable(Query);
+        //    for (int i = 0; i <= DataTableContact.Rows.Count - 1; i++)
+        //    {
+        //        if (DataTableContact.Rows[i]["ClientName"].ToString().Trim() == grvJobList["Contacts", grvJobList.CurrentRow.Index].Value.ToString().Trim())
+        //            return DataTableContact.Rows[i]["ContactsID"].ToString();
+        //    }
+        //}
 
     }
 }

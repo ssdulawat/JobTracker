@@ -147,6 +147,25 @@ namespace DataAccessLayer
 
             return result;
         }
+        public List<PreRequirement> GetPreRequirementDataAfterFilter(string queryString)
+        {
+            var result = db.Database.SqlQuery<PreRequirement>(queryString).ToList();
+
+            return result;
+        }
+        public List<PermitsRequirement> GetPermitsRequirementDataAfterFilter(string queryString)
+        {
+            var result = db.Database.SqlQuery<PermitsRequirement>(queryString).ToList();
+
+            return result;
+        }
+
+        public List<NotesComunication> GetNotesComunicationDataAfterFilter(string queryString)
+        {
+            var result = db.Database.SqlQuery<NotesComunication>(queryString).ToList();
+
+            return result;
+        }
 
     }
 }
