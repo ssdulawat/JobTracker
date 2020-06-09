@@ -1172,7 +1172,6 @@ namespace JobTracker.JobTrackingForm
                         DataTable colTrackDT = new DataTable();
                         var TempNotescolTrack = dAL.GetNotescolTrack();
                         colTrackDT = ToDataTable(TempNotescolTrack);
-                        withBlock1.DataSource = colTrackDT;
                         //withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='Notes/Communication'");
                         withBlock1.DisplayMember = "Trackname";
                         withBlock1.DisplayIndex = 4;
@@ -1667,7 +1666,7 @@ namespace JobTracker.JobTrackingForm
         {
         }
 
-        private void grvJobList_KeyDown(object sender,KeyEventArgs e)
+        private void grvJobList_KeyDown(object sender, KeyEventArgs e)
         {
             selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["JobListID"].Value);
             if (Convert.IsDBNull(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value))
@@ -1711,5 +1710,18 @@ namespace JobTracker.JobTrackingForm
             }
         }
 
+
+        //public int GetValueMemberID()
+        //{
+        //    string Query = "SELECT ContactsID,dbo.ClientName(FirstName, MiddleName, LastName) as ClientName FROM  Contacts WHERE CompanyID=" + (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value + " ORDER BY FirstName";
+        //    //DataAccessLayer DA = new DataAccessLayer();
+        //    DataTable DataTableContact = new DataTable();
+        //    DataTableContact = DA.Filldatatable(Query);
+        //    for (int i = 0; i <= DataTableContact.Rows.Count - 1; i++)
+        //    {
+        //        if (DataTableContact.Rows[i]["ClientName"].ToString().Trim() == grvJobList["Contacts", grvJobList.CurrentRow.Index].Value.ToString().Trim())
+        //            return DataTableContact.Rows[i]["ContactsID"].ToString();
+        //    }
+        //}
     }
 }
