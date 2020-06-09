@@ -250,6 +250,8 @@ namespace DataAccessLayer.Model
         public DateTime? NeedDate { get; set; }
         public int? JobTrackingID { get; set; }
         public string InvOvr { get; set; }
+        public int? TrackSubID { get; set; }
+        public string DeleteItemTimeService { get; set; }
 
     }
 

@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace JobTracker.JobTrackingForm
 {
@@ -443,34 +444,6 @@ namespace JobTracker.JobTrackingForm
             }
         }
 
-        //private void SetBadClient()
-        //{
-        //    try
-        //    {
-        //        // Dim dbVariousInfo As New VariousInfoEntities()
-
-        //        foreach (DataGridViewRow grdrow in grvJobList.Rows)
-        //        {
-        //            int companyID = IIf(IsDBNull(grdrow.Cells["CompanyID"].Value), 0, grdrow.Cells["CompanyID"].Value);
-        //            if (companyID == 0)
-        //                continue;
-        //            DAL = new DataAccessLayer();
-        //            Int16 badClient = DAL.ExceuteScaler("SELECT COUNT(CompanyID)as Badcount FROM Company WHERE DBadClient=1 AND CompanyID=" + companyID);
-        //            if (badClient > 0)
-        //            {
-        //                Font F = new Font('Microsoft Sans Serif', 8.5, FontStyle.Strikeout);
-        //                grdrow.DefaultCellStyle.Font = new Font(F, FontStyle.Strikeout);
-        //                grdrow.DefaultCellStyle.BackColor = Color.Gray;
-        //                grdrow.DefaultCellStyle.SelectionBackColor = Color.Gray;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
         private void disableJob(bool flag)
         {
             grvPreRequirments.ReadOnly = flag;
@@ -535,8 +508,8 @@ namespace JobTracker.JobTrackingForm
                 if (cmbStatusPreRequire.Text.Trim() != "")
                     queryString = queryString + " AND JobTracking.Status= '" + cmbStatusPreRequire.Text.Trim() + "'";
                 if (cmbBillStatePermit.Text.Trim() != "")
-                    queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.Trim() + "'";
-                if (txtCommentsPreRequire.Text.Trim() != "")
+                    queryString = queryString + " AND JobTracking.BillState= '" + cmbBillStatePermit.Text.ToString().Trim() + "'";
+                if (txtCommentsPreRequire.Text.ToString().Trim() != "")
                     queryString = queryString + " AND JobTracking.Comments like '%" + txtCommentsPreRequire.Text.Trim() + "%'";
                 if (cmbTMWithPending.Text.Trim() != "")
                     queryString = queryString + " AND (JobTracking.Status='Pending' AND JobTracking.TaskHandler=  '" + cmbTMWithPending.Text.Trim() + "' )";
@@ -1233,6 +1206,7 @@ namespace JobTracker.JobTrackingForm
                         DataTable colBillStatusDT = new DataTable();
                         var NotescolBillStatusDT = dAL.GetPermitsRequirementcolBillStatus();
                         colBillStatusDT = ToDataTable(NotescolBillStatusDT);
+                        withBlock1.DataSource = colBillStatusDT;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Bill State' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
                         withBlock1.DisplayMember = "cTrack";
                         withBlock1.DisplayIndex = 13;
@@ -1657,7 +1631,7 @@ namespace JobTracker.JobTrackingForm
                     }
                     catch (Exception ex)
                     {
-                        
+
                     }
                 }
                 // invoice contact and invoiceAcContact email address
@@ -1675,18 +1649,67 @@ namespace JobTracker.JobTrackingForm
             }
         }
 
-        //public int GetValueMemberID()
-        //{
-        //    string Query = "SELECT ContactsID,dbo.ClientName(FirstName, MiddleName, LastName) as ClientName FROM  Contacts WHERE CompanyID=" + (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value + " ORDER BY FirstName";
-        //    //DataAccessLayer DA = new DataAccessLayer();
-        //    DataTable DataTableContact = new DataTable();
-        //    DataTableContact = DA.Filldatatable(Query);
-        //    for (int i = 0; i <= DataTableContact.Rows.Count - 1; i++)
-        //    {
-        //        if (DataTableContact.Rows[i]["ClientName"].ToString().Trim() == grvJobList["Contacts", grvJobList.CurrentRow.Index].Value.ToString().Trim())
-        //            return DataTableContact.Rows[i]["ContactsID"].ToString();
-        //    }
-        //}
+        private void grvJobList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
+            isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
+            //ChangeTraficLight(e.RowIndex);
+            FillGridPreRequirment();
+            FillGridPermitRequiredInspection();
+            FillGridNotesCommunication();
+            if ((isDisabled))
+                disableJob(true);
+            else
+                disableJob(false);
+            lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
+        }
+        private void grvJobList_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+        }
+
+        private void grvJobList_KeyDown(object sender,KeyEventArgs e)
+        {
+            selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["JobListID"].Value);
+            if (Convert.IsDBNull(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value))
+                isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value);
+            if (e.KeyCode == Keys.Up)
+            {
+                if (grvJobList.CurrentRow.Index != 0)
+                {
+                    selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["JobListID"].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["IsDisable"].Value);
+                    // ChangeTraficLight(grvJobList.CurrentRow.Index - 1);                    
+                    // ChangeDirJobNumber(grvJobList.CurrentRow.Index - 1);
+                    FillGridPreRequirment();
+                    FillGridPermitRequiredInspection();
+                    FillGridNotesCommunication();
+                    if ((isDisabled))
+                        disableJob(true);
+                    else
+                        disableJob(false);
+                    lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["CompanyNo"].Value.ToString();
+                }
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                if (grvJobList.CurrentRow.Index != grvJobList.Rows.Count - 1)
+                {
+                    selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["JobListID"].Value);
+                    isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["IsDisable"].Value);
+                    // Dim JobNo As String = grvJobList.Rows(grvJobList.CurrentRow.Index + 1).Cells("JobNumber").Value.ToString
+                    // ChangeTraficLight(grvJobList.CurrentRow.Index + 1);                    
+                    //ChangeDirJobNumber(grvJobList.CurrentRow.Index + 1);
+                    FillGridPreRequirment();
+                    FillGridPermitRequiredInspection();
+                    FillGridNotesCommunication();
+                    if ((isDisabled))
+                        disableJob(true);
+                    else
+                        disableJob(false);
+                    lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["CompanyNo"].Value.ToString();
+                }
+            }
+        }
 
     }
 }
