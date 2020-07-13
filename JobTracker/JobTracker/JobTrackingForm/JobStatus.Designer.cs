@@ -29,21 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelSearch = new System.Windows.Forms.Panel();
             this.PanelJobGrid = new System.Windows.Forms.Panel();
+            this.grvJobList = new System.Windows.Forms.DataGridView();
             this.GrpSrchTrack = new System.Windows.Forms.GroupBox();
             this.btnTrackSeachRefresh = new System.Windows.Forms.Button();
             this.cmbBillStatePermit = new System.Windows.Forms.ComboBox();
@@ -89,13 +87,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbxSearchTm = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panelFileBrowser = new System.Windows.Forms.Panel();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.DriveListBox1 = new System.Windows.Forms.ComboBox();
-            this.btnPermitsFileDownload = new System.Windows.Forms.Button();
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -151,14 +144,18 @@
             this.lblNotes = new System.Windows.Forms.Label();
             this.btnInsertNotes = new System.Windows.Forms.Button();
             this.btndeleteNotes = new System.Windows.Forms.Button();
-            this.grvJobList = new System.Windows.Forms.DataGridView();
+            this.pnlFileBrowser = new System.Windows.Forms.Panel();
+            this.FileListBox1 = new Microsoft.VisualBasic.Compatibility.VB6.FileListBox();
+            this.DriveListBox1 = new Microsoft.VisualBasic.Compatibility.VB6.DriveListBox();
+            this.btnPermitsFileDownload = new System.Windows.Forms.Button();
+            this.DirListBox1 = new Microsoft.VisualBasic.Compatibility.VB6.DirListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelSearch.SuspendLayout();
             this.PanelJobGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).BeginInit();
             this.GrpSrchTrack.SuspendLayout();
             this.GrpSrchJob.SuspendLayout();
             this.GpJobAndTrack.SuspendLayout();
-            this.panelFileBrowser.SuspendLayout();
             this.colorMenu.SuspendLayout();
             this.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvPermitsRequiredInspection)).BeginInit();
@@ -171,7 +168,7 @@
             this.pnlPermits.SuspendLayout();
             this.pnlNotes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).BeginInit();
+            this.pnlFileBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -199,7 +196,7 @@
             this.PanelSearch.Controls.Add(this.btnSearch);
             this.PanelSearch.Controls.Add(this.GpJobAndTrack);
             this.PanelSearch.Controls.Add(this.btnDelete);
-            this.PanelSearch.Controls.Add(this.btnUpdate);
+            this.PanelSearch.Controls.Add(this.btnCancel);
             this.PanelSearch.Controls.Add(this.btnAdd);
             this.PanelSearch.Location = new System.Drawing.Point(3, 3);
             this.PanelSearch.Name = "PanelSearch";
@@ -213,6 +210,26 @@
             this.PanelJobGrid.Name = "PanelJobGrid";
             this.PanelJobGrid.Size = new System.Drawing.Size(1339, 178);
             this.PanelJobGrid.TabIndex = 10;
+            // 
+            // grvJobList
+            // 
+            this.grvJobList.AllowUserToAddRows = false;
+            this.grvJobList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvJobList.Cursor = System.Windows.Forms.Cursors.Default;
+            this.grvJobList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grvJobList.Location = new System.Drawing.Point(0, 0);
+            this.grvJobList.MultiSelect = false;
+            this.grvJobList.Name = "grvJobList";
+            this.grvJobList.RowHeadersWidth = 51;
+            this.grvJobList.RowTemplate.Height = 24;
+            this.grvJobList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grvJobList.Size = new System.Drawing.Size(1339, 178);
+            this.grvJobList.TabIndex = 198;
+            this.grvJobList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvJobList_CellClick);
+            this.grvJobList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvJobList_CellEnter);
+            //this.grvJobList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grvJobList_DataError);
+            this.grvJobList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grvJobList_RowHeaderMouseClick);
+            this.grvJobList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grvJobList_KeyDown);
             // 
             // GrpSrchTrack
             // 
@@ -254,7 +271,7 @@
             this.cmbBillStatePermit.FormattingEnabled = true;
             this.cmbBillStatePermit.Location = new System.Drawing.Point(194, 55);
             this.cmbBillStatePermit.Name = "cmbBillStatePermit";
-            this.cmbBillStatePermit.Size = new System.Drawing.Size(63, 23);
+            this.cmbBillStatePermit.Size = new System.Drawing.Size(63, 21);
             this.cmbBillStatePermit.TabIndex = 9;
             // 
             // cmbTrackSubPreRequire
@@ -264,7 +281,7 @@
             this.cmbTrackSubPreRequire.FormattingEnabled = true;
             this.cmbTrackSubPreRequire.Location = new System.Drawing.Point(192, 25);
             this.cmbTrackSubPreRequire.Name = "cmbTrackSubPreRequire";
-            this.cmbTrackSubPreRequire.Size = new System.Drawing.Size(96, 23);
+            this.cmbTrackSubPreRequire.Size = new System.Drawing.Size(96, 21);
             this.cmbTrackSubPreRequire.TabIndex = 8;
             // 
             // cmbStatusPreRequire
@@ -272,7 +289,7 @@
             this.cmbStatusPreRequire.FormattingEnabled = true;
             this.cmbStatusPreRequire.Location = new System.Drawing.Point(44, 56);
             this.cmbStatusPreRequire.Name = "cmbStatusPreRequire";
-            this.cmbStatusPreRequire.Size = new System.Drawing.Size(80, 23);
+            this.cmbStatusPreRequire.Size = new System.Drawing.Size(80, 21);
             this.cmbStatusPreRequire.TabIndex = 7;
             // 
             // CmbPreRequireTrack
@@ -280,7 +297,7 @@
             this.CmbPreRequireTrack.FormattingEnabled = true;
             this.CmbPreRequireTrack.Location = new System.Drawing.Point(44, 25);
             this.CmbPreRequireTrack.Name = "CmbPreRequireTrack";
-            this.CmbPreRequireTrack.Size = new System.Drawing.Size(80, 23);
+            this.CmbPreRequireTrack.Size = new System.Drawing.Size(80, 21);
             this.CmbPreRequireTrack.TabIndex = 6;
             // 
             // label14
@@ -290,7 +307,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(133, 58);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 17);
+            this.label14.Size = new System.Drawing.Size(49, 13);
             this.label14.TabIndex = 5;
             this.label14.Text = "Bill State";
             // 
@@ -301,7 +318,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(130, 27);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(61, 17);
+            this.label13.Size = new System.Drawing.Size(50, 13);
             this.label13.TabIndex = 4;
             this.label13.Text = "Track Sub";
             // 
@@ -312,7 +329,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(4, 60);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 17);
+            this.label12.Size = new System.Drawing.Size(37, 13);
             this.label12.TabIndex = 1;
             this.label12.Text = "Status";
             // 
@@ -323,7 +340,7 @@
             this.Track.ForeColor = System.Drawing.Color.Black;
             this.Track.Location = new System.Drawing.Point(4, 25);
             this.Track.Name = "Track";
-            this.Track.Size = new System.Drawing.Size(38, 17);
+            this.Track.Size = new System.Drawing.Size(31, 13);
             this.Track.TabIndex = 0;
             this.Track.Text = "Track";
             // 
@@ -369,7 +386,7 @@
             this.chkShowDisabled.ForeColor = System.Drawing.Color.Black;
             this.chkShowDisabled.Location = new System.Drawing.Point(906, 54);
             this.chkShowDisabled.Name = "chkShowDisabled";
-            this.chkShowDisabled.Size = new System.Drawing.Size(123, 21);
+            this.chkShowDisabled.Size = new System.Drawing.Size(97, 17);
             this.chkShowDisabled.TabIndex = 22;
             this.chkShowDisabled.Text = "Show Disabled";
             this.chkShowDisabled.UseVisualStyleBackColor = true;
@@ -379,7 +396,7 @@
             this.cmbYear.FormattingEnabled = true;
             this.cmbYear.Location = new System.Drawing.Point(840, 52);
             this.cmbYear.Name = "cmbYear";
-            this.cmbYear.Size = new System.Drawing.Size(54, 24);
+            this.cmbYear.Size = new System.Drawing.Size(54, 21);
             this.cmbYear.TabIndex = 21;
             // 
             // chkYear
@@ -389,16 +406,17 @@
             this.chkYear.ForeColor = System.Drawing.Color.Black;
             this.chkYear.Location = new System.Drawing.Point(695, 54);
             this.chkYear.Name = "chkYear";
-            this.chkYear.Size = new System.Drawing.Size(129, 21);
+            this.chkYear.Size = new System.Drawing.Size(100, 17);
             this.chkYear.TabIndex = 20;
             this.chkYear.Text = "Search By Year";
             this.chkYear.UseVisualStyleBackColor = true;
             // 
             // txtJobListSearchDescription
             // 
+            this.txtJobListSearchDescription.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtJobListSearchDescription.Location = new System.Drawing.Point(556, 54);
             this.txtJobListSearchDescription.Name = "txtJobListSearchDescription";
-            this.txtJobListSearchDescription.Size = new System.Drawing.Size(129, 22);
+            this.txtJobListSearchDescription.Size = new System.Drawing.Size(129, 19);
             this.txtJobListSearchDescription.TabIndex = 19;
             // 
             // label10
@@ -408,15 +426,16 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(470, 57);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(79, 17);
+            this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 18;
             this.label10.Text = "Description";
             // 
             // txtJoblistClienttext
             // 
+            this.txtJoblistClienttext.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtJoblistClienttext.Location = new System.Drawing.Point(371, 54);
             this.txtJoblistClienttext.Name = "txtJoblistClienttext";
-            this.txtJoblistClienttext.Size = new System.Drawing.Size(89, 22);
+            this.txtJoblistClienttext.Size = new System.Drawing.Size(89, 19);
             this.txtJoblistClienttext.TabIndex = 17;
             // 
             // label9
@@ -426,15 +445,16 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(291, 58);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 17);
+            this.label9.Size = new System.Drawing.Size(54, 13);
             this.label9.TabIndex = 16;
             this.label9.Text = "ClientText";
             // 
             // txtTown
             // 
+            this.txtTown.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtTown.Location = new System.Drawing.Point(189, 54);
             this.txtTown.Name = "txtTown";
-            this.txtTown.Size = new System.Drawing.Size(89, 22);
+            this.txtTown.Size = new System.Drawing.Size(89, 19);
             this.txtTown.TabIndex = 15;
             // 
             // label8
@@ -444,7 +464,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(145, 57);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 17);
+            this.label8.Size = new System.Drawing.Size(34, 13);
             this.label8.TabIndex = 14;
             this.label8.Text = "Town";
             // 
@@ -453,15 +473,16 @@
             this.lblCompanyNo.AutoSize = true;
             this.lblCompanyNo.Location = new System.Drawing.Point(8, 58);
             this.lblCompanyNo.Name = "lblCompanyNo";
-            this.lblCompanyNo.Size = new System.Drawing.Size(69, 17);
+            this.lblCompanyNo.Size = new System.Drawing.Size(53, 13);
             this.lblCompanyNo.TabIndex = 13;
             this.lblCompanyNo.Text = "Client No.";
             // 
             // txtJobListAddress
             // 
+            this.txtJobListAddress.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtJobListAddress.Location = new System.Drawing.Point(922, 22);
             this.txtJobListAddress.Name = "txtJobListAddress";
-            this.txtJobListAddress.Size = new System.Drawing.Size(101, 22);
+            this.txtJobListAddress.Size = new System.Drawing.Size(101, 19);
             this.txtJobListAddress.TabIndex = 12;
             // 
             // label7
@@ -471,7 +492,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(860, 24);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 17);
+            this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 11;
             this.label7.Text = "Address";
             // 
@@ -482,7 +503,7 @@
             this.chkInvoiceHold.ForeColor = System.Drawing.Color.Maroon;
             this.chkInvoiceHold.Location = new System.Drawing.Point(770, 23);
             this.chkInvoiceHold.Name = "chkInvoiceHold";
-            this.chkInvoiceHold.Size = new System.Drawing.Size(85, 21);
+            this.chkInvoiceHold.Size = new System.Drawing.Size(69, 17);
             this.chkInvoiceHold.TabIndex = 10;
             this.chkInvoiceHold.Text = "Inv. Hold";
             this.chkInvoiceHold.UseVisualStyleBackColor = true;
@@ -494,7 +515,7 @@
             this.chkNotInvoiceJob.ForeColor = System.Drawing.Color.Maroon;
             this.chkNotInvoiceJob.Location = new System.Drawing.Point(650, 22);
             this.chkNotInvoiceJob.Name = "chkNotInvoiceJob";
-            this.chkNotInvoiceJob.Size = new System.Drawing.Size(121, 21);
+            this.chkNotInvoiceJob.Size = new System.Drawing.Size(93, 17);
             this.chkNotInvoiceJob.TabIndex = 9;
             this.chkNotInvoiceJob.Text = "Billing Require";
             this.chkNotInvoiceJob.UseVisualStyleBackColor = true;
@@ -506,7 +527,7 @@
             this.chkShowOnlyPending.ForeColor = System.Drawing.Color.Maroon;
             this.chkShowOnlyPending.Location = new System.Drawing.Point(566, 22);
             this.chkShowOnlyPending.Name = "chkShowOnlyPending";
-            this.chkShowOnlyPending.Size = new System.Drawing.Size(82, 21);
+            this.chkShowOnlyPending.Size = new System.Drawing.Size(65, 17);
             this.chkShowOnlyPending.TabIndex = 8;
             this.chkShowOnlyPending.Text = "Pending";
             this.chkShowOnlyPending.UseVisualStyleBackColor = true;
@@ -516,7 +537,7 @@
             this.cbxJobListPMrv.FormattingEnabled = true;
             this.cbxJobListPMrv.Location = new System.Drawing.Point(478, 20);
             this.cbxJobListPMrv.Name = "cbxJobListPMrv";
-            this.cbxJobListPMrv.Size = new System.Drawing.Size(82, 24);
+            this.cbxJobListPMrv.Size = new System.Drawing.Size(82, 21);
             this.cbxJobListPMrv.TabIndex = 7;
             // 
             // label6
@@ -526,7 +547,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(435, 24);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 17);
+            this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "PMrv";
             // 
@@ -535,7 +556,7 @@
             this.cbxJobListPM.FormattingEnabled = true;
             this.cbxJobListPM.Location = new System.Drawing.Point(337, 22);
             this.cbxJobListPM.Name = "cbxJobListPM";
-            this.cbxJobListPM.Size = new System.Drawing.Size(85, 24);
+            this.cbxJobListPM.Size = new System.Drawing.Size(85, 21);
             this.cbxJobListPM.TabIndex = 5;
             // 
             // label5
@@ -545,15 +566,16 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(305, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 17);
+            this.label5.Size = new System.Drawing.Size(23, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "PM";
             // 
             // txtJobListJobID
             // 
+            this.txtJobListJobID.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtJobListJobID.Location = new System.Drawing.Point(210, 22);
             this.txtJobListJobID.Name = "txtJobListJobID";
-            this.txtJobListJobID.Size = new System.Drawing.Size(89, 22);
+            this.txtJobListJobID.Size = new System.Drawing.Size(89, 19);
             this.txtJobListJobID.TabIndex = 3;
             // 
             // label4
@@ -563,15 +585,16 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(165, 25);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 17);
+            this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "Job#";
             // 
             // txtJobListclient
             // 
+            this.txtJobListclient.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtJobListclient.Location = new System.Drawing.Point(55, 22);
             this.txtJobListclient.Name = "txtJobListclient";
-            this.txtJobListclient.Size = new System.Drawing.Size(102, 22);
+            this.txtJobListclient.Size = new System.Drawing.Size(102, 19);
             this.txtJobListclient.TabIndex = 1;
             // 
             // label3
@@ -581,7 +604,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(6, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 17);
+            this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Client";
             // 
@@ -658,9 +681,10 @@
             // 
             // txtCommentsPreRequire
             // 
+            this.txtCommentsPreRequire.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.txtCommentsPreRequire.Location = new System.Drawing.Point(420, 20);
             this.txtCommentsPreRequire.Name = "txtCommentsPreRequire";
-            this.txtCommentsPreRequire.Size = new System.Drawing.Size(162, 22);
+            this.txtCommentsPreRequire.Size = new System.Drawing.Size(162, 19);
             this.txtCommentsPreRequire.TabIndex = 4;
             // 
             // label2
@@ -668,7 +692,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(340, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
+            this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Comments";
             // 
@@ -677,7 +701,7 @@
             this.cmbTMWithPending.FormattingEnabled = true;
             this.cmbTMWithPending.Location = new System.Drawing.Point(227, 20);
             this.cmbTMWithPending.Name = "cmbTMWithPending";
-            this.cmbTMWithPending.Size = new System.Drawing.Size(108, 24);
+            this.cmbTMWithPending.Size = new System.Drawing.Size(108, 21);
             this.cmbTMWithPending.TabIndex = 2;
             // 
             // label1
@@ -685,7 +709,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(120, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 17);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "TM w/ Pending";
             // 
@@ -694,7 +718,7 @@
             this.cbxSearchTm.FormattingEnabled = true;
             this.cbxSearchTm.Location = new System.Drawing.Point(6, 22);
             this.cbxSearchTm.Name = "cbxSearchTm";
-            this.cbxSearchTm.Size = new System.Drawing.Size(108, 24);
+            this.cbxSearchTm.Size = new System.Drawing.Size(108, 21);
             this.cbxSearchTm.TabIndex = 0;
             // 
             // btnDelete
@@ -711,19 +735,21 @@
             this.btnDelete.Text = "&Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnUpdate
+            // btnCancel
             // 
-            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(148, 20);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(67, 30);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "&Cancel";
-            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnCancel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(148, 20);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(67, 30);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -737,62 +763,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Insert";
             this.btnAdd.UseVisualStyleBackColor = false;
-            //this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // panelFileBrowser
-            // 
-            this.panelFileBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFileBrowser.Controls.Add(this.listBox2);
-            this.panelFileBrowser.Controls.Add(this.listBox1);
-            this.panelFileBrowser.Controls.Add(this.DriveListBox1);
-            this.panelFileBrowser.Controls.Add(this.btnPermitsFileDownload);
-            this.panelFileBrowser.Location = new System.Drawing.Point(1356, 2);
-            this.panelFileBrowser.Name = "panelFileBrowser";
-            this.panelFileBrowser.Size = new System.Drawing.Size(211, 305);
-            this.panelFileBrowser.TabIndex = 1;
-            // 
-            // listBox2
-            // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(12, 205);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(191, 84);
-            this.listBox2.TabIndex = 3;
-            // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 90);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 116);
-            this.listBox1.TabIndex = 2;
-            // 
-            // DriveListBox1
-            // 
-            this.DriveListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DriveListBox1.FormattingEnabled = true;
-            this.DriveListBox1.Location = new System.Drawing.Point(12, 59);
-            this.DriveListBox1.Name = "DriveListBox1";
-            this.DriveListBox1.Size = new System.Drawing.Size(191, 24);
-            this.DriveListBox1.TabIndex = 1;
-            // 
-            // btnPermitsFileDownload
-            // 
-            this.btnPermitsFileDownload.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnPermitsFileDownload.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnPermitsFileDownload.Location = new System.Drawing.Point(12, 10);
-            this.btnPermitsFileDownload.Name = "btnPermitsFileDownload";
-            this.btnPermitsFileDownload.Size = new System.Drawing.Size(190, 42);
-            this.btnPermitsFileDownload.TabIndex = 0;
-            this.btnPermitsFileDownload.Text = "Permits/File Download";
-            this.btnPermitsFileDownload.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // timerLoad
             // 
@@ -820,34 +791,34 @@
             this.BlueToolStripMenuItem});
             this.colorMenu.Name = "colorMenu";
             this.colorMenu.ShowImageMargin = false;
-            this.colorMenu.Size = new System.Drawing.Size(103, 148);
+            this.colorMenu.Size = new System.Drawing.Size(89, 136);
             // 
             // GreenToolStripMenuItem
             // 
             this.GreenToolStripMenuItem.BackColor = System.Drawing.Color.Green;
             this.GreenToolStripMenuItem.Name = "GreenToolStripMenuItem";
-            this.GreenToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.GreenToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.GreenToolStripMenuItem.Text = "Green";
             // 
             // YellowToolStripMenuItem
             // 
             this.YellowToolStripMenuItem.BackColor = System.Drawing.Color.Yellow;
             this.YellowToolStripMenuItem.Name = "YellowToolStripMenuItem";
-            this.YellowToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.YellowToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.YellowToolStripMenuItem.Text = "Yellow";
             // 
             // OrangeToolStripMenuItem
             // 
             this.OrangeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.OrangeToolStripMenuItem.Name = "OrangeToolStripMenuItem";
-            this.OrangeToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.OrangeToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.OrangeToolStripMenuItem.Text = "Orange";
             // 
             // RedToolStripMenuItem
             // 
             this.RedToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.RedToolStripMenuItem.Name = "RedToolStripMenuItem";
-            this.RedToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.RedToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.RedToolStripMenuItem.Text = "Red";
             // 
             // BlackToolStripMenuItem
@@ -855,13 +826,13 @@
             this.BlackToolStripMenuItem.BackColor = System.Drawing.Color.Black;
             this.BlackToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.BlackToolStripMenuItem.Name = "BlackToolStripMenuItem";
-            this.BlackToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.BlackToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.BlackToolStripMenuItem.Text = "Black";
             // 
             // BlueToolStripMenuItem
             // 
             this.BlueToolStripMenuItem.Name = "BlueToolStripMenuItem";
-            this.BlueToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.BlueToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.BlueToolStripMenuItem.Text = "Blue";
             // 
             // toolTipBillReq
@@ -898,7 +869,7 @@
             this.label11.Location = new System.Drawing.Point(1169, 7);
             this.label11.Margin = new System.Windows.Forms.Padding(4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 17);
+            this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 287;
             this.label11.Text = "label11";
             // 
@@ -1003,43 +974,44 @@
             this.grvPermitsRequiredInspection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPermitsRequiredInspection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPermitsRequiredInspection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grvPermitsRequiredInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvPermitsRequiredInspection.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GrdbtnPrequisition});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvPermitsRequiredInspection.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPermitsRequiredInspection.DefaultCellStyle = dataGridViewCellStyle11;
             this.grvPermitsRequiredInspection.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grvPermitsRequiredInspection.Location = new System.Drawing.Point(4, 31);
             this.grvPermitsRequiredInspection.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grvPermitsRequiredInspection.MultiSelect = false;
             this.grvPermitsRequiredInspection.Name = "grvPermitsRequiredInspection";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPermitsRequiredInspection.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPermitsRequiredInspection.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grvPermitsRequiredInspection.RowHeadersWidth = 51;
             this.grvPermitsRequiredInspection.RowTemplate.Height = 24;
             this.grvPermitsRequiredInspection.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvPermitsRequiredInspection.Size = new System.Drawing.Size(1544, 147);
             this.grvPermitsRequiredInspection.TabIndex = 210;
+            this.grvPermitsRequiredInspection.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grvPermitsRequiredInspection_DataError);
             // 
             // GrdbtnPrequisition
             // 
@@ -1127,7 +1099,7 @@
             this.lblShowCreditAlert.Location = new System.Drawing.Point(1007, 43);
             this.lblShowCreditAlert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblShowCreditAlert.Name = "lblShowCreditAlert";
-            this.lblShowCreditAlert.Size = new System.Drawing.Size(305, 21);
+            this.lblShowCreditAlert.Size = new System.Drawing.Size(234, 15);
             this.lblShowCreditAlert.TabIndex = 283;
             this.lblShowCreditAlert.Text = "Please set CreditPassDate for credit alert.";
             this.lblShowCreditAlert.Visible = false;
@@ -1165,7 +1137,7 @@
             this.lblVECostAlert.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblVECostAlert.Location = new System.Drawing.Point(7, 9);
             this.lblVECostAlert.Name = "lblVECostAlert";
-            this.lblVECostAlert.Size = new System.Drawing.Size(81, 17);
+            this.lblVECostAlert.Size = new System.Drawing.Size(66, 13);
             this.lblVECostAlert.TabIndex = 283;
             this.lblVECostAlert.Text = "VE Cost Alert";
             // 
@@ -1201,7 +1173,7 @@
             this.lblCreditAlert.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblCreditAlert.Location = new System.Drawing.Point(3, 10);
             this.lblCreditAlert.Name = "lblCreditAlert";
-            this.lblCreditAlert.Size = new System.Drawing.Size(73, 17);
+            this.lblCreditAlert.Size = new System.Drawing.Size(61, 13);
             this.lblCreditAlert.TabIndex = 282;
             this.lblCreditAlert.Text = "Credit Alert";
             // 
@@ -1228,9 +1200,10 @@
             this.chkPreRequirment.Location = new System.Drawing.Point(12, 15);
             this.chkPreRequirment.Margin = new System.Windows.Forms.Padding(4);
             this.chkPreRequirment.Name = "chkPreRequirment";
-            this.chkPreRequirment.Size = new System.Drawing.Size(18, 17);
+            this.chkPreRequirment.Size = new System.Drawing.Size(15, 14);
             this.chkPreRequirment.TabIndex = 279;
             this.chkPreRequirment.UseVisualStyleBackColor = true;
+            this.chkPreRequirment.CheckedChanged += new System.EventHandler(this.chkPreRequirment_CheckedChanged);
             // 
             // btnCancelPreReq
             // 
@@ -1247,6 +1220,7 @@
             this.btnCancelPreReq.Text = "Cancel";
             this.btnCancelPreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelPreReq.UseVisualStyleBackColor = false;
+            this.btnCancelPreReq.Click += new System.EventHandler(this.btnCancelPreReq_Click);
             // 
             // btnDeletePreReq
             // 
@@ -1264,6 +1238,7 @@
             this.btnDeletePreReq.Text = "Delete ";
             this.btnDeletePreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeletePreReq.UseVisualStyleBackColor = false;
+            this.btnDeletePreReq.Click += new System.EventHandler(this.btnDeletePreReq_Click);
             // 
             // btnInsertPreReq
             // 
@@ -1280,6 +1255,7 @@
             this.btnInsertPreReq.Text = "Insert";
             this.btnInsertPreReq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnInsertPreReq.UseVisualStyleBackColor = false;
+            this.btnInsertPreReq.Click += new System.EventHandler(this.btnInsertPreReq_Click);
             // 
             // lblPreRequirment
             // 
@@ -1288,7 +1264,7 @@
             this.lblPreRequirment.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPreRequirment.Location = new System.Drawing.Point(33, 15);
             this.lblPreRequirment.Name = "lblPreRequirment";
-            this.lblPreRequirment.Size = new System.Drawing.Size(139, 19);
+            this.lblPreRequirment.Size = new System.Drawing.Size(108, 15);
             this.lblPreRequirment.TabIndex = 207;
             this.lblPreRequirment.Text = "PRE REQUIRMENTS";
             // 
@@ -1299,43 +1275,45 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grvPreRequirments.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPreRequirments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPreRequirments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grvPreRequirments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvPreRequirments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GrdPreRequireUpdate});
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvPreRequirments.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvPreRequirments.DefaultCellStyle = dataGridViewCellStyle14;
             this.grvPreRequirments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grvPreRequirments.Location = new System.Drawing.Point(4, 46);
             this.grvPreRequirments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grvPreRequirments.MultiSelect = false;
             this.grvPreRequirments.Name = "grvPreRequirments";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvPreRequirments.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvPreRequirments.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.grvPreRequirments.RowHeadersWidth = 51;
             this.grvPreRequirments.RowTemplate.Height = 24;
             this.grvPreRequirments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvPreRequirments.Size = new System.Drawing.Size(1544, 133);
             this.grvPreRequirments.TabIndex = 206;
+            this.grvPreRequirments.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grvPreRequirments_CellBeginEdit);
+            this.grvPreRequirments.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvPreRequirments_CellEndEdit);
             // 
             // GrdPreRequireUpdate
             // 
@@ -1373,7 +1351,7 @@
             this.chkPermits.Location = new System.Drawing.Point(12, 6);
             this.chkPermits.Margin = new System.Windows.Forms.Padding(4);
             this.chkPermits.Name = "chkPermits";
-            this.chkPermits.Size = new System.Drawing.Size(18, 17);
+            this.chkPermits.Size = new System.Drawing.Size(15, 14);
             this.chkPermits.TabIndex = 280;
             this.chkPermits.UseVisualStyleBackColor = true;
             // 
@@ -1391,6 +1369,7 @@
             this.btnCancelPermit.Text = "Cancel";
             this.btnCancelPermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelPermit.UseVisualStyleBackColor = false;
+            this.btnCancelPermit.Click += new System.EventHandler(this.btnCancelPermit_Click);
             // 
             // btnDeletePermit
             // 
@@ -1408,6 +1387,7 @@
             this.btnDeletePermit.Text = "Delete ";
             this.btnDeletePermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeletePermit.UseVisualStyleBackColor = false;
+            this.btnDeletePermit.Click += new System.EventHandler(this.btnDeletePermit_Click);
             // 
             // btnInsertPermit
             // 
@@ -1424,6 +1404,7 @@
             this.btnInsertPermit.Text = "Insert";
             this.btnInsertPermit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnInsertPermit.UseVisualStyleBackColor = false;
+            this.btnInsertPermit.Click += new System.EventHandler(this.btnInsertPermit_Click);
             // 
             // lblPermit
             // 
@@ -1432,7 +1413,7 @@
             this.lblPermit.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPermit.Location = new System.Drawing.Point(33, 5);
             this.lblPermit.Name = "lblPermit";
-            this.lblPermit.Size = new System.Drawing.Size(234, 19);
+            this.lblPermit.Size = new System.Drawing.Size(184, 15);
             this.lblPermit.TabIndex = 211;
             this.lblPermit.Text = "PERMITS/REQUIRED/INSPECTION";
             // 
@@ -1462,7 +1443,7 @@
             this.chkNotes.Location = new System.Drawing.Point(12, 5);
             this.chkNotes.Margin = new System.Windows.Forms.Padding(4);
             this.chkNotes.Name = "chkNotes";
-            this.chkNotes.Size = new System.Drawing.Size(18, 17);
+            this.chkNotes.Size = new System.Drawing.Size(15, 14);
             this.chkNotes.TabIndex = 281;
             this.chkNotes.UseVisualStyleBackColor = true;
             // 
@@ -1481,6 +1462,7 @@
             this.btnCancelNotes.Text = "Cancel";
             this.btnCancelNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelNotes.UseVisualStyleBackColor = false;
+            this.btnCancelNotes.Click += new System.EventHandler(this.btnCancelNotes_Click);
             // 
             // grvNotesCommunication
             // 
@@ -1488,43 +1470,47 @@
             this.grvNotesCommunication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvNotesCommunication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvNotesCommunication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.grvNotesCommunication.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvNotesCommunication.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GrdBtnNotesUpdate});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvNotesCommunication.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grvNotesCommunication.DefaultCellStyle = dataGridViewCellStyle17;
             this.grvNotesCommunication.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grvNotesCommunication.Location = new System.Drawing.Point(1, 32);
             this.grvNotesCommunication.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grvNotesCommunication.MultiSelect = false;
             this.grvNotesCommunication.Name = "grvNotesCommunication";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvNotesCommunication.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(243)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvNotesCommunication.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.grvNotesCommunication.RowHeadersWidth = 51;
             this.grvNotesCommunication.RowTemplate.Height = 24;
             this.grvNotesCommunication.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvNotesCommunication.Size = new System.Drawing.Size(1548, 150);
             this.grvNotesCommunication.TabIndex = 212;
+            this.grvNotesCommunication.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grvNotesCommunication_CellBeginEdit);
+            this.grvNotesCommunication.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvNotesCommunication_CellClick);
+            this.grvNotesCommunication.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvNotesCommunication_CellEndEdit);
+            this.grvNotesCommunication.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grvNotesCommunication_DataError);
             // 
             // GrdBtnNotesUpdate
             // 
@@ -1543,7 +1529,7 @@
             this.lblNotes.Font = new System.Drawing.Font("Calibri", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblNotes.Location = new System.Drawing.Point(33, 5);
             this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(187, 19);
+            this.lblNotes.Size = new System.Drawing.Size(149, 15);
             this.lblNotes.TabIndex = 213;
             this.lblNotes.Text = "NOTES / COMMINICATION";
             // 
@@ -1562,6 +1548,7 @@
             this.btnInsertNotes.Text = "Insert";
             this.btnInsertNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnInsertNotes.UseVisualStyleBackColor = false;
+            this.btnInsertNotes.Click += new System.EventHandler(this.btnInsertNotes_Click);
             // 
             // btndeleteNotes
             // 
@@ -1579,59 +1566,79 @@
             this.btndeleteNotes.Text = "Delete ";
             this.btndeleteNotes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btndeleteNotes.UseVisualStyleBackColor = false;
+            this.btndeleteNotes.Click += new System.EventHandler(this.btndeleteNotes_Click);
             // 
-            // grvJobList
+            // pnlFileBrowser
             // 
-            this.grvJobList.AllowUserToAddRows = false;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvJobList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
-            this.grvJobList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvJobList.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grvJobList.DefaultCellStyle = dataGridViewCellStyle23;
-            this.grvJobList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grvJobList.Location = new System.Drawing.Point(0, 0);
-            this.grvJobList.MultiSelect = false;
-            this.grvJobList.Name = "grvJobList";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvJobList.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
-            this.grvJobList.RowHeadersWidth = 51;
-            this.grvJobList.RowTemplate.Height = 24;
-            this.grvJobList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grvJobList.Size = new System.Drawing.Size(1339, 178);
-            this.grvJobList.TabIndex = 198;
-            this.grvJobList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvJobList_CellClick);
-            this.grvJobList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvJobList_CellEnter);
-            this.grvJobList.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grvJobList_DataError);
-            this.grvJobList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grvJobList_RowHeaderMouseClick);
-            this.grvJobList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grvJobList_KeyDown);
+            this.pnlFileBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlFileBrowser.BackColor = System.Drawing.Color.Transparent;
+            this.pnlFileBrowser.Controls.Add(this.FileListBox1);
+            this.pnlFileBrowser.Controls.Add(this.DriveListBox1);
+            this.pnlFileBrowser.Controls.Add(this.btnPermitsFileDownload);
+            this.pnlFileBrowser.Controls.Add(this.DirListBox1);
+            this.pnlFileBrowser.Location = new System.Drawing.Point(1356, 2);
+            this.pnlFileBrowser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlFileBrowser.Name = "pnlFileBrowser";
+            this.pnlFileBrowser.Size = new System.Drawing.Size(203, 292);
+            this.pnlFileBrowser.TabIndex = 285;
+            // 
+            // FileListBox1
+            // 
+            this.FileListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FileListBox1.FormattingEnabled = true;
+            this.FileListBox1.Location = new System.Drawing.Point(3, 202);
+            this.FileListBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FileListBox1.Name = "FileListBox1";
+            this.FileListBox1.Pattern = "*.*";
+            this.FileListBox1.Size = new System.Drawing.Size(200, 82);
+            this.FileListBox1.TabIndex = 236;
+            // 
+            // DriveListBox1
+            // 
+            this.DriveListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DriveListBox1.FormattingEnabled = true;
+            this.DriveListBox1.Location = new System.Drawing.Point(3, 52);
+            this.DriveListBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DriveListBox1.Name = "DriveListBox1";
+            this.DriveListBox1.Size = new System.Drawing.Size(200, 20);
+            this.DriveListBox1.TabIndex = 231;
+            this.DriveListBox1.SelectedIndexChanged += new System.EventHandler(this.DriveListBox1_SelectedIndexChanged);
+            // 
+            // btnPermitsFileDownload
+            // 
+            this.btnPermitsFileDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPermitsFileDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPermitsFileDownload.Location = new System.Drawing.Point(3, 6);
+            this.btnPermitsFileDownload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPermitsFileDownload.Name = "btnPermitsFileDownload";
+            this.btnPermitsFileDownload.Size = new System.Drawing.Size(200, 42);
+            this.btnPermitsFileDownload.TabIndex = 237;
+            this.btnPermitsFileDownload.Text = "Permits/File Download";
+            this.btnPermitsFileDownload.UseVisualStyleBackColor = true;
+            // 
+            // DirListBox1
+            // 
+            this.DirListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DirListBox1.FormattingEnabled = true;
+            this.DirListBox1.IntegralHeight = false;
+            this.DirListBox1.Location = new System.Drawing.Point(3, 81);
+            this.DirListBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DirListBox1.Name = "DirListBox1";
+            this.DirListBox1.Size = new System.Drawing.Size(200, 118);
+            this.DirListBox1.TabIndex = 232;
             // 
             // JobStatus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1568, 822);
+            this.Controls.Add(this.pnlFileBrowser);
             this.Controls.Add(this.tblpnlJobtrackingGrid);
-            this.Controls.Add(this.panelFileBrowser);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "JobStatus";
@@ -1639,13 +1646,13 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.PanelSearch.ResumeLayout(false);
             this.PanelJobGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).EndInit();
             this.GrpSrchTrack.ResumeLayout(false);
             this.GrpSrchTrack.PerformLayout();
             this.GrpSrchJob.ResumeLayout(false);
             this.GrpSrchJob.PerformLayout();
             this.GpJobAndTrack.ResumeLayout(false);
             this.GpJobAndTrack.PerformLayout();
-            this.panelFileBrowser.ResumeLayout(false);
             this.colorMenu.ResumeLayout(false);
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
@@ -1664,7 +1671,7 @@
             this.pnlNotes.ResumeLayout(false);
             this.pnlNotes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNotesCommunication)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvJobList)).EndInit();
+            this.pnlFileBrowser.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1674,7 +1681,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel PanelSearch;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox GpJobAndTrack;
         private System.Windows.Forms.Label label1;
@@ -1721,11 +1728,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label Track;
         private System.Windows.Forms.Panel PanelJobGrid;
-        private System.Windows.Forms.Panel panelFileBrowser;
-        private System.Windows.Forms.Button btnPermitsFileDownload;
-        private System.Windows.Forms.ComboBox DriveListBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Timer timerLoad;
         internal System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
         internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
@@ -1782,5 +1784,10 @@
         internal System.Windows.Forms.Button btnInsertNotes;
         internal System.Windows.Forms.Button btndeleteNotes;
         private System.Windows.Forms.DataGridView grvJobList;
+        internal System.Windows.Forms.Panel pnlFileBrowser;
+        internal Microsoft.VisualBasic.Compatibility.VB6.FileListBox FileListBox1;
+        internal Microsoft.VisualBasic.Compatibility.VB6.DriveListBox DriveListBox1;
+        internal System.Windows.Forms.Button btnPermitsFileDownload;
+        internal Microsoft.VisualBasic.Compatibility.VB6.DirListBox DirListBox1;
     }
 }

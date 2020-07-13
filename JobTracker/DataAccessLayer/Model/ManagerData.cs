@@ -206,6 +206,24 @@ namespace DataAccessLayer.Model
     {
         public string Trackname { get; set; }
     }
+
+    public class colTrackSubItem
+    {
+        public int? Id { get; set; }
+        public string TrackSubName { get; set; }
+    }
+    public class InvoiceTypeRate
+    {
+        public string ServRate { get; set; }
+        public string TypicalInvoiceType { get; set; }
+    }
+    
+    public class ContanctsClient
+    {
+        public int ContactsID { get; set; }
+        public string ClientName { get; set; }
+    }
+    
     public class PermitsRequirementSetColumn
     {
         public int? JobListID { get; set; }

@@ -1,4 +1,5 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿using Common;
+using ComponentFactory.Krypton.Toolkit;
 using DataAccessLayer;
 using DataAccessLayer.Model;
 using JobTracker.JobTrackingMDIForm;
@@ -12,6 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -20,8 +22,8 @@ namespace JobTracker.JobTrackingForm
 {
     public partial class JobStatus : Form
     {
-        Manager dAL = new Manager();
-        #region
+        ManagerRepository repo = new ManagerRepository();
+        #region Declaration
         public DataTable dtJL = new DataTable();
         public DataTable dtPreReq = new DataTable();
         public string AutoJB;
@@ -56,7 +58,7 @@ namespace JobTracker.JobTrackingForm
         private const string TIMESERVICEFEE = "TimeServiceFee;";
         #endregion
 
-        #region "Properties"
+        #region Properties
         public static JobStatus Instance
         {
             get
@@ -116,28 +118,29 @@ namespace JobTracker.JobTrackingForm
 
         #endregion
 
+        #region Events
         public JobStatus()
         {
             InitializeComponent();
         }
-        public void New()
-        {
-            // This call is required by the Windows Form Designer.
-            InitializeComponent();
-            //Add any initialization after the InitializeComponent() call
-        }
-
 
         private void JobStatus_Load(System.Object sender, System.EventArgs e)
         {
-            ProgressBar1.Visible = false;
-            label11.Visible = false;
-            // mdio = MdiParent;
-            ManagerLoad = true;
-            btnImportTimeSheetData.Visible = false;
-            BtnHistoryClick.Visible = true;
+            try
+            {
+                ProgressBar1.Visible = false;
+                label11.Visible = false;
+                mdio.MdiParent = MdiParent;
+                ManagerLoad = true;
+                btnImportTimeSheetData.Visible = false;
+                BtnHistoryClick.Visible = true;
 
-            //DefaultValueSetup();
+                //DefaultValueSetup();
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "JobStatus_Load", ex.Message);
+            }
         }
 
         private void TimerLoad_Tick(object sender, EventArgs e)
@@ -153,14 +156,16 @@ namespace JobTracker.JobTrackingForm
 
                         SetColumns();
                         fillGridJobList();
+                        //DriveListBox1.DataSource = "D:";
                         //var MainGrid = new List<ManagerData>();
-                        //MainGrid = dAL.GetManagerData();
+                        //MainGrid = new GetManagerData();
 
                         //grvJobList.DataSource = MainGrid;
                         selectRecord_Joblist = false;
                     }
                     catch (Exception ex)
                     {
+                        cErrorLog.WriteLog("JobStatus", "TimerLoad_Tick", ex.Message);
                     }
                 }
                 if (selectRecord_Joblist == false)
@@ -171,7 +176,7 @@ namespace JobTracker.JobTrackingForm
                         FillGridPreRequirment();
 
                         //var PreRequirement = new List<PreRequirement>();
-                        //PreRequirement = dAL.GetPreRequirement();
+                        //PreRequirement = new GetPreRequirement();
                         //grvPreRequirments.DataSource = PreRequirement;
 
                     }
@@ -180,7 +185,7 @@ namespace JobTracker.JobTrackingForm
                         SetColumnPermit();
                         FillGridPermitRequiredInspection();
                         //var PermitRequiredInspection = new List<PermitsRequirement>();
-                        //PermitRequiredInspection = dAL.GetPermitsRequirement();
+                        //PermitRequiredInspection = new GetPermitsRequirement();
                         //grvPreRequirments.DataSource = PermitRequiredInspection;
                     }
                     if (processcount == 3)
@@ -188,7 +193,7 @@ namespace JobTracker.JobTrackingForm
                         SetColumnNotes();
                         FillGridNotesCommunication();
                         //var NotesCommunication = new List<NotesComunication>();
-                        //NotesCommunication = dAL.GetNotesComunication();
+                        //NotesCommunication = new GetNotesComunication();
                         //grvPreRequirments.DataSource = NotesCommunication;
                     }
                     if (processcount == 4)
@@ -212,6 +217,1661 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "TimerLoad_Tick", ex.Message);
+            }
+        }
+
+        private void grvPermitsRequiredInspection_CellClick(System.Object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvPermitsRequiredInspection.Columns[e.ColumnIndex].Name == "cmbBillState")
+                {
+
+                    if (mdio.lblLogin.Text == "Admin Login")
+                    {
+                        grvPermitsRequiredInspection.Columns[e.ColumnIndex].ReadOnly = true;
+                    }
+                    else
+                    {
+                        grvPermitsRequiredInspection.Columns[e.ColumnIndex].ReadOnly = false;
+                    }
+                }
+            }
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvPermitsRequiredInspection.Columns[e.ColumnIndex].Name == "GrdbtnPrequisition")
+                {
+                    try
+                    {
+                        //Attempt to update the datasource.
+                        int cnt = e.RowIndex;
+                        if (Convert.ToInt32(grvPermitsRequiredInspection.Rows[cnt].Cells["JobTrackingID"].Value.ToString()) == 0)
+                        {
+                            InsertPermits();
+                            return;
+                        }
+                        btnInsertPermit.Text = "Insert";
+                        btnDeletePermit.Enabled = true;
+                        if (string.IsNullOrEmpty(grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.CurrentRow.Index].Cells["Track"].Value.ToString()))
+                        {
+                            KryptonMessageBox.Show("Track field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        if (string.IsNullOrEmpty(grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.CurrentRow.Index].Cells["TrackSub"].Value.ToString()))
+                        {
+                            KryptonMessageBox.Show("TrackSub field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        try
+                        {
+                            SqlCommand cmd = new SqlCommand("update  Jobtracking set JobListID= @JobListID,TaskHandler=@TaskHandler,Track=@Track,Status= @Status,Submitted=@Submitted, Obtained=@Obtained,Expires=@Expires, FinalAction =@FinalAction, BillState=@BillState , AddDate=@AddDate,NeedDate= @NeedDate,TrackSub=@TrackSub,Comments=@Comments,IsChange=@IsChange,ChangeDate=@ChangeDate,TrackSubID=@TrackSubID,InvOvr=@InvOvr  where   JobTrackingID=    @JobTrackingID");
+                            List<SqlParameter> Param = new List<SqlParameter>();
+                            Param.Add(new SqlParameter("@IsChange", 1));
+                            Param.Add(new SqlParameter("@ChangeDate", Convert.ToDateTime(DateTime.Now).ToString("MM/dd/yyyy")));
+                            //Param.Add(new SqlParameter("@JobListID", DirectCast(grvPreRequirments.Rows[cnt].Cells[14), System.Windows.Forms.DataGridViewComboBoxCell].Value)
+                            Param.Add(new SqlParameter("@JobListID", grvPermitsRequiredInspection.Rows[cnt].Cells["JobListID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TaskHandler", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbTaskHandler"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Track", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbTrack"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Submitted", grvPermitsRequiredInspection.Rows[cnt].Cells["Submitted"].Value.ToString()));
+                            Param.Add(new SqlParameter("@BillState", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbBillState"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TrackSub", grvPermitsRequiredInspection.Rows[cnt].Cells["TrackSub"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Comments", grvPermitsRequiredInspection.Rows[cnt].Cells["Comments"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Status", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbStatus"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Obtained", grvPermitsRequiredInspection.Rows[cnt].Cells["Obtained"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Expires", grvPermitsRequiredInspection.Rows[cnt].Cells["Expires"].Value.ToString()));
+                            Param.Add(new SqlParameter("@FinalAction", grvPermitsRequiredInspection.Rows[cnt].Cells["FinalAction"].Value.ToString()));
+                            Param.Add(new SqlParameter("@AddDate", grvPermitsRequiredInspection.Rows[cnt].Cells["AddDate"].Value.ToString()));
+                            Param.Add(new SqlParameter("@NeedDate", grvPermitsRequiredInspection.Rows[cnt].Cells["NeedDate"].Value.ToString()));
+                            Param.Add(new SqlParameter("@JobTrackingID", grvPermitsRequiredInspection.Rows[cnt].Cells["JobTrackingID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TrackSubID", grvPermitsRequiredInspection.Rows[cnt].Cells["TrackSubID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvOvr", grvPermitsRequiredInspection.Rows[cnt].Cells["InvOvr"].Value.ToString()));
+
+                            if (repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray()) > 0)
+                            {
+
+                                grvPermitsRequiredInspection.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                                grvPermitsRequiredInspection.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.FromArgb(159, 207, 255);
+                                KryptonMessageBox.Show("Update Successfully", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (System.Exception eLoad)
+                        {
+                            //Add your error handling code here.
+                            //Display error message, if any.
+                            KryptonMessageBox.Show(eLoad.Message, "Manager");
+                        }
+                        //FillGridPermitRequiredInspection()
+                        // If grvPermitsRequiredInspection.Rows.Count > 0 Then
+                        grvPermitsRequiredInspection.CurrentCell = grvPermitsRequiredInspection.Rows[cnt].Cells["Comments"];
+                        grvPermitsRequiredInspection.Rows[cnt].Selected = true;
+                        // End Ifremo
+                        // System.Windows.Forms.MessageBox.Show("Record Updated!", "Message")
+
+                    }
+                    catch (System.Exception eUpdate)
+                    {
+                        //Add your error handling code here.
+                        //Display error message, if any.
+                        KryptonMessageBox.Show(eUpdate.Message, "Manager");
+                    }
+                }
+            }
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvPermitsRequiredInspection.Columns[e.ColumnIndex].Name == "cmbTrack")
+                {
+                    //FillPermitGridTrackSubCmb(e.ColumnIndex, e.RowIndex)
+                }
+            }
+        }
+
+        private void grvPreRequirments_CellBeginEdit(System.Object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
+        {
+            if (grvPreRequirments.Columns[e.ColumnIndex].Name == "cmbTaskHandler")
+            {
+                if (isDiable(((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == true)
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar.DataSource = repo.GetcolPMM();
+                    tempVar.DisplayMember = "cTrack";
+                }
+                else
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar2 = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar2.DataSource = repo.GetPreRequirementcolTM_D();
+                    tempVar2.DisplayMember = "cTrack";
+                }
+            }
+            if (e.ColumnIndex > -1 || e.RowIndex > -1)
+            {
+                CheckString = string.Empty;
+                if (Convert.ToInt16(grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["JobListID"].Value.ToString()) == 0)
+                {
+                    if (grvPreRequirments.CurrentRow.Index == grvPreRequirments.Rows.Count - 1)
+                    {
+                        return;
+                    }
+                    KryptonMessageBox.Show("First Save then select for update", "Master List Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    e.Cancel = true;
+                    return;
+                }
+                CheckString = grvPreRequirments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            }
+            FillPreRequireGridTrackSubCmb(e.RowIndex);
+        }
+
+        private void grvPreRequirments_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            FillPreRequireGridTrackSubCmb(e.RowIndex);
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvPreRequirments.Columns[e.ColumnIndex].Name == "TrackSub")
+                {
+                    try
+                    {
+                        grvPreRequirments.Rows[e.RowIndex].Cells["TrackSubID"].Value = repo.db.Database.SqlQuery<int>("SELECT Id FROM  MasterTrackSubItem WHERe TrackSubName='" + grvPreRequirments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "'").SingleOrDefault();
+                    }
+                    catch (Exception ex)
+                    {
+                        cErrorLog.WriteLog("JobStatus", "grvPreRequirments_CellEndEdit", ex.Message);
+                    }
+                }
+
+                if (grvPreRequirments.Columns[e.ColumnIndex].Name == "InvOvr")
+                {
+                    try
+                    {
+                        Regex regexint = new Regex("\\d([1-9]|[$]|[\\.\\d+])\\d");
+                        Regex regexdec = new Regex("(^(\\$)(0|([1-9][0-9]*))(\\.[0-9]{1,6})?$)|(^(0{0,1}|([1-9][0-9]*))(\\.[0-9]{1,6})?$)");
+
+                        Match mint = regexint.Match(grvPreRequirments.Rows[e.RowIndex].Cells["InvOvr"].Value.ToString());
+                        Match mDec = regexdec.Match(grvPreRequirments.Rows[e.RowIndex].Cells["InvOvr"].Value.ToString());
+
+                        if ((mint.Success & mDec.Success) != false)
+                        {
+
+                        }
+                        else
+                        {
+                            grvPreRequirments.Rows[e.RowIndex].Cells["InvOvr"].Value = "";
+                            MessageBox.Show("Please Enter Number Only");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cErrorLog.WriteLog("JobStatus", "grvPreRequirments_CellEndEdit", ex.Message);
+                    }
+                }
+            }
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvPreRequirments.Columns[e.ColumnIndex].Name == "cmbTrack")
+                {
+                    FillPreRequireGridTrackSubCmb(e.RowIndex);
+                }
+            }
+            try
+            {
+                if (e.ColumnIndex > -1 || e.RowIndex > -1)
+                {
+                    if (Convert.ToInt16(grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["JobListID"].Value) == 0)
+                    {
+                        return;
+                    }
+                    if (grvPreRequirments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() != CheckString)
+                    {
+                        grvPreRequirments.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Pink;
+                        grvPreRequirments.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Pink;
+                        CheckString = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "grvPreRequirments_CellEndEdit", ex.Message);
+            }
+        }
+
+        private void grvPermitsRequiredInspection_DataError(System.Object sender, System.Windows.Forms.DataGridViewDataErrorEventArgs e)
+        {
+            if (grvPreRequirments.Columns[e.ColumnIndex].Name == "cmbTaskHandler")
+            {
+                if (isDiable(((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == true)
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar.DataSource = repo.GetPreRequirementcolTM();
+                    tempVar.DisplayMember = "cTrack";
+                }
+            }
+        }
+
+        private void grvJobList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // CHANGE THE SUB GIRD OF JOB LIST
+            try
+            {
+
+                selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
+                isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
+
+                if (e.ColumnIndex > -1 & e.RowIndex > -1)
+                {
+                    if (grvJobList.Columns[e.ColumnIndex].Name == "EmailAddress")
+                    {
+                    }
+                }
+                if (e.ColumnIndex > -1 & e.RowIndex > -1)
+                {
+                    if (grvJobList.Columns[e.ColumnIndex].Name == "Description")
+                    {
+                    }
+                }
+                FillGridPreRequirment();
+                FillGridPermitRequiredInspection();
+                FillGridNotesCommunication();
+                if ((isDisabled))
+                    disableJob(true);
+                else
+                    disableJob(false);
+                //Todo
+                //ChangeDirJobNumber(e.RowIndex);
+
+                // Manage Trafic Light
+                //todo
+                //ChangeTraficLight(e.RowIndex);
+                lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
+                //FillTimeSheeData(sender, e);
+                //FillVECostButtonColor();
+                //CalculateRevenu calcRevenu = new CalculateRevenu();
+            }
+
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "grvJobList_CellClick", ex.Message);
+            }
+
+            int cnt = e.RowIndex;
+            if (e.ColumnIndex > -1 & e.RowIndex > -1)
+            {
+                if (grvJobList.Columns[e.ColumnIndex].Name == "GrdJobBtnUpdate")
+                {
+                    if (Convert.ToInt32(grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()) == 0)
+                    {
+                        InsertJobList();
+                        return;
+                    }
+                    btnAdd.Text = "Insert";
+                    btnDelete.Enabled = true;
+                    try
+                    {
+                        // Attempt to update the datasource.
+                        // validate the required value
+                        if ((!ValidateRateServTypeValue(cnt)))
+                            return;
+                        try
+                        {
+                            //EFDbContext DAL = new EFDbContext();
+                            SqlCommand cmd = new SqlCommand("update  JobList set JobNumber= @JobNumber,CompanyID=@CompanyID,DateAdded=@DateAdded,Description= @Description,Handler=@Handler, Address=@Address,Borough=@Borough ,InvoiceClient=@InvoiceClient ,InvoiceContact=@InvoiceContact, InvoiceEmailAddress=@InvoiceEmailAddress, InvoiceACContacts=@InvoiceACContacts, InvoiceACEmail=@InvoiceACEmail, PMrv=@PMrv, ContactsID=@ContactsID, IsChange=@IsChange , ChangeDate=@ChangeDate,OwnerName=@OwnerName,OwnerAddress=@OwnerAddress,OwnerPhone=@OwnerPhone,OwnerFax=@OwnerFax,ACContacts=@ACContacts,ACEmail=@ACEmail,Clienttext=@Clienttext,ContactsEmails=@ContactsEmails, IsDisable=@IsDisable,IsInvoiceHold=@IsInvoiceHold, RateVersionId=@RateVersionId,ServRate=@ServRate, AdminInvoice=@AdminInvoice, TypicalInvoiceType=@TypicalInvoiceType where   JobListID=@JobListID");
+                            List<SqlParameter> Param = new List<SqlParameter>();
+                            Param.Add(new SqlParameter("@IsChange", 1));
+                            Param.Add(new SqlParameter("@ChangeDate", string.Format("MM/dd/yyyy", DateTime.Now)));
+                            Param.Add(new SqlParameter("@JobListID", grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@JobNumber", grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()));
+                            Param.Add(new SqlParameter("@DateAdded", grvJobList.Rows[cnt].Cells["DateAdded"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Description", grvJobList.Rows[cnt].Cells["Description"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Address", grvJobList.Rows[cnt].Cells["Address"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Handler", grvJobList.Rows[cnt].Cells["cmbHandler"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Borough", grvJobList.Rows[cnt].Cells["Borough"].Value.ToString()));
+                            Param.Add(new SqlParameter("@PMrv", grvJobList.Rows[cnt].Cells["cmbPMrv"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerName", grvJobList.Rows[cnt].Cells["OwnerName"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerAddress", grvJobList.Rows[cnt].Cells["OwnerAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerPhone", grvJobList.Rows[cnt].Cells["OwnerPhone"].Value.ToString()));
+                            Param.Add(new SqlParameter("@OwnerFax", grvJobList.Rows[cnt].Cells["OwnerFax"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ACContacts", grvJobList.Rows[cnt].Cells["ACContacts"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ACEmail", grvJobList.Rows[cnt].Cells["ACEmail"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Clienttext", grvJobList.Rows[cnt].Cells["Clienttext"].Value.ToString()));
+                            Param.Add(new SqlParameter("@ContactsEmails", grvJobList.Rows[cnt].Cells["EmailAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@IsDisable", grvJobList.Rows[cnt].Cells["IsDisable"].Value));
+                            Param.Add(new SqlParameter("@IsInvoiceHold", grvJobList.Rows[cnt].Cells["IsInvoiceHold"].Value));
+                            Param.Add(new SqlParameter("@InvoiceClient", grvJobList.Rows[cnt].Cells["InvoiceClient"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceContact", grvJobList.Rows[cnt].Cells["InvoiceContact"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceEmailAddress", grvJobList.Rows[cnt].Cells["InvoiceEmailAddress"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceACContacts", grvJobList.Rows[cnt].Cells["InvoiceACContacts"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvoiceACEmail", grvJobList.Rows[cnt].Cells["InvoiceACEmail"].Value.ToString()));
+                            Param.Add(new SqlParameter("@RateVersionId", grvJobList.Rows[cnt].Cells["RateVersionId"].Value));
+                            Param.Add(new SqlParameter("@ServRate", grvJobList.Rows[cnt].Cells["ServRate"].Value));
+                            Param.Add(new SqlParameter("@AdminInvoice", grvJobList.Rows[cnt].Cells["AdminInvoice"].Value));
+                            Param.Add(new SqlParameter("@TypicalInvoiceType", grvJobList.Rows[cnt].Cells["cmbTypicalInvoiceType"].Value));
+                            if (grvJobList.Rows[cnt].Cells["Client#"].Value.ToString() == "")
+                                Param.Add(new SqlParameter("@CompanyID", 0));
+                            else
+                                Param.Add(new SqlParameter("@CompanyID", (DataGridViewComboBoxCell)grvJobList.Rows[cnt].Cells["Client#"].Value));
+                            int ContactsID;
+                            if (grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString() == "")
+                            {
+                                Param.Add(new SqlParameter("@ContactsID", 0));
+                                ContactsID = 0;
+                            }
+                            else
+                            {
+                                ContactsID = Convert.ToInt32(grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
+                                new SqlParameter("@ContactsID", grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
+                            }
+
+                            if (repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray()) > 0)
+                            {
+                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.FromArgb(159, 207, 255);
+                                KryptonMessageBox.Show("Update Successfully", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                        catch (Exception eLoad)
+                        {
+                            KryptonMessageBox.Show(eLoad.Message, "Manager");
+                            cErrorLog.WriteLog("JobStatus", "grvJobList_CellClick", eLoad.Message);
+                        }
+                        grvJobList.CurrentCell = grvJobList.Rows[cnt].Cells["Address"];
+                        grvJobList.Rows[cnt].Selected = true;
+                    }
+                    catch (Exception eUpdate)
+                    {
+                        KryptonMessageBox.Show(eUpdate.Message, "Manager");
+                        cErrorLog.WriteLog("JobStatus", "grvJobList_CellClick", eUpdate.Message);
+                    }
+                }
+            }
+            grvJobList_CellEnter(sender, e);
+        }
+
+        private void grvJobList_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if ((e.ColumnIndex > -1 & e.RowIndex > -1))
+                {
+                    DataGridViewComboBoxCell ContactCmb = new DataGridViewComboBoxCell();
+                    DataTable DataTableContact = new DataTable();
+                    if (grvJobList.Columns[e.ColumnIndex].Name == "Clienttext")
+                    {
+                    }
+                    else if ((grvJobList.Columns[e.ColumnIndex].Name == "Contacts"))
+                    {
+                        //try
+                        //{
+                        //    int i =repo.GetValueMemberID(Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value), grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Contacts"].Value.ToString().Trim());
+                        //    if (i == 0)
+                        //    {
+                        //        grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["ContactsID"].Value = "";
+                        //        return;
+                        //    }
+
+                        //    grvJobList.Rows[e.RowIndex].Cells["ContactsID"].Value = i;
+                        //}
+                        //catch (Exception ex)
+                        //{
+
+                        //}
+                    }
+                    // invoice contact and invoiceAcContact email address
+                    if ((grvJobList.Columns[e.ColumnIndex].Name == "InvoiceContactT" | grvJobList.Columns[e.ColumnIndex].Name == "InvoiceACContactsT") & e.RowIndex > -1)
+                    {
+                        try
+                        {
+                            DataGridView datagridview = (DataGridView)sender;
+                            datagridview.BeginEdit(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            cErrorLog.WriteLog("JobStatus", "grvJobList_CellEnter", ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "grvJobList_CellEnter", ex.Message);
+            }
+        }
+
+        private void grvJobList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
+                isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
+                //ChangeTraficLight(e.RowIndex);
+                FillGridPreRequirment();
+                FillGridPermitRequiredInspection();
+                FillGridNotesCommunication();
+                if ((isDisabled))
+                    disableJob(true);
+                else
+                    disableJob(false);
+                lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "grvJobList_RowHeaderMouseClick", ex.Message);
+            }
+        }
+
+        private void grvJobList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["JobListID"].Value);
+                if (Convert.IsDBNull(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value))
+                    isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value);
+                if (e.KeyCode == Keys.Up)
+                {
+                    if (grvJobList.CurrentRow.Index != 0)
+                    {
+                        selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["JobListID"].Value);
+                        isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["IsDisable"].Value);
+                        // ChangeTraficLight(grvJobList.CurrentRow.Index - 1);                    
+                        // ChangeDirJobNumber(grvJobList.CurrentRow.Index - 1);
+                        FillGridPreRequirment();
+                        FillGridPermitRequiredInspection();
+                        FillGridNotesCommunication();
+                        if ((isDisabled))
+                            disableJob(true);
+                        else
+                            disableJob(false);
+                        lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["CompanyNo"].Value.ToString();
+                    }
+                }
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (grvJobList.CurrentRow.Index != grvJobList.Rows.Count - 1)
+                    {
+                        selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["JobListID"].Value);
+                        isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["IsDisable"].Value);
+                        // Dim JobNo As String = grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["JobNumber"].Value.ToString
+                        // ChangeTraficLight(grvJobList.CurrentRow.Index + 1);                    
+                        //ChangeDirJobNumber(grvJobList.CurrentRow.Index + 1);
+                        FillGridPreRequirment();
+                        FillGridPermitRequiredInspection();
+                        FillGridNotesCommunication();
+                        if ((isDisabled))
+                            disableJob(true);
+                        else
+                            disableJob(false);
+                        lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["CompanyNo"].Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "grvJobList_KeyDown", ex.Message);
+            }
+        }
+
+        private void grvNotesCommunication_CellClick(System.Object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvNotesCommunication.Columns[e.ColumnIndex].Name == "cmbBillState")
+                {
+                    if (mdio.lblLogin.Text == "Admin Login")
+                    {
+                        grvNotesCommunication.Columns[e.ColumnIndex].ReadOnly = true;
+                    }
+                    else
+                    {
+                        grvNotesCommunication.Columns[e.ColumnIndex].ReadOnly = false;
+                    }
+                }
+            }
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvNotesCommunication.Columns[e.ColumnIndex].Name == "GrdBtnNotesUpdate")
+                {
+                    try
+                    {
+                        //Attempt to update the datasource.
+                        int cnt = e.RowIndex;
+                        if (Convert.ToInt32(grvNotesCommunication.Rows[cnt].Cells["JobTrackingID"].Value.ToString()) == 0)
+                        {
+                            InsertNotes();
+                            return;
+                        }
+                        btnInsertNotes.Text = "Insert";
+                        btndeleteNotes.Enabled = true;
+                        if (string.IsNullOrEmpty(grvNotesCommunication.Rows[grvNotesCommunication.CurrentRow.Index].Cells["Track"].Value.ToString()))
+                        {
+                            KryptonMessageBox.Show("Track field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        if (string.IsNullOrEmpty(grvNotesCommunication.Rows[grvNotesCommunication.CurrentRow.Index].Cells["TrackSub"].Value.ToString()))
+                        {
+                            KryptonMessageBox.Show("TrackSub field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        try
+                        {
+                            //DataAccessLayer DAL = new DataAccessLayer();
+                            SqlCommand cmd = new SqlCommand("update  Jobtracking set JobListID= @JobListID,TaskHandler=@TaskHandler,Track=@Track,Status= @Status,Submitted=@Submitted, Obtained=@Obtained,Expires=@Expires,BillState=@BillState , AddDate=@AddDate,NeedDate= @NeedDate,TrackSub=@TrackSub,Comments=@Comments,IsChange=@IsChange,ChangeDate=@ChangeDate,TrackSubID=@TrackSubID, InvOvr=@InvOvr, DeleteItemTimeService=@DeleteItemTimeService where   JobTrackingID=    @JobTrackingID");
+
+                            List<SqlParameter> Param = new List<SqlParameter>();
+                            Param.Add(new SqlParameter("@IsChange", 1));
+                            Param.Add(new SqlParameter("@ChangeDate", Convert.ToDateTime(DateTime.Now).ToString("MM/dd/yyyy")));
+                            //Param.Add(new SqlParameter("@JobListID", DirectCast(grvPreRequirments.Rows[cnt].Cells[14), System.Windows.Forms.DataGridViewComboBoxCell].Value)
+                            Param.Add(new SqlParameter("@JobListID", grvNotesCommunication.Rows[cnt].Cells["JobListID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TaskHandler", grvNotesCommunication.Rows[cnt].Cells["cmbTaskHandler"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Track", grvNotesCommunication.Rows[cnt].Cells["cmbTrack"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Submitted", grvNotesCommunication.Rows[cnt].Cells["Submitted"].Value.ToString()));
+                            Param.Add(new SqlParameter("@BillState", grvNotesCommunication.Rows[cnt].Cells["cmbBillState"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TrackSub", grvNotesCommunication.Rows[cnt].Cells["TrackSub"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Comments", grvNotesCommunication.Rows[cnt].Cells["Comments"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Status", grvNotesCommunication.Rows[cnt].Cells["cmbStatus"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Obtained", grvNotesCommunication.Rows[cnt].Cells["Obtained"].Value.ToString()));
+                            Param.Add(new SqlParameter("@Expires", grvNotesCommunication.Rows[cnt].Cells["Expires"].Value.ToString()));
+                            Param.Add(new SqlParameter("@AddDate", grvNotesCommunication.Rows[cnt].Cells["AddDate"].Value.ToString()));
+                            Param.Add(new SqlParameter("@NeedDate", grvNotesCommunication.Rows[cnt].Cells["NeedDate"].Value.ToString()));
+                            Param.Add(new SqlParameter("@JobTrackingID", grvNotesCommunication.Rows[cnt].Cells["JobTrackingID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@TrackSubID", grvNotesCommunication.Rows[cnt].Cells["TrackSubID"].Value.ToString()));
+                            Param.Add(new SqlParameter("@InvOvr", grvNotesCommunication.Rows[cnt].Cells["InvOvr"].Value.ToString()));
+                            Param.Add(new SqlParameter("@DeleteItemTimeService", grvNotesCommunication.Rows[cnt].Cells["DeleteItemTimeService"].Value.ToString()));
+                            int num = repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray());
+                            if (num > 0)
+                            {
+                                grvNotesCommunication.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                                grvNotesCommunication.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.FromArgb(159, 207, 255);
+                                KryptonMessageBox.Show("Update Successfully", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (System.Exception eLoad)
+                        {
+                            //Add your error handling code here.
+                            //Display error message, if any.
+                            KryptonMessageBox.Show(eLoad.Message, "Manager");
+                        }
+                        // FillGridPermitRequiredInspection()
+                        //If grvNotesCommunication.Rows.Count > 0 Then
+                        grvNotesCommunication.CurrentCell = grvNotesCommunication.Rows[cnt].Cells["Comments"];
+                        grvNotesCommunication.Rows[cnt].Selected = true;
+                        //End If
+                        //  System.Windows.Forms.MessageBox.Show("Record Updated!", "Message")
+
+                    }
+                    catch (System.Exception eUpdate)
+                    {
+                        //Add your error handling code here.
+                        //Display error message, if any.
+                        KryptonMessageBox.Show(eUpdate.Message, "Manager");
+                    }
+                }
+            }
+            //If e.ColumnIndex = 4 And e.RowIndex > -1 Then
+            //    FillNotesGridCmb(e.ColumnIndex, e.RowIndex)
+
+            //End If
+        }
+
+        private void grvNotesCommunication_CellBeginEdit(System.Object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
+        {
+            if (grvPreRequirments.Columns[e.ColumnIndex].Name == "cmbTaskHandler")
+            {
+                if (isDiable(((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == true)
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar.DataSource = repo.GetPreRequirementcolTM();
+                    //AND (isDisable <> 1 or IsDisable is  null)
+                    tempVar.DisplayMember = "cTrack";
+                }
+                else
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar2 = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar2.DataSource = repo.GetPreRequirementcolTM_D();
+                    tempVar2.DisplayMember = "cTrack";
+                }
+            }
+            FillNotesGridCmb(e.ColumnIndex, e.RowIndex);
+            try
+            {
+
+                if (e.ColumnIndex > -1 || e.RowIndex > -1)
+                {
+                    CheckString = string.Empty;
+                    if (Convert.ToInt16(grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["JobListID"].Value.ToString()) == 0)
+                    {
+                        if (grvNotesCommunication.CurrentRow.Index == grvNotesCommunication.Rows.Count - 1)
+                        {
+                            return;
+                        }
+                        KryptonMessageBox.Show("First Save then select for update", "Master List Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        e.Cancel = true;
+                        return;
+                    }
+                    CheckString = grvNotesCommunication[e.ColumnIndex, e.RowIndex].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void grvNotesCommunication_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            FillNotesGridCmb(e.ColumnIndex, e.RowIndex);
+            //If e.ColumnIndex = 4 And e.RowIndex > -1 Then
+            //    FillNotesGridCmb(e.ColumnIndex, e.RowIndex)
+            //End If
+            if (e.ColumnIndex > -1 && e.RowIndex > -1)
+            {
+                if (grvNotesCommunication.Columns[e.ColumnIndex].Name == "TrackSub")
+                {
+                    try
+                    {
+                        if (e.ColumnIndex > -1 && e.RowIndex > -1)
+                            grvNotesCommunication.Rows[e.RowIndex].Cells["TrackSubID"].Value =repo.db.Database.SqlQuery<int> ("SELECT Id FROM  MasterTrackSubItem WHERe TrackSubName='" + grvNotesCommunication.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "' AND (IsDelete=0 or IsDelete IS NULL)").FirstOrDefault();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    try
+                    {
+                        var data = (InvoiceTypeRate)repo.GetInvoiceTypeRate(Convert.ToInt32(grvJobList.CurrentRow.Cells["CompanyID"].Value)).SingleOrDefault();
+
+                        string InvoiceType = string.IsNullOrEmpty(grvJobList.CurrentRow.Cells["TypicalInvoiceType"].Value.ToString()) ? (string.IsNullOrEmpty(data.TypicalInvoiceType) ? "Item" : data.TypicalInvoiceType) : grvJobList.CurrentRow.Cells["TypicalInvoiceType"].Value.ToString();
+
+                        string servRate = string.IsNullOrEmpty(grvJobList.CurrentRow.Cells["ServRate"].Value.ToString()) ? (string.IsNullOrEmpty(data.ServRate) ? "1" : data.ServRate) : grvJobList.CurrentRow.Cells["ServRate"].Value.ToString();
+
+                        if (InvoiceType == "Time" && grvNotesCommunication.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == TIMESERVICEFEE)
+                        {
+                            MessageBox.Show("Invoice Type is Time already", "Manager");
+                            grvNotesCommunication.CancelEdit();
+                        }
+                        else if ((InvoiceType == "Item") && grvNotesCommunication.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == TIMESERVICEFEE)
+                        {
+                            //TODO
+                            ////frmPopupInvoiceTime frmpopup = new frmPopupInvoiceTime();
+                            ////frmpopup.jobID = grvJobList.CurrentRow.Cells["JobListID"].Value;
+                            ////frmpopup.TimeFactorServRate = servRate;
+                            ////frmpopup.ShowDialog();
+                            ////if (frmpopup.DialogResult == DialogResult.Yes)
+                            ////{
+                            ////    grvNotesCommunication.Rows[e.RowIndex].Cells["Comments"].Value = frmpopup.InsertString;
+                            ////    grvNotesCommunication.Rows[e.RowIndex].Cells["DeleteItemTimeService"].Value = frmpopup.DeleteItems;
+                            ////}
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+
+
+                if (grvNotesCommunication.Columns[e.ColumnIndex].Name == "InvOvr")
+                {
+                    try
+                    {
+                        Regex regexint = new Regex("\\d([1-9]|[$]|[\\.\\d+])\\d");
+                        Regex regexdec = new Regex("(^(\\$)(0|([1-9][0-9]*))(\\.[0-9]{1,6})?$)|(^(0{0,1}|([1-9][0-9]*))(\\.[0-9]{1,6})?$)");
+
+                        Match mint = regexint.Match(grvNotesCommunication.Rows[e.RowIndex].Cells["InvOvr"].Value.ToString());
+                        Match mDec = regexdec.Match(grvNotesCommunication.Rows[e.RowIndex].Cells["InvOvr"].Value.ToString());
+
+                        if ((mint.Success & mDec.Success) != false)
+                        {
+
+                        }
+                        else
+                        {
+                            grvNotesCommunication.Rows[e.RowIndex].Cells["InvOvr"].Value = "";
+                            MessageBox.Show("Please Enter Number Only");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+
+            try
+            {
+                if (e.ColumnIndex > -1 || e.RowIndex > -1)
+                {
+                    if (Convert.ToInt16(grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["JobListID"].Value.ToString()) == 0)
+                    {
+                        return;
+                    }
+                    if (grvNotesCommunication.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() != CheckString)
+                    {
+                        grvNotesCommunication.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Pink;
+                        grvNotesCommunication.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Pink;
+                        CheckString = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void grvNotesCommunication_DataError(object sender, System.Windows.Forms.DataGridViewDataErrorEventArgs e)
+        {
+            if (grvPreRequirments.Columns[e.ColumnIndex].Name == "cmbTaskHandler")
+            {
+                if (isDiable(((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) == true)
+                {
+                    DataGridViewComboBoxCell cmbTMCell = new DataGridViewComboBoxCell();
+                    DataGridViewComboBoxCell tempVar = (DataGridViewComboBoxCell)((DataGridView)sender)[e.ColumnIndex, e.RowIndex];
+                    tempVar.DataSource = repo.GetPreRequirementcolTM();
+
+                    tempVar.DisplayMember = "cTrack";
+                }
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (btnAdd.Text == "Insert")
+            {
+                for (int i = 0; i < grvJobList.Rows.Count; i++)
+                {
+                    if (grvJobList.Rows[i].DefaultCellStyle.BackColor == Color.Pink)
+                    {
+                        KryptonMessageBox.Show("you can't insert new record first Update and then insert", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                AutoJB = repo.AutoJobnumber();
+
+                btnAdd.Text = "Save";
+                btnDelete.Enabled = false;
+                DataRow datarow = dtJL.NewRow();
+                datarow["JobListID"] = 0;
+                datarow["JobNumber"] = AutoJB.ToString();
+
+
+                //**** Auto Insert Setting  *****
+                try
+                {
+
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+
+                        datarow["Handler"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Joblist"]["PM"].InnerText;
+                        //datarow("PMrv") = myDoc("VESoftwareSetting")("AutoInsert")("Manager")("Joblist")("PMrv").InnerText
+                    }
+                    else
+                    {
+                        datarow["Handler"] = "";
+                        //datarow("PMrv") = ""
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["Handler"] = "";
+                    //datarow("PMrv") = ""
+                }
+
+                // datarow("Client") = ""
+                datarow["Description"] = "";
+                datarow["Address"] = "";
+                datarow["Contacts"] = "";
+                datarow["Borough"] = "";
+                datarow["DateAdded"] = DateTime.Now;
+                datarow["EmailAddress"] = "";
+                datarow["OwnerName"] = "";
+                datarow["OwnerAddress"] = "";
+                datarow["OwnerPhone"] = "";
+                datarow["OwnerFax"] = "";
+                datarow["ACContacts"] = "";
+                datarow["ACEmail"] = "";
+                //datarow("PMrv") = ""
+                datarow["InvoiceClient"] = 0;
+                datarow["InvoiceContact"] = "";
+                datarow["InvoiceEmailAddress"] = "";
+                datarow["InvoiceACContacts"] = "";
+                datarow["InvoiceACEmail"] = "";
+                datarow["IsDisable"] = false;
+                datarow["IsInvoiceHold"] = false;
+                datarow["AdminInvoice"] = false;
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+
+                        datarow["PMrv"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Joblist"]["PMrv"].InnerText;
+                    }
+                    else
+                    {
+                        datarow["PMrv"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["PMrv"] = "";
+                }
+
+                dtJL.Rows.Add(datarow);
+                grvJobList.DataSource = dtJL;
+                grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"];
+                selectedJobListID = -1;
+                // isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["IsDisable"].Value)
+                grvJobList.Rows[grvJobList.CurrentRow.Index].DefaultCellStyle.SelectionBackColor = Color.Gold;
+                grvJobList.Rows[grvJobList.CurrentRow.Index].DefaultCellStyle.BackColor = Color.Gold;
+                FillGridPreRequirment();
+                FillGridNotesCommunication();
+                FillGridPermitRequiredInspection();
+
+                //If (isDisabled) Then
+                //    disableJob(True)
+                //Else
+                //    disableJob(False)
+                //End If
+                //grdJobTracking.Rows[grdJobTracking.Rows.Count - 1).Selected = True
+            }
+            else
+            {
+                InsertJobList();
+            }
+        }
+
+        private void DirListBox1_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+        {
+            //////FileListBox1.Path = DirListBox1.Path;
+        }
+
+        private void FileListBox1_DoubleClick(System.Object sender, System.EventArgs e)
+        {
+
+            ////string fExt = string.Empty;
+            ////string filePath = FileListBox1.Path + "\\";
+            ////try
+            ////{
+            ////    if ((FileListBox1.FileName.LastIndexOf(".") + 1) != 0)
+            ////    {
+            ////        System.Diagnostics.Process.Start(filePath + FileListBox1.FileName);
+            ////    }
+            ////}
+            ////catch (Exception ex)
+            ////{
+            ////    KryptonMessageBox.Show(ex.Message, "Message");
+            ////}
+        }
+
+        private void btnInsertPreReq_Click(object sender, EventArgs e)
+        {
+            if (btnInsertPreReq.Text == "Insert")
+            {
+                for (Int32 i = 0; i < grvPreRequirments.Rows.Count; i++)
+                {
+                    if (grvPreRequirments.Rows[i].DefaultCellStyle.BackColor == Color.Pink)
+                    {
+                        // KryptonMessageBox.Show("you can't insert new record first Update and then insert", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        return;
+                    }
+                }
+                btnInsertPreReq.Text = "Save";
+                btnDeletePreReq.Enabled = false;
+                DataRow datarow = dtPreReq.NewRow();
+                datarow["JobListID"] = 0;
+                datarow["JobNumber"] = "";
+
+                datarow["Track"] = "";
+
+                datarow["Status"] = "Pending";
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["TaskHandler"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Prerequired"]["TM"].InnerText;
+                        datarow["Track"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Prerequired"]["Track"].InnerText;
+                        datarow["TrackSub"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Prerequired"]["TrackSub"].InnerText;
+                    }
+                    else
+                    {
+                        datarow["TaskHandler"] = "";
+                        datarow["Track"] = "";
+                        datarow["TrackSub"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["TaskHandler"] = "";
+                    datarow["Track"] = "";
+                    datarow["TrackSub"] = "";
+                }
+
+                //If CheckUser = True Then
+
+                //    If UserType = "User" Then
+                //        datarow("TaskHandler") = UserName.ToString()
+                //        datarow("Track") = "Client Re;"
+                //        datarow("TrackSub") = "Client-> Miscell;"
+                //    Else
+                //        datarow("TaskHandler") = ""
+                //        datarow("Track") = ""
+                //        datarow("TrackSub") = ""
+                //    End If
+                //Else
+                //    datarow("TaskHandler") = ""
+                //    datarow("Track") = ""
+                //    datarow("TrackSub") = ""
+                //    MessageBox.Show("Data entered for 'MANAGER.B12'  in settings data sheet does not match any option.  '' is substituted.", "Error handling", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                //End If
+                datarow["Submitted"] = "1/1/1900";
+                datarow["Obtained"] = "1/1/1900";
+                datarow["Expires"] = "12/30/9999";
+                datarow["BillState"] = "";
+                datarow["AddDate"] = DateTime.Now;
+                datarow["NeedDate"] = "12/30/9999";
+                datarow["JobTrackingID"] = 0;
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["Comments"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Prerequired"]["Comments"].InnerText;
+                    }
+                    else
+                    {
+                        datarow["Comments"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["Comments"] = "";
+                }
+
+                if (Convert.ToString(datarow["TrackSub"]) != "")
+                {
+
+                    ////////DataTable dt = new DataTable();
+                    //////////DataAccessLayer Dl = new DataAccessLayer();
+                    ////////dt = new Filldatatable("select * from MasterTrackSubItem WHERE  (IsDelete=0 or IsDelete IS NULL) and  TrackSubName = '" + datarow["TrackSub"].ToString() + "' and TrackName = '" + datarow["Track"].ToString() + "'");
+                    ////////if (dt.Rows.Count > 0)
+                    ////////{
+                    ////////    datarow["TrackSubID"] = dt.Rows[0]["id"].ToString();
+                    ////////}
+                    ///
+                    ///
+                    datarow["TrackSubID"] = repo.GetTrackSubId(datarow["TrackSub"].ToString(), datarow["Track"].ToString());
+                }
+                else
+                {
+                    datarow["TrackSubID"] = 0;
+                }
+                //datarow("TrackSubID") = 1
+                dtPreReq.Rows.Add(datarow);
+                grvPreRequirments.DataSource = dtPreReq;
+                grvPreRequirments.CurrentCell = grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["comments"];
+                grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Selected = true;
+                grvPreRequirments.Rows[grvPreRequirments.CurrentRow.Index].DefaultCellStyle.SelectionBackColor = Color.Gold;
+                grvPreRequirments.Rows[grvPreRequirments.CurrentRow.Index].DefaultCellStyle.BackColor = Color.Gold;
+                //grdJobTracking.Rows[grdJobTracking.Rows.Count - 1).Selected = True
+
+            }
+            else
+            {
+                if (btnAdd.Text == "Save")
+                {
+                    // KryptonMessageBox.Show("you can't save first save job list", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    return;
+                }
+                else
+                {
+                    InsertPreReq();
+                }
+
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnDelete.Enabled = true;
+            btnAdd.Text = "Insert";
+            fillGridJobList();
+            if (grvJobList.Rows.Count > 0)
+            {
+                grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["Address"];
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (UserType != "Admin")
+            {
+                KryptonMessageBox.Show("Only Admin Can Delete Records");
+                return;
+            }
+            else
+            {
+
+            }
+
+            int id = 0;
+            int rowIndex = 0;
+            if (grvJobList.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow SelectedRow in grvJobList.SelectedRows)
+                {
+                    id = Convert.ToInt32(SelectedRow.Cells["JobListID"].Value.ToString());
+                    rowIndex = SelectedRow.Index;
+                }
+            }
+            if (id == 0)
+            {
+                KryptonMessageBox.Show("Select a row to delete", "Message");
+                return;
+            }
+            if (KryptonMessageBox.Show("Are you sure you want to delete this record? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                try
+                {
+                    //////DataAccessLayer DAL = new DataAccessLayer();
+                    //cmd = New SqlCommand("delete from JobList where JobListID=" & id, sqlcon)
+                    //int num = new InsertRecord("Update JobList SET IsDelete=1 where JobListID=" + id);
+                    int num = repo.db.Database.ExecuteSqlCommand("Update JobList SET IsDelete=1 where JobListID=" + id);
+
+                    if (num > 0)
+                    {
+                        fillGridJobList();
+                        KryptonMessageBox.Show("Record Deleted!", "Manager");
+                        repo.LoginActivityInfo(repo.db, "Delete", this.Text);
+                    }
+
+                    if (grvJobList.Rows.Count > 1)
+                    {
+                        grvJobList.Rows[rowIndex - 1].Selected = true;
+                        grvJobList.CurrentCell = grvJobList.Rows[rowIndex - 1].Cells["Description"];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    KryptonMessageBox.Show(ex.Message, "Manager");
+                }
+            }
+
+        }
+
+        private void DriveListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeletePreReq_Click(object sender, EventArgs e)
+        {
+            if (UserType != "Admin")
+            {
+                KryptonMessageBox.Show("Only Admin Can Delete Records");
+                return;
+            }
+
+            int id = 0;
+            int rowIndex = 0;
+            /////TODO
+            ////foreach (Form frm in mdio.MdiChildren)
+            ////{
+            ////    if (frm.Text == RptInvoiceView.Text)
+            ////    {
+            ////        KryptonMessageBox.Show("First close " + RptInvoiceView.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            ////        return;
+            ////    }
+            ////    if (frm.Text == frmInvoiceEditRPT.Text)
+            ////    {
+            ////        KryptonMessageBox.Show("First close " + frmInvoiceEditRPT.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            ////        return;
+            ////    }
+            ////}
+            if (grvPreRequirments.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow SelectedRow in grvPreRequirments.SelectedRows)
+                {
+                    id = Convert.ToInt32(SelectedRow.Cells["JobTrackingID"].Value.ToString());
+                    rowIndex = SelectedRow.Index;
+                }
+            }
+            if (id == 0)
+            {
+                KryptonMessageBox.Show("Select a row to delete", "Message");
+                return;
+            }
+            if (KryptonMessageBox.Show("Are you sure you want to delete this record? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                try
+                {
+                    //DataAccessLayer DAL = new DataAccessLayer();
+                    //cmd = New SqlCommand("delete from JobTracking where JobTrackingID=" & id, sqlcon)
+                    int num = repo.db.Database.ExecuteSqlCommand("UPDATE JobTracking SET IsDelete=1 where JobTrackingID=" + id);
+                    if (num > 0)
+                    {
+                        FillGridPreRequirment();
+                        KryptonMessageBox.Show("Record Deleted!", "Manager");
+                        repo.LoginActivityInfo(repo.db, "Delete", this.Text);
+                    }
+                    if (grvPreRequirments.Rows.Count > 1)
+                    {
+                        grvPreRequirments.Rows[rowIndex - 1].Selected = true;
+                        grvPreRequirments.CurrentCell = grvPreRequirments.Rows[rowIndex - 1].Cells["Obtained"];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    KryptonMessageBox.Show(ex.Message, "Manager");
+                }
+            }
+
+        }
+
+        private void btnCancelPreReq_Click(object sender, EventArgs e)
+        {
+            btnDeletePreReq.Enabled = true;
+            btnInsertPreReq.Text = "Insert";
+            FillGridPreRequirment();
+        }
+
+        private void btnInsertPermit_Click(object sender, EventArgs e)
+        {
+            if (btnInsertPermit.Text == "Insert")
+            {
+                for (int i = 0; i < grvPermitsRequiredInspection.Rows.Count; i++)
+                {
+                    if (grvPermitsRequiredInspection.Rows[i].DefaultCellStyle.BackColor == Color.Pink)
+                    {
+                        // KryptonMessageBox.Show("you can't insert new record first Update and then insert", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        return;
+                    }
+                }
+                btnInsertPermit.Text = "Save";
+                btnDeletePermit.Enabled = false;
+                DataRow datarow = dtPermit.NewRow();
+                datarow["JobListID"] = 0;
+                datarow["JobNumber"] = "";
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["TaskHandler"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Permit"]["TM"].InnerText;
+                        datarow["Track"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Permit"]["Track"].InnerText;
+                        datarow["TrackSub"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Permit"]["TrackSub"].InnerText;
+                    }
+                    else
+                    {
+                        datarow["TaskHandler"] = "";
+                        datarow["Track"] = "";
+                        datarow["TrackSub"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["TaskHandler"] = "";
+                    datarow["Track"] = "";
+                    datarow["TrackSub"] = "";
+                }
+
+                //if (CheckUser == true)
+                //{
+
+                //    if (UserType == "User")
+                //    {
+                //        datarow("TaskHandler") = UserName.ToString();
+                //        datarow("Track") = "VE Requ;";
+                //        datarow("TrackSub") = "Miscellaneous->";
+
+                //    }
+                //    else
+                //    {
+                //        datarow("TaskHandler") = "";
+                //        datarow("Track") = "";
+                //        datarow("TrackSub") = "";
+
+                //    }
+                //}
+                //else
+                //{
+                //    datarow("TaskHandler") = "";
+                //    datarow("Track") = "";
+                //    datarow("TrackSub") = "";
+                //    MessageBox.Show("Data entered for 'MANAGER.B12'  in settings data sheet does not match any option.  '' is substituted.", "Error handling", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+
+                datarow["Status"] = "Pending";
+                datarow["Submitted"] = "1/1/1900";
+                datarow["Obtained"] = "1/1/1900";
+                datarow["Expires"] = "12/30/9999";
+                datarow["FinalAction"] = "No Action";
+                datarow["BillState"] = "Not Invoiced";
+                datarow["AddDate"] = DateTime.Now;
+                datarow["NeedDate"] = "12/30/9999";
+                datarow["JobTrackingID"] = 0;
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["Comments"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Permit"]["Comments"].InnerText;
+
+                    }
+                    else
+                    {
+                        datarow["Comments"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["Comments"] = "";
+                }
+
+                if (Convert.ToString(datarow["TrackSub"]) != "")
+                {
+
+                    ////DataTable dt = new DataTable();
+                    ////DataAccessLayer Dl = new DataAccessLayer();
+                    ////dt = Dl.Filldatatable("select * from MasterTrackSubItem WHERE  (IsDelete=0 or IsDelete IS NULL) and  TrackSubName = '" + datarow["TrackSub"].ToString() + "' and TrackName = '" + datarow["Track"].ToString() + "'");
+                    ////if (dt.Rows.Count > 0)
+                    ////{
+                    ////    datarow["TrackSubID"] = dt.Rows[0]["id"].ToString();
+                    ////}
+                    ///
+                    datarow["TrackSubID"] = repo.GetTrackSubId(datarow["TrackSub"].ToString(), datarow["Track"].ToString());
+                }
+                else
+                {
+                    datarow["TrackSubID"] = 0;
+                }
+                //datarow("TrackSubID") = 1
+                dtPermit.Rows.Add(datarow);
+                grvPermitsRequiredInspection.DataSource = dtPermit;
+                grvPermitsRequiredInspection.CurrentCell = grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Cells["comments"];
+                grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Selected = true;
+                grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.CurrentRow.Index].DefaultCellStyle.SelectionBackColor = Color.Gold;
+                grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.CurrentRow.Index].DefaultCellStyle.BackColor = Color.Gold;
+                //grdJobTracking.Rows[grdJobTracking.Rows.Count - 1).Selected = True
+            }
+            else
+            {
+                if (btnAdd.Text == "Save")
+                {
+                    // KryptonMessageBox.Show("you can't save first save job list", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    return;
+                }
+                else
+                {
+                    InsertPermits();
+                }
+            }
+
+        }
+
+        private void btnDeletePermit_Click(object sender, EventArgs e)
+        {
+            if (UserType != "Admin")
+            {
+                KryptonMessageBox.Show("Only Admin Can Delete Records");
+                return;
+            }
+
+            int id = 0;
+            int rowIndex = 0;
+            //foreach (Form frm in mdio.MdiChildren)
+            //{
+            //    ///need to add form - TODO
+            //    //////if (frm.Text == RptInvoiceView.Text)
+            //    //////{
+            //    //////    KryptonMessageBox.Show("First close " + RptInvoiceView.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //    //////    return;
+            //    //////}
+            //    //////if (frm.Text == frmInvoiceEditRPT.Text)
+            //    //////{
+            //    //////    KryptonMessageBox.Show("First close " + frmInvoiceEditRPT.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //    //////    return;
+            //    //////}
+            //}
+            if (grvPermitsRequiredInspection.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow SelectedRow in grvPermitsRequiredInspection.SelectedRows)
+                {
+                    id = Convert.ToInt32(SelectedRow.Cells["JobTrackingID"].Value.ToString());
+                    rowIndex = SelectedRow.Index;
+                }
+            }
+            if (id == 0)
+            {
+                KryptonMessageBox.Show("Select a row to delete", "Message");
+                return;
+            }
+            if (KryptonMessageBox.Show("Are you sure you want to delete this record? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                try
+                {
+                    //DataAccessLayer DAL = new DataAccessLayer();
+                    int num = repo.db.Database.ExecuteSqlCommand("Update JobTracking SET IsDelete=1 where JobTrackingID=" + id);
+                    if (num > 0)
+                    {
+                        FillGridPermitRequiredInspection();
+                        KryptonMessageBox.Show("Record Deleted!", "Manager");
+                        repo.LoginActivityInfo(repo.db, "Delete", this.Text);
+                    }
+                    if (grvPermitsRequiredInspection.Rows.Count > 1)
+                    {
+                        grvPermitsRequiredInspection.Rows[rowIndex - 1].Selected = true;
+                        grvPermitsRequiredInspection.CurrentCell = grvPermitsRequiredInspection.Rows[rowIndex - 1].Cells["Obtained"];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    KryptonMessageBox.Show(ex.Message, "Manager");
+
+                }
+            }
+        }
+
+        private void btnCancelPermit_Click(object sender, EventArgs e)
+        {
+            btnDeletePermit.Enabled = true;
+            btnInsertPermit.Text = "Insert";
+            FillGridPermitRequiredInspection();
+        }
+
+        private void btnInsertNotes_Click(object sender, EventArgs e)
+        {
+            if (btnInsertNotes.Text == "Insert")
+            {
+                for (int i = 0; i < grvNotesCommunication.Rows.Count; i++)
+                {
+                    if (grvNotesCommunication.Rows[i].DefaultCellStyle.BackColor == Color.Pink)
+                    {
+                        // KryptonMessageBox.Show("you can't insert new record first Update and then insert", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        return;
+                    }
+                }
+                btnInsertNotes.Text = "Save";
+                btndeleteNotes.Enabled = false;
+                DataRow datarow = dtNotes.NewRow();
+                datarow["JobListID"] = selectedJobListID;
+                datarow["JobNumber"] = "";
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["TaskHandler"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Notes"]["TM"].InnerText;
+                        datarow["Track"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Notes"]["Track"].InnerText;
+                        datarow["TrackSub"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Notes"]["TrackSub"].InnerText;
+                    }
+                    else
+                    {
+                        datarow["TaskHandler"] = "";
+                        datarow["Track"] = "";
+                        datarow["TrackSub"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["TaskHandler"] = "";
+                    datarow["Track"] = "";
+                    datarow["TrackSub"] = "";
+                }
+
+                datarow["Status"] = "Pending";
+                datarow["Submitted"] = "1/1/1900";
+                datarow["Obtained"] = "1/1/1900";
+                datarow["Expires"] = "12/30/9999";
+                datarow["BillState"] = "Not Invoiced";
+                datarow["AddDate"] = DateTime.Now;
+                datarow["NeedDate"] = "12/30/9999";
+                datarow["JobTrackingID"] = 0;
+
+                try
+                {
+                    XmlDocument myDoc = new XmlDocument();
+
+                    myDoc.Load(Application.StartupPath + "\\VESoftwareSetting.xml");
+
+                    if (myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Apply"].InnerText == "Yes")
+                    {
+                        datarow["Comments"] = myDoc["VESoftwareSetting"]["AutoInsert"]["Manager"]["Notes"]["Comments"].InnerText;
+
+                    }
+                    else
+                    {
+                        datarow["Comments"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    datarow["Comments"] = "";
+                }
+
+                if (Convert.ToString(datarow["TrackSub"]) != "")
+                {
+                    datarow["TrackSubID"] = repo.GetTrackSubId(datarow["TrackSub"].ToString(), datarow["Track"].ToString());
+                }
+                else
+                {
+                    datarow["TrackSubID"] = 0;
+                }
+
+                //datarow("Comments") = ""
+                //datarow("TrackSubID") = 1
+                dtNotes.Rows.Add(datarow);
+                grvNotesCommunication.DataSource = dtNotes;
+                grvNotesCommunication.CurrentCell = grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["comments"];
+                grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Selected = true;
+                grvNotesCommunication.Rows[grvNotesCommunication.CurrentRow.Index].DefaultCellStyle.SelectionBackColor = Color.Gold;
+                grvNotesCommunication.Rows[grvNotesCommunication.CurrentRow.Index].DefaultCellStyle.BackColor = Color.Gold;
+                //grdJobTracking.Rows[grdJobTracking.Rows.Count - 1).Selected = True
+
+            }
+            else
+            {
+                if (btnAdd.Text == "Save")
+                {
+                    //  KryptonMessageBox.Show("you can't save first save job list", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    return;
+                }
+                else
+                {
+                    InsertNotes();
+                }
+            }
+        }
+
+        private void btndeleteNotes_Click(object sender, EventArgs e)
+        {
+            if (UserType != "Admin")
+            {
+                KryptonMessageBox.Show("Only Admin Can Delete Records");
+                return;
+            }
+
+            int id = 0;
+            int rowIndex = 0;
+            //Need to add form - TODO
+            ////foreach (Form frm in mdio.MdiChildren)
+            ////{
+            ////    if (frm.Text == RptInvoiceView.Text)
+            ////    {
+            ////        KryptonMessageBox.Show("First close " + RptInvoiceView.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            ////        return;
+            ////    }
+            ////    if (frm.Text == frmInvoiceEditRPT.Text)
+            ////    {
+            ////        KryptonMessageBox.Show("First close " + frmInvoiceEditRPT.Text + " then delete", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            ////        return;
+            ////    }
+            ////}
+            if (grvNotesCommunication.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow SelectedRow in grvNotesCommunication.SelectedRows)
+                {
+                    id = Convert.ToInt32(SelectedRow.Cells["JobTrackingID"].Value.ToString());
+                    rowIndex = SelectedRow.Index;
+                }
+            }
+            if (id == 0)
+            {
+                KryptonMessageBox.Show("Select a row to delete", "Message");
+                return;
+            }
+            if (KryptonMessageBox.Show("Are you sure you want to delete this record? ", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    //DataAccessLayer DAL = new DataAccessLayer();
+                    int num = repo.db.Database.ExecuteSqlCommand("UPDATE JobTracking SET IsDelete=1 where JobTrackingID=" + id);
+
+                    if (num > 0)
+                    {
+                        FillGridNotesCommunication();
+                        KryptonMessageBox.Show("Record Deleted!", "Manager");
+                        repo.LoginActivityInfo(repo.db, "Delete", this.Text);
+                    }
+                    if (grvNotesCommunication.Rows.Count > 1)
+                    {
+                        grvNotesCommunication.Rows[rowIndex - 1].Selected = true;
+                        grvNotesCommunication.CurrentCell = grvNotesCommunication.Rows[rowIndex - 1].Cells["AddDate"];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    KryptonMessageBox.Show(ex.Message, "Manager");
+                }
+            }
+        }
+
+        private void btnCancelNotes_Click(object sender, EventArgs e)
+        {
+            btndeleteNotes.Enabled = true;
+            btnInsertNotes.Text = "Insert";
+            FillGridNotesCommunication();
+        }
+
+        private void chkPreRequirment_CheckedChanged(System.Object sender, System.EventArgs e)
+        {
+            //try
+            //{
+            //    if (chkPreRequirment.Checked == false)
+            //    {
+            //        pnlButtonVisible(pnlPreRequire, false);
+            //        tblpnlJobtrackingGrid.RowStyles[0].SizeType = SizeType.Absolute;
+            //        btnShowTimeData.Visible = true;
+            //    }
+            //    else
+            //    {
+            //        pnlButtonVisible(pnlPreRequire, true);
+            //        tblpnlJobtrackingGrid.RowStyles[0].SizeType = SizeType.Percent;
+            //        btnShowTimeData.Visible = true;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+        }
+        #endregion
+
+        //public int GetValueMemberID()
+        //{
+        //    string Query = "SELECT ContactsID,dbo.ClientName(FirstName, MiddleName, LastName) as ClientName FROM  Contacts WHERE CompanyID=" + (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value + " ORDER BY FirstName";
+        //    //DataAccessLayer DA = new DataAccessLayer();
+        //    DataTable DataTableContact = new DataTable();
+        //    DataTableContact = DA.Filldatatable(Query);
+        //    for (int i = 0; i <= DataTableContact.Rows.Count - 1; i++)
+        //    {
+        //        if (DataTableContact.Rows[i]["ClientName"].ToString().Trim() == grvJobList["Contacts", grvJobList.CurrentRow.Index].Value.ToString().Trim())
+        //            return DataTableContact.Rows[i]["ContactsID"].ToString();
+        //    }
+        //}
+
+        #region Functions & Methods
+
+        private void FillNotesGridCmb(int colmnIndex, int roIndex)
+        {
+            cmbTCTackName = new DataGridViewComboBoxCell();
+            try
+            {
+                var data = repo.GetTrackSubItem(grvNotesCommunication.Rows[roIndex].Cells["cmbTrack"].Value.ToString().Trim());
+                cmbTCTackName.DataSource = data;
+                cmbTCTackName.DisplayMember = "TrackSubName"; //data.Select(x => x.TrackSubName).FirstOrDefault().ToString();
+                //grvNotesCommunication.Rows[roIndex].Cells[5].Value = cmbTCTackName.Value;
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "FillNotesGridCmb", ex.Message);
+            }
+        }
+
+        private bool isDiable(string item)
+        {
+            try
+            {
+                int num = repo.db.Database.SqlQuery<int>("select COUNT(*) from masteritem where cGroup='TM' and IsDisable=1 and cTrack='" + item + "'").FirstOrDefault();
+                return num > 0;
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "isDiable", ex.Message);
+            }
+            return false;
+        }
+
+        private void FillPreRequireGridTrackSubCmb(int roIndex)
+        {
+            cmbTCTackName = new DataGridViewComboBoxCell();
+            try
+            {
+                var data = repo.GetTrackSubItem(grvPreRequirments.Rows[roIndex].Cells["Track"].Value.ToString().Trim());
+                cmbTCTackName.DataSource = data;
+                cmbTCTackName.DisplayMember = data.Select(x => x.TrackSubName).FirstOrDefault().ToString();
+                grvPreRequirments.Rows[roIndex].Cells[5].Value = cmbTCTackName;
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "FillPreRequireGridTrackSubCmb", ex.Message);
             }
         }
 
@@ -219,7 +1879,7 @@ namespace JobTracker.JobTrackingForm
         {
             try
             {
-                string queryString = "SELECT  DISTINCT    JobList.JobListID, JobList.JobNumber,JobList.Clienttext, Company.CompanyID, JobList.DateAdded, JobList.Description, JobList.Handler, JobList.Borough, JobList.Address, Contacts.FirstName + ' ' + Contacts.MiddleName + ' ' + Contacts.LastName AS Contacts, Contacts.EmailAddress, Contacts.ContactsID,Company.CompanyName,JobList.ACContacts,JobList.ACEmail,JobList.OwnerName,JobList.OwnerAddress,JobList.OwnerPhone,JobList.OwnerFax,Company.CompanyNo, JobList.PMrv,     IsNull(JobList.IsDisable, 0) as IsDisable, IsNull(JobList.IsInvoiceHold, 0) as IsInvoiceHold," + " jd.InvoiceType AS TypicalInvoiceType, JobList.InvoiceClient, JobList.InvoiceContact,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceContact ) as InvoiceContactT ,JobList.InvoiceEmailAddress, JobList.InvoiceACContacts,(Select dbo.ClientName(FirstName,MiddleName,LastName) FROM Contacts WHERE ContactsId LIKE jobList.InvoiceACContacts ) as InvoiceACContactsT,JobList.InvoiceACEmail," + "CONVERT(INT,jd.TableVersionId) AS RateVersionId," + "jd.ServRate AS ServRate, IsNull(JobList.AdminInvoice, 0) as AdminInvoice FROM  JobList LEFT OUTER JOIN Contacts ON JobList.ContactsID = Contacts.ContactsID LEFT OUTER JOIN Company ON JobList.CompanyID = Company.CompanyID LEFT OUTER JOIN JobTracking ON JobList.JobListID = JobTracking.JobListID INNER JOIN vwJobListDefaultValue jd ON JobList.JobListId=jd.JobListID {0}  WHERE (JobList.IsDelete=0 or JobList.IsDelete is null) ";
+                string queryString = "";
 
                 if (this.txtJobListJobID.Text != "")
                     queryString = queryString + " and JobList.JobNumber Like'%" + txtJobListJobID.Text + "%'";
@@ -277,9 +1937,9 @@ namespace JobTracker.JobTrackingForm
 
                 if (selectRecord_Joblist == true)
                     queryString = queryString + "AND JobList.JobListID IN (SELECT TOP 100 JobListID FROM JobList WHERE IsDelete=0 or IsDelete is null order by JobListID DESC )";
-                string startDate;
-                string endDate;
-                int index = 0;
+
+                string startDate; string endDate; int index = 0;
+
                 if (chkYear.Checked == true)
                 {
                     // index = cmbYear.SelectedIndex * -1
@@ -292,8 +1952,8 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    //dtJL = DAL.Filldatatable(queryString);
-                    var TempDataAfterFilter = dAL.GetManagerDataAfterFilter(queryString);
+                    //dtJL = new Filldatatable(queryString);
+                    var TempDataAfterFilter = repo.GetManagerDataAfterFilter(queryString);
                     dtJL = ToDataTable(TempDataAfterFilter);
                     grvJobList.DataSource = dtJL;
                 }
@@ -323,10 +1983,10 @@ namespace JobTracker.JobTrackingForm
                     withBlock.Columns["Borough"].Width = 90;
                     withBlock.Columns["Borough"].HeaderText = "Town";
                     withBlock.Columns["Contacts"].Width = 130;
-                    // .Columns("Contacts").ReadOnly = True
+                    // .Columns["Contacts").ReadOnly = True
                     withBlock.Columns["EmailAddress"].Width = 250;
                     withBlock.Columns["Handler"].Visible = false;
-                    // .Columns("Borough").Visible = False
+                    // .Columns["Borough").Visible = False
                     withBlock.Columns["CompanyID"].Visible = false;
                     withBlock.Columns["Contacts"].Visible = true;
                     withBlock.Columns["ContactsID"].Visible = false;
@@ -389,17 +2049,17 @@ namespace JobTracker.JobTrackingForm
                 JobListGridRateVersionColumn(ref grvJobList);
 
                 //Need to do after My.Settings will apply Todo
-                //if (My.Settings.PretimeSheetLoginUserType == "Admin" | My.Settings.timeSheetLoginUserType == "Admin")
-                //{
-                //    UserType = "Admin";
-                //    grvJobList.Columns["IsDisable"].Visible = true;
-                //    grvJobList.Columns["IsInvoiceHold"].Visible = true;
-                //}
-                //else
-                //{
-                //    grvJobList.Columns["IsDisable"].Visible = false;
-                //    grvJobList.Columns["IsInvoiceHold"].Visible = false;
-                //}
+                if (Properties.Settings.Default.PretimeSheetLoginUserType == "Admin" | Properties.Settings.Default.timeSheetLoginUserType == "Admin")
+                {
+                    UserType = "Admin";
+                    grvJobList.Columns["IsDisable"].Visible = true;
+                    grvJobList.Columns["IsInvoiceHold"].Visible = true;
+                }
+                else
+                {
+                    grvJobList.Columns["IsDisable"].Visible = false;
+                    grvJobList.Columns["IsInvoiceHold"].Visible = false;
+                }
 
                 if (grvJobList.Rows.Count > 0)
                 {
@@ -440,6 +2100,7 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "fillGridJobList", ex.Message);
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -461,8 +2122,10 @@ namespace JobTracker.JobTrackingForm
             btnDeletePermit.Enabled = !flag;
             btnCancelPermit.Enabled = !flag;
         }
+
         private void JobListGridRateVersionColumn(ref DataGridView grd)
         {
+            try
             {
                 var withBlock = grd;
                 if ((withBlock.Columns["cmbRateVersion"] == null))
@@ -472,8 +2135,8 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = cmbVersionTable;
                         // su
-                        var TempTableVersion = dAL.GetTableVersion();
-                        //dt1 = DAL.Filldatatable("select * from VersionTable  union SELECT 0 as TableVersionId, '--Use Default--' as TableVersionName order by TableVersionId");
+                        var TempTableVersion = repo.GetTableVersion();
+                        //dt1 = new Filldatatable("select * from VersionTable  union SELECT 0 as TableVersionId, '--Use Default--' as TableVersionName order by TableVersionId");
                         DataTable dt1 = ToDataTable(TempTableVersion);
                         withBlock1.DataSource = dt1;
                         withBlock1.DisplayMember = "TableVersionName";
@@ -490,13 +2153,17 @@ namespace JobTracker.JobTrackingForm
                     withBlock.Columns["cmbRateVersion"].DisplayIndex = grvJobList.Columns.Count - 2;
                 withBlock.Columns["RateVersionId"].Visible = false;
             }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JobStatus", "JobListGridRateVersionColumn", ex.Message);
+            }
         }
 
         private void FillGridNotesCommunication()
         {
             try
             {
-                string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID," + "JobTracking.InvOvr," + "JobTracking.DeleteItemTimeService  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (select Trackname from MasterTrackSet where TrackSet='Notes/Communication')  and  JobTracking.JobListID=" + selectedJobListID + "and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null) ";
+                string queryString = " And JobTracking.JobListID=" + selectedJobListID;
 
                 if (cbxSearchTm.Text.Trim() != "")
                     queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
@@ -519,10 +2186,11 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempNotesComunicationAfterFilter = dAL.GetNotesComunicationDataAfterFilter(queryString);
+                    var TempNotesComunicationAfterFilter = repo.GetNotesComunicationDataAfterFilter(queryString);
                     dtNotes = ToDataTable(TempNotesComunicationAfterFilter);
                     grvNotesCommunication.DataSource = dtNotes;
                 }
+
                 catch (Exception eLoad)
                 {
                     // Add your error handling code here.
@@ -557,7 +2225,7 @@ namespace JobTracker.JobTrackingForm
                     withBlock.Columns["Comments"].Width = 520;
                     withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
                     withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
-                    // .Columns("TrackSub").Visible = False
+                    // .Columns["TrackSub").Visible = False
                     withBlock.Columns["TrackSub"].Width = 200;
                     withBlock.Columns["TrackSubID"].Visible = false;
                     withBlock.Columns["DeleteItemTimeService"].Visible = false;
@@ -583,10 +2251,10 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "FillGridNotesCommunication", ex.Message);
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void FillGridPermitRequiredInspection()
         {
@@ -594,7 +2262,7 @@ namespace JobTracker.JobTrackingForm
             {
                 // DataAccessLayer DAL = new DataAccessLayer();
 
-                string queryString = "SELECT     JobTracking.JobListID, JobList.JobNumber, JobTracking.TaskHandler, JobTracking.Track, JobTracking.TrackSub, JobTracking.Comments, JobTracking.Status, JobTracking.Submitted, JobTracking.Obtained, JobTracking.Expires, JobTracking.FinalAction, JobTracking.BillState, JobTracking.AddDate, JobTracking.NeedDate, JobTracking.JobTrackingID, JobTracking.TrackSubID,JobTracking.InvOvr FROM JobTracking INNER JOIN JobList ON JobTracking.JobListID = JobList.JobListID WHERE (JobTracking.Track IN(SELECT TrackName FROM MasterTrackSet WHERE (TrackSet = 'Permits/Required/Inspection'))) AND (JobTracking.JobListID = " + selectedJobListID + ") AND (JobTracking.IsDelete = 0 OR JobTracking.IsDelete IS NULL)";
+                string queryString = "";
 
                 // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
                 if (cbxSearchTm.Text.Trim() != "")
@@ -616,7 +2284,7 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempPermitsRequiredAfterFilter = dAL.GetPermitsRequirementDataAfterFilter(queryString);
+                    var TempPermitsRequiredAfterFilter = repo.GetPermitsRequirementDataAfterFilter(queryString, selectedJobListID);
                     dtPermit = ToDataTable(TempPermitsRequiredAfterFilter);
                     grvPermitsRequiredInspection.DataSource = dtPermit;
                 }
@@ -644,9 +2312,9 @@ namespace JobTracker.JobTrackingForm
                     withBlock.Columns["Obtained"].Width = 90;
                     withBlock.Columns["Expires"].Visible = true;
                     withBlock.Columns["Expires"].Width = 90;
-                    // .Columns("FinalAction").HeaderText = "Final Action"
-                    // .Columns("FinalAction").Visible = True
-                    // .Columns("FinalAction").Width = 80
+                    // .Columns["FinalAction").HeaderText = "Final Action"
+                    // .Columns["FinalAction").Visible = True
+                    // .Columns["FinalAction").Width = 80
                     withBlock.Columns["Status"].Visible = false;
                     withBlock.Columns["JobTrackingID"].Visible = false;
                     withBlock.Columns["TaskHandler"].HeaderText = "TM";
@@ -658,7 +2326,7 @@ namespace JobTracker.JobTrackingForm
                     withBlock.Columns["Comments"].Width = 330;
                     withBlock.Columns["InvOvr"].HeaderText = "Inv. Ovr.";
                     withBlock.Columns["InvOvr"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-US");
-                    // .Columns("TrackSub").Visible = False
+                    // .Columns["TrackSub").Visible = False
                     withBlock.Columns["TrackSub"].Width = 200;
                     withBlock.Columns["TrackSubID"].Visible = false;
                 }
@@ -682,10 +2350,10 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "FillGridPermitRequiredInspection", ex.Message);
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void pnlButtonVisible(Panel pnl, bool pnlreset)
         {
@@ -700,6 +2368,7 @@ namespace JobTracker.JobTrackingForm
                     ctrl.Visible = pnlreset;
             }
         }
+
         public static DataTable ToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
@@ -731,8 +2400,7 @@ namespace JobTracker.JobTrackingForm
         {
             try
             {
-
-                var TempColumn = dAL.ManagerGridSetColumn();
+                var TempColumn = repo.ManagerGridSetColumn();
                 DataTable dtJL = new DataTable();
                 dtJL = ToDataTable(TempColumn);
                 grvJobList.DataSource = dtJL;
@@ -744,7 +2412,7 @@ namespace JobTracker.JobTrackingForm
 
                 DataTable dt = new DataTable();
 
-                var TempCBlient = dAL.GetcbxClient();
+                var TempCBlient = repo.GetcbxClient();
                 dt = ToDataTable(TempCBlient);
                 DataRow datarow = dt.NewRow();
                 datarow["CompanyName"] = "";
@@ -759,7 +2427,7 @@ namespace JobTracker.JobTrackingForm
                 _cmbIClientDT.Rows[0]["CompanyID"] = -99;
                 cmbInvoiceClient = new DataGridViewComboBoxColumn() { DataSource = _cmbIClientDT, DisplayMember = "CompanyName", ValueMember = "CompanyID", DataPropertyName = "InvoiceClient", Name = "cmbInvoiceClient", HeaderText = "InvoiceClient" };
                 grvJobList.Columns.Insert(grvJobList.Columns.Count - 1, cmbInvoiceClient);
-                //TestVariousInfoEntities cmbobj = new TestVariousInfoEntities();
+                //EFDbContext cmbobj = new EFDbContext();
                 {
                     var withBlock = grvJobList;
 
@@ -818,7 +2486,7 @@ namespace JobTracker.JobTrackingForm
                         var withBlock1 = colPM;
                         DataTable dtPM = new DataTable();
 
-                        var TempColPM = dAL.GetcolPMM();
+                        var TempColPM = repo.GetcolPMM();
                         dtPM = ToDataTable(TempColPM);
 
                         withBlock1.DataSource = dtPM;
@@ -837,7 +2505,7 @@ namespace JobTracker.JobTrackingForm
                         var withBlock1 = colPMrv;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='PM' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
                         DataTable dtPM = new DataTable();
-                        var TempColPM = dAL.GetcolPMM();
+                        var TempColPM = repo.GetcolPMM();
                         dtPM = ToDataTable(TempColPM);
                         withBlock1.DataSource = dtPM;
                         withBlock1.DisplayMember = "cTrack";
@@ -872,17 +2540,18 @@ namespace JobTracker.JobTrackingForm
 
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "SetColumns", ex.Message);
             }
         }
+
         private void SetColumnPreRequirment()
         {
             try
             {
-
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempPreColumn = dAL.PreRequirementSetColumn();
+                    var TempPreColumn = repo.PreRequirementSetColumn();
                     dtPreReq = ToDataTable(TempPreColumn);
                     grvPreRequirments.DataSource = dtPreReq;
                 }
@@ -901,7 +2570,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colTM;
                         DataTable colTmDT = new DataTable();
-                        var TempPreColTM = dAL.GetPreRequirementcolTM();
+                        var TempPreColTM = repo.GetPreRequirementcolTM_D();
                         colTmDT = ToDataTable(TempPreColTM);
 
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
@@ -921,7 +2590,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colTrack;
                         DataTable colTrackDT = new DataTable();
-                        var TempPrecolTrack = dAL.GetPreRequirementcolTrack();
+                        var TempPrecolTrack = repo.GetPreRequirementcolTrack();
                         colTrackDT = ToDataTable(TempPrecolTrack);
                         //withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='PreRequirements'");
                         withBlock1.DataSource = colTrackDT;
@@ -938,7 +2607,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colStatus;
                         DataTable colStatusDT = new DataTable();
-                        var TempPrecolStatusDT = dAL.GetPreRequirementcolStatus();
+                        var TempPrecolStatusDT = repo.GetPreRequirementcolStatus();
                         colStatusDT = ToDataTable(TempPrecolStatusDT);
 
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Status' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
@@ -980,6 +2649,7 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "SetColumnPreRequirment", ex.Message);
             }
         }
 
@@ -991,7 +2661,7 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempColumnPermit = dAL.PermitsRequirementSetColumn();
+                    var TempColumnPermit = repo.PermitsRequirementSetColumn();
                     dtPermit = ToDataTable(TempColumnPermit);
                     grvPermitsRequiredInspection.DataSource = dtPermit;
                 }
@@ -1007,7 +2677,7 @@ namespace JobTracker.JobTrackingForm
                         var withBlock1 = colTM;
 
                         DataTable colTmDT = new DataTable();
-                        var TempPreColTM = dAL.GetPreRequirementcolTM();
+                        var TempPreColTM = repo.GetPreRequirementcolTM_D();
                         colTmDT = ToDataTable(TempPreColTM);
 
                         // withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
@@ -1028,7 +2698,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colTrack;
                         DataTable colTrackDT = new DataTable();
-                        var TempPremitcolTrack = dAL.GetPermitsRequirementcolTrack();
+                        var TempPremitcolTrack = repo.GetPermitsRequirementcolTrack();
                         colTrackDT = ToDataTable(TempPremitcolTrack);
                         // withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='Permits/Required/Inspection'");
                         withBlock1.DataSource = colTrackDT;
@@ -1044,7 +2714,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colStatus;
                         DataTable colStatusDT = new DataTable();
-                        var TempPremitcolStatusDT = dAL.GetPreRequirementcolStatus();
+                        var TempPremitcolStatusDT = repo.GetPreRequirementcolStatus();
                         colStatusDT = ToDataTable(TempPremitcolStatusDT);
                         withBlock1.DataSource = colStatusDT;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Status' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
@@ -1076,7 +2746,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colBillStatus;
                         DataTable colBillStatusDT = new DataTable();
-                        var TempPremitcolBillStatusDT = dAL.GetPermitsRequirementcolBillStatus();
+                        var TempPremitcolBillStatusDT = repo.GetPermitsRequirementcolBillStatus();
                         colBillStatusDT = ToDataTable(TempPremitcolBillStatusDT);
                         withBlock1.DataSource = colBillStatusDT;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Bill State' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
@@ -1122,6 +2792,7 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "SetColumnPermit", ex.Message);
             }
         }
 
@@ -1134,14 +2805,14 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempColumnNotes = dAL.NotesSetColumn();
+                    var TempColumnNotes = repo.NotesSetColumn();
                     dtNotes = ToDataTable(TempColumnNotes);
 
                     grvNotesCommunication.DataSource = dtNotes;
                 }
                 catch (Exception eLoad)
                 {
-                    // Add your error handling code here.
+                    // Add your error handling code here.0
                     // Display error message, if any.
                     KryptonMessageBox.Show(eLoad.Message, "Manager");
                 }
@@ -1152,7 +2823,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colTM;
                         DataTable colTMDT = new DataTable();
-                        var TempNotescolTM = dAL.GetPreRequirementcolTM();
+                        var TempNotescolTM = repo.GetPreRequirementcolTM_D();
                         colTMDT = ToDataTable(TempNotescolTM);
                         withBlock1.DataSource = colTMDT;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='TM' and (IsDelete=0 or IsDelete is null) AND (isDisable <> 1 or IsDisable is  null) ORDER BY cTrack ");
@@ -1170,8 +2841,9 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colTrack;
                         DataTable colTrackDT = new DataTable();
-                        var TempNotescolTrack = dAL.GetNotescolTrack();
+                        var TempNotescolTrack = repo.GetNotescolTrack();
                         colTrackDT = ToDataTable(TempNotescolTrack);
+                        withBlock1.DataSource = colTrackDT;
                         //withBlock1.DataSource = cmbobj.Filldatatable("select Trackname from MasterTrackSet where (IsDelete=0 or IsDelete is null) and TrackSet='Notes/Communication'");
                         withBlock1.DisplayMember = "Trackname";
                         withBlock1.DisplayIndex = 4;
@@ -1186,7 +2858,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colStatus;
                         DataTable colStatusDT = new DataTable();
-                        var TempNotescolStatusDT = dAL.GetPreRequirementcolStatus();
+                        var TempNotescolStatusDT = repo.GetPreRequirementcolStatus();
                         colStatusDT = ToDataTable(TempNotescolStatusDT);
                         withBlock1.DataSource = colStatusDT;
 
@@ -1203,7 +2875,7 @@ namespace JobTracker.JobTrackingForm
                     {
                         var withBlock1 = colBillStatus;
                         DataTable colBillStatusDT = new DataTable();
-                        var NotescolBillStatusDT = dAL.GetPermitsRequirementcolBillStatus();
+                        var NotescolBillStatusDT = repo.GetPermitsRequirementcolBillStatus();
                         colBillStatusDT = ToDataTable(NotescolBillStatusDT);
                         withBlock1.DataSource = colBillStatusDT;
                         //withBlock1.DataSource = cmbobj.FillDAtatableCombo("SELECT cTrack ,Id FROM MasterItem WHERE cGroup='Bill State' and (IsDelete=0 or IsDelete is null) ORDER BY cTrack ");
@@ -1241,6 +2913,7 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "SetColumnNotes", ex.Message);
             }
         }
 
@@ -1248,11 +2921,12 @@ namespace JobTracker.JobTrackingForm
         {
             try
             {
-                string queryString = "SELECT JobTracking.JobListID,JobList.JobNumber,JobTracking.TaskHandler,JobTracking.Track,JobTracking.TrackSub, JobTracking.Comments,JobTracking.Status,JobTracking.Submitted, JobTracking.Obtained,JobTracking.Expires,JobTracking.BillState , JobTracking.AddDate, JobTracking.NeedDate,     JobTracking.JobTrackingID,JobTracking.TrackSubID,JobTracking.InvOvr  FROM  JobTracking INNER JOIN    JobList ON JobTracking.JobListID = JobList.JobListID where JobTracking.Track in (SELECT Trackname FROM MasterTrackSet WHERE TrackSet='PreRequirements') and  JobTracking.JobListID=" + selectedJobListID + " and (JobTracking.IsDelete=0 or JobTracking.IsDelete is null)";
+                string queryString = "";
 
                 // If Me.chkShowOnlyPendingTrack.Checked Then queryString = queryString & " and JobTracking.Status ='Pending'"
-                if (cbxSearchTm.Text.Trim() == "")
-                    queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
+                //TODO
+                ////if (cbxSearchTm.Text.Trim() == "")
+                ////    queryString = queryString + " AND JobTracking.TaskHandler= '" + cbxSearchTm.Text.Trim() + "'";
                 if (CmbPreRequireTrack.Text.ToString() != "")
                     queryString = queryString + " AND JobTracking.Track='" + CmbPreRequireTrack.Text.ToString() + "'";
                 if (cmbTrackSubPreRequire.Text.ToString() != "")
@@ -1270,7 +2944,7 @@ namespace JobTracker.JobTrackingForm
                 try
                 {
                     // Attempt to load the dataset.
-                    var TempPreRequirementDataAfter = dAL.GetPreRequirementDataAfterFilter(queryString);
+                    var TempPreRequirementDataAfter = repo.GetPreRequirementDataAfterFilter(queryString, selectedJobListID);
                     dtPreReq = ToDataTable(TempPreRequirementDataAfter);
                     grvPreRequirments.DataSource = dtPreReq;
                 }
@@ -1280,7 +2954,6 @@ namespace JobTracker.JobTrackingForm
                     // Display error message, if any.
                     KryptonMessageBox.Show(eLoad.Message, "Manager");
                 }
-
 
                 // Grid Formatting
                 {
@@ -1333,151 +3006,16 @@ namespace JobTracker.JobTrackingForm
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "FillGridPreRequirment", ex.Message);
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void grvJobList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // CHANGE THE SUB GIRD OF JOB LIST
-            try
-            {
-
-                selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
-                isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
-
-                if (e.ColumnIndex > -1 & e.RowIndex > -1)
-                {
-                    if (grvJobList.Columns[e.ColumnIndex].Name == "EmailAddress")
-                    {
-                    }
-                }
-                if (e.ColumnIndex > -1 & e.RowIndex > -1)
-                {
-                    if (grvJobList.Columns[e.ColumnIndex].Name == "Description")
-                    {
-                    }
-                }
-                FillGridPreRequirment();
-                FillGridPermitRequiredInspection();
-                FillGridNotesCommunication();
-                if ((isDisabled))
-                    disableJob(true);
-                else
-                    disableJob(false);
-                //Todo
-                //ChangeDirJobNumber(e.RowIndex);
-
-                // Manage Trafic Light
-                //todo
-                //ChangeTraficLight(e.RowIndex);
-                lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
-                //FillTimeSheeData(sender, e);
-                //FillVECostButtonColor();
-                //CalculateRevenu calcRevenu = new CalculateRevenu();
-            }
-
-            catch (Exception ex)
-            {
-            }
-
-            int cnt = e.RowIndex;
-            if (e.ColumnIndex > -1 & e.RowIndex > -1)
-            {
-                if (grvJobList.Columns[e.ColumnIndex].Name == "GrdJobBtnUpdate")
-                {
-                    if (Convert.ToInt32(grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()) == 0)
-                    {
-                        InsertJobList();
-                        return;
-                    }
-                    btnAdd.Text = "Insert";
-                    btnDelete.Enabled = true;
-                    try
-                    {
-                        // Attempt to update the datasource.
-                        // validate the required value
-                        if ((!ValidateRateServTypeValue(cnt)))
-                            return;
-                        try
-                        {
-                            TestVariousInfoEntities DAL = new TestVariousInfoEntities();
-                            SqlCommand cmd = new SqlCommand("update  JobList set JobNumber= @JobNumber,CompanyID=@CompanyID,DateAdded=@DateAdded,Description= @Description,Handler=@Handler, Address=@Address,Borough=@Borough ,InvoiceClient=@InvoiceClient ,InvoiceContact=@InvoiceContact, InvoiceEmailAddress=@InvoiceEmailAddress, InvoiceACContacts=@InvoiceACContacts, InvoiceACEmail=@InvoiceACEmail, PMrv=@PMrv, ContactsID=@ContactsID, IsChange=@IsChange , ChangeDate=@ChangeDate,OwnerName=@OwnerName,OwnerAddress=@OwnerAddress,OwnerPhone=@OwnerPhone,OwnerFax=@OwnerFax,ACContacts=@ACContacts,ACEmail=@ACEmail,Clienttext=@Clienttext,ContactsEmails=@ContactsEmails, IsDisable=@IsDisable,IsInvoiceHold=@IsInvoiceHold, RateVersionId=@RateVersionId,ServRate=@ServRate, AdminInvoice=@AdminInvoice, TypicalInvoiceType=@TypicalInvoiceType where   JobListID=@JobListID");
-                            List<SqlParameter> Param = new List<SqlParameter>();
-                            Param.Add(new SqlParameter("@IsChange", 1));
-                            Param.Add(new SqlParameter("@ChangeDate", string.Format("MM/dd/yyyy", DateTime.Now)));
-                            Param.Add(new SqlParameter("@JobListID", grvJobList.Rows[cnt].Cells["JobListID"].Value.ToString()));
-                            Param.Add(new SqlParameter("@JobNumber", grvJobList.Rows[cnt].Cells["JobNumber"].Value.ToString()));
-                            Param.Add(new SqlParameter("@DateAdded", grvJobList.Rows[cnt].Cells["DateAdded"].Value.ToString()));
-                            Param.Add(new SqlParameter("@Description", grvJobList.Rows[cnt].Cells["Description"].Value.ToString()));
-                            Param.Add(new SqlParameter("@Address", grvJobList.Rows[cnt].Cells["Address"].Value.ToString()));
-                            Param.Add(new SqlParameter("@Handler", grvJobList.Rows[cnt].Cells["cmbHandler"].Value.ToString()));
-                            Param.Add(new SqlParameter("@Borough", grvJobList.Rows[cnt].Cells["Borough"].Value.ToString()));
-                            Param.Add(new SqlParameter("@PMrv", grvJobList.Rows[cnt].Cells["cmbPMrv"].Value.ToString()));
-                            Param.Add(new SqlParameter("@OwnerName", grvJobList.Rows[cnt].Cells["OwnerName"].Value.ToString()));
-                            Param.Add(new SqlParameter("@OwnerAddress", grvJobList.Rows[cnt].Cells["OwnerAddress"].Value.ToString()));
-                            Param.Add(new SqlParameter("@OwnerPhone", grvJobList.Rows[cnt].Cells["OwnerPhone"].Value.ToString()));
-                            Param.Add(new SqlParameter("@OwnerFax", grvJobList.Rows[cnt].Cells["OwnerFax"].Value.ToString()));
-                            Param.Add(new SqlParameter("@ACContacts", grvJobList.Rows[cnt].Cells["ACContacts"].Value.ToString()));
-                            Param.Add(new SqlParameter("@ACEmail", grvJobList.Rows[cnt].Cells["ACEmail"].Value.ToString()));
-                            Param.Add(new SqlParameter("@Clienttext", grvJobList.Rows[cnt].Cells["Clienttext"].Value.ToString()));
-                            Param.Add(new SqlParameter("@ContactsEmails", grvJobList.Rows[cnt].Cells["EmailAddress"].Value.ToString()));
-                            Param.Add(new SqlParameter("@IsDisable", grvJobList.Rows[cnt].Cells["IsDisable"].Value));
-                            Param.Add(new SqlParameter("@IsInvoiceHold", grvJobList.Rows[cnt].Cells["IsInvoiceHold"].Value));
-                            Param.Add(new SqlParameter("@InvoiceClient", grvJobList.Rows[cnt].Cells["InvoiceClient"].Value.ToString()));
-                            Param.Add(new SqlParameter("@InvoiceContact", grvJobList.Rows[cnt].Cells["InvoiceContact"].Value.ToString()));
-                            Param.Add(new SqlParameter("@InvoiceEmailAddress", grvJobList.Rows[cnt].Cells["InvoiceEmailAddress"].Value.ToString()));
-                            Param.Add(new SqlParameter("@InvoiceACContacts", grvJobList.Rows[cnt].Cells["InvoiceACContacts"].Value.ToString()));
-                            Param.Add(new SqlParameter("@InvoiceACEmail", grvJobList.Rows[cnt].Cells["InvoiceACEmail"].Value.ToString()));
-                            Param.Add(new SqlParameter("@RateVersionId", grvJobList.Rows[cnt].Cells["RateVersionId"].Value));
-                            Param.Add(new SqlParameter("@ServRate", grvJobList.Rows[cnt].Cells["ServRate"].Value));
-                            Param.Add(new SqlParameter("@AdminInvoice", grvJobList.Rows[cnt].Cells["AdminInvoice"].Value));
-                            Param.Add(new SqlParameter("@TypicalInvoiceType", grvJobList.Rows[cnt].Cells["cmbTypicalInvoiceType"].Value));
-                            if (grvJobList.Rows[cnt].Cells["Client#"].Value.ToString() == "")
-                                Param.Add(new SqlParameter("@CompanyID", 0));
-                            else
-                                Param.Add(new SqlParameter("@CompanyID", (DataGridViewComboBoxCell)grvJobList.Rows[cnt].Cells["Client#"].Value));
-                            int ContactsID;
-                            if (grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString() == "")
-                            {
-                                Param.Add(new SqlParameter("@ContactsID", 0));
-                                ContactsID = 0;
-                            }
-                            else
-                            {
-                                ContactsID = Convert.ToInt32(grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
-                                new SqlParameter("@ContactsID", grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
-                            }
-
-                            if (DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param) > 0)
-                            {
-                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                                grvJobList.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.FromArgb(159, 207, 255);
-                                KryptonMessageBox.Show("Update Successfully", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-
-                        catch (Exception eLoad)
-                        {
-                            KryptonMessageBox.Show(eLoad.Message, "Manager");
-                        }
-                        grvJobList.CurrentCell = grvJobList.Rows[cnt].Cells["Address"];
-                        grvJobList.Rows[cnt].Selected = true;
-                    }
-                    catch (Exception eUpdate)
-                    {
-                        KryptonMessageBox.Show(eUpdate.Message, "Manager");
-                    }
-                }
-            }
-            grvJobList_CellEnter(sender, e);
-        }
-
         protected void InsertJobList()
         {
-            // grvJobList.Rows(0).Cells("JobNumber").Selected = True 'move this line to below until input validate
+            // grvJobList.Rows[0].Cells["JobNumber").Selected = True 'move this line to below until input validate
             grvJobList.EndEdit();
-            TestVariousInfoEntities DAL = new TestVariousInfoEntities();
+            //DAL = new EFDbContext();
             try
             {
                 if (grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"].FormattedValue == "")
@@ -1556,11 +3094,13 @@ namespace JobTracker.JobTrackingForm
                 if (grvJobList.Rows[cnt].Cells["Client#"].Value.ToString() == "")
                     Param.Add(new SqlParameter("@CompanyID", 0));
                 else
-                    Param.Add(new SqlParameter("@CompanyID", (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[cnt].Cells["Client#"].Value));
+                    Param.Add(new SqlParameter("@CompanyID", grvJobList.Rows[cnt].Cells["Client#"].Value));
+
                 int ContactsID;
-                if (grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString() == "")
+                string values = Convert.ToString(grvJobList.Rows[cnt].Cells["ContactsID"].Value);
+                if (String.IsNullOrEmpty(values))
                 {
-                    Param.Add(new SqlParameter("@ContactsID", 0));
+                    Param.Add(new SqlParameter("@ContactsID", "0"));
                     ContactsID = 0;
                 }
                 else
@@ -1568,8 +3108,8 @@ namespace JobTracker.JobTrackingForm
                     ContactsID = Convert.ToInt32(grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString());
                     Param.Add(new SqlParameter("@ContactsID", grvJobList.Rows[cnt].Cells["ContactsID"].Value.ToString()));
                 }
-                //(DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param) > 0)
-                int num = DAL.Database.ExecuteSqlCommand(cmd.ToString(), Param);
+                //(new db.Database.ExecuteSqlCommand(cmd.CommandText, Param) > 0)
+                int num = repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray());
 
                 if (num > 0)
                 {
@@ -1578,14 +3118,16 @@ namespace JobTracker.JobTrackingForm
                     grvJobList.Rows[grvJobList.Rows.Count - 1].Selected = true;
                     grvJobList.CurrentCell = grvJobList.Rows[grvJobList.Rows.Count - 1].Cells["JobNumber"];
                     btnAdd.Text = "Insert";
-                    //DAL.LoginActivityInfo("Insert", this.Text);
+                    //new LoginActivityInfo("Insert", this.Text);
                 }
             }
             catch (Exception ex)
             {
+                cErrorLog.WriteLog("JobStatus", "InsertJobList", ex.Message);
                 KryptonMessageBox.Show(ex.Message, "Manager");
             }
         }
+
         private bool ValidateRateServTypeValue(int rowindex)
         {
             bool conditionValid = true;
@@ -1607,121 +3149,185 @@ namespace JobTracker.JobTrackingForm
             return conditionValid;
         }
 
-        private void grvJobList_CellEnter(object sender, DataGridViewCellEventArgs e)
+        protected void InsertPreReq()
         {
-            if ((e.ColumnIndex > -1 & e.RowIndex > -1))
+            grvPreRequirments.Rows[0].Cells["comments"].Selected = true;
+            grvPreRequirments.EndEdit();
+            if (string.IsNullOrEmpty(grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["Track"].Value.ToString()))
             {
-                DataGridViewComboBoxCell ContactCmb = new DataGridViewComboBoxCell();
-                DataTable DataTableContact = new DataTable();
-                if (grvJobList.Columns[e.ColumnIndex].Name == "Clienttext")
-                {
-                }
-                else if ((grvJobList.Columns[e.ColumnIndex].Name == "Contacts"))
-                {
-                    try
-                    {
-                        //int i = GetValueMemberID();
-                        //if (i == 0)
-                        //{
-                        //    break;
-                        //}
-
-                        //grvJobList.Rows[e.RowIndex].Cells["ContactsID"].Value = i;
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                }
-                // invoice contact and invoiceAcContact email address
-                if ((grvJobList.Columns[e.ColumnIndex].Name == "InvoiceContactT" | grvJobList.Columns[e.ColumnIndex].Name == "InvoiceACContactsT") & e.RowIndex > -1)
-                {
-                    try
-                    {
-                        DataGridView datagridview = (DataGridView)sender;
-                        datagridview.BeginEdit(true);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
+                KryptonMessageBox.Show("Track field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
-
-        private void grvJobList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            selectedJobListID = Convert.ToInt32(grvJobList.Rows[e.RowIndex].Cells["JobListID"].Value);
-            isDisabled = Convert.ToBoolean(grvJobList.Rows[e.RowIndex].Cells["IsDisable"].Value);
-            //ChangeTraficLight(e.RowIndex);
-            FillGridPreRequirment();
-            FillGridPermitRequiredInspection();
-            FillGridNotesCommunication();
-            if ((isDisabled))
-                disableJob(true);
-            else
-                disableJob(false);
-            lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[e.RowIndex].Cells["CompanyNo"].Value.ToString();
-        }
-        private void grvJobList_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-        }
-
-        private void grvJobList_KeyDown(object sender, KeyEventArgs e)
-        {
-            selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["JobListID"].Value);
-            if (Convert.IsDBNull(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value))
-                isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["IsDisable"].Value);
-            if (e.KeyCode == Keys.Up)
+            if (string.IsNullOrEmpty(grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["TrackSub"].Value.ToString()))
             {
-                if (grvJobList.CurrentRow.Index != 0)
+                KryptonMessageBox.Show("TrackSub field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                btnDeletePreReq.Enabled = true;
+                int cnt = grvPreRequirments.Rows.Count - 1;
+                //DataAccessLayer DAL = new DataAccessLayer();
+
+                SqlCommand cmd = new SqlCommand("Insert into Jobtracking(JobListID,Track,AddDate,NeedDate,Obtained,Expires,Status,Submitted,BillState,TaskHandler,TrackSub,Comments,IsNewRecord,TrackSubID,InvOvr) values (@JobListID,@Track,@AddDate,@NeedDate,@Obtained,@Expires,@Status,@Submitted,@BillState,@TaskHandler,@TrackSub,@Comments,@IsNewRecord,@TrackSubID,@InvOvr)");
+                List<SqlParameter> Param = new List<SqlParameter>();
+                Param.Add(new SqlParameter("@IsNewRecord", 1));
+                Param.Add(new SqlParameter("@JobListID", selectedJobListID));
+                Param.Add(new SqlParameter("@TaskHandler", grvPreRequirments.Rows[cnt].Cells["cmbTaskHandler"].Value.ToString()));
+                Param.Add(new SqlParameter("@Track", grvPreRequirments.Rows[cnt].Cells["cmbTrack"].Value.ToString()));
+                Param.Add(new SqlParameter("@Submitted", grvPreRequirments.Rows[cnt].Cells["Submitted"].Value.ToString()));
+                Param.Add(new SqlParameter("@BillState", grvPreRequirments.Rows[cnt].Cells["BillState"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSub", grvPreRequirments.Rows[cnt].Cells["TrackSub"].Value.ToString()));
+                Param.Add(new SqlParameter("@Comments", grvPreRequirments.Rows[cnt].Cells["Comments"].Value.ToString()));
+                Param.Add(new SqlParameter("@Status", grvPreRequirments.Rows[cnt].Cells["cmbStatus"].Value.ToString()));
+                Param.Add(new SqlParameter("@Obtained", grvPreRequirments.Rows[cnt].Cells["Obtained"].Value.ToString()));
+                Param.Add(new SqlParameter("@Expires", grvPreRequirments.Rows[cnt].Cells["Expires"].Value.ToString()));
+                Param.Add(new SqlParameter("@AddDate", grvPreRequirments.Rows[cnt].Cells["AddDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@NeedDate", grvPreRequirments.Rows[cnt].Cells["NeedDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSubID", grvPreRequirments.Rows[cnt].Cells["TrackSubID"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvOvr", grvPreRequirments.Rows[cnt].Cells["InvOvr"].Value.ToString()));
+
+                //if (new Database.ParameterSqlExcecuteQuery(cmd, Param) > 0)
+                repo.Insert();
+                int num = repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray());
+                if (num > 0)
                 {
-                    selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["JobListID"].Value);
-                    isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["IsDisable"].Value);
-                    // ChangeTraficLight(grvJobList.CurrentRow.Index - 1);                    
-                    // ChangeDirJobNumber(grvJobList.CurrentRow.Index - 1);
+                    //System.Windows.Forms.MessageBox.Show("Record Saved!", "Message")
+                    //////new Database.LoginActivityInfo("Insert", this.Text);
                     FillGridPreRequirment();
-                    FillGridPermitRequiredInspection();
-                    FillGridNotesCommunication();
-                    if ((isDisabled))
-                        disableJob(true);
-                    else
-                        disableJob(false);
-                    lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index - 1].Cells["CompanyNo"].Value.ToString();
+                    if (grvPreRequirments.Rows.Count > 0)
+                    {
+                        grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Selected = true;
+                        grvPreRequirments.CurrentCell = grvPreRequirments.Rows[grvPreRequirments.Rows.Count - 1].Cells["comments"];
+                    }
+
+                    btnInsertPreReq.Text = "Insert";
                 }
+
             }
-            if (e.KeyCode == Keys.Down)
+            catch (Exception ex)
             {
-                if (grvJobList.CurrentRow.Index != grvJobList.Rows.Count - 1)
-                {
-                    selectedJobListID = Convert.ToInt32(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["JobListID"].Value);
-                    isDisabled = Convert.ToBoolean(grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["IsDisable"].Value);
-                    // Dim JobNo As String = grvJobList.Rows(grvJobList.CurrentRow.Index + 1).Cells("JobNumber").Value.ToString
-                    // ChangeTraficLight(grvJobList.CurrentRow.Index + 1);                    
-                    //ChangeDirJobNumber(grvJobList.CurrentRow.Index + 1);
-                    FillGridPreRequirment();
-                    FillGridPermitRequiredInspection();
-                    FillGridNotesCommunication();
-                    if ((isDisabled))
-                        disableJob(true);
-                    else
-                        disableJob(false);
-                    lblCompanyNo.Text = "Client No:- " + grvJobList.Rows[grvJobList.CurrentRow.Index + 1].Cells["CompanyNo"].Value.ToString();
-                }
+                KryptonMessageBox.Show(ex.Message, "Manager");
             }
         }
 
+        protected void InsertPermits()
+        {
+            //grvPermitsRequiredInspection.Rows[0].Cells["comments").Selected = True
+            grvPermitsRequiredInspection.EndEdit();
+            if (string.IsNullOrEmpty(grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Cells["Track"].Value.ToString()))
+            {
+                KryptonMessageBox.Show("Track field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Cells["TrackSub"].Value.ToString()))
+            {
+                KryptonMessageBox.Show("TrackSub field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                btnDeletePermit.Enabled = true;
+                int cnt = grvPermitsRequiredInspection.Rows.Count - 1;
+                //DataAccessLayer DAL = new DataAccessLayer();
+                SqlCommand cmd = new SqlCommand("Insert into Jobtracking(JobListID,Track,AddDate,NeedDate,Obtained,Expires,Status,Submitted,BillState,TaskHandler,TrackSub,Comments,IsNewRecord,TrackSubID, FinalAction,InvOvr ) values (@JobListID,@Track,@AddDate,@NeedDate,@Obtained,@Expires,@Status,@Submitted,@BillState,@TaskHandler,@TrackSub,@Comments,@IsNewRecord,@TrackSubID, @FinalAction,@InvOvr)");
+                List<SqlParameter> Param = new List<SqlParameter>();
+                Param.Add(new SqlParameter("@IsNewRecord", 1));
+                Param.Add(new SqlParameter("@JobListID", selectedJobListID));
+                Param.Add(new SqlParameter("@TaskHandler", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbTaskHandler"].Value.ToString()));
+                Param.Add(new SqlParameter("@Track", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbTrack"].Value.ToString()));
+                Param.Add(new SqlParameter("@Submitted", grvPermitsRequiredInspection.Rows[cnt].Cells["Submitted"].Value.ToString()));
+                Param.Add(new SqlParameter("@BillState", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbBillState"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSub", grvPermitsRequiredInspection.Rows[cnt].Cells["TrackSub"].Value.ToString()));
+                Param.Add(new SqlParameter("@Comments", grvPermitsRequiredInspection.Rows[cnt].Cells["Comments"].Value.ToString()));
+                Param.Add(new SqlParameter("@Status", grvPermitsRequiredInspection.Rows[cnt].Cells["cmbStatus"].Value.ToString()));
+                Param.Add(new SqlParameter("@Obtained", grvPermitsRequiredInspection.Rows[cnt].Cells["Obtained"].Value.ToString()));
+                Param.Add(new SqlParameter("@Expires", grvPermitsRequiredInspection.Rows[cnt].Cells["Expires"].Value.ToString()));
+                Param.Add(new SqlParameter("@FinalAction", grvPermitsRequiredInspection.Rows[cnt].Cells["FinalAction"].Value.ToString()));
+                Param.Add(new SqlParameter("@AddDate", grvPermitsRequiredInspection.Rows[cnt].Cells["AddDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@NeedDate", grvPermitsRequiredInspection.Rows[cnt].Cells["NeedDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvOvr", grvPermitsRequiredInspection.Rows[cnt].Cells["InvOvr"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSubID", grvPermitsRequiredInspection.Rows[cnt].Cells["TrackSubID"].Value.ToString()));
 
-        //public int GetValueMemberID()
-        //{
-        //    string Query = "SELECT ContactsID,dbo.ClientName(FirstName, MiddleName, LastName) as ClientName FROM  Contacts WHERE CompanyID=" + (System.Windows.Forms.DataGridViewComboBoxCell)grvJobList.Rows[grvJobList.CurrentRow.Index].Cells["Client#"].Value + " ORDER BY FirstName";
-        //    //DataAccessLayer DA = new DataAccessLayer();
-        //    DataTable DataTableContact = new DataTable();
-        //    DataTableContact = DA.Filldatatable(Query);
-        //    for (int i = 0; i <= DataTableContact.Rows.Count - 1; i++)
-        //    {
-        //        if (DataTableContact.Rows[i]["ClientName"].ToString().Trim() == grvJobList["Contacts", grvJobList.CurrentRow.Index].Value.ToString().Trim())
-        //            return DataTableContact.Rows[i]["ContactsID"].ToString();
-        //    }
-        //}
+                int num = repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray());
+                repo.LoginActivityInfo(repo.db, "Insert", this.Text);
+                if (num > 0)
+                {
+
+                    FillGridPermitRequiredInspection();
+                    if (grvPermitsRequiredInspection.Rows.Count > 0)
+                    {
+                        grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Selected = true;
+                        grvPermitsRequiredInspection.CurrentCell = grvPermitsRequiredInspection.Rows[grvPermitsRequiredInspection.Rows.Count - 1].Cells["comments"];
+                    }
+
+                    btnInsertPermit.Text = "Insert";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(ex.Message, "Manager");
+            }
+        }
+
+        protected void InsertNotes()
+        {
+            grvNotesCommunication.Rows[0].Cells["comments"].Selected = true;
+            grvNotesCommunication.EndEdit();
+            if (string.IsNullOrEmpty(grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["Track"].Value.ToString()))
+            {
+                KryptonMessageBox.Show("Track field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["TrackSub"].Value.ToString()))
+            {
+                KryptonMessageBox.Show("TrackSub field are compulsory", "Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                btndeleteNotes.Enabled = true;
+                int cnt = grvNotesCommunication.Rows.Count - 1;
+                //DataAccessLayer DAL = new DataAccessLayer();
+
+                SqlCommand cmd = new SqlCommand("Insert into Jobtracking(JobListID,Track,AddDate,NeedDate,Obtained,Expires, Status, Submitted,BillState,TaskHandler,TrackSub,Comments,IsNewRecord,TrackSubID,InvOvr,DeleteItemTimeService) values (@JobListID,@Track,@AddDate,@NeedDate,@Obtained,@Expires,@Status,@Submitted,@BillState,@TaskHandler,@TrackSub,@Comments,@IsNewRecord,@TrackSubID,@InvOvr,@DeleteItemTimeService)");
+                List<SqlParameter> Param = new List<SqlParameter>();
+                Param.Add(new SqlParameter("@IsNewRecord", 1));
+                Param.Add(new SqlParameter("@JobListID", selectedJobListID));
+                Param.Add(new SqlParameter("@TaskHandler", grvNotesCommunication.Rows[cnt].Cells["cmbTaskHandler"].Value.ToString()));
+                Param.Add(new SqlParameter("@Track", grvNotesCommunication.Rows[cnt].Cells["cmbTrack"].Value.ToString()));
+                Param.Add(new SqlParameter("@Submitted", grvNotesCommunication.Rows[cnt].Cells["Submitted"].Value.ToString()));
+                Param.Add(new SqlParameter("@BillState", grvNotesCommunication.Rows[cnt].Cells["cmbBillState"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSub", grvNotesCommunication.Rows[cnt].Cells["TrackSub"].Value.ToString()));
+                Param.Add(new SqlParameter("@Comments", grvNotesCommunication.Rows[cnt].Cells["Comments"].Value.ToString()));
+                Param.Add(new SqlParameter("@Status", grvNotesCommunication.Rows[cnt].Cells["cmbStatus"].Value.ToString()));
+                Param.Add(new SqlParameter("@Obtained", grvNotesCommunication.Rows[cnt].Cells["Obtained"].Value.ToString()));
+                Param.Add(new SqlParameter("@Expires", grvNotesCommunication.Rows[cnt].Cells["Expires"].Value.ToString()));
+                Param.Add(new SqlParameter("@AddDate", grvNotesCommunication.Rows[cnt].Cells["AddDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@NeedDate", grvNotesCommunication.Rows[cnt].Cells["NeedDate"].Value.ToString()));
+                Param.Add(new SqlParameter("@InvOvr", grvNotesCommunication.Rows[cnt].Cells["InvOvr"].Value.ToString()));
+                Param.Add(new SqlParameter("@TrackSubID", grvNotesCommunication.Rows[cnt].Cells["TrackSubID"].EditedFormattedValue.ToString()));
+                Param.Add(new SqlParameter("@DeleteItemTimeService", grvNotesCommunication.Rows[cnt].Cells["DeleteItemTimeService"].EditedFormattedValue.ToString()));
+                int num = repo.db.Database.ExecuteSqlCommand(cmd.CommandText, Param.ToArray());
+                if (num > 0)
+                {
+                    FillGridNotesCommunication();
+                    repo.LoginActivityInfo(repo.db, "Insert", this.Text);
+                    if (grvNotesCommunication.Rows.Count > 0)
+                    {
+                        grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Selected = true;
+                        grvNotesCommunication.CurrentCell = grvNotesCommunication.Rows[grvNotesCommunication.Rows.Count - 1].Cells["comments"];
+                    }
+
+                    btnInsertNotes.Text = "Insert";
+                }
+            }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(ex.Message, "Manager");
+            }
+        }
+        #endregion
     }
 }

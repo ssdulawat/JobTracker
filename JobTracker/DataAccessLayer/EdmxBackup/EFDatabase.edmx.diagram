@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="314641a9bc9546dc81826d827d604017" Name="Diagram1">
+        <EntityTypeShape EntityType="TestVariousInfoModel.AgingFileInfo" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.AgingInvoice" Width="1.5" PointX="3" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.AppSetting" Width="1.5" PointX="5.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_Capacity" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_Crane" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_CraneConfig" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_CraneCoordinate" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_CraneData" Width="1.5" PointX="13" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_ElevationInfo" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_PickChartCoordinate" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_ProjectName" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_Radius" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_Site" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Bcad_SiteInfo" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.ColorEmailDescription" Width="1.5" PointX="8" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.ColorSetting" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.CommunicationLog" Width="1.5" PointX="3" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.CommunityBoard" Width="1.5" PointX="7.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Company" Width="1.5" PointX="0.75" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Contact" Width="1.5" PointX="3" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.CRVExpensesInvoice" Width="1.5" PointX="9.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.CRVTimeInvoice" Width="1.5" PointX="9.75" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.DocTypicalCategoryList" Width="1.5" PointX="10.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.DocTypicalListItem" Width="1.5" PointX="9.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.DrawingLog" Width="1.5" PointX="7.5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.EmailRecord" Width="1.5" PointX="11.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.EmployeeDetail" Width="1.5" PointX="5.25" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.EmployeeDetails_Depre" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.ImportTimeSheetData" Width="1.5" PointX="2.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Invoice" Width="1.5" PointX="7.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.InvoiceAction" Width="1.5" PointX="3" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.JobList" Width="1.5" PointX="5.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.JobTracking" Width="1.5" PointX="7.5" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.JobTrackInvoiceDetail" Width="1.5" PointX="7.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.JobTrackInvoiceRateDetail" Width="1.5" PointX="12.75" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.Login" Width="1.5" PointX="12.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.MasterItem" Width="1.5" PointX="7.5" PointY="63.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.MasterTrackSet" Width="1.5" PointX="8.25" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.MasterTrackSubItem" Width="1.5" PointX="10.5" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.SendEmailRecord" Width="1.5" PointX="12.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.sysdiagram" Width="1.5" PointX="13.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.TaskList" Width="1.5" PointX="4.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.TrackSubItemAccount" Width="1.5" PointX="14.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.TS_Expences" Width="1.5" PointX="7.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.TS_MasterItem" Width="1.5" PointX="14.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.TS_Time" Width="1.5" PointX="12.5" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VBCDDatabase" Width="1.5" PointX="13.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VBFormInfo" Width="1.5" PointX="7.5" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VBNetApplicantInfo" Width="1.5" PointX="9.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VersionDescription" Width="1.5" PointX="12.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VersionTable" Width="1.5" PointX="10.5" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VETask" Width="1.5" PointX="15.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.ActivityInfo" Width="1.5" PointX="15.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.ColorHistory" Width="1.5" PointX="3" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.PMInfo" Width="1.5" PointX="15.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.EmailJobPendingList" Width="1.5" PointX="16.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.InvoiceJobList" Width="1.5" PointX="17.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.InvoicePreview" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.InvoicePreview_1" Width="1.5" PointX="17.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.MasterTrackSubDisplay" Width="1.5" PointX="17.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.rptInvoiceExpens" Width="1.5" PointX="2.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.rptInvoiceTime" Width="1.5" PointX="4.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.view_Temp" Width="1.5" PointX="19.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.vw_Item_Time_Expense" Width="1.5" PointX="19.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.VW_PandingList" Width="1.5" PointX="19.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.vwJobListDefaultValue" Width="1.5" PointX="15.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfoModel.vWordTran" Width="1.5" PointX="17.75" PointY="20" IsExpanded="true" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_AgingInvoice_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_Capacity_Bcad_CraneConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_Capacity_Bcad_Radius" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_CraneData_Bcad_Crane" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_CraneCoordinate_Bcad_CraneConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_CraneCoordinate_Bcad_ProjectName" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_ElevationInfo_Bcad_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_PickChartCoordinate_Bcad_ProjectName" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Bcad_SiteInfo_Bcad_Site" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_ColorEmailDescription_ColorSetting" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_CommunicationLog_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_ColorHistory_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Contacts_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_InvoiceAction_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobList_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobList_Contacts1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_CRVExpensesInvoice_JobTrackInvoiceDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_CRVTimeInvoice_JobTrackInvoiceDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_DrawingLog_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_MasterItem_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Expences_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Time_EmployeeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_Invoice_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobTracking_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobTrackInvoiceDetail_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Expences_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Time_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_VBFormInfo_JobList" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_MasterTrackSubItem_MasterTrackSet" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Expences_MasterTrackSubItem" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_TS_Time_MasterTrackSubItem" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_VersionDescription_MasterTrackSubItem" ManuallyRouted="false" />
+        <AssociationConnector Association="TestVariousInfoModel.FK_VersionDescription_VersionTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Model
 {
-    public class LoginAuthentication 
+    public class LoginAuthentication
     {
-
+        public int Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string UserType { get; set; }
         public List<LoginAuthentication> LoginAuthenticationResult { get; set; }
     }
-
-
 }

@@ -8,22 +8,188 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JobTracker.Properties
-{
-
-
+namespace JobTracker.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.3.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GradientActiveCaption")]
+        public global::System.Drawing.Color GridBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridBackColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GradientInactiveCaption")]
+        public global::System.Drawing.Color BtnBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BtnBackColor"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Calibri, 9.5pt")]
+        public global::System.Drawing.Font BtnFont {
+            get {
+                return ((global::System.Drawing.Font)(this["BtnFont"]));
+            }
+            set {
+                this["BtnFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Flat")]
+        public global::System.Windows.Forms.FlatStyle BtnFlateStyle {
+            get {
+                return ((global::System.Windows.Forms.FlatStyle)(this["BtnFlateStyle"]));
+            }
+            set {
+                this["BtnFlateStyle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"\"")]
+        public string MastreTable {
+            get {
+                return ((string)(this["MastreTable"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int timeSheetLoginUserID {
+            get {
+                return ((int)(this["timeSheetLoginUserID"]));
+            }
+            set {
+                this["timeSheetLoginUserID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string timeSheetLoginName {
+            get {
+                return ((string)(this["timeSheetLoginName"]));
+            }
+            set {
+                this["timeSheetLoginName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string timeSheetLoginUserType {
+            get {
+                return ((string)(this["timeSheetLoginUserType"]));
+            }
+            set {
+                this["timeSheetLoginUserType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsLocalDataBase {
+            get {
+                return ((bool)(this["IsLocalDataBase"]));
+            }
+            set {
+                this["IsLocalDataBase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string PretimeSheetLoginUserID {
+            get {
+                return ((string)(this["PretimeSheetLoginUserID"]));
+            }
+            set {
+                this["PretimeSheetLoginUserID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string PretimeSheetLoginName {
+            get {
+                return ((string)(this["PretimeSheetLoginName"]));
+            }
+            set {
+                this["PretimeSheetLoginName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string PretimeSheetLoginUserType {
+            get {
+                return ((string)(this["PretimeSheetLoginUserType"]));
+            }
+            set {
+                this["PretimeSheetLoginUserType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LocalDataBaseConnString {
+            get {
+                return ((string)(this["LocalDataBaseConnString"]));
+            }
+            set {
+                this["LocalDataBaseConnString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"\"")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsTestDatabase {
+            get {
+                return ((bool)(this["IsTestDatabase"]));
+            }
+            set {
+                this["IsTestDatabase"] = value;
             }
         }
     }

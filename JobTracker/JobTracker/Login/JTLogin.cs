@@ -11,18 +11,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataAccessLayer;
-
+using Common;
 
 namespace JobTracker.Login
 {
     public partial class FrmJTLogin : Form
     {
+
+        #region "Variables & Properties"
         UserLogin dAL = new UserLogin();
         public JobAndTrackingMDI MdiParentCall;
         public bool CallFromMdi;
+        #endregion 
+
+        #region "Events"
         public FrmJTLogin()
         {
             InitializeComponent();
+            Program.LoadDefaultSettings();
         }
 
         private void BtnLoginJT_Click(object sender, EventArgs e)
@@ -49,14 +55,13 @@ namespace JobTracker.Login
                             MessageBox.Show("Must have admin privileges!", "Message");
                         else
                         {
-
-                            //My.Settings.timeSheetLoginName = item.UserName;
-                            //My.Settings.timeSheetLoginUserID = item.UserType;
-                            //My.Settings.timeSheetLoginUserType = "User";
-                            //My.Settings.IsTestDatabase = cbIsTestDb.Checked;
-                            //My.Settings.PretimeSheetLoginName = "Null";
-                            //My.Settings.PretimeSheetLoginUserID = "Null";
-                            //My.Settings.PretimeSheetLoginUserType = "Null";
+                            Properties.Settings.Default.timeSheetLoginName = item.UserName;
+                            Properties.Settings.Default.timeSheetLoginUserID = item.Id;
+                            Properties.Settings.Default.timeSheetLoginUserType = "User";
+                            Properties.Settings.Default.IsTestDatabase = cbIsTestDb.Checked;
+                            Properties.Settings.Default.PretimeSheetLoginName = "Null";
+                            Properties.Settings.Default.PretimeSheetLoginUserID = "Null";
+                            Properties.Settings.Default.PretimeSheetLoginUserType = "Null";
 
                             this.ShowInTaskbar = false;
                             this.Hide();
@@ -72,8 +77,8 @@ namespace JobTracker.Login
                             mdi = MdiParentCall;
                         if (item.UserType == "A")
                         {
-                            //My.Settings.timeSheetLoginUserID = dt.Rows(0)(1).ToString()
-                            //My.Settings.timeSheetLoginUserType = "Admin";
+                            Properties.Settings.Default.timeSheetLoginUserID = item.Id;
+                            Properties.Settings.Default.timeSheetLoginUserType = "Admin";
                             this.ShowInTaskbar = false;
                             this.Hide();
 
@@ -96,23 +101,19 @@ namespace JobTracker.Login
                         // If login form open from mdi 
                         if (CallFromMdi)
                             Close();
-
                     }
 
                 }
                 else
                     MessageBox.Show("Incorrect User name & Password", "Message");
-
             }
 
             //}
 
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                cErrorLog.WriteLog("JTLogin", "BtnLoginJT_Click", ex.Message);
             }
-
         }
 
         private void BtnLoginCancelJT_Click(object sender, EventArgs e)
@@ -121,71 +122,52 @@ namespace JobTracker.Login
             {
                 this.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                //throw;
+                cErrorLog.WriteLog("JTLogin", "BtnLoginCancelJT_Click", ex.Message);
             }
         }
 
         private void FrmJTLogin_Load(object sender, EventArgs e)
         {
-            //string status = "Null";
-            Process my_proc = Process.GetCurrentProcess();
-            string my_name = my_proc.ProcessName;
-
-            if ((Process.GetProcessesByName(my_name).Length > 1))
-            {
-                this.Hide();
-                MessageBox.Show("Application is Already Running");
-                Application.Exit();
-            }
-        }
-
-
-        public void Showform()
-        {
-            foreach (Form frm in Application.OpenForms)
-            {
-                if (frm.IsMdiContainer == true)
-                    frm.Close();
-            }
-        }
-
-
-        private void cbIsTestDb_CheckedChanged(System.Object sender, System.EventArgs e)
-        {
-            if (cbIsTestDb.Checked == true) { }
-            //My.Settings.IsTestDatabase = true;
-            else { }
-            //My.Settings.IsTestDatabase = false;
-        }
-        public void New()
-        {            // This call is required by the designer.
-            InitializeComponent();
-            this.LoadDefaultSettings();
-            //Add any initialization after the InitializeComponent() call.
-        }
-        public void LoadDefaultSettings()
-        {
             try
             {
-                if (!System.IO.File.Exists(Application.StartupPath + @"\VESoftwareSetting.xml"))
+                //string status = "Null";
+                Process my_proc = Process.GetCurrentProcess();
+                string my_name = my_proc.ProcessName;
+
+                if ((Process.GetProcessesByName(my_name).Length > 1))
                 {
-                    if (System.IO.File.Exists(Application.StartupPath + @"\VESoftwareSetting_Default.xml"))
-                    {
-                        System.IO.File.Copy(Application.StartupPath + @"\VESoftwareSetting_Default.xml", Application.StartupPath + @"\VESoftwareSetting.xml");
-                        System.IO.File.Delete(Application.StartupPath + @"\VESoftwareSetting_Default.xml");
-                    }
-                    else
-                        MessageBox.Show("Unable to load default settings. Please contact support.");
+                    this.Hide();
+                    Application.Exit();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                cErrorLog.WriteLog("JTLogin", "FrmJTLogin_Load", ex.Message);
             }
         }
 
+        private void cbIsTestDb_CheckedChanged(System.Object sender, System.EventArgs e)
+        {
+            try
+            {
+                if (cbIsTestDb.Checked == true)
+                    Properties.Settings.Default.IsTestDatabase = true;
+                else
+                    Properties.Settings.Default.IsTestDatabase = false;
+            }
+            catch (Exception ex)
+            {
+                cErrorLog.WriteLog("JTLogin", "cbIsTestDb_CheckedChanged", ex.Message);
+            }
+        }
+
+        public void New()
+        {            // This call is required by the designer.
+
+            //Add any initialization after the InitializeComponent() call.
+        }
+        #endregion
     }
 }

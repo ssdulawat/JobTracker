@@ -45,8 +45,6 @@ namespace JobTracker.JobTrackingMDIForm
         {
             CreateFromandtab(JobStatus.Instance);
         }
-
-
         private void JobAndTrackingMDI_Load(object sender, EventArgs e)
         {
             ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
@@ -185,6 +183,5 @@ namespace JobTracker.JobTrackingMDIForm
             Newfrm.WindowState = FormWindowState.Maximized;
             Newfrm.Show();
         }
-
     }
 }

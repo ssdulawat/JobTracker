@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50138e4c64964c1ca09003fe912da1b5" Name="Diagram1">
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.AgingFileInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.AgingInvoice" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.AppSetting" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_Capacity" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_Crane" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_CraneConfig" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_CraneCoordinate" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_CraneData" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_ElevationInfo" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_PickChartCoordinate" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_ProjectName" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_Radius" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_Site" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Bcad_SiteInfo" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.ColorEmailDescription" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.ColorSetting" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.CommunicationLog" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.CommunityBoard" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Company" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Contact" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.CRVExpensesInvoice" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.CRVTimeInvoice" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.DocTypicalCategoryList" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.DocTypicalListItem" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.DrawingLog" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.EmailRecord" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.EmployeeDetail" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.EmployeeDetails_Depre" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.ImportTimeSheetData" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Invoice" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.InvoiceAction" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.JobList" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.JobTracking" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.JobTrackInvoiceDetail" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.JobTrackInvoiceRateDetail" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.Login" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.MasterItem" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.MasterTrackSet" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.MasterTrackSubItem" Width="1.5" PointX="18.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.SendEmailRecord" Width="1.5" PointX="8.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.sysdiagram" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.TaskList" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.TrackSubItemAccount" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.TS_Expences" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.TS_MasterItem" Width="1.5" PointX="2.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.TS_Time" Width="1.5" PointX="12.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VBCDDatabase" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VBFormInfo" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VBNetApplicantInfo" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VersionDescription" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VersionTable" Width="1.5" PointX="8.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VETask" Width="1.5" PointX="18.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.ActivityInfo" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.ColorHistory" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.PMInfo" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.EmailJobPendingList" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.InvoiceJobList" Width="1.5" PointX="22.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.InvoicePreview" Width="1.5" PointX="22.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.InvoicePreview_1" Width="1.5" PointX="22.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.MasterTrackSubDisplay" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.rptInvoiceExpens" Width="1.5" PointX="24.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.rptInvoiceTime" Width="1.5" PointX="4.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.view_Temp" Width="1.5" PointX="6.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.vw_Item_Time_Expense" Width="1.5" PointX="8.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.VW_PandingList" Width="1.5" PointX="24.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.vwJobListDefaultValue" Width="1.5" PointX="10.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestVariousInfo_WithDataModel.vWordTran" Width="1.5" PointX="24.75" PointY="15.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

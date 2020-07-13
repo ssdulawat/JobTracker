@@ -90,7 +90,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ActivityInfo' does not have a 
             <PropertyRef Name="CraneDataID" />
           </Key>
           <Property Name="CraneDataID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CraneID" Type="bigint" />
+          <Property Name="CraneID" Type="int" />
           <Property Name="OR_sp" Type="nvarchar" MaxLength="50" />
           <Property Name="FP_radius" Type="nvarchar" MaxLength="50" />
           <Property Name="FP_Height" Type="nvarchar" MaxLength="50" />
@@ -191,7 +191,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
             <PropertyRef Name="CommLogID" />
           </Key>
           <Property Name="CommLogID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyID" Type="bigint" />
+          <Property Name="CompanyID" Type="int" />
           <Property Name="InvoiceNo" Type="varchar" MaxLength="20" />
           <Property Name="Method" Type="varchar" MaxLength="50" />
           <Property Name="Notes" Type="varchar(max)" />
@@ -300,7 +300,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
             <PropertyRef Name="CRVExpensesInvoiceID" />
           </Key>
           <Property Name="CRVExpensesInvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JobTrackDetailID" Type="bigint" />
+          <Property Name="JobTrackDetailID" Type="int" />
           <Property Name="Date" Type="date" />
           <Property Name="Expenses" Type="float" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -312,7 +312,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
             <PropertyRef Name="CRVTimeInvoiceID" />
           </Key>
           <Property Name="CRVTimeInvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JobTrackDetailID" Type="bigint" />
+          <Property Name="JobTrackDetailID" Type="int" />
           <Property Name="Date" Type="date" />
           <Property Name="Time" Type="float" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -436,7 +436,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
             <PropertyRef Name="ActionID" />
           </Key>
           <Property Name="ActionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyID" Type="bigint" />
+          <Property Name="CompanyID" Type="int" />
           <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
           <Property Name="ActionName" Type="varchar" MaxLength="20" />
           <Property Name="ActionDate" Type="datetime" />
@@ -513,8 +513,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
           <Key>
             <PropertyRef Name="JobTrackDetailID" />
           </Key>
-          <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JobListID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="JobTrackDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobListID" Type="int" />
           <Property Name="InvoiceNo" Type="nvarchar(max)" />
           <Property Name="InvoiceDate" Type="datetime" />
           <Property Name="Jobdescription" Type="nvarchar(max)" />
@@ -536,7 +536,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
           <Property Name="InvoiceRptID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TrackSubID" Type="int" />
           <Property Name="JobTrackSubName" Type="nvarchar(max)" />
-          <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="JobTrackDetailID" Type="int" />
           <Property Name="Hrs" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -566,7 +566,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.ColorHistory' does not have a 
           <Property Name="IsDelete" Type="bit" />
           <Property Name="ChangeDate" Type="datetime" />
           <Property Name="IsDisable" Type="bit" />
-          <Property Name="EmpId" Type="int" />
+          <Property Name="EmpId" Type="bigint" />
         </EntityType>
         <EntityType Name="MasterTrackSet">
           <Key>
@@ -661,7 +661,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.PMInfo' does not have a primar
             <PropertyRef Name="TimeSheetExpencesID" />
           </Key>
           <Property Name="TimeSheetExpencesID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JobListID" Type="bigint" />
+          <Property Name="JobListID" Type="int" />
           <Property Name="EmployeeDetailsId" Type="bigint" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="TrackSubID" Type="int" />
@@ -689,7 +689,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.PMInfo' does not have a primar
             <PropertyRef Name="TimeSheetID" />
           </Key>
           <Property Name="TimeSheetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JobListID" Type="bigint" />
+          <Property Name="JobListID" Type="int" Nullable="false" />
           <Property Name="EmployeeDetailsId" Type="bigint" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="TrackSubID" Type="int" />
@@ -880,7 +880,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.EmailJobPendingList' does not 
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
           <Property Name="Track" Type="nvarchar" MaxLength="255" />
           <Property Name="TrackSub" Type="nvarchar" MaxLength="255" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar(max)" />
           <Property Name="JobListID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -941,9 +941,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.InvoicePreview_1' does not hav
           <Property Name="Jobdescription" Type="nvarchar(max)" />
           <Property Name="DueDate" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
-          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar(max)" />
+          <Property Name="FaxNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="JobTrackSubName" Type="nvarchar(max)" />
           <Property Name="Hrs" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
@@ -988,9 +988,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.rptInvoiceExpenses' does not h
           <Property Name="Jobdescription" Type="nvarchar(max)" />
           <Property Name="DueDate" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
-          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar(max)" />
+          <Property Name="FaxNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Date" Type="date" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Expenses" Type="float" />
@@ -1014,9 +1014,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.rptInvoiceTime' does not have 
           <Property Name="Jobdescription" Type="nvarchar(max)" />
           <Property Name="DueDate" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
-          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar(max)" />
+          <Property Name="FaxNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Date" Type="date" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Time" Type="float" />
@@ -1044,9 +1044,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.view_Temp' does not have a pri
           <Property Name="Jobdescription" Type="nvarchar(max)" />
           <Property Name="DueDate" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
-          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar(max)" />
+          <Property Name="FaxNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
@@ -1075,9 +1075,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vw_Item_Time_Expense' does not
           <Property Name="Jobdescription" Type="nvarchar(max)" />
           <Property Name="DueDate" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
-          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar(max)" />
+          <Property Name="FaxNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="JobTrackDetailID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="JobNumber" Type="nvarchar" MaxLength="100" />
@@ -1147,6 +1147,438 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_AgingInvoice_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="AgingInvoice" Type="Self.AgingInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="AgingInvoice">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_Capacity_Bcad_CraneConfig">
+          <End Role="Bcad_CraneConfig" Type="Self.Bcad_CraneConfig" Multiplicity="0..1" />
+          <End Role="Bcad_Capacity" Type="Self.Bcad_Capacity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_Capacity">
+              <PropertyRef Name="CraneConfigID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_Capacity_Bcad_Radius">
+          <End Role="Bcad_Radius" Type="Self.Bcad_Radius" Multiplicity="0..1" />
+          <End Role="Bcad_Capacity" Type="Self.Bcad_Capacity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Radius">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_Capacity">
+              <PropertyRef Name="RadiusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneCoordinate_Bcad_CraneConfig">
+          <End Role="Bcad_CraneConfig" Type="Self.Bcad_CraneConfig" Multiplicity="0..1" />
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="CraneConfigID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneCoordinate_Bcad_ProjectName">
+          <End Role="Bcad_ProjectName" Type="Self.Bcad_ProjectName" Multiplicity="0..1" />
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_ProjectName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="ProjectNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneData_Bcad_Crane">
+          <End Role="Bcad_Crane" Type="Self.Bcad_Crane" Multiplicity="0..1" />
+          <End Role="Bcad_CraneData" Type="Self.Bcad_CraneData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Crane">
+              <PropertyRef Name="CraneID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneData">
+              <PropertyRef Name="CraneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_ElevationInfo_Bcad_Site">
+          <End Role="Bcad_Site" Type="Self.Bcad_Site" Multiplicity="0..1" />
+          <End Role="Bcad_ElevationInfo" Type="Self.Bcad_ElevationInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Site">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bcad_ElevationInfo">
+              <PropertyRef Name="siteTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate">
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="0..1" />
+          <End Role="Bcad_PickChartCoordinate" Type="Self.Bcad_PickChartCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="CraneCoordi_ID" />
+            </Principal>
+            <Dependent Role="Bcad_PickChartCoordinate">
+              <PropertyRef Name="CraneCoordi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_PickChartCoordinate_Bcad_ProjectName">
+          <End Role="Bcad_ProjectName" Type="Self.Bcad_ProjectName" Multiplicity="0..1" />
+          <End Role="Bcad_PickChartCoordinate" Type="Self.Bcad_PickChartCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_ProjectName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_PickChartCoordinate">
+              <PropertyRef Name="ProjectNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_SiteInfo_Bcad_Site">
+          <End Role="Bcad_Site" Type="Self.Bcad_Site" Multiplicity="0..1" />
+          <End Role="Bcad_SiteInfo" Type="Self.Bcad_SiteInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Site">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bcad_SiteInfo">
+              <PropertyRef Name="siteTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorEmailDescription_ColorSetting">
+          <End Role="ColorSetting" Type="Self.ColorSetting" Multiplicity="0..1" />
+          <End Role="ColorEmailDescription" Type="Self.ColorEmailDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorSetting">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="ColorEmailDescription">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorHistory_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ColorHistory" Type="Self.ColorHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ColorHistory">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommunicationLog_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CommunicationLog" Type="Self.CommunicationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="CommunicationLog">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRVExpensesInvoice_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="CRVExpensesInvoice" Type="Self.CRVExpensesInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="CRVExpensesInvoice">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRVTimeInvoice_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="CRVTimeInvoice" Type="Self.CRVTimeInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="CRVTimeInvoice">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DrawingLog_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="DrawingLog" Type="Self.DrawingLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="DrawingLog">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceAction_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="InvoiceAction" Type="Self.InvoiceAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="InvoiceAction">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobList_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="JobList" Type="Self.JobList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="JobList">
+              <PropertyRef Name="ContactsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobList_Contacts1">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="0..1" />
+          <End Role="JobList" Type="Self.JobList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactsID" />
+            </Principal>
+            <Dependent Role="JobList">
+              <PropertyRef Name="ContactsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTracking_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="JobTracking" Type="Self.JobTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="JobTracking">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceDetail_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceRateDetail" Type="Self.JobTrackInvoiceRateDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceRateDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceRateDetail" Type="Self.JobTrackInvoiceRateDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceRateDetail">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterItem_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="MasterItem" Type="Self.MasterItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterItem">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterTrackSubItem_MasterTrackSet">
+          <End Role="MasterTrackSet" Type="Self.MasterTrackSet" Multiplicity="0..1" />
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterTrackSubItem">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="EmployeeDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="EmployeeDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VBFormInfo_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="VBFormInfo" Type="Self.VBFormInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="VBFormInfo">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VersionDescription_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="VersionDescription" Type="Self.VersionDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VersionDescription">
+              <PropertyRef Name="MasterTrackSubItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VersionDescription_VersionTable">
+          <End Role="VersionTable" Type="Self.VersionTable" Multiplicity="0..1" />
+          <End Role="VersionDescription" Type="Self.VersionDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VersionTable">
+              <PropertyRef Name="TableVersionId" />
+            </Principal>
+            <Dependent Role="VersionDescription">
+              <PropertyRef Name="TableVersionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ChangeTraficLightColor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
           <Parameter Name="ColorCode" Type="int" Mode="In" />
         </Function>
@@ -1732,6 +2164,150 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
     [vWordTrans].[Country] AS [Country]
     FROM [dbo].[vWordTrans] AS [vWordTrans]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AgingInvoice_Company" Association="Self.FK_AgingInvoice_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="AgingInvoice" EntitySet="AgingInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_Capacity_Bcad_CraneConfig" Association="Self.FK_Bcad_Capacity_Bcad_CraneConfig">
+            <End Role="Bcad_CraneConfig" EntitySet="Bcad_CraneConfig" />
+            <End Role="Bcad_Capacity" EntitySet="Bcad_Capacity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_Capacity_Bcad_Radius" Association="Self.FK_Bcad_Capacity_Bcad_Radius">
+            <End Role="Bcad_Radius" EntitySet="Bcad_Radius" />
+            <End Role="Bcad_Capacity" EntitySet="Bcad_Capacity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneCoordinate_Bcad_CraneConfig" Association="Self.FK_Bcad_CraneCoordinate_Bcad_CraneConfig">
+            <End Role="Bcad_CraneConfig" EntitySet="Bcad_CraneConfig" />
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneCoordinate_Bcad_ProjectName" Association="Self.FK_Bcad_CraneCoordinate_Bcad_ProjectName">
+            <End Role="Bcad_ProjectName" EntitySet="Bcad_ProjectName" />
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneData_Bcad_Crane" Association="Self.FK_Bcad_CraneData_Bcad_Crane">
+            <End Role="Bcad_Crane" EntitySet="Bcad_Crane" />
+            <End Role="Bcad_CraneData" EntitySet="Bcad_CraneData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_ElevationInfo_Bcad_Site" Association="Self.FK_Bcad_ElevationInfo_Bcad_Site">
+            <End Role="Bcad_Site" EntitySet="Bcad_Site" />
+            <End Role="Bcad_ElevationInfo" EntitySet="Bcad_ElevationInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate" Association="Self.FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate">
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+            <End Role="Bcad_PickChartCoordinate" EntitySet="Bcad_PickChartCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_PickChartCoordinate_Bcad_ProjectName" Association="Self.FK_Bcad_PickChartCoordinate_Bcad_ProjectName">
+            <End Role="Bcad_ProjectName" EntitySet="Bcad_ProjectName" />
+            <End Role="Bcad_PickChartCoordinate" EntitySet="Bcad_PickChartCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_SiteInfo_Bcad_Site" Association="Self.FK_Bcad_SiteInfo_Bcad_Site">
+            <End Role="Bcad_Site" EntitySet="Bcad_Site" />
+            <End Role="Bcad_SiteInfo" EntitySet="Bcad_SiteInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorEmailDescription_ColorSetting" Association="Self.FK_ColorEmailDescription_ColorSetting">
+            <End Role="ColorSetting" EntitySet="ColorSetting" />
+            <End Role="ColorEmailDescription" EntitySet="ColorEmailDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorHistory_Company" Association="Self.FK_ColorHistory_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ColorHistory" EntitySet="ColorHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommunicationLog_Company" Association="Self.FK_CommunicationLog_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CommunicationLog" EntitySet="CommunicationLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Company" Association="Self.FK_Contacts_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRVExpensesInvoice_JobTrackInvoiceDetail" Association="Self.FK_CRVExpensesInvoice_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetail" />
+            <End Role="CRVExpensesInvoice" EntitySet="CRVExpensesInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRVTimeInvoice_JobTrackInvoiceDetail" Association="Self.FK_CRVTimeInvoice_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetail" />
+            <End Role="CRVTimeInvoice" EntitySet="CRVTimeInvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DrawingLog_JobList" Association="Self.FK_DrawingLog_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="DrawingLog" EntitySet="DrawingLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_JobList" Association="Self.FK_Invoice_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceAction_Company" Association="Self.FK_InvoiceAction_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="InvoiceAction" EntitySet="InvoiceAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobList_Company" Association="Self.FK_JobList_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="JobList" EntitySet="JobList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobList_Contacts1" Association="Self.FK_JobList_Contacts1">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="JobList" EntitySet="JobList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTracking_JobList" Association="Self.FK_JobTracking_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="JobTracking" EntitySet="JobTracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceDetail_JobList" Association="Self.FK_JobTrackInvoiceDetail_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail" Association="Self.FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetail" />
+            <End Role="JobTrackInvoiceRateDetail" EntitySet="JobTrackInvoiceRateDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1" Association="Self.FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItem" />
+            <End Role="JobTrackInvoiceRateDetail" EntitySet="JobTrackInvoiceRateDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterItem_EmployeeDetails" Association="Self.FK_MasterItem_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="MasterItem" EntitySet="MasterItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterTrackSubItem_MasterTrackSet" Association="Self.FK_MasterTrackSubItem_MasterTrackSet">
+            <End Role="MasterTrackSet" EntitySet="MasterTrackSet" />
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_EmployeeDetails" Association="Self.FK_TS_Expences_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_JobList" Association="Self.FK_TS_Expences_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_MasterTrackSubItem" Association="Self.FK_TS_Expences_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItem" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_EmployeeDetails" Association="Self.FK_TS_Time_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_JobList" Association="Self.FK_TS_Time_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_MasterTrackSubItem" Association="Self.FK_TS_Time_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItem" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VBFormInfo_JobList" Association="Self.FK_VBFormInfo_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="VBFormInfo" EntitySet="VBFormInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VersionDescription_MasterTrackSubItem" Association="Self.FK_VersionDescription_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItem" />
+            <End Role="VersionDescription" EntitySet="VersionDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VersionDescription_VersionTable" Association="Self.FK_VersionDescription_VersionTable">
+            <End Role="VersionTable" EntitySet="VersionTable" />
+            <End Role="VersionDescription" EntitySet="VersionDescription" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -1760,6 +2336,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Aging" Type="Int32" />
           <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_AgingInvoice_Company" FromRole="AgingInvoice" ToRole="Company" />
         </EntityType>
         <EntityType Name="AppSetting">
           <Key>
@@ -1782,6 +2359,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="RadiusID" Type="Int32" />
           <Property Name="Radius" Type="Double" />
           <Property Name="Capacity" Type="Double" />
+          <NavigationProperty Name="Bcad_CraneConfig" Relationship="Self.FK_Bcad_Capacity_Bcad_CraneConfig" FromRole="Bcad_Capacity" ToRole="Bcad_CraneConfig" />
+          <NavigationProperty Name="Bcad_Radius" Relationship="Self.FK_Bcad_Capacity_Bcad_Radius" FromRole="Bcad_Capacity" ToRole="Bcad_Radius" />
         </EntityType>
         <EntityType Name="Bcad_Crane">
           <Key>
@@ -1789,6 +2368,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="CraneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CraneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bcad_CraneData" Relationship="Self.FK_Bcad_CraneData_Bcad_Crane" FromRole="Bcad_Crane" ToRole="Bcad_CraneData" />
         </EntityType>
         <EntityType Name="Bcad_CraneConfig">
           <Key>
@@ -1796,6 +2376,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CraneConfigName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bcad_Capacity" Relationship="Self.FK_Bcad_Capacity_Bcad_CraneConfig" FromRole="Bcad_CraneConfig" ToRole="Bcad_Capacity" />
+          <NavigationProperty Name="Bcad_CraneCoordinate" Relationship="Self.FK_Bcad_CraneCoordinate_Bcad_CraneConfig" FromRole="Bcad_CraneConfig" ToRole="Bcad_CraneCoordinate" />
         </EntityType>
         <EntityType Name="Bcad_CraneCoordinate">
           <Key>
@@ -1808,13 +2390,16 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Coordi_X" Type="Double" />
           <Property Name="Coordi_Y" Type="Double" />
           <Property Name="Coordi_Z" Type="Double" />
+          <NavigationProperty Name="Bcad_CraneConfig" Relationship="Self.FK_Bcad_CraneCoordinate_Bcad_CraneConfig" FromRole="Bcad_CraneCoordinate" ToRole="Bcad_CraneConfig" />
+          <NavigationProperty Name="Bcad_ProjectName" Relationship="Self.FK_Bcad_CraneCoordinate_Bcad_ProjectName" FromRole="Bcad_CraneCoordinate" ToRole="Bcad_ProjectName" />
+          <NavigationProperty Name="Bcad_PickChartCoordinate" Relationship="Self.FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate" FromRole="Bcad_CraneCoordinate" ToRole="Bcad_PickChartCoordinate" />
         </EntityType>
         <EntityType Name="Bcad_CraneData">
           <Key>
             <PropertyRef Name="CraneDataID" />
           </Key>
           <Property Name="CraneDataID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CraneID" Type="Int64" />
+          <Property Name="CraneID" Type="Int32" />
           <Property Name="OR_sp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FP_radius" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FP_Height" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1824,6 +2409,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Boom_Ext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Jib_length" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Offset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bcad_Crane" Relationship="Self.FK_Bcad_CraneData_Bcad_Crane" FromRole="Bcad_CraneData" ToRole="Bcad_Crane" />
         </EntityType>
         <EntityType Name="Bcad_ElevationInfo">
           <Key>
@@ -1834,6 +2420,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="elevName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="elevD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="elevHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bcad_Site" Relationship="Self.FK_Bcad_ElevationInfo_Bcad_Site" FromRole="Bcad_ElevationInfo" ToRole="Bcad_Site" />
         </EntityType>
         <EntityType Name="Bcad_PickChartCoordinate">
           <Key>
@@ -1849,6 +2436,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="PickWaight" Type="Double" />
           <Property Name="Capacity" Type="Double" />
           <Property Name="Radius" Type="Double" />
+          <NavigationProperty Name="Bcad_CraneCoordinate" Relationship="Self.FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate" FromRole="Bcad_PickChartCoordinate" ToRole="Bcad_CraneCoordinate" />
+          <NavigationProperty Name="Bcad_ProjectName" Relationship="Self.FK_Bcad_PickChartCoordinate_Bcad_ProjectName" FromRole="Bcad_PickChartCoordinate" ToRole="Bcad_ProjectName" />
         </EntityType>
         <EntityType Name="Bcad_ProjectName">
           <Key>
@@ -1856,6 +2445,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bcad_CraneCoordinate" Relationship="Self.FK_Bcad_CraneCoordinate_Bcad_ProjectName" FromRole="Bcad_ProjectName" ToRole="Bcad_CraneCoordinate" />
+          <NavigationProperty Name="Bcad_PickChartCoordinate" Relationship="Self.FK_Bcad_PickChartCoordinate_Bcad_ProjectName" FromRole="Bcad_ProjectName" ToRole="Bcad_PickChartCoordinate" />
         </EntityType>
         <EntityType Name="Bcad_Radius">
           <Key>
@@ -1863,6 +2454,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="radius" Type="Double" />
+          <NavigationProperty Name="Bcad_Capacity" Relationship="Self.FK_Bcad_Capacity_Bcad_Radius" FromRole="Bcad_Radius" ToRole="Bcad_Capacity" />
         </EntityType>
         <EntityType Name="Bcad_Site">
           <Key>
@@ -1870,6 +2462,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="siteName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bcad_ElevationInfo" Relationship="Self.FK_Bcad_ElevationInfo_Bcad_Site" FromRole="Bcad_Site" ToRole="Bcad_ElevationInfo" />
+          <NavigationProperty Name="Bcad_SiteInfo" Relationship="Self.FK_Bcad_SiteInfo_Bcad_Site" FromRole="Bcad_Site" ToRole="Bcad_SiteInfo" />
         </EntityType>
         <EntityType Name="Bcad_SiteInfo">
           <Key>
@@ -1879,6 +2473,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="siteTitleID" Type="Int32" />
           <Property Name="thetaValue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ElevCraneDistance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bcad_Site" Relationship="Self.FK_Bcad_SiteInfo_Bcad_Site" FromRole="Bcad_SiteInfo" ToRole="Bcad_Site" />
         </EntityType>
         <EntityType Name="ColorEmailDescription">
           <Key>
@@ -1888,6 +2483,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="ColorID" Type="Int32" />
           <Property Name="EmailSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EmailDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ColorSetting" Relationship="Self.FK_ColorEmailDescription_ColorSetting" FromRole="ColorEmailDescription" ToRole="ColorSetting" />
         </EntityType>
         <EntityType Name="ColorSetting">
           <Key>
@@ -1895,17 +2491,19 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ColorEmailDescriptions" Relationship="Self.FK_ColorEmailDescription_ColorSetting" FromRole="ColorSetting" ToRole="ColorEmailDescription" />
         </EntityType>
         <EntityType Name="CommunicationLog">
           <Key>
             <PropertyRef Name="CommLogID" />
           </Key>
           <Property Name="CommLogID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyID" Type="Int64" />
+          <Property Name="CompanyID" Type="Int32" />
           <Property Name="InvoiceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CallBackDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CommunicationLog_Company" FromRole="CommunicationLog" ToRole="Company" />
         </EntityType>
         <EntityType Name="CommunityBoard">
           <Key>
@@ -1968,6 +2566,12 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="OfficeFax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TypicalInvoiceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ServRate" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="AgingInvoices" Relationship="Self.FK_AgingInvoice_Company" FromRole="Company" ToRole="AgingInvoice" />
+          <NavigationProperty Name="CommunicationLogs" Relationship="Self.FK_CommunicationLog_Company" FromRole="Company" ToRole="CommunicationLog" />
+          <NavigationProperty Name="ColorHistories" Relationship="Self.FK_ColorHistory_Company" FromRole="Company" ToRole="ColorHistory" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contacts_Company" FromRole="Company" ToRole="Contacts" />
+          <NavigationProperty Name="InvoiceActions" Relationship="Self.FK_InvoiceAction_Company" FromRole="Company" ToRole="InvoiceAction" />
+          <NavigationProperty Name="JobLists" Relationship="Self.FK_JobList_Company" FromRole="Company" ToRole="JobList" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -2004,25 +2608,28 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsNewRecord" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Contacts_Company" FromRole="Contacts" ToRole="Company" />
+          <NavigationProperty Name="JobLists" Relationship="Self.FK_JobList_Contacts1" FromRole="Contacts" ToRole="JobList" />
         </EntityType>
         <EntityType Name="CRVExpensesInvoice">
           <Key>
             <PropertyRef Name="CRVExpensesInvoiceID" />
           </Key>
           <Property Name="CRVExpensesInvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobTrackDetailID" Type="Int64" />
+          <Property Name="JobTrackDetailID" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Expenses" Type="Double" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="byname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TimeSheetExpencesID" Type="Int32" />
+          <NavigationProperty Name="JobTrackInvoiceDetail" Relationship="Self.FK_CRVExpensesInvoice_JobTrackInvoiceDetail" FromRole="CRVExpensesInvoice" ToRole="JobTrackInvoiceDetail" />
         </EntityType>
         <EntityType Name="CRVTimeInvoice">
           <Key>
             <PropertyRef Name="CRVTimeInvoiceID" />
           </Key>
           <Property Name="CRVTimeInvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobTrackDetailID" Type="Int64" />
+          <Property Name="JobTrackDetailID" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Time" Type="Double" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2030,6 +2637,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TimeSheetID" Type="Int32" />
+          <NavigationProperty Name="JobTrackInvoiceDetail" Relationship="Self.FK_CRVTimeInvoice_JobTrackInvoiceDetail" FromRole="CRVTimeInvoice" ToRole="JobTrackInvoiceDetail" />
         </EntityType>
         <EntityType Name="DocTypicalCategoryList">
           <Key>
@@ -2058,6 +2666,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="StorageLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="LastUsed" Type="DateTime" Precision="3" />
           <Property Name="AKA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_DrawingLog_JobList" FromRole="DrawingLog" ToRole="JobList" />
         </EntityType>
         <EntityType Name="EmailRecord">
           <Key>
@@ -2091,6 +2700,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="TempId" Type="Int64" />
           <Property Name="ReservedOldId" Type="Int64" />
+          <NavigationProperty Name="MasterItems" Relationship="Self.FK_MasterItem_EmployeeDetails" FromRole="EmployeeDetails" ToRole="MasterItem" />
+          <NavigationProperty Name="TS_Expences" Relationship="Self.FK_TS_Expences_EmployeeDetails" FromRole="EmployeeDetails" ToRole="TS_Expences" />
+          <NavigationProperty Name="TS_Time" Relationship="Self.FK_TS_Time_EmployeeDetails" FromRole="EmployeeDetails" ToRole="TS_Time" />
         </EntityType>
         <EntityType Name="EmployeeDetails_Depre">
           <Key>
@@ -2140,18 +2752,20 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsChange" Type="Boolean" />
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_Invoice_JobList" FromRole="Invoice" ToRole="JobList" />
         </EntityType>
         <EntityType Name="InvoiceAction">
           <Key>
             <PropertyRef Name="ActionID" />
           </Key>
           <Property Name="ActionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyID" Type="Int64" />
+          <Property Name="CompanyID" Type="Int32" />
           <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ActionName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ActionDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_InvoiceAction_Company" FromRole="InvoiceAction" ToRole="Company" />
         </EntityType>
         <EntityType Name="JobList">
           <Key>
@@ -2192,6 +2806,15 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsInvoiceHold" Type="Boolean" Nullable="false" />
           <Property Name="ServRate" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="AdminInvoice" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_JobList_Company" FromRole="JobList" ToRole="Company" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_JobList_Contacts1" FromRole="JobList" ToRole="Contacts" />
+          <NavigationProperty Name="DrawingLogs" Relationship="Self.FK_DrawingLog_JobList" FromRole="JobList" ToRole="DrawingLog" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_JobList" FromRole="JobList" ToRole="Invoice" />
+          <NavigationProperty Name="JobTrackings" Relationship="Self.FK_JobTracking_JobList" FromRole="JobList" ToRole="JobTracking" />
+          <NavigationProperty Name="JobTrackInvoiceDetails" Relationship="Self.FK_JobTrackInvoiceDetail_JobList" FromRole="JobList" ToRole="JobTrackInvoiceDetail" />
+          <NavigationProperty Name="TS_Expences" Relationship="Self.FK_TS_Expences_JobList" FromRole="JobList" ToRole="TS_Expences" />
+          <NavigationProperty Name="TS_Time" Relationship="Self.FK_TS_Time_JobList" FromRole="JobList" ToRole="TS_Time" />
+          <NavigationProperty Name="VBFormInfoes" Relationship="Self.FK_VBFormInfo_JobList" FromRole="JobList" ToRole="VBFormInfo" />
         </EntityType>
         <EntityType Name="JobTracking">
           <Key>
@@ -2218,13 +2841,14 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="FinalAction" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="InvOvr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeleteItemTimeService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_JobTracking_JobList" FromRole="JobTracking" ToRole="JobList" />
         </EntityType>
         <EntityType Name="JobTrackInvoiceDetail">
           <Key>
             <PropertyRef Name="JobTrackDetailID" />
           </Key>
-          <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobListID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="JobTrackDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobListID" Type="Int32" />
           <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2238,6 +2862,10 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Aging" Type="Int32" />
           <Property Name="OpeningBal" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="CRVExpensesInvoices" Relationship="Self.FK_CRVExpensesInvoice_JobTrackInvoiceDetail" FromRole="JobTrackInvoiceDetail" ToRole="CRVExpensesInvoice" />
+          <NavigationProperty Name="CRVTimeInvoices" Relationship="Self.FK_CRVTimeInvoice_JobTrackInvoiceDetail" FromRole="JobTrackInvoiceDetail" ToRole="CRVTimeInvoice" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_JobTrackInvoiceDetail_JobList" FromRole="JobTrackInvoiceDetail" ToRole="JobList" />
+          <NavigationProperty Name="JobTrackInvoiceRateDetails" Relationship="Self.FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail" FromRole="JobTrackInvoiceDetail" ToRole="JobTrackInvoiceRateDetail" />
         </EntityType>
         <EntityType Name="JobTrackInvoiceRateDetail">
           <Key>
@@ -2246,7 +2874,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="InvoiceRptID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TrackSubID" Type="Int32" />
           <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="JobTrackDetailID" Type="Int32" />
           <Property Name="Hrs" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2255,6 +2883,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Clienttext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackingID" Type="Int32" />
+          <NavigationProperty Name="JobTrackInvoiceDetail" Relationship="Self.FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail" FromRole="JobTrackInvoiceRateDetail" ToRole="JobTrackInvoiceDetail" />
+          <NavigationProperty Name="MasterTrackSubItem" Relationship="Self.FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1" FromRole="JobTrackInvoiceRateDetail" ToRole="MasterTrackSubItem" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -2276,7 +2906,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="IsDisable" Type="Boolean" />
-          <Property Name="EmpId" Type="Int32" />
+          <Property Name="EmpId" Type="Int64" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_MasterItem_EmployeeDetails" FromRole="MasterItem" ToRole="EmployeeDetails" />
         </EntityType>
         <EntityType Name="MasterTrackSet">
           <Key>
@@ -2289,6 +2920,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsChange" Type="Boolean" />
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="MasterTrackSubItems" Relationship="Self.FK_MasterTrackSubItem_MasterTrackSet" FromRole="MasterTrackSet" ToRole="MasterTrackSubItem" />
         </EntityType>
         <EntityType Name="MasterTrackSubItem">
           <Key>
@@ -2306,6 +2938,11 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="CalColor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="JobTrackInvoiceRateDetails" Relationship="Self.FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1" FromRole="MasterTrackSubItem" ToRole="JobTrackInvoiceRateDetail" />
+          <NavigationProperty Name="MasterTrackSet" Relationship="Self.FK_MasterTrackSubItem_MasterTrackSet" FromRole="MasterTrackSubItem" ToRole="MasterTrackSet" />
+          <NavigationProperty Name="TS_Expences" Relationship="Self.FK_TS_Expences_MasterTrackSubItem" FromRole="MasterTrackSubItem" ToRole="TS_Expences" />
+          <NavigationProperty Name="TS_Time" Relationship="Self.FK_TS_Time_MasterTrackSubItem" FromRole="MasterTrackSubItem" ToRole="TS_Time" />
+          <NavigationProperty Name="VersionDescriptions" Relationship="Self.FK_VersionDescription_MasterTrackSubItem" FromRole="MasterTrackSubItem" ToRole="VersionDescription" />
         </EntityType>
         <EntityType Name="SendEmailRecord">
           <Key>
@@ -2350,7 +2987,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
             <PropertyRef Name="TimeSheetExpencesID" />
           </Key>
           <Property Name="TimeSheetExpencesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobListID" Type="Int64" />
+          <Property Name="JobListID" Type="Int32" />
           <Property Name="EmployeeDetailsId" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrackSubID" Type="Int32" />
@@ -2363,6 +3000,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AdminStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_TS_Expences_EmployeeDetails" FromRole="TS_Expences" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_TS_Expences_JobList" FromRole="TS_Expences" ToRole="JobList" />
+          <NavigationProperty Name="MasterTrackSubItem" Relationship="Self.FK_TS_Expences_MasterTrackSubItem" FromRole="TS_Expences" ToRole="MasterTrackSubItem" />
         </EntityType>
         <EntityType Name="TS_MasterItem">
           <Key>
@@ -2378,7 +3018,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
             <PropertyRef Name="TimeSheetID" />
           </Key>
           <Property Name="TimeSheetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobListID" Type="Int64" />
+          <Property Name="JobListID" Type="Int32" Nullable="false" />
           <Property Name="EmployeeDetailsId" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrackSubID" Type="Int32" />
@@ -2392,6 +3032,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AdminStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackingId" Type="Int64" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_TS_Time_EmployeeDetails" FromRole="TS_Time" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_TS_Time_JobList" FromRole="TS_Time" ToRole="JobList" />
+          <NavigationProperty Name="MasterTrackSubItem" Relationship="Self.FK_TS_Time_MasterTrackSubItem" FromRole="TS_Time" ToRole="MasterTrackSubItem" />
         </EntityType>
         <EntityType Name="VBCDDatabase">
           <Key>
@@ -2497,6 +3140,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="ChangeDate" Type="DateTime" Precision="3" />
           <Property Name="PDFType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_VBFormInfo_JobList" FromRole="VBFormInfo" ToRole="JobList" />
         </EntityType>
         <EntityType Name="VBNetApplicantInfo">
           <Key>
@@ -2535,6 +3179,8 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="CalColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TrackSubName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterTrackSubItem" Relationship="Self.FK_VersionDescription_MasterTrackSubItem" FromRole="VersionDescription" ToRole="MasterTrackSubItem" />
+          <NavigationProperty Name="VersionTable" Relationship="Self.FK_VersionDescription_VersionTable" FromRole="VersionDescription" ToRole="VersionTable" />
         </EntityType>
         <EntityType Name="VersionTable">
           <Key>
@@ -2542,6 +3188,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           </Key>
           <Property Name="TableVersionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TableVersionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VersionDescriptions" Relationship="Self.FK_VersionDescription_VersionTable" FromRole="VersionTable" ToRole="VersionDescription" />
         </EntityType>
         <EntityType Name="VETask">
           <Key>
@@ -2578,6 +3225,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Aging" Type="Int32" />
           <Property Name="AgingUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Userid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ColorHistory_Company" FromRole="ColorHistory" ToRole="Company" />
         </EntityType>
         <EntityType Name="PMInfo">
           <Key>
@@ -2608,7 +3256,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Track" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="TrackSub" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobListID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="InvoiceJobList">
@@ -2663,9 +3311,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackSubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Hrs" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
@@ -2706,9 +3354,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Expenses" Type="Double" />
@@ -2730,9 +3378,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="Double" />
@@ -2758,9 +3406,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2787,9 +3435,9 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="Jobdescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobTrackDetailID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="JobNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2853,7 +3501,439 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="TestVariousInfoEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_AgingInvoice_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="AgingInvoice" Type="Self.AgingInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="AgingInvoice">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_Capacity_Bcad_CraneConfig">
+          <End Role="Bcad_CraneConfig" Type="Self.Bcad_CraneConfig" Multiplicity="0..1" />
+          <End Role="Bcad_Capacity" Type="Self.Bcad_Capacity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_Capacity">
+              <PropertyRef Name="CraneConfigID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_Capacity_Bcad_Radius">
+          <End Role="Bcad_Radius" Type="Self.Bcad_Radius" Multiplicity="0..1" />
+          <End Role="Bcad_Capacity" Type="Self.Bcad_Capacity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Radius">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_Capacity">
+              <PropertyRef Name="RadiusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneData_Bcad_Crane">
+          <End Role="Bcad_Crane" Type="Self.Bcad_Crane" Multiplicity="0..1" />
+          <End Role="Bcad_CraneData" Type="Self.Bcad_CraneData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Crane">
+              <PropertyRef Name="CraneID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneData">
+              <PropertyRef Name="CraneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneCoordinate_Bcad_CraneConfig">
+          <End Role="Bcad_CraneConfig" Type="Self.Bcad_CraneConfig" Multiplicity="0..1" />
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="CraneConfigID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_CraneCoordinate_Bcad_ProjectName">
+          <End Role="Bcad_ProjectName" Type="Self.Bcad_ProjectName" Multiplicity="0..1" />
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_ProjectName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="ProjectNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate">
+          <End Role="Bcad_CraneCoordinate" Type="Self.Bcad_CraneCoordinate" Multiplicity="0..1" />
+          <End Role="Bcad_PickChartCoordinate" Type="Self.Bcad_PickChartCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_CraneCoordinate">
+              <PropertyRef Name="CraneCoordi_ID" />
+            </Principal>
+            <Dependent Role="Bcad_PickChartCoordinate">
+              <PropertyRef Name="CraneCoordi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_ElevationInfo_Bcad_Site">
+          <End Role="Bcad_Site" Type="Self.Bcad_Site" Multiplicity="0..1" />
+          <End Role="Bcad_ElevationInfo" Type="Self.Bcad_ElevationInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Site">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bcad_ElevationInfo">
+              <PropertyRef Name="siteTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_PickChartCoordinate_Bcad_ProjectName">
+          <End Role="Bcad_ProjectName" Type="Self.Bcad_ProjectName" Multiplicity="0..1" />
+          <End Role="Bcad_PickChartCoordinate" Type="Self.Bcad_PickChartCoordinate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_ProjectName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bcad_PickChartCoordinate">
+              <PropertyRef Name="ProjectNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bcad_SiteInfo_Bcad_Site">
+          <End Role="Bcad_Site" Type="Self.Bcad_Site" Multiplicity="0..1" />
+          <End Role="Bcad_SiteInfo" Type="Self.Bcad_SiteInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bcad_Site">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bcad_SiteInfo">
+              <PropertyRef Name="siteTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorEmailDescription_ColorSetting">
+          <End Role="ColorSetting" Type="Self.ColorSetting" Multiplicity="0..1" />
+          <End Role="ColorEmailDescription" Type="Self.ColorEmailDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorSetting">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="ColorEmailDescription">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommunicationLog_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CommunicationLog" Type="Self.CommunicationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="CommunicationLog">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorHistory_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ColorHistory" Type="Self.ColorHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ColorHistory">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceAction_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="InvoiceAction" Type="Self.InvoiceAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="InvoiceAction">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobList_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="JobList" Type="Self.JobList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="JobList">
+              <PropertyRef Name="ContactsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobList_Contacts1">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="0..1" />
+          <End Role="JobList" Type="Self.JobList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactsID" />
+            </Principal>
+            <Dependent Role="JobList">
+              <PropertyRef Name="ContactsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRVExpensesInvoice_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="CRVExpensesInvoice" Type="Self.CRVExpensesInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="CRVExpensesInvoice">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRVTimeInvoice_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="CRVTimeInvoice" Type="Self.CRVTimeInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="CRVTimeInvoice">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DrawingLog_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="DrawingLog" Type="Self.DrawingLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="DrawingLog">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterItem_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <End Role="MasterItem" Type="Self.MasterItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterItem">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="EmployeeDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_EmployeeDetails">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="EmployeeDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTracking_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="JobTracking" Type="Self.JobTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="JobTracking">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceDetail_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VBFormInfo_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="0..1" />
+          <End Role="VBFormInfo" Type="Self.VBFormInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobListID" />
+            </Principal>
+            <Dependent Role="VBFormInfo">
+              <PropertyRef Name="JobListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail">
+          <End Role="JobTrackInvoiceDetail" Type="Self.JobTrackInvoiceDetail" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceRateDetail" Type="Self.JobTrackInvoiceRateDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTrackInvoiceDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceRateDetail">
+              <PropertyRef Name="JobTrackDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="JobTrackInvoiceRateDetail" Type="Self.JobTrackInvoiceRateDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobTrackInvoiceRateDetail">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterTrackSubItem_MasterTrackSet">
+          <End Role="MasterTrackSet" Type="Self.MasterTrackSet" Multiplicity="0..1" />
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterTrackSubItem">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Expences_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="TS_Expences" Type="Self.TS_Expences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Expences">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TS_Time_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="TS_Time" Type="Self.TS_Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TS_Time">
+              <PropertyRef Name="TrackSubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VersionDescription_MasterTrackSubItem">
+          <End Role="MasterTrackSubItem" Type="Self.MasterTrackSubItem" Multiplicity="0..1" />
+          <End Role="VersionDescription" Type="Self.VersionDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTrackSubItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VersionDescription">
+              <PropertyRef Name="MasterTrackSubItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VersionDescription_VersionTable">
+          <End Role="VersionTable" Type="Self.VersionTable" Multiplicity="0..1" />
+          <End Role="VersionDescription" Type="Self.VersionDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VersionTable">
+              <PropertyRef Name="TableVersionId" />
+            </Principal>
+            <Dependent Role="VersionDescription">
+              <PropertyRef Name="TableVersionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EFDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgingFileInfoes" EntityType="Self.AgingFileInfo" />
           <EntitySet Name="AgingInvoices" EntityType="Self.AgingInvoice" />
           <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
@@ -2921,6 +4001,150 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <EntitySet Name="VW_PandingList" EntityType="Self.VW_PandingList" />
           <EntitySet Name="vwJobListDefaultValues" EntityType="Self.vwJobListDefaultValue" />
           <EntitySet Name="vWordTrans" EntityType="Self.vWordTran" />
+          <AssociationSet Name="FK_AgingInvoice_Company" Association="Self.FK_AgingInvoice_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="AgingInvoice" EntitySet="AgingInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_Capacity_Bcad_CraneConfig" Association="Self.FK_Bcad_Capacity_Bcad_CraneConfig">
+            <End Role="Bcad_CraneConfig" EntitySet="Bcad_CraneConfig" />
+            <End Role="Bcad_Capacity" EntitySet="Bcad_Capacity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_Capacity_Bcad_Radius" Association="Self.FK_Bcad_Capacity_Bcad_Radius">
+            <End Role="Bcad_Radius" EntitySet="Bcad_Radius" />
+            <End Role="Bcad_Capacity" EntitySet="Bcad_Capacity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneData_Bcad_Crane" Association="Self.FK_Bcad_CraneData_Bcad_Crane">
+            <End Role="Bcad_Crane" EntitySet="Bcad_Crane" />
+            <End Role="Bcad_CraneData" EntitySet="Bcad_CraneData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneCoordinate_Bcad_CraneConfig" Association="Self.FK_Bcad_CraneCoordinate_Bcad_CraneConfig">
+            <End Role="Bcad_CraneConfig" EntitySet="Bcad_CraneConfig" />
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_CraneCoordinate_Bcad_ProjectName" Association="Self.FK_Bcad_CraneCoordinate_Bcad_ProjectName">
+            <End Role="Bcad_ProjectName" EntitySet="Bcad_ProjectName" />
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate" Association="Self.FK_Bcad_PickChartCoordinate_Bcad_CraneCoordinate">
+            <End Role="Bcad_CraneCoordinate" EntitySet="Bcad_CraneCoordinate" />
+            <End Role="Bcad_PickChartCoordinate" EntitySet="Bcad_PickChartCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_ElevationInfo_Bcad_Site" Association="Self.FK_Bcad_ElevationInfo_Bcad_Site">
+            <End Role="Bcad_Site" EntitySet="Bcad_Site" />
+            <End Role="Bcad_ElevationInfo" EntitySet="Bcad_ElevationInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_PickChartCoordinate_Bcad_ProjectName" Association="Self.FK_Bcad_PickChartCoordinate_Bcad_ProjectName">
+            <End Role="Bcad_ProjectName" EntitySet="Bcad_ProjectName" />
+            <End Role="Bcad_PickChartCoordinate" EntitySet="Bcad_PickChartCoordinate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bcad_SiteInfo_Bcad_Site" Association="Self.FK_Bcad_SiteInfo_Bcad_Site">
+            <End Role="Bcad_Site" EntitySet="Bcad_Site" />
+            <End Role="Bcad_SiteInfo" EntitySet="Bcad_SiteInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorEmailDescription_ColorSetting" Association="Self.FK_ColorEmailDescription_ColorSetting">
+            <End Role="ColorSetting" EntitySet="ColorSettings" />
+            <End Role="ColorEmailDescription" EntitySet="ColorEmailDescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommunicationLog_Company" Association="Self.FK_CommunicationLog_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CommunicationLog" EntitySet="CommunicationLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorHistory_Company" Association="Self.FK_ColorHistory_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="ColorHistory" EntitySet="ColorHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Company" Association="Self.FK_Contacts_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceAction_Company" Association="Self.FK_InvoiceAction_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="InvoiceAction" EntitySet="InvoiceActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobList_Company" Association="Self.FK_JobList_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="JobList" EntitySet="JobLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobList_Contacts1" Association="Self.FK_JobList_Contacts1">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="JobList" EntitySet="JobLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRVExpensesInvoice_JobTrackInvoiceDetail" Association="Self.FK_CRVExpensesInvoice_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetails" />
+            <End Role="CRVExpensesInvoice" EntitySet="CRVExpensesInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRVTimeInvoice_JobTrackInvoiceDetail" Association="Self.FK_CRVTimeInvoice_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetails" />
+            <End Role="CRVTimeInvoice" EntitySet="CRVTimeInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DrawingLog_JobList" Association="Self.FK_DrawingLog_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="DrawingLog" EntitySet="DrawingLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterItem_EmployeeDetails" Association="Self.FK_MasterItem_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="MasterItem" EntitySet="MasterItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_EmployeeDetails" Association="Self.FK_TS_Expences_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_EmployeeDetails" Association="Self.FK_TS_Time_EmployeeDetails">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_JobList" Association="Self.FK_Invoice_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTracking_JobList" Association="Self.FK_JobTracking_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="JobTracking" EntitySet="JobTrackings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceDetail_JobList" Association="Self.FK_JobTrackInvoiceDetail_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_JobList" Association="Self.FK_TS_Expences_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_JobList" Association="Self.FK_TS_Time_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VBFormInfo_JobList" Association="Self.FK_VBFormInfo_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="VBFormInfo" EntitySet="VBFormInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail" Association="Self.FK_JobTrackInvoiceRateDetail_JobTrackInvoiceDetail">
+            <End Role="JobTrackInvoiceDetail" EntitySet="JobTrackInvoiceDetails" />
+            <End Role="JobTrackInvoiceRateDetail" EntitySet="JobTrackInvoiceRateDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1" Association="Self.FK_JobTrackInvoiceRateDetail_MasterTrackSubItem1">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItems" />
+            <End Role="JobTrackInvoiceRateDetail" EntitySet="JobTrackInvoiceRateDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterTrackSubItem_MasterTrackSet" Association="Self.FK_MasterTrackSubItem_MasterTrackSet">
+            <End Role="MasterTrackSet" EntitySet="MasterTrackSets" />
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Expences_MasterTrackSubItem" Association="Self.FK_TS_Expences_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItems" />
+            <End Role="TS_Expences" EntitySet="TS_Expences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TS_Time_MasterTrackSubItem" Association="Self.FK_TS_Time_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItems" />
+            <End Role="TS_Time" EntitySet="TS_Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VersionDescription_MasterTrackSubItem" Association="Self.FK_VersionDescription_MasterTrackSubItem">
+            <End Role="MasterTrackSubItem" EntitySet="MasterTrackSubItems" />
+            <End Role="VersionDescription" EntitySet="VersionDescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VersionDescription_VersionTable" Association="Self.FK_VersionDescription_VersionTable">
+            <End Role="VersionTable" EntitySet="VersionTables" />
+            <End Role="VersionDescription" EntitySet="VersionDescriptions" />
+          </AssociationSet>
           <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(TestVariousInfoModel.SplitString_Result)">
             <Parameter Name="Input" Mode="In" Type="String" />
             <Parameter Name="Character" Mode="In" Type="String" />
@@ -3066,7 +4290,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Type="String" Name="FaxNo" Nullable="true" />
           <Property Type="String" Name="Email" Nullable="true" />
           <Property Type="String" Name="Description" Nullable="true" />
-          <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="JobTrackDetailID" Nullable="false" />
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
@@ -3090,7 +4314,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Type="String" Name="FaxNo" Nullable="true" />
           <Property Type="String" Name="Email" Nullable="true" />
           <Property Type="String" Name="Description" Nullable="true" />
-          <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="JobTrackDetailID" Nullable="false" />
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
@@ -3114,7 +4338,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Type="String" Name="FaxNo" Nullable="true" />
           <Property Type="String" Name="Email" Nullable="true" />
           <Property Type="String" Name="Description" Nullable="true" />
-          <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="JobTrackDetailID" Nullable="false" />
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
@@ -3156,11 +4380,11 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
           <Property Type="String" Name="PhoneNo" Nullable="true" />
           <Property Type="String" Name="FaxNo" Nullable="true" />
           <Property Type="String" Name="Email" Nullable="true" />
-          <Property Type="Decimal" Name="JobTrackDetailID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="JobTrackDetailID" Nullable="false" />
           <Property Type="String" Name="JobNumber" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="PONo" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="PaymentCr" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="JobTrackDetailID1" Nullable="true" Precision="19" Scale="0" />
+          <Property Type="Int32" Name="JobTrackDetailID1" Nullable="true" />
           <Property Type="String" Name="Description" Nullable="true" />
           <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
           <Property Type="Double" Name="Hrs" Nullable="true" />
@@ -3190,7 +4414,7 @@ warning 6002: The table/view 'TestVariousInfo.dbo.vWordTrans' does not have a pr
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TestVariousInfoModelStoreContainer" CdmEntityContainer="TestVariousInfoEntities">
+        <EntityContainerMapping StorageEntityContainer="TestVariousInfoModelStoreContainer" CdmEntityContainer="EFDbContext">
           <EntitySetMapping Name="AgingFileInfoes">
             <EntityTypeMapping TypeName="TestVariousInfoModel.AgingFileInfo">
               <MappingFragment StoreEntitySet="AgingFileInfo">

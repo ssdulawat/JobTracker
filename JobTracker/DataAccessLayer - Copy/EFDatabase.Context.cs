@@ -14,8 +14,7 @@ namespace DataAccessLayer
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Data;
-
+    
     public partial class TestVariousInfoEntities : DbContext
     {
         public TestVariousInfoEntities()
@@ -68,7 +67,6 @@ namespace DataAccessLayer
         public virtual DbSet<MasterTrackSet> MasterTrackSets { get; set; }
         public virtual DbSet<MasterTrackSubItem> MasterTrackSubItems { get; set; }
         public virtual DbSet<SendEmailRecord> SendEmailRecords { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaskList> TaskLists { get; set; }
         public virtual DbSet<TrackSubItemAccount> TrackSubItemAccounts { get; set; }
         public virtual DbSet<TS_Expences> TS_Expences { get; set; }
@@ -506,16 +504,6 @@ namespace DataAccessLayer
                 new ObjectParameter("IsUndo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUndoInvoiceDetails", jobTrackDetailIdParameter, isUndoParameter);
-        }
-
-        public DataTable Filldatatable(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object FillDAtatableCombo(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }
